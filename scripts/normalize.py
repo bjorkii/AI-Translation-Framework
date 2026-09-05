@@ -79,6 +79,13 @@ def main(pdf, p0, p1, chap, outpath=None):
                  layout_uncertain=0, headings=0, captions=0, fn_refs=0, fn_defs=0, labels=0)
     out, notes = [], []
     carry_idx = None      # out 리스트에서 직전 본문 문단의 위치
+    pending = {"mark": None}   # 아직 배치하지 않은 페이지 마커
+
+    def flush_mark():
+        """문단이 이어지지 않는 경우: 마커를 독립된 줄로 배치"""
+        if pending["mark"]:
+            out.append("\n[원서 p.%s]\n" % pending["mark"])
+            pending["mark"] = None
 
     for i in range(p0-1, p1):
         page = doc[i]; stats["pages"] += 1
@@ -121,16 +128,16 @@ def main(pdf, p0, p1, chap, outpath=None):
             bare = FN_REF.sub("", txt)      # 문장 종료 판정용(참조번호 제거)
 
             if b["size"] >= 15:
-                out.append(f"\n## {txt}\n"); stats["headings"] += 1; carry_idx = None; continue
+                flush_mark(); out.append(f"\n## {txt}\n"); stats["headings"] += 1; carry_idx = None; continue
             if b["size"] >= 13:
-                out.append(f"\n### {txt}\n"); stats["headings"] += 1; carry_idx = None; continue
+                flush_mark(); out.append(f"\n### {txt}\n"); stats["headings"] += 1; carry_idx = None; continue
             if TABLE_T.match(txt) or is_caps_label(txt):
                 # 표 제목 / 대문자 라벨: 본문 흐름에서 분리하고 연속 판정 대상에서 제외
-                out.append(f"\n**{txt}**\n"); stats["labels"] += 1; carry_idx = None; continue
+                flush_mark(); out.append(f"\n**{txt}**\n"); stats["labels"] += 1; carry_idx = None; continue
             if b["size"] < BODY - 0.4:
                 # 본문보다 작은 폰트 = 캡션/표/사이드바 등 구조 요소.
                 # 본문 문단 흐름을 끊지 않도록 carry_idx를 유지한 채 통과시킨다.
-                out.append(f"\n*{txt2}*\n"); stats["captions"] += 1; continue
+                flush_mark(); out.append(f"\n*{txt2}*\n"); stats["captions"] += 1; continue
 
             if carry_idx is not None:
                 prev = out[carry_idx].strip()
@@ -138,12 +145,19 @@ def main(pdf, p0, p1, chap, outpath=None):
                 cont = (not END.search(prev_bare)) or bool(ABBR.search(prev_bare))
                 lower = txt[:1].islower()
                 if cont and lower:
-                    out[carry_idx] = f"\n{prev} {txt2}\n"; continue
+                    # 페이지 경계가 문장 중간이면, 마커를 바로 그 지점에 끼워 넣는다
+                    if pending["mark"]:
+                        joint = " [원서 p.%s] " % pending["mark"]; pending["mark"] = None
+                    else:
+                        joint = " "
+                    out[carry_idx] = f"\n{prev}{joint}{txt2}\n"; continue
                 if cont != lower:
                     stats["uncertain"] += 1
                     notes.append(f"p.{label}: …{prev_bare[-45:]!r} || {txt[:45]!r}")
+                    flush_mark()
                     out.append(f"\n<!-- LINEBREAK-UNCERTAIN -->\n{txt2}\n")
                     carry_idx = len(out)-1; stats["paras"] += 1; continue
+            flush_mark()
             out.append(f"\n{txt2}\n"); carry_idx = len(out)-1; stats["paras"] += 1
 
         # 각주 정의 -> 페이지 텍스트 말미 (페이지 마커 직전)
@@ -152,8 +166,9 @@ def main(pdf, p0, p1, chap, outpath=None):
                 if num is None: continue
                 stats["fn_defs"] += 1
                 out.append(f'\n<a id="fn-{chap}-{num:03d}"></a> **[각주]** {body_txt}  [↩](#back-{chap}-{num:03d})\n')
-        out.append(f"\n[원서 p.{label}]\n")
+        pending["mark"] = label      # 다음 블록이 이어지는지 보고 배치 위치를 정한다
 
+    flush_mark()
     text = re.sub(r"\n{3,}", "\n\n", "".join(out))
     if outpath: open(outpath, "w").write(text)
     print("=== 정규화 통계 (v2) ===")

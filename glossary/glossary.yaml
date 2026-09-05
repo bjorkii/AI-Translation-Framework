@@ -1237,6 +1237,9 @@ entries:
     basis: null
     first_chapter: glossary
     locked: false
+    tbd: "리와인드 | 되감기 | 되감기대"
+    notation: "보류 — 장비를 뜻하는 용례(p.23 'Rewinds are used in pairs')를 더 확인한 뒤 결정"
+
   - term: "RH"
     translation: null
     definition_en: "Relative humidity. Ratio of the amount of water actually in the air to the maximum that air can hold at that given temperature."
@@ -1404,7 +1407,7 @@ entries:
     first_chapter: glossary
     locked: false
   - term: "Split reel"
-    translation: "쪽 릴(분리형 릴)"
+    translation: "쪽릴"
     context: "양쪽으로 분리되는 릴"
     definition_en: "Reel with a removable side. Used to transfer film between reels and cores."
     definition_ko: null
@@ -1414,7 +1417,7 @@ entries:
     basis: null
     first_chapter: glossary
     locked: false
-    notation: "챕터마다 첫 등장할 때만 괄호 병기"
+    notation: "현장 용어. 챕터마다 첫 등장할 때만 '쪽릴(분리형 릴)'로 병기"
 
   - term: "Sprocket"
     translation: "스프로킷"
@@ -1664,3 +1667,15 @@ entries:
     first_chapter: glossary
     locked: false
     notation: "원문 병기"
+  - term: "rewinds"
+    translation: "필름 라와인더"
+    notation: "보류 — Rewind와 중복 가능성. 통합 여부 확인 필요"
+    definition_en: null
+    definition_ko: null
+    source: "대시보드에서 추가"
+    principle_form: null
+    adopted_form: null
+    basis: null
+    first_chapter: null
+    locked: false
+    tbd: "리와인더 | 되감기대 | (Rewind 항목으로 통합)"

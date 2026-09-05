@@ -210,6 +210,33 @@ def add_term(term, translation, note):
     log_decision("add", term, translation, note)
     return True, "추가: %s → %s" % (term, translation)
 
+def delete_term(term):
+    path = ROOT / "glossary" / "glossary.yaml"
+    txt = path.read_text(encoding="utf-8")
+    pat = re.compile(r'(  - term: "' + re.escape(term) + r'"\n)(.*?)(?=\n  - term: |\Z)', re.S)
+    m = pat.search(txt)
+    if not m:
+        return False, "용어집에서 항목을 찾지 못했습니다: " + term
+    prev = re.search(r'^\s{4}translation:\s*"(.*?)"', m.group(2), re.M)
+    path.write_text((txt[:m.start()] + txt[m.end():]).replace("\n\n\n", "\n\n"), encoding="utf-8")
+    log_decision("delete", term, prev.group(1) if prev else "", "")
+    return True, "삭제: " + term
+
+def rename_term(term, new_term):
+    if not new_term:
+        return False, "새 원어를 입력해 주세요."
+    path = ROOT / "glossary" / "glossary.yaml"
+    txt = path.read_text(encoding="utf-8")
+    if not re.search(r'  - term: "' + re.escape(term) + r'"', txt):
+        return False, "용어집에서 항목을 찾지 못했습니다: " + term
+    if re.search(r'  - term: "' + re.escape(new_term) + r'"', txt):
+        return False, "이미 있는 용어입니다: " + new_term
+    txt = txt.replace('  - term: "%s"\n' % term, '  - term: "%s"\n' % new_term, 1)
+    path.write_text(txt, encoding="utf-8")
+    log_decision("rename", term, new_term, "")
+    return True, "원어 수정: %s → %s" % (term, new_term)
+
+
 # ------------------------------------------------------- 마크다운 렌더링
 
 def md_inline(s):
@@ -220,8 +247,11 @@ def md_inline(s):
     s = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", s)
     s = re.sub(r"(?<!\*)\*([^*]+)\*(?!\*)", r"<em>\1</em>", s)
     s = re.sub(r"`([^`]+)`", r"<code>\1</code>", s)
-    s = re.sub(r"\[원서 (p\.[^\]]+)\]", r'<span class="pagemark">원서 \1</span>', s)
+    s = re.sub(r"\[원서 (p\.[^\]]+)\]",
+               r'<span class="pagemark" title="원서 \1이 여기서 끝납니다">원서 \1 여기까지<span class="tick">⇥</span></span>', s)
     return s
+
+FN_DEF = re.compile(r'^\s*<a id="(fn-[\w.-]+?-(\d+))"></a>\s*(?:\*\*)?\[각주\](?:\*\*)?\s*(.*)$')
 
 def md_to_html(md):
     out, in_code, in_ul, in_ol = [], False, False, False
@@ -267,8 +297,14 @@ def md_to_html(md):
             if in_ul: out.append("</ul>"); in_ul = False
             if not in_ol: out.append("<ol>"); in_ol = True
             out.append("<li>%s</li>" % md_inline(m.group(1))); continue
+        m = FN_DEF.match(line)
+        if m:
+            close()
+            out.append('<div class="fn"><a id="%s"></a><span class="fnno">%s</span>'
+                       '<div class="fnbody">%s</div></div>' % (m.group(1), str(int(m.group(2))), md_inline(m.group(3))))
+            continue
         if line.lstrip().startswith("<"):
-            close(); out.append(line); continue
+            close(); out.append("<p>%s</p>" % md_inline(line)); continue
         close(); out.append("<p>%s</p>" % md_inline(line))
     if in_code: out.append("</pre>")
     close()
@@ -291,8 +327,17 @@ padding:10px 14px;margin-bottom:24px}
 .meta pre{margin:0;font-size:12.5px;color:var(--muted);white-space:pre-wrap}
 .marker{font-size:12px;color:var(--mark);background:var(--mark-soft);border-radius:6px;
 padding:3px 9px;display:inline-block;margin:8px 0}
-.pagemark{font-size:12px;color:var(--faint);border:1px solid var(--border);border-radius:5px;
-padding:1px 7px;white-space:nowrap}
+.pagemark{font-size:11.5px;color:var(--muted);background:var(--surface);border:1px solid var(--border);
+border-radius:5px;padding:1px 6px 1px 7px;white-space:nowrap;letter-spacing:.02em}
+.pagemark .tick{color:var(--accent);margin-left:5px;font-weight:600}
+.fn{display:grid;grid-template-columns:26px 1fr;gap:10px;align-items:start;
+background:var(--surface);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;
+padding:11px 14px;margin:10px 0;font-size:14px;line-height:1.6}
+.fnno{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;
+border-radius:50%;background:var(--accent);color:var(--ground);font-size:12px;font-weight:700}
+.fnbody{color:var(--muted)}
+.fnbody a{text-decoration:none;font-size:15px}
+.fnbody em{font-style:italic}
 a{color:var(--accent)}
 figure{margin:20px 0;text-align:center}
 figure img{max-width:100%;border:1px solid var(--border);border-radius:6px}
@@ -345,13 +390,18 @@ class Handler(BaseHTTPRequestHandler):
             self._send(404, json.dumps({"error": "not found"}))
 
     def do_POST(self):
-        if not (self.path.startswith("/api/decide") or self.path.startswith("/api/add")):
+        if not any(self.path.startswith(x) for x in
+                   ("/api/decide", "/api/add", "/api/delete", "/api/rename")):
             return self._send(404, json.dumps({"error": "not found"}))
         n = int(self.headers.get("Content-Length", "0"))
         try:
             req = json.loads(self.rfile.read(n) or b"{}")
             if self.path.startswith("/api/add"):
                 ok, msg = add_term(req.get("term", "").strip(), req.get("choice", "").strip(), req.get("note", ""))
+            elif self.path.startswith("/api/delete"):
+                ok, msg = delete_term(req.get("term", "").strip())
+            elif self.path.startswith("/api/rename"):
+                ok, msg = rename_term(req.get("term", "").strip(), req.get("choice", "").strip())
             else:
                 ok, msg = apply_decision(req.get("term", ""), req.get("choice", ""), req.get("note", ""))
             self._send(200 if ok else 400, json.dumps({"ok": ok, "message": msg}, ensure_ascii=False))
