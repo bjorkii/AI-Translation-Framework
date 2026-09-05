@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>번역 프로젝트 대시보드</title>
+<style>
+:root{--ground:#EDEFEE;--surface:#fff;--surface2:#F5F7F6;--ink:#12171A;--muted:#5A6668;
+--faint:#8A9698;--accent:#0F6E73;--accent-ink:#fff;--accent-soft:#DDEDED;--warn:#A85F22;
+--warn-soft:#F6E8DA;--border:#D2D9D8;--border2:#B6C2C1}
+@media(prefers-color-scheme:dark){:root{--ground:#0E1414;--surface:#161F1E;--surface2:#1D2726;
+--ink:#E6EDEC;--muted:#93A2A2;--faint:#71807F;--accent:#57C3C7;--accent-ink:#0B1414;
+--accent-soft:#17322F;--warn:#DB9752;--warn-soft:#2A2118;--border:#26302F;--border2:#3A4746}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font:15px/1.6 -apple-system,BlinkMacSystemFont,
+"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:28px 22px 64px}
+header{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+h1{font-size:22px;margin:0;letter-spacing:-.01em}
+.sub{color:var(--muted);font-size:13.5px}
+.live{margin-left:auto;font-size:11.5px;color:var(--faint);font-variant-numeric:tabular-nums}
+nav{display:flex;gap:6px;margin:20px 0 22px;border-bottom:1px solid var(--border)}
+nav button{font:inherit;font-size:14px;background:none;border:0;border-bottom:2px solid transparent;
+padding:9px 14px;color:var(--muted);cursor:pointer}
+nav button[aria-selected=true]{color:var(--ink);border-bottom-color:var(--accent);font-weight:600}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:22px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:12px 14px}
+.card .k{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+.card .v{font-size:19px;font-weight:600;font-variant-numeric:tabular-nums;margin-top:2px}
+.card .v small{font-size:13px;font-weight:400;color:var(--muted)}
+table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--border);
+border-radius:9px;overflow:hidden}
+th,td{text-align:left;padding:9px 13px;border-bottom:1px solid var(--border);font-size:14px}
+th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);font-weight:600}
+tr:last-child td{border-bottom:0}
+td.num{font-variant-numeric:tabular-nums;color:var(--muted);white-space:nowrap}
+.badge{display:inline-block;padding:2px 9px;border-radius:99px;font-size:11.5px;
+background:var(--surface2);color:var(--muted);border:1px solid var(--border)}
+.badge.on{background:var(--accent-soft);color:var(--accent);border-color:transparent}
+.badge.wait{background:var(--warn-soft);color:var(--warn);border-color:transparent}
+.term{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px 20px;
+margin-bottom:14px}
+.term h3{margin:0 0 3px;font-size:18px}
+.term .why{color:var(--muted);font-size:13.5px;margin:0 0 12px}
+.q{display:grid;grid-template-columns:64px 1fr;gap:11px;padding-left:11px;
+border-left:2px solid var(--border2);margin-bottom:8px;align-items:baseline}
+.q .p{font-size:11.5px;color:var(--faint);font-variant-numeric:tabular-nums}
+.q .t{font-family:Georgia,"Times New Roman",serif;font-size:15px;line-height:1.5}
+.opts{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.opts button{font:inherit;font-size:14px;background:var(--surface2);color:var(--ink);
+border:1px solid var(--border2);border-radius:8px;padding:8px 14px;cursor:pointer}
+.opts button:hover{border-color:var(--accent)}
+.opts button.sel{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.row{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;align-items:center}
+input{font:inherit;font-size:14px;background:var(--surface2);color:var(--ink);
+border:1px solid var(--border);border-radius:7px;padding:8px 11px;flex:1 1 220px}
+input:focus{outline:2px solid var(--accent);outline-offset:1px}
+.save{flex:0 0 auto;font:inherit;font-size:13px;background:var(--surface2);color:var(--ink);
+border:1px solid var(--border2);border-radius:7px;padding:8px 14px;cursor:pointer}
+.save:hover{border-color:var(--accent)}
+.typing{font-size:12px;color:var(--warn)}
+pre{background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:14px;
+overflow-x:auto;font-size:13px;line-height:1.55}
+.two{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1px 20px}
+.pair{display:flex;justify-content:space-between;gap:10px;padding:5px 0;
+border-bottom:1px solid var(--border);font-size:13.5px}
+.pair .en{color:var(--muted)}
+h2{font-size:15px;margin:26px 0 10px}
+.hidden{display:none}
+</style></head><body><div class="wrap">
+<header>
+  <h1>번역 프로젝트 대시보드</h1>
+  <span class="sub" id="book"></span>
+  <span class="live" id="live">연결 중…</span>
+</header>
+<nav>
+  <button data-tab="overview" aria-selected="true">개요</button>
+  <button data-tab="chunks" aria-selected="false">청크</button>
+  <button data-tab="glossary" aria-selected="false">용어집</button>
+</nav>
+<section id="overview"></section>
+<section id="chunks" class="hidden"></section>
+<section id="glossary" class="hidden"></section>
+</div>
+<script>
+let S=null, tab="overview", lastJSON="";
+const el=id=>document.getElementById(id);
+document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{
+  tab=b.dataset.tab;
+  document.querySelectorAll("nav button").forEach(x=>x.setAttribute("aria-selected",x===b));
+  ["overview","chunks","glossary"].forEach(t=>el(t).classList.toggle("hidden",t!==tab));
+});
+const esc=s=>(s==null?"":String(s)).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+const card=(k,v)=>'<div class="card"><div class="k">'+esc(k)+'</div><div class="v">'+v+"</div></div>";
+
+function renderOverview(){
+  const i=S.info||{}, m=i.measured||{}, g=S.glossary;
+  const done=S.chunks.filter(c=>c.has_source).length;
+  let h='<div class="cards">';
+  h+=card("원서 분량", (i.total_file_pages||"-")+"<small> 쪽</small>");
+  h+=card("인쇄 쪽번호", "<small>"+esc(i.printed_range||"-")+"</small>");
+  h+=card("텍스트 레이어", "<small>"+esc(i.text_layer||"-")+"</small>");
+  h+=card("정규화된 청크", done+'<small> / '+S.chunks.length+"</small>");
+  h+=card("용어집", g.decided+'<small> / '+g.total+" 확정</small>");
+  h+=card("결정 대기", g.pending+"<small> 건</small>");
+  h+='</div><h2>측정값</h2><div class="cards">';
+  for(const k in m) h+=card(k, "<small>"+esc(m[k])+"</small>");
+  h+="</div>";
+  if(S.commits.length) h+="<h2>최근 작업 기록</h2><pre>"+esc(S.commits.join("\n"))+"</pre>";
+  el("overview").innerHTML=h;
+}
+
+function renderChunks(){
+  let h="<table><tr><th>청크</th><th>제목</th><th>원서 쪽</th><th>분량</th><th>단계</th><th>비고</th></tr>";
+  for(const c of S.chunks){
+    const on=c.stage!=="pending";
+    h+="<tr><td>"+esc(c.id)+"</td><td>"+esc(c.title)+"</td>"
+      +'<td class="num">'+esc((c.printed||[]).join("–"))+"</td>"
+      +'<td class="num">'+esc(c.pages||"")+"</td>"
+      +'<td><span class="badge '+(on?"on":"wait")+'">'+esc(c.stage)+"</span></td>"
+      +"<td>"+(c.split?'<span class="badge">절 단위 분할</span> ':"")
+      +(c.parser?'<span class="badge">'+esc(c.parser)+"</span>":"")+"</td></tr>";
+  }
+  h+="</table><h2>status.md</h2><pre>"+esc(S.status_md||"(비어 있음)")+"</pre>";
+  el("chunks").innerHTML=h;
+}
+
+function renderGlossary(){
+  const g=S.glossary;
+  let h='<div class="cards">'+card("전체 항목",g.total)+card("확정",g.decided)
+       +card("결정 대기",g.pending)+card("미착수",g.untouched)+"</div>";
+  h+="<h2>결정이 필요한 용어 ("+g.pending+")</h2>";
+  if(!g.pending) h+='<p class="sub">모두 확정됐다.</p>';
+  for(const t of g.pending_items){
+    const key=esc(t.term);
+    h+='<div class="term"><h3>'+key+"</h3>";
+    if(t.context) h+='<p class="why">'+esc(t.context)+"</p>";
+    for(const q of (t.quotes||[]))
+      h+='<div class="q"><span class="p">원서 p.'+esc(q.page)+'</span><span class="t">'+esc(q.text)+"</span></div>";
+    h+='<div class="opts">';
+    for(const o of t.options)
+      h+='<button data-term="'+key+'" data-val="'+esc(o)+'"'+(t.current===o?' class="sel"':"")+">"+esc(o)+"</button>";
+    h+='</div><div class="row">'
+      +'<input placeholder="다른 표기 직접 입력" data-term="'+key+'" data-k="choice">'
+      +'<input placeholder="표기 규칙 메모 (선택) — 예: 첫 등장 시 원문 병기" data-term="'+key+'" data-k="note">'
+      +'<button class="save" data-term="'+key+'">저장</button>'
+      +"</div></div>";
+  }
+  h+='<h2>확정된 용어 ('+g.decided+")</h2><div class=\"two\">";
+  for(const d of g.decided_items)
+    h+='<div class="pair"><span class="en">'+esc(d.term)+'</span><span>'+esc(d.translation)+"</span></div>";
+  h+="</div>";
+  el("glossary").innerHTML=h;
+
+  el("glossary").querySelectorAll(".opts button").forEach(b=>{
+    b.onclick=()=>decide(b.dataset.term, b.dataset.val, noteOf(b.dataset.term));
+  });
+  el("glossary").querySelectorAll(".save").forEach(b=>{
+    b.onclick=()=>saveRow(b.dataset.term);
+  });
+  el("glossary").querySelectorAll("input").forEach(inp=>{
+    inp.onkeydown=e=>{ if(e.key==="Enter"){ e.preventDefault(); saveRow(inp.dataset.term); } };
+  });
+}
+
+function inputOf(term,k){
+  return el("glossary").querySelector('input[data-term="'+CSS.escape(term)+'"][data-k="'+k+'"]');
+}
+function noteOf(term){ const i=inputOf(term,"note"); return i? i.value.trim() : ""; }
+
+function saveRow(term){
+  const choice=(inputOf(term,"choice")||{}).value ? inputOf(term,"choice").value.trim() : "";
+  const note=noteOf(term);
+  const cur=(S.glossary.pending_items.find(x=>x.term===term)||{}).current;
+  const val=choice||cur;
+  if(!val){ alert("번역어를 고르거나 직접 입력한 뒤 저장하세요."); return; }
+  decide(term,val,note);
+}
+
+async function decide(term,choice,note){
+  if(document.activeElement && document.activeElement.blur) document.activeElement.blur();
+  await fetch("/api/decide",{method:"POST",headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({term:term,choice:choice,note:note||""})});
+  lastJSON="";              // 저장 직후에는 강제로 다시 그린다
+  await tick();
+}
+
+async function tick(){
+  try{
+    const r=await fetch("/api/state",{cache:"no-store"});
+    const txt=await r.text();
+    el("live").textContent="갱신 "+new Date().toLocaleTimeString("ko-KR");
+    if(txt===lastJSON) return;                       // 바뀐 것이 없으면 다시 그리지 않는다
+    const a=document.activeElement;
+    if(a && a.tagName==="INPUT"){                    // 입력 중에는 화면을 갈아치우지 않는다
+      el("live").textContent="입력 중 — 갱신 보류";
+      return;
+    }
+    lastJSON=txt; S=JSON.parse(txt);
+    el("book").textContent=(S.info.title||"")+" · "+(S.info.publisher||"")+" · "+(S.info.direction||"");
+    renderOverview(); renderChunks(); renderGlossary();
+  }catch(e){ el("live").textContent="서버 연결 끊김"; }
+}
+tick(); setInterval(tick,2000);
+</script></body></html>
