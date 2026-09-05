@@ -14,7 +14,7 @@ import pymupdf
 ABBR = re.compile(r"\b(Mr|Mrs|Ms|Dr|Prof|St|Jr|Sr|vs|etc|cf|approx|ca|No|Vol|pp|Fig|ed|eds|Inc|Co)\.$", re.I)
 END  = re.compile(r"[.!?:;”\"’')\]]\s*$")
 # 문장부호 뒤에 붙은 1~2자리 각주 참조번호
-FN_REF = re.compile(r"(?<![0-9])(?<=[.!?”’\)])(\d{1,2})(?=\s|$)")
+FN_REF = re.compile(r"(?<![0-9])(?<=[.,;:!?”’\)])(\d{1,2})(?=\s|$)")
 # 각주 정의 블록 시작 패턴 (예: "1.본문..." / "2. AMIA grew...")
 FN_DEF_HEAD = re.compile(r"^\s*(\d{1,2})\s*\.\s*(?=[A-Z“\"])")
 SUP = "⁰¹²³⁴⁵⁶⁷⁸⁹"

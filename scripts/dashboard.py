@@ -147,11 +147,20 @@ def build_state():
 
 LOG = "glossary/decision-log.jsonl"
 
-def log_decision(kind, term, choice, note):
-    """사용자가 화면에서 내린 결정을 수신함에 기록합니다.
-    AI는 작업을 시작할 때 이 파일에서 미확인 항목을 먼저 확인합니다."""
-    rec = {"ts": datetime.now().isoformat(timespec="seconds"), "actor": "user",
-           "type": kind, "term": term, "choice": choice, "note": note or "", "ack": False}
+def log_decision(kind, term, choice, note, actor="user"):
+    """결정을 수신함에 기록합니다.
+
+    actor="user" (화면에서 사람이 내린 결정) -> 미확인 상태로 쌓이고,
+    AI는 작업을 시작할 때 이 목록을 먼저 확인합니다.
+    actor="ai"   (대화로 받은 결정을 AI가 대신 입력) -> 이미 반영한 것이므로
+    확인 완료로 기록해 수신함에 불필요하게 쌓이지 않게 합니다."""
+    by_ai = (actor == "ai")
+    rec = {"ts": datetime.now().isoformat(timespec="seconds"), "actor": actor,
+           "type": kind, "term": term, "choice": choice, "note": note or "",
+           "ack": by_ai}
+    if by_ai:
+        rec["ack_at"] = rec["ts"]
+        rec["ack_note"] = "대화로 받은 결정을 AI가 대신 입력"
     with (ROOT / LOG).open("a", encoding="utf-8") as f:
         f.write(json.dumps(rec, ensure_ascii=False) + "\n")
 
@@ -173,7 +182,7 @@ def read_log():
 
 # ---------------------------------------------------------------- 파일 쓰기
 
-def apply_decision(term, choice, note, full=None):
+def apply_decision(term, choice, note, full=None, actor="user"):
     if len(choice) > 60:
         return False, ("번역어가 너무 깁니다(%d자). 본문에 들어갈 표기만 남기고, "
                        "약어의 정식 명칭은 '풀어쓴 이름' 칸에, 사용 규칙은 메모 칸에 넣어 주세요." % len(choice))
@@ -195,10 +204,10 @@ def apply_decision(term, choice, note, full=None):
     if full:
         body = body.rstrip("\n") + '\n    full: "%s"\n' % full.replace('"', "'")
     path.write_text(txt[:m.start()] + head + body + txt[m.end():], encoding="utf-8")
-    log_decision("decide", term, choice, note)
+    log_decision("decide", term, choice, note, actor)
     return True, "확정: %s → %s" % (term, choice)
 
-def add_term(term, translation, note):
+def add_term(term, translation, note, actor="user"):
     path = ROOT / "glossary" / "glossary.yaml"
     txt = path.read_text(encoding="utf-8")
     if re.search(r'  - term: "' + re.escape(term) + r'"', txt):
@@ -211,10 +220,10 @@ def add_term(term, translation, note):
               '    adopted_form: null\n    basis: null\n'
               '    first_chapter: null\n    locked: false\n')
     path.write_text(txt.rstrip("\n") + "\n" + block, encoding="utf-8")
-    log_decision("add", term, translation, note)
+    log_decision("add", term, translation, note, actor)
     return True, "추가: %s → %s" % (term, translation)
 
-def delete_term(term):
+def delete_term(term, actor="user"):
     path = ROOT / "glossary" / "glossary.yaml"
     txt = path.read_text(encoding="utf-8")
     pat = re.compile(r'(  - term: "' + re.escape(term) + r'"\n)(.*?)(?=\n  - term: |\Z)', re.S)
@@ -223,10 +232,10 @@ def delete_term(term):
         return False, "용어집에서 항목을 찾지 못했습니다: " + term
     prev = re.search(r'^\s{4}translation:\s*"(.*?)"', m.group(2), re.M)
     path.write_text((txt[:m.start()] + txt[m.end():]).replace("\n\n\n", "\n\n"), encoding="utf-8")
-    log_decision("delete", term, prev.group(1) if prev else "", "")
+    log_decision("delete", term, prev.group(1) if prev else "", "", actor)
     return True, "삭제: " + term
 
-def rename_term(term, new_term):
+def rename_term(term, new_term, actor="user"):
     if not new_term:
         return False, "새 원어를 입력해 주세요."
     path = ROOT / "glossary" / "glossary.yaml"
@@ -237,7 +246,7 @@ def rename_term(term, new_term):
         return False, "이미 있는 용어입니다: " + new_term
     txt = txt.replace('  - term: "%s"\n' % term, '  - term: "%s"\n' % new_term, 1)
     path.write_text(txt, encoding="utf-8")
-    log_decision("rename", term, new_term, "")
+    log_decision("rename", term, new_term, "", actor)
     return True, "원어 수정: %s → %s" % (term, new_term)
 
 
@@ -400,15 +409,17 @@ class Handler(BaseHTTPRequestHandler):
         n = int(self.headers.get("Content-Length", "0"))
         try:
             req = json.loads(self.rfile.read(n) or b"{}")
+            actor = "ai" if req.get("actor") == "ai" else "user"
             if self.path.startswith("/api/add"):
-                ok, msg = add_term(req.get("term", "").strip(), req.get("choice", "").strip(), req.get("note", ""))
+                ok, msg = add_term(req.get("term", "").strip(), req.get("choice", "").strip(),
+                                   req.get("note", ""), actor)
             elif self.path.startswith("/api/delete"):
-                ok, msg = delete_term(req.get("term", "").strip())
+                ok, msg = delete_term(req.get("term", "").strip(), actor)
             elif self.path.startswith("/api/rename"):
-                ok, msg = rename_term(req.get("term", "").strip(), req.get("choice", "").strip())
+                ok, msg = rename_term(req.get("term", "").strip(), req.get("choice", "").strip(), actor)
             else:
                 ok, msg = apply_decision(req.get("term", ""), req.get("choice", ""),
-                                         req.get("note", ""), req.get("full", ""))
+                                         req.get("note", ""), req.get("full", ""), actor)
             self._send(200 if ok else 400, json.dumps({"ok": ok, "message": msg}, ensure_ascii=False))
         except Exception as e:
             self._send(500, json.dumps({"ok": False, "message": str(e)}, ensure_ascii=False))

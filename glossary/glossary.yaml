@@ -389,7 +389,7 @@ entries:
     first_chapter: glossary
     locked: false
   - term: "DVD"
-    translation: null
+    translation: "DVD"
     definition_en: "Optical disc used for storing digital information, including moving images."
     definition_ko: null
     source: "원서 Glossary p.113"
@@ -398,6 +398,8 @@ entries:
     basis: null
     first_chapter: glossary
     locked: false
+    notation: "원문 표기 그대로 사용"
+
   - term: "Edge code"
     translation: null
     definition_en: "Symbols printed along the edge of the film by the manufacturer to indicate production data, such as date and location of manufacture."
@@ -1069,7 +1071,7 @@ entries:
     first_chapter: glossary
     locked: false
   - term: "Preservation master"
-    translation: null
+    translation: "보존용 마스터 필름"
     definition_en: "Sound and picture elements that are sufficient for printing new film copies without reuse of the original source. Often shortened to master."
     definition_ko: null
     source: "원서 Glossary p.117"
