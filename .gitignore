@@ -2,3 +2,6 @@
 __pycache__/
 *.pyc
 backup/
+
+# Claude 데스크톱 앱이 전달 파일을 놓는 폴더 (프로젝트 산출물 아님)
+Claude outputs/
