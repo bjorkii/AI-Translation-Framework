@@ -127,7 +127,11 @@ def build_state():
     pending = [dict(x, current=x["translation"]) for x in all_items if x["tbd"]]
     decided = [x for x in all_items if x["translation"] and not x["tbd"]]
 
+    log = read_log()
+    unacked = [r for r in log if not r.get("ack")]
     return {
+        "inbox": {"unacked": len(unacked), "total": len(log),
+                  "items": unacked[-30:]},
         "info": info, "chunks": chunks, "status_md": read("status.md"),
         "commits": git_log(),
         "progress": {"started": start, "elapsed_days": elapsed, "percent": percent,
@@ -141,9 +145,39 @@ def build_state():
         },
     }
 
+LOG = "glossary/decision-log.jsonl"
+
+def log_decision(kind, term, choice, note):
+    """사용자가 화면에서 내린 결정을 수신함에 기록합니다.
+    AI는 작업을 시작할 때 이 파일에서 미확인 항목을 먼저 확인합니다."""
+    rec = {"ts": datetime.now().isoformat(timespec="seconds"), "actor": "user",
+           "type": kind, "term": term, "choice": choice, "note": note or "", "ack": False}
+    with (ROOT / LOG).open("a", encoding="utf-8") as f:
+        f.write(json.dumps(rec, ensure_ascii=False) + "\n")
+
+def read_log():
+    out = []
+    f = ROOT / LOG
+    if not f.exists():
+        return out
+    for line in f.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            out.append(json.loads(line))
+        except Exception:
+            pass
+    return out
+
+
 # ---------------------------------------------------------------- 파일 쓰기
 
 def apply_decision(term, choice, note):
+    if len(choice) > 40:
+        return False, "번역어가 너무 깁니다(%d자). 표기만 남기고 설명은 메모 칸에 넣어 주세요." % len(choice)
+    if '"' in choice:
+        return False, "번역어에 큰따옴표는 넣을 수 없습니다. 작은따옴표를 써 주세요."
     path = ROOT / "glossary" / "glossary.yaml"
     txt = path.read_text(encoding="utf-8")
     pat = re.compile(r'(  - term: "' + re.escape(term) + r'"\n)(.*?)(?=\n  - term: |\Z)', re.S)
@@ -157,6 +191,7 @@ def apply_decision(term, choice, note):
     if note:
         body = body.rstrip("\n") + '\n    notation: "%s"\n' % note.replace('"', "'")
     path.write_text(txt[:m.start()] + head + body + txt[m.end():], encoding="utf-8")
+    log_decision("decide", term, choice, note)
     return True, "확정: %s → %s" % (term, choice)
 
 def add_term(term, translation, note):
@@ -172,6 +207,7 @@ def add_term(term, translation, note):
               '    adopted_form: null\n    basis: null\n'
               '    first_chapter: null\n    locked: false\n')
     path.write_text(txt.rstrip("\n") + "\n" + block, encoding="utf-8")
+    log_decision("add", term, translation, note)
     return True, "추가: %s → %s" % (term, translation)
 
 # ------------------------------------------------------- 마크다운 렌더링

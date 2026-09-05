@@ -91,6 +91,15 @@ border-bottom:1px solid var(--border);font-size:13.5px;cursor:pointer}
 .pair:hover{background:var(--surface2)}
 .pair .en{color:var(--muted)}
 .hidden{display:none}
+@keyframes flashcard{0%{box-shadow:0 0 0 0 var(--accent);background:var(--accent-soft)}
+100%{box-shadow:0 0 0 14px transparent;background:var(--surface)}}
+.term.flash{animation:flashcard 1.4s ease-out}
+@media(prefers-reduced-motion:reduce){.term.flash{animation:none;box-shadow:0 0 0 3px var(--accent)}}
+.inbox{border-color:var(--warn)}
+.inbox > h2{border-left-color:var(--warn)}
+.inbox ul{margin:0;padding-left:20px}
+.inbox li{margin:3px 0;font-size:14px}
+.inbox .ts{color:var(--faint);font-size:12px;font-variant-numeric:tabular-nums;margin-right:8px}
 </style></head><body><div class="wrap">
 <header>
   <h1>번역 프로젝트 대시보드</h1>
@@ -107,7 +116,7 @@ border-bottom:1px solid var(--border);font-size:13.5px;cursor:pointer}
 <section id="glossary" class="hidden"></section>
 </div>
 <script>
-let S=null, tab="overview", lastJSON="", editing=null, query="";
+let S=null, tab="overview", lastJSON="", editing=null, query="", flashPending=false;
 const el=id=>document.getElementById(id);
 document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{
   tab=b.dataset.tab;
@@ -121,7 +130,18 @@ const stat=(k,v)=>'<div class="stat"><div class="k">'+esc(k)+'</div><div class="
 /* ---------------- 개요 ---------------- */
 function renderOverview(){
   const i=S.info||{}, m=i.measured||{}, g=S.glossary, p=S.progress;
-  let h='<div class="sect"><h2>진행 현황</h2><div class="hero">'
+  const box=S.inbox||{unacked:0,items:[]};
+  let h="";
+  if(box.unacked){
+    h+='<div class="sect inbox"><h2>AI가 아직 확인하지 않은 결정 <span class="n">('+box.unacked+')</span></h2>'
+      +'<p class="sub">다음 작업을 시작할 때 AI가 이 목록을 먼저 확인하고, 반영한 뒤 표시를 지웁니다.</p><ul>';
+    for(const r of box.items)
+      h+='<li><span class="ts">'+esc((r.ts||"").slice(5,16).replace("T"," "))+"</span>"
+        +esc(r.term)+" → <strong>"+esc(r.choice)+"</strong>"
+        +(r.note?' <span class="sub">('+esc(r.note)+")</span>":"")+"</li>";
+    h+="</ul></div>";
+  }
+  h+='<div class="sect"><h2>진행 현황</h2><div class="hero">'
     +stat("번역 시작", '<span style="font-size:26px">'+esc(p.started)+"</span>")
     +stat("경과", p.elapsed_days+"<small>일째</small>")
     +stat("진행율", p.percent+"<small>%</small>")
@@ -222,6 +242,16 @@ function renderGlossary(){
 
   el("glossary").innerHTML=h;
   bindGlossary();
+  if(flashPending && editing){
+    flashPending=false;
+    const c=el("glossary").querySelector(".term.edit");
+    if(c){
+      c.scrollIntoView({behavior:"smooth",block:"center"});
+      c.classList.remove("flash"); void c.offsetWidth; c.classList.add("flash");
+      const inp=c.querySelector('input[data-k="choice"]');
+      if(inp) setTimeout(()=>inp.focus(),450);
+    }
+  }
 }
 
 function termCard(t,isEdit){
@@ -256,8 +286,7 @@ function bindGlossary(){
     b.onclick=()=>{ editing=null; lastJSON=""; tick(); };
   });
   root.querySelectorAll(".pair[data-term]").forEach(p=>{
-    p.onclick=()=>{ editing=p.dataset.term; lastJSON=""; tick();
-      window.scrollTo({top:0,behavior:"smooth"}); };
+    p.onclick=()=>{ editing=p.dataset.term; flashPending=true; lastJSON=""; tick(); };
   });
   root.querySelectorAll("input[data-term]").forEach(inp=>{
     inp.onkeydown=e=>{ if(e.key==="Enter"){ e.preventDefault(); saveRow(inp.dataset.term); } };

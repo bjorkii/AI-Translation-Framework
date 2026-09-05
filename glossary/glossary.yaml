@@ -261,8 +261,8 @@ entries:
     first_chapter: glossary
     locked: false
   - term: "Conservation"
-    translation: "기본 번역어를 원본 보존으로 두고, 5.1절처럼 문화재 담론을 인용하는 자리에는 "보존과 복원"으로"
-    context: "원서는 필름의 물리적 보관·처치를 뜻함. 문화재 분야 conservation=보존처리, 다만 '보전'도 통용"
+    translation: "원본 보존"
+    context: "원서 1.3절 정의는 '원본 필름 자체의 보호' — 대체본을 만들어 원본의 취급을 줄이고 원본은 열화를 늦추는 환경에 보관하는 것. 리와인드·캔 교체·점검 같은 실무 처치는 이 정의에 포함되지 않으며 preservation(보존)이 그 상위 개념"
     definition_en: "Processes and activities resulting in the protection of the film original."
     definition_ko: null
     source: "원서 Glossary p.113"
@@ -271,6 +271,8 @@ entries:
     basis: null
     first_chapter: glossary
     locked: false
+    notation: "5.1절처럼 문화재 보존 담론을 인용하는 맥락에서는 '보존과 복원'으로 푼다"
+
   - term: "Contact printing"
     translation: null
     definition_en: "Laboratory process in which a film copy is made through direct physical contact between the source material and raw film stock."
