@@ -1,0 +1,41 @@
+# 원서 구조 지도 — 청크 분할 및 페이지 마커의 기준
+#
+# 쪽번호 표기 원칙:
+#   printed = 원서에 인쇄된 쪽번호 (= PDF 페이지 라벨과 일치, Preview에 표시되는 값)
+#   file    = PDF 파일 내 물리적 페이지 순번 (1-based, 스크립트 인자용)
+#   본문 구간 환산식: printed = file - 12
+#   앞부분(파일 1-12)은 로마숫자 i-xii
+#
+# 대화·문서에서 쪽수를 언급할 때는 항상 printed(원서 쪽번호)를 쓴다.
+
+source: intermediate/FilmPreservationGuide-EN.pdf
+total_file_pages: 133
+page_label_offset: 12        # 본문: printed = file - 12
+
+front_matter:
+  - {id: title,    file: [1, 2],   printed: ["i", "ii"],    title: "표제지·판권"}
+  - {id: toc,      file: [3, 6],   printed: ["iii", "vi"],  title: "Table of Contents"}
+  - {id: preface,  file: [7, 8],   printed: ["vii", "viii"],title: "Preface"}
+  - {id: ack,      file: [9, 10],  printed: ["ix", "x"],    title: "Acknowledgments"}
+  - {id: howto,    file: [11, 12], printed: ["xi", "xii"],  title: "How to Use This Guide"}
+
+chapters:
+  - {id: ch01, file: [13, 17],  printed: [1, 5],   pages: 5,  title: "Why Preserve Film?"}
+  - {id: ch02, file: [18, 30],  printed: [6, 18],  pages: 13, title: "Understanding Film and How It Decays"}
+  - {id: ch03, file: [31, 45],  printed: [19, 33], pages: 15, title: "Film Handling and Inspection"}
+  - {id: ch04, file: [46, 52],  printed: [34, 40], pages: 7,  title: "The Curatorial Role"}
+  - {id: ch05, file: [53, 70],  printed: [41, 58], pages: 18, title: "Duplication", split: true}
+  - {id: ch06, file: [71, 81],  printed: [59, 69], pages: 11, title: "Storage"}
+  - {id: ch07, file: [82, 88],  printed: [70, 76], pages: 7,  title: "Cataloging"}
+  - {id: ch08, file: [89, 96],  printed: [77, 84], pages: 8,  title: "Legal Context"}
+  - {id: ch09, file: [97, 104], printed: [85, 92], pages: 8,  title: "Access"}
+
+back_matter:
+  # parser: 각 구간에 적용할 파서 유형 (파이프라인 2.0절 구간별 방침)
+  - {id: appA,   file: [105, 105], printed: [93, 93],   title: "Appendix A", parser: record}
+  - {id: appB,   file: [106, 106], printed: [94, 94],   title: "Appendix B", parser: record}
+  - {id: appC,   file: [107, 108], printed: [95, 96],   title: "Appendix C: Selected Film Preservation Laboratories", parser: record}
+  - {id: appD,   file: [109, 110], printed: [97, 98],   title: "Appendix D: Selected Equipment and Supply Vendors", parser: record}
+  - {id: gloss,  file: [111, 120], printed: [99, 108],  title: "Glossary", parser: term_definition, status: extracted}
+  - {id: biblio, file: [121, 125], printed: [109, 113], title: "Selected Bibliography", parser: record}
+  - {id: index,  file: [126, 133], printed: [114, 121], title: "Index", parser: rebuild}

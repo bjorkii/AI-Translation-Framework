@@ -4,6 +4,96 @@
 # locked: true = 표기 잠금 (변경 시 사용자 승인 필요)
 
 entries:
+  - term: "A and B rolls"
+    translation: null
+    definition_en: "Paired production elements that are printed in succession to hide transitions or splices between shots and to produce fades or dissolves. Created by splicing negative or positive film into two rolls. Where one carries the picture, the other has black or blank leader."
+    definition_ko: null
+    source: "원서 Glossary p.111"
+    principle_form: null
+    adopted_form: null
+    basis: null
+    first_chapter: glossary
+    locked: false
+  - term: "Access copy"
+    translation: null
+    definition_en: "Film, video, or digital copy used for public service."
+    definition_ko: null
+    source: "원서 Glossary p.111"
+    principle_form: null
+    adopted_form: null
+    basis: null
+    first_chapter: glossary
+    locked: false
+  - term: "Acetate"
+    translation: null
+    definition_en: "Short for cellulose acetate. Film base introduced as safe, nonflammable substitute for nitrate base film."
+    definition_ko: null
+    source: "원서 Glossary p.111"
+    principle_form: null
+    adopted_form: null
+    basis: null
+    first_chapter: glossary
+    locked: false
+  - term: "Acetate decay"
+    translation: null
+    definition_en: "Chemical deterioration of acetate plastic accelerated by high relative humidity and temperature. Also known as vinegar syndrome because of the odor released during the decay process."
+    definition_ko: null
+    source: "원서 Glossary p.111"
+    principle_form: null
+    adopted_form: null
+    basis: null
+    first_chapter: glossary
+    locked: false
+  - term: "ACVL"
+    translation: null
+    definition_en: "Association of Cinema and Video Laboratories (www.acvl.org). International organization serving film and video laboratory professionals."
+    definition_ko: null
+    source: "원서 Glossary p.111"
+    principle_form: null
+    adopted_form: null
+    basis: null
+    first_chapter: glossary
+    locked: false
+  - term: "A-D Strips"
+    translation: null
+    definition_en: "Diagnostic tool developed by the Image Permanence Institute to test the level of acetate decay in cellulose acetate base film."
+    definition_ko: null
+    source: "원서 Glossary p.111"
+    principle_form: null
+    adopted_form: null
+    basis: null
+    first_chapter: glossary
+    locked: false
+  - term: "AMIA"
+    translation: null
+    definition_en: "Association of Moving Image Archivists (www.amianet.org). Professional organization for film, video, and television archivists and preservationists."
+    definition_ko: null
+    source: "원서 Glossary p.111"
+    principle_form: null
+    adopted_form: null
+    basis: null
+    first_chapter: glossary
+    locked: false
+  - term: "Analog videotape"
+    translation: null
+    definition_en: "Videotape that records sound and image information using frequency-modulated signals. Digital videotape, in contrast, records information as numeric values."
+    definition_ko: null
+    source: "원서 Glossary p.111"
+    principle_form: null
+    adopted_form: null
+    basis: null
+    first_chapter: glossary
+    locked: false
+  - term: "Answer print"
+    translation: null
+    definition_en: "First positive film copy in which each scene has been corrected for brightness and color. Created to check the quality of the production, printing, or preservation elements. Usually presented to the client for approval. Also known as trial print."
+    definition_ko: null
+    source: "원서 Glossary p.111"
+    principle_form: null
+    adopted_form: null
+    basis: null
+    first_chapter: glossary
+    locked: false
   - term: "Balance stripe"
     translation: null
     definition_en: "On composite prints the magnetic stripe affixed to the film edge opposite the edge carrying the magnetic sound track. With a stripe along both edges, the film produces a more even roll when wound."
