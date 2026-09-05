@@ -17,24 +17,37 @@ def main(pdf, p0, p1, out=None):
             if b.get("type") != 0: continue
             y0 = b["bbox"][1]
             if y0 < h*0.09 or y0 > h*0.88: continue      # 러닝헤드/쪽번호
-            term_parts, def_parts, in_term = [], [], True
+            term_parts, def_lines, in_term = [], [], True
             for l in b["lines"]:
-                for s in l["spans"]:
-                    t = s["text"]
+                line_txt = ""
+                for sp in l["spans"]:
+                    t = sp["text"]
                     if not t.strip(): continue
-                    bold = bool(s["flags"] & 16)
-                    if in_term and bold:
+                    bold = bool(sp["flags"] & 16)
+                    if in_term and bold and not line_txt and not def_lines:
                         term_parts.append(t)
                     else:
                         in_term = False
-                        def_parts.append(t)
+                        line_txt += t
+                if line_txt.strip():
+                    def_lines.append(line_txt.strip())
             term = re.sub(r"\s+", " ", "".join(term_parts)).strip()
-            body = re.sub(r"\s+", " ", "".join(def_parts)).strip()
-            body = re.sub(r"(?<=[A-Za-z])- (?=[a-z])", "", body)   # 하이픈 분철 재결합
+            # 줄 사이는 공백으로 잇되, 줄 끝 하이픈은 재결합
+            body = ""
+            for ln in def_lines:
+                if not body: body = ln
+                elif re.search(r"[A-Za-z]-$", body): body = body[:-1] + ln
+                else: body += " " + ln
+            body = re.sub(r"\s+", " ", body).strip()
             if term and body:
                 entries.append(dict(term=term, definition=body, page=i+1))
                 cur = entries[-1]
-            elif cur and body:                                     # 앞 항목의 이어지는 정의
+            elif cur and body:
+                # 앞 항목의 이어지는 정의로 볼 수 있는 경우에만 병합
+                prev_done = re.search(r"[.!?]\s*$", cur["definition"])
+                starts_new = body[:1].isupper()
+                if prev_done and starts_new:
+                    continue      # 다음 섹션(참고문헌 등)으로 판단 -> 병합하지 않음
                 cur["definition"] = (cur["definition"] + " " + body).strip()
     print(f"추출된 용어 항목: {len(entries)}개 (PDF p.{p0}-{p1})")
     if out:

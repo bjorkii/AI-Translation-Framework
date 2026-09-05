@@ -6,7 +6,7 @@
 entries:
   - term: "Balance stripe"
     translation: null
-    definition_en: "On composite prints the magnetic stripe affixed to the film edgeopposite the edge carrying the magnetic sound track. With a stripe along bothedges, the film produces a more even roll when wound."
+    definition_en: "On composite prints the magnetic stripe affixed to the film edge opposite the edge carrying the magnetic sound track. With a stripe along both edges, the film produces a more even roll when wound."
     definition_ko: null
     source: "원서 Glossary p.112"
     principle_form: null
@@ -16,7 +16,7 @@ entries:
     locked: false
   - term: "Base"
     translation: null
-    definition_en: "In motion picture film, transparent layer that supports the photographicemulsion. Can be made of cellulose nitrate, cellulose acetate, or polyester plastic."
+    definition_en: "In motion picture film, transparent layer that supports the photographic emulsion. Can be made of cellulose nitrate, cellulose acetate, or polyester plastic."
     definition_ko: null
     source: "원서 Glossary p.112"
     principle_form: null
@@ -26,7 +26,7 @@ entries:
     locked: false
   - term: "Betacam SP"
     translation: null
-    definition_en: "A format of analog videotape that measures one-half inch in widthand is packaged in a cassette."
+    definition_en: "A format of analog videotape that measures one-half inch in width and is packaged in a cassette."
     definition_ko: null
     source: "원서 Glossary p.112"
     principle_form: null
@@ -36,7 +36,7 @@ entries:
     locked: false
   - term: "Binder"
     translation: null
-    definition_en: "In motion picture film, the material in the emulsion that holds the image-forming particles or dyes."
+    definition_en: "In motion picture film, the material in the emulsion that holds the imageforming particles or dyes."
     definition_ko: null
     source: "원서 Glossary p.112"
     principle_form: null
@@ -46,7 +46,7 @@ entries:
     locked: false
   - term: "Blowup"
     translation: null
-    definition_en: "Film made in a larger format than the original, such as a 16mm print madefrom an 8mm original. Also called enlargement."
+    definition_en: "Film made in a larger format than the original, such as a 16mm print made from an 8mm original. Also called enlargement."
     definition_ko: null
     source: "원서 Glossary p.112"
     principle_form: null
@@ -56,7 +56,7 @@ entries:
     locked: false
   - term: "Buffered"
     translation: null
-    definition_en: "Cardboard that has been chemically treated to adjust acid content priorto its use in film containers."
+    definition_en: "Cardboard that has been chemically treated to adjust acid content prior to its use in film containers."
     definition_ko: null
     source: "원서 Glossary p.112"
     principle_form: null
@@ -76,7 +76,7 @@ entries:
     locked: false
   - term: "Cellulose acetate"
     translation: null
-    definition_en: "Family of transparent plastics introduced as a nonflammablesubstitute for cellulose nitrate base film. Film with an acetate base is often calledacetate film."
+    definition_en: "Family of transparent plastics introduced as a nonflammable substitute for cellulose nitrate base film. Film with an acetate base is often called acetate film."
     definition_ko: null
     source: "원서 Glossary p.112"
     principle_form: null
@@ -96,7 +96,7 @@ entries:
     locked: false
   - term: "Cellulose nitrate"
     translation: null
-    definition_en: "Transparent plastic used as the base in the earliest 35mm filmstock. Highly flammable, cellulose nitrate base film was phased out in the early1950s. Film with a nitrate base is often called nitrate film."
+    definition_en: "Transparent plastic used as the base in the earliest 35mm film stock. Highly flammable, cellulose nitrate base film was phased out in the early 1950s. Film with a nitrate base is often called nitrate film."
     definition_ko: null
     source: "원서 Glossary p.112"
     principle_form: null
@@ -116,7 +116,7 @@ entries:
     locked: false
   - term: "Check print"
     translation: null
-    definition_en: "Usually a one-light positive film copy created to check the quality ofthe production, printing, or preservation elements."
+    definition_en: "Usually a one-light positive film copy created to check the quality of the production, printing, or preservation elements."
     definition_ko: null
     source: "원서 Glossary p.112"
     principle_form: null
@@ -126,7 +126,7 @@ entries:
     locked: false
   - term: "Color correction"
     translation: null
-    definition_en: "In the transfer of film to video, the process of adjusting the colorand brightness from scene to scene. The term is used to describe adjustments madeduring transfer of either black-and-white or color film."
+    definition_en: "In the transfer of film to video, the process of adjusting the color and brightness from scene to scene. The term is used to describe adjustments made during transfer of either black-and-white or color film."
     definition_ko: null
     source: "원서 Glossary p.112"
     principle_form: null
@@ -136,7 +136,7 @@ entries:
     locked: false
   - term: "Color fading"
     translation: null
-    definition_en: "Decay of photographic images caused by the chemical instability ofthe dyes. As the dyes break down, contrast is also lost and the film eventuallytakes on a washed-out monochromatic look."
+    definition_en: "Decay of photographic images caused by the chemical instability of the dyes. As the dyes break down, contrast is also lost and the film eventually takes on a washed-out monochromatic look."
     definition_ko: null
     source: "원서 Glossary p.112"
     principle_form: null
@@ -146,7 +146,7 @@ entries:
     locked: false
   - term: "Color reversal intermediate"
     translation: null
-    definition_en: "Film stock introduced in the late 1960s for makinginternegatives directly from negatives or internegatives and interpositives directlyfrom interpositives. No longer in use, it is identified by its black edges and theorange cast of color images. Often abbreviated as CRI."
+    definition_en: "Film stock introduced in the late 1960s for making internegatives directly from negatives or internegatives and interpositives directly from interpositives. No longer in use, it is identified by its black edges and the orange cast of color images. Often abbreviated as CRI."
     definition_ko: null
     source: "원서 Glossary p.112"
     principle_form: null
@@ -156,7 +156,7 @@ entries:
     locked: false
   - term: "Composite print"
     translation: null
-    definition_en: "Film positive carrying both picture and sound track. Also knownas combined print or married print."
+    definition_en: "Film positive carrying both picture and sound track. Also known as combined print or married print."
     definition_ko: null
     source: "원서 Glossary p.113"
     principle_form: null
@@ -176,7 +176,7 @@ entries:
     locked: false
   - term: "Contact printing"
     translation: null
-    definition_en: "Laboratory process in which a film copy is made through directphysical contact between the source material and raw film stock."
+    definition_en: "Laboratory process in which a film copy is made through direct physical contact between the source material and raw film stock."
     definition_ko: null
     source: "원서 Glossary p.113"
     principle_form: null
@@ -196,7 +196,7 @@ entries:
     locked: false
   - term: "CRI"
     translation: null
-    definition_en: "Color reversal intermediate. Film stock introduced in the late 1960s for mak-ing internegatives directly from negatives or internegatives and interpositivesdirectly from interpositives."
+    definition_en: "Color reversal intermediate. Film stock introduced in the late 1960s for making internegatives directly from negatives or internegatives and interpositives directly from interpositives."
     definition_ko: null
     source: "원서 Glossary p.113"
     principle_form: null
@@ -206,7 +206,7 @@ entries:
     locked: false
   - term: "Data logger"
     translation: null
-    definition_en: "Electronic instrument used to record temperature, relative humidity,light intensity, and other variables that affect collection materials."
+    definition_en: "Electronic instrument used to record temperature, relative humidity, light intensity, and other variables that affect collection materials."
     definition_ko: null
     source: "원서 Glossary p.113"
     principle_form: null
@@ -236,7 +236,7 @@ entries:
     locked: false
   - term: "Digital Betacam"
     translation: null
-    definition_en: "A format of one-half-inch digital videotape that is packaged in acassette. Also known as DBC, Digi Beta, and Digibeta."
+    definition_en: "A format of one-half-inch digital videotape that is packaged in a cassette. Also known as DBC, Digi Beta, and Digibeta."
     definition_ko: null
     source: "원서 Glossary p.113"
     principle_form: null
@@ -246,7 +246,7 @@ entries:
     locked: false
   - term: "Digital videotape"
     translation: null
-    definition_en: "Videotape that stores picture and sound as numeric values. Ana-log videotape, in contrast, records picture and sound information using frequencymodulated signals."
+    definition_en: "Videotape that stores picture and sound as numeric values. Analog videotape, in contrast, records picture and sound information using frequency modulated signals."
     definition_ko: null
     source: "원서 Glossary p.113"
     principle_form: null
@@ -256,7 +256,7 @@ entries:
     locked: false
   - term: "Duplicate negative"
     translation: null
-    definition_en: "New negative created in the preservation copying of positiveblack-and-white film. This preservation element may be made from an originalprint or from a duplicating positive. Sometimes shortened to dupe negative ordupe neg."
+    definition_en: "New negative created in the preservation copying of positive black-and-white film. This preservation element may be made from an original print or from a duplicating positive. Sometimes shortened to dupe negative or dupe neg."
     definition_ko: null
     source: "원서 Glossary p.113"
     principle_form: null
@@ -266,7 +266,7 @@ entries:
     locked: false
   - term: "Duplicating positive"
     translation: null
-    definition_en: "Generic term for the new positive intermediate created dur-ing preservation copying from a negative original. For black-and-white film theduplicating positive is called a finegrain master; for color film, it is called aninterpositive."
+    definition_en: "Generic term for the new positive intermediate created during preservation copying from a negative original. For black-and-white film the duplicating positive is called a finegrain master; for color film, it is called an interpositive."
     definition_ko: null
     source: "원서 Glossary p.113"
     principle_form: null
@@ -296,7 +296,7 @@ entries:
     locked: false
   - term: "Edge code"
     translation: null
-    definition_en: "Symbols printed along the edge of the film by the manufacturer toindicate production data, such as date and location of manufacture."
+    definition_en: "Symbols printed along the edge of the film by the manufacturer to indicate production data, such as date and location of manufacture."
     definition_ko: null
     source: "원서 Glossary p.113"
     principle_form: null
@@ -306,7 +306,7 @@ entries:
     locked: false
   - term: "8mm"
     translation: null
-    definition_en: "Film gauge introduced in 1932 for the amateur market. Measures 8 milli-meters in width."
+    definition_en: "Film gauge introduced in 1932 for the amateur market. Measures 8 millimeters in width."
     definition_ko: null
     source: "원서 Glossary p.113"
     principle_form: null
@@ -336,7 +336,7 @@ entries:
     locked: false
   - term: "Enlargement print"
     translation: null
-    definition_en: "Print made on a larger format than the original, such as a 16mmprint made from an 8mm original. Also known as blowup."
+    definition_en: "Print made on a larger format than the original, such as a 16mm print made from an 8mm original. Also known as blowup."
     definition_ko: null
     source: "원서 Glossary p.114"
     principle_form: null
@@ -346,7 +346,7 @@ entries:
     locked: false
   - term: "Equalization"
     translation: null
-    definition_en: "In sound preservation, the process of changing the level or volumeof selected frequency ranges to improve overall sound quality."
+    definition_en: "In sound preservation, the process of changing the level or volume of selected frequency ranges to improve overall sound quality."
     definition_ko: null
     source: "원서 Glossary p.114"
     principle_form: null
@@ -366,7 +366,7 @@ entries:
     locked: false
   - term: "FIAF"
     translation: null
-    definition_en: "La Fédération Internationale des Archives du Film/International Federationof Film Archives (www.fiafnet.org). International association for film archives andmuseums."
+    definition_en: "La Fédération Internationale des Archives du Film/International Federation of Film Archives (www.fiafnet.org). International association for film archives and museums."
     definition_ko: null
     source: "원서 Glossary p.114"
     principle_form: null
@@ -376,7 +376,7 @@ entries:
     locked: false
   - term: "Film cement"
     translation: null
-    definition_en: "Solvent used to join two pieces of film, thus creating a splice. Cementsnow on the market cannot be used with polyester film."
+    definition_en: "Solvent used to join two pieces of film, thus creating a splice. Cements now on the market cannot be used with polyester film."
     definition_ko: null
     source: "원서 Glossary p.114"
     principle_form: null
@@ -386,7 +386,7 @@ entries:
     locked: false
   - term: "Film cleaner"
     translation: null
-    definition_en: "Solvent applied to the film surface to remove dirt, oil, dust, and wax.Commercially available film cleaners can be toxic and should be handled asdirected on the manufacturer’s material safety data sheet."
+    definition_en: "Solvent applied to the film surface to remove dirt, oil, dust, and wax. Commercially available film cleaners can be toxic and should be handled as directed on the manufacturer’s material safety data sheet."
     definition_ko: null
     source: "원서 Glossary p.114"
     principle_form: null
@@ -396,7 +396,7 @@ entries:
     locked: false
   - term: "Film viewer"
     translation: null
-    definition_en: "Machine with screen for viewing film at a workstation. Film viewersrange from simple tabletop devices to sophisticated flatbed editing consoles."
+    definition_en: "Machine with screen for viewing film at a workstation. Film viewers range from simple tabletop devices to sophisticated flatbed editing consoles."
     definition_ko: null
     source: "원서 Glossary p.114"
     principle_form: null
@@ -406,7 +406,7 @@ entries:
     locked: false
   - term: "Fine grain master"
     translation: null
-    definition_en: "New duplicating positive made in the preservation copying ofblack-and-white film. This intermediate preservation element is created from anegative source and is used to produce a duplicate negative from which new printscan be created. Sometimes shortened to finegrain."
+    definition_en: "New duplicating positive made in the preservation copying of black-and-white film. This intermediate preservation element is created from a negative source and is used to produce a duplicate negative from which new prints can be created. Sometimes shortened to finegrain."
     definition_ko: null
     source: "원서 Glossary p.114"
     principle_form: null
@@ -416,7 +416,7 @@ entries:
     locked: false
   - term: "Footage"
     translation: null
-    definition_en: "Measurement of film length in feet or frames. Also used to describe un-edited positive film."
+    definition_en: "Measurement of film length in feet or frames. Also used to describe unedited positive film."
     definition_ko: null
     source: "원서 Glossary p.114"
     principle_form: null
@@ -426,7 +426,7 @@ entries:
     locked: false
   - term: "Footage counter"
     translation: null
-    definition_en: "Measurement device that counts feet or frames of film. Industrymodels may also indicate run time and time code."
+    definition_en: "Measurement device that counts feet or frames of film. Industry models may also indicate run time and time code."
     definition_ko: null
     source: "원서 Glossary p.114"
     principle_form: null
@@ -436,7 +436,7 @@ entries:
     locked: false
   - term: "Format"
     translation: null
-    definition_en: "Term referring to the dimensions of the apertures used in motion picturecameras and projectors. Formats are standardized for film gauges now in commer-cial use. Films in the same format have the same gauge, width, image height andposition, and perforation placement and size. Formats are also standardized forvideotape by width, track placement, and other factors."
+    definition_en: "Term referring to the dimensions of the apertures used in motion picture cameras and projectors. Formats are standardized for film gauges now in commercial use. Films in the same format have the same gauge, width, image height and position, and perforation placement and size. Formats are also standardized for videotape by width, track placement, and other factors."
     definition_ko: null
     source: "원서 Glossary p.114"
     principle_form: null
@@ -446,7 +446,7 @@ entries:
     locked: false
   - term: "Frame"
     translation: null
-    definition_en: "Rectangular area of the motion picture film strip that holds a single filmimage. Sometimes used as a unit of measurement, e.g., frames per second."
+    definition_en: "Rectangular area of the motion picture film strip that holds a single film image. Sometimes used as a unit of measurement, e.g., frames per second."
     definition_ko: null
     source: "원서 Glossary p.114"
     principle_form: null
@@ -456,7 +456,7 @@ entries:
     locked: false
   - term: "Frame enlargement"
     translation: null
-    definition_en: "Still photograph that reproduces a single frame of motion pic-ture film."
+    definition_en: "Still photograph that reproduces a single frame of motion picture film."
     definition_ko: null
     source: "원서 Glossary p.114"
     principle_form: null
@@ -466,7 +466,7 @@ entries:
     locked: false
   - term: "Full-coat mag"
     translation: null
-    definition_en: "Short for full-coat magnetic sound track. Production or preserva-tion sound element in which the magnetic oxide recording layer covers one fullside of the film surface."
+    definition_en: "Short for full-coat magnetic sound track. Production or preservation sound element in which the magnetic oxide recording layer covers one full side of the film surface."
     definition_ko: null
     source: "원서 Glossary p.114"
     principle_form: null
@@ -496,7 +496,7 @@ entries:
     locked: false
   - term: "Grading"
     translation: null
-    definition_en: "Process through which the laboratory technician determines the correctbrightness and color of a film element scene by scene. Also known as timing."
+    definition_en: "Process through which the laboratory technician determines the correct brightness and color of a film element scene by scene. Also known as timing."
     definition_ko: null
     source: "원서 Glossary p.115"
     principle_form: null
@@ -536,7 +536,7 @@ entries:
     locked: false
   - term: "IMAP"
     translation: null
-    definition_en: "Independent Media Arts Preservation (www.imappreserve.org). Consortiumaffiliated with Electronic Arts Intermix that has developed a cataloging templateto help repositories organize their media collections."
+    definition_en: "Independent Media Arts Preservation (www.imappreserve.org). Consortium affiliated with Electronic Arts Intermix that has developed a cataloging template to help repositories organize their media collections."
     definition_ko: null
     source: "원서 Glossary p.115"
     principle_form: null
@@ -546,7 +546,7 @@ entries:
     locked: false
   - term: "In-camera"
     translation: null
-    definition_en: "Any process or effect that is achieved within the camera itself duringshooting rather than through manipulation at a later stage of production."
+    definition_en: "Any process or effect that is achieved within the camera itself during shooting rather than through manipulation at a later stage of production."
     definition_ko: null
     source: "원서 Glossary p.115"
     principle_form: null
@@ -556,7 +556,7 @@ entries:
     locked: false
   - term: "Inspection"
     translation: null
-    definition_en: "Close examination of film to identify technical characteristics andphysical condition."
+    definition_en: "Close examination of film to identify technical characteristics and physical condition."
     definition_ko: null
     source: "원서 Glossary p.115"
     principle_form: null
@@ -566,7 +566,7 @@ entries:
     locked: false
   - term: "Intermediate"
     translation: null
-    definition_en: "Any film material created in the process of making a viewing printfrom original source material."
+    definition_en: "Any film material created in the process of making a viewing print from original source material."
     definition_ko: null
     source: "원서 Glossary p.115"
     principle_form: null
@@ -576,7 +576,7 @@ entries:
     locked: false
   - term: "Internegative"
     translation: null
-    definition_en: "Color negative from which new prints can be created. In the preser-vation copying of color film, the new internegative may be made from an origi-nal print or from an interpositive."
+    definition_en: "Color negative from which new prints can be created. In the preservation copying of color film, the new internegative may be made from an original print or from an interpositive."
     definition_ko: null
     source: "원서 Glossary p.115"
     principle_form: null
@@ -586,7 +586,7 @@ entries:
     locked: false
   - term: "Interpositive"
     translation: null
-    definition_en: "New duplicating positive created during the copying of color film.This intermediate preservation element is made from a negative original and isused to produce a color duplicate negative, called an internegative. Sometimesabbreviated as IP."
+    definition_en: "New duplicating positive created during the copying of color film. This intermediate preservation element is made from a negative original and is used to produce a color duplicate negative, called an internegative. Sometimes abbreviated as IP."
     definition_ko: null
     source: "원서 Glossary p.115"
     principle_form: null
@@ -596,7 +596,7 @@ entries:
     locked: false
   - term: "Intertitles"
     translation: null
-    definition_en: "In silent films, the screens of text containing dialogue and other infor-mation about the narrative or action."
+    definition_en: "In silent films, the screens of text containing dialogue and other information about the narrative or action."
     definition_ko: null
     source: "원서 Glossary p.115"
     principle_form: null
@@ -606,7 +606,7 @@ entries:
     locked: false
   - term: "IP"
     translation: null
-    definition_en: "Abbreviation for interpositive, the duplicating positive created during thepreservation copying of color film."
+    definition_en: "Abbreviation for interpositive, the duplicating positive created during the preservation copying of color film."
     definition_ko: null
     source: "원서 Glossary p.115"
     principle_form: null
@@ -616,7 +616,7 @@ entries:
     locked: false
   - term: "IPI"
     translation: null
-    definition_en: "Image Permanence Institute (www.rit.edu/ipi). Research organization at theRochester Institute of Technology that studies the effect of light, heat, pollutants,and humidity on imaging materials."
+    definition_en: "Image Permanence Institute (www.rit.edu/ipi). Research organization at the Rochester Institute of Technology that studies the effect of light, heat, pollutants, and humidity on imaging materials."
     definition_ko: null
     source: "원서 Glossary p.115"
     principle_form: null
@@ -626,7 +626,7 @@ entries:
     locked: false
   - term: "ISO"
     translation: null
-    definition_en: "International Organization for Standardization (www.iso.org). Internationalgroup that develops manufacturing and performance standards for many industries."
+    definition_en: "International Organization for Standardization (www.iso.org). International group that develops manufacturing and performance standards for many industries."
     definition_ko: null
     source: "원서 Glossary p.115"
     principle_form: null
@@ -636,7 +636,7 @@ entries:
     locked: false
   - term: "Kinetoscope loop"
     translation: null
-    definition_en: "Piece of film used in a kinetoscope, the personal viewing machinepublicly introduced by Thomas Edison and W.K.L. Dickson in 1893. Kinetoscopesused 35mm film, which remains the industry standard."
+    definition_en: "Piece of film used in a kinetoscope, the personal viewing machine publicly introduced by Thomas Edison and W.K.L. Dickson in 1893. Kinetoscopes used 35mm film, which remains the industry standard."
     definition_ko: null
     source: "원서 Glossary p.115"
     principle_form: null
@@ -646,7 +646,7 @@ entries:
     locked: false
   - term: "Kodachrome"
     translation: null
-    definition_en: "Color reversal motion picture film introduced by Kodak to the 16mmmarket in 1935. Available as slide and 8mm film in 1936."
+    definition_en: "Color reversal motion picture film introduced by Kodak to the 16mm market in 1935. Available as slide and 8mm film in 1936."
     definition_ko: null
     source: "원서 Glossary p.116"
     principle_form: null
@@ -656,7 +656,7 @@ entries:
     locked: false
   - term: "Kodacolor"
     translation: null
-    definition_en: "Lenticular color motion picture film introduced by Kodak to the 16mmmarket in 1928. Term also used by Kodak for color still photographic film."
+    definition_en: "Lenticular color motion picture film introduced by Kodak to the 16mm market in 1928. Term also used by Kodak for color still photographic film."
     definition_ko: null
     source: "원서 Glossary p.116"
     principle_form: null
@@ -666,7 +666,7 @@ entries:
     locked: false
   - term: "Leader"
     translation: null
-    definition_en: "Blank film attached to the beginning and end of film rolls to facilitatehandling. Sometimes used to separate short films or shots on a single film roll."
+    definition_en: "Blank film attached to the beginning and end of film rolls to facilitate handling. Sometimes used to separate short films or shots on a single film roll."
     definition_ko: null
     source: "원서 Glossary p.116"
     principle_form: null
@@ -676,7 +676,7 @@ entries:
     locked: false
   - term: "Lenticular film"
     translation: null
-    definition_en: "Black-and-white film in which the base is embossed lengthwise withridges that act as semicylindrical lenses. When lenticular film is shown through athree-color projector lens, it appears in color on the screen. See also Kodacolor."
+    definition_en: "Black-and-white film in which the base is embossed lengthwise with ridges that act as semicylindrical lenses. When lenticular film is shown through a three-color projector lens, it appears in color on the screen. See also Kodacolor."
     definition_ko: null
     source: "원서 Glossary p.116"
     principle_form: null
@@ -686,7 +686,7 @@ entries:
     locked: false
   - term: "Licensing"
     translation: null
-    definition_en: "Transfer of rights from the rights holder to another party generally for aspecific use, duration, and territory."
+    definition_en: "Transfer of rights from the rights holder to another party generally for a specific use, duration, and territory."
     definition_ko: null
     source: "원서 Glossary p.116"
     principle_form: null
@@ -706,7 +706,7 @@ entries:
     locked: false
   - term: "Liquid-gate printing"
     translation: null
-    definition_en: "Printing process during which motion picture film is brieflyimmersed in a chemical bath that helps to fill in scratches. Also known as wet-gate printing."
+    definition_en: "Printing process during which motion picture film is briefly immersed in a chemical bath that helps to fill in scratches. Also known as wetgate printing."
     definition_ko: null
     source: "원서 Glossary p.116"
     principle_form: null
@@ -726,7 +726,7 @@ entries:
     locked: false
   - term: "Magnetic sound track"
     translation: null
-    definition_en: "Motion picture sound track in which the sound informationis carried by magnetic oxide. Magnetic sound track can be affixed to a print as astripe along the film edge or exist as a separate element (full-coat mag). Oftenshortened to magnetic track or mag track."
+    definition_en: "Motion picture sound track in which the sound information is carried by magnetic oxide. Magnetic sound track can be affixed to a print as a stripe along the film edge or exist as a separate element (full-coat mag). Often shortened to magnetic track or mag track."
     definition_ko: null
     source: "원서 Glossary p.116"
     principle_form: null
@@ -736,7 +736,7 @@ entries:
     locked: false
   - term: "Magnetic stripe"
     translation: null
-    definition_en: "In a composite print, the stripe of magnetic oxide applied nearthe film edge to carry the sound record or affixed to the opposite edge for balance."
+    definition_en: "In a composite print, the stripe of magnetic oxide applied near the film edge to carry the sound record or affixed to the opposite edge for balance."
     definition_ko: null
     source: "원서 Glossary p.116"
     principle_form: null
@@ -746,7 +746,7 @@ entries:
     locked: false
   - term: "Magnetic track deterioration"
     translation: null
-    definition_en: "Decay of the sound track that results in sound lossdue to shedding, sticking, or layer separation."
+    definition_en: "Decay of the sound track that results in sound loss due to shedding, sticking, or layer separation."
     definition_ko: null
     source: "원서 Glossary p.116"
     principle_form: null
@@ -756,7 +756,7 @@ entries:
     locked: false
   - term: "MARC"
     translation: null
-    definition_en: "Machine Readable Cataloging. International standard for bibliographicdata adopted by the library community to facilitate electronic data sharing."
+    definition_en: "Machine Readable Cataloging. International standard for bibliographic data adopted by the library community to facilitate electronic data sharing."
     definition_ko: null
     source: "원서 Glossary p.116"
     principle_form: null
@@ -766,7 +766,7 @@ entries:
     locked: false
   - term: "Married print"
     translation: null
-    definition_en: "Another term for composite print. Film positive carrying both pic-ture and sound track."
+    definition_en: "Another term for composite print. Film positive carrying both picture and sound track."
     definition_ko: null
     source: "원서 Glossary p.116"
     principle_form: null
@@ -776,7 +776,7 @@ entries:
     locked: false
   - term: "Master"
     translation: null
-    definition_en: "In film preservation, the sound and picture elements that are sufficient forprinting new film copies without reuse of the original source. Also known as preser-vation master."
+    definition_en: "In film preservation, the sound and picture elements that are sufficient for printing new film copies without reuse of the original source. Also known as preservation master."
     definition_ko: null
     source: "원서 Glossary p.116"
     principle_form: null
@@ -786,7 +786,7 @@ entries:
     locked: false
   - term: "MIC"
     translation: null
-    definition_en: "Moving Image Collections (gondolin.rutgers.edu/MIC/). Online entry pointto moving image collections. The development of MIC is sponsored by the Asso-ciation of Moving Image Archivists and the Library of Congress."
+    definition_en: "Moving Image Collections (gondolin.rutgers.edu/MIC/). Online entry point to moving image collections. The development of MIC is sponsored by the Association of Moving Image Archivists and the Library of Congress."
     definition_ko: null
     source: "원서 Glossary p.116"
     principle_form: null
@@ -806,7 +806,7 @@ entries:
     locked: false
   - term: "Negative"
     translation: null
-    definition_en: "Film carrying the reverse image of the motion picture subject. The neg-ative is exposed in the camera or created from a positive in the laboratory. It isprinted to produce a positive for projection and viewing."
+    definition_en: "Film carrying the reverse image of the motion picture subject. The negative is exposed in the camera or created from a positive in the laboratory. It is printed to produce a positive for projection and viewing."
     definition_ko: null
     source: "원서 Glossary p.117"
     principle_form: null
@@ -816,7 +816,7 @@ entries:
     locked: false
   - term: "Nitrate"
     translation: null
-    definition_en: "Short for cellulose nitrate. Transparent plastic used as the base in the ear-liest 35mm film stock. Highly flammable, nitrate base film was phased out by theearly 1950s."
+    definition_en: "Short for cellulose nitrate. Transparent plastic used as the base in the earliest 35mm film stock. Highly flammable, nitrate base film was phased out by the early 1950s."
     definition_ko: null
     source: "원서 Glossary p.117"
     principle_form: null
@@ -826,7 +826,7 @@ entries:
     locked: false
   - term: "Nitrate decay"
     translation: null
-    definition_en: "Chemical degradation of cellulose nitrate plastic film base that isaccelerated by high relative humidity and temperature."
+    definition_en: "Chemical degradation of cellulose nitrate plastic film base that is accelerated by high relative humidity and temperature."
     definition_ko: null
     source: "원서 Glossary p.117"
     principle_form: null
@@ -836,7 +836,7 @@ entries:
     locked: false
   - term: "OCLC"
     translation: null
-    definition_en: "Online Computer Library Center (www.oclc.org). Nonprofit membershiporganization hosting an online catalog system used by libraries around the world."
+    definition_en: "Online Computer Library Center (www.oclc.org). Nonprofit membership organization hosting an online catalog system used by libraries around the world."
     definition_ko: null
     source: "원서 Glossary p.117"
     principle_form: null
@@ -846,7 +846,7 @@ entries:
     locked: false
   - term: "One-light print"
     translation: null
-    definition_en: "Film print produced with a single level of color and brightness forall scenes."
+    definition_en: "Film print produced with a single level of color and brightness for all scenes."
     definition_ko: null
     source: "원서 Glossary p.117"
     principle_form: null
@@ -856,7 +856,7 @@ entries:
     locked: false
   - term: "Optical printing"
     translation: null
-    definition_en: "Laboratory process in which the image is projected through a lensand copied onto raw stock, frame by frame. Often used to produce prints in a dif-ferent format from the original."
+    definition_en: "Laboratory process in which the image is projected through a lens and copied onto raw stock, frame by frame. Often used to produce prints in a different format from the original."
     definition_ko: null
     source: "원서 Glossary p.117"
     principle_form: null
@@ -866,7 +866,7 @@ entries:
     locked: false
   - term: "Optical sound track"
     translation: null
-    definition_en: "Photographically printed sound record carried on the filmprint or produced as a separate element."
+    definition_en: "Photographically printed sound record carried on the film print or produced as a separate element."
     definition_ko: null
     source: "원서 Glossary p.117"
     principle_form: null
@@ -876,7 +876,7 @@ entries:
     locked: false
   - term: "Original"
     translation: null
-    definition_en: "Film artifact that can be used as source material in duplication. Also usedto describe film exposed in the camera."
+    definition_en: "Film artifact that can be used as source material in duplication. Also used to describe film exposed in the camera."
     definition_ko: null
     source: "원서 Glossary p.117"
     principle_form: null
@@ -896,7 +896,7 @@ entries:
     locked: false
   - term: "PAT"
     translation: null
-    definition_en: "Photographic Activity Test. Tool developed by the Image Permanence Insti-tute to predict the chemical reaction between photographic materials and theirenclosures."
+    definition_en: "Photographic Activity Test. Tool developed by the Image Permanence Institute to predict the chemical reaction between photographic materials and their enclosures."
     definition_ko: null
     source: "원서 Glossary p.117"
     principle_form: null
@@ -906,7 +906,7 @@ entries:
     locked: false
   - term: "Perforations"
     translation: null
-    definition_en: "Holes, usually along the film edge, used to advance the film stripthrough a camera, printer, or projector. Also known as sprocket holes."
+    definition_en: "Holes, usually along the film edge, used to advance the film strip through a camera, printer, or projector. Also known as sprocket holes."
     definition_ko: null
     source: "원서 Glossary p.117"
     principle_form: null
@@ -926,7 +926,7 @@ entries:
     locked: false
   - term: "Positive"
     translation: null
-    definition_en: "Film that has a positive image of the motion picture subject. The positiveis generally produced from a negative and used for viewing."
+    definition_en: "Film that has a positive image of the motion picture subject. The positive is generally produced from a negative and used for viewing."
     definition_ko: null
     source: "원서 Glossary p.117"
     principle_form: null
@@ -936,7 +936,7 @@ entries:
     locked: false
   - term: "Preservation"
     translation: null
-    definition_en: "Continuum of activities necessary to protect film for the future andshare its content with the public."
+    definition_en: "Continuum of activities necessary to protect film for the future and share its content with the public."
     definition_ko: null
     source: "원서 Glossary p.117"
     principle_form: null
@@ -946,7 +946,7 @@ entries:
     locked: false
   - term: "Preservation master"
     translation: null
-    definition_en: "Sound and picture elements that are sufficient for printingnew film copies without reuse of the original source. Often shortened to master."
+    definition_en: "Sound and picture elements that are sufficient for printing new film copies without reuse of the original source. Often shortened to master."
     definition_ko: null
     source: "원서 Glossary p.117"
     principle_form: null
@@ -966,7 +966,7 @@ entries:
     locked: false
   - term: "Processing"
     translation: null
-    definition_en: "Range of laboratory procedures used to develop and fix the latent imagein exposed motion picture film."
+    definition_en: "Range of laboratory procedures used to develop and fix the latent image in exposed motion picture film."
     definition_ko: null
     source: "원서 Glossary p.118"
     principle_form: null
@@ -986,7 +986,7 @@ entries:
     locked: false
   - term: "Public domain"
     translation: null
-    definition_en: "Term used to describe film or footage that is not protected by copy-right and may be used without permission of the creator or former rights holder."
+    definition_en: "Term used to describe film or footage that is not protected by copyright and may be used without permission of the creator or former rights holder."
     definition_ko: null
     source: "원서 Glossary p.118"
     principle_form: null
@@ -996,7 +996,7 @@ entries:
     locked: false
   - term: "Quality control"
     translation: null
-    definition_en: "Process through which preservationists check the acceptability ofpreservation elements. Usually accomplished through review of the answer print."
+    definition_en: "Process through which preservationists check the acceptability of preservation elements. Usually accomplished through review of the answer print."
     definition_ko: null
     source: "원서 Glossary p.118"
     principle_form: null
@@ -1016,7 +1016,7 @@ entries:
     locked: false
   - term: "Redimensioning"
     translation: null
-    definition_en: "Chemical treatment that temporarily returns shrunken film toclose to original dimensions for preservation copying. This process may result inpermanent damage to the original and should be used only in extreme cases."
+    definition_en: "Chemical treatment that temporarily returns shrunken film to close to original dimensions for preservation copying. This process may result in permanent damage to the original and should be used only in extreme cases."
     definition_ko: null
     source: "원서 Glossary p.118"
     principle_form: null
@@ -1026,7 +1026,7 @@ entries:
     locked: false
   - term: "Reduction print"
     translation: null
-    definition_en: "Positive made in a smaller format than the original, such as a 16mmprint made from a 35mm original."
+    definition_en: "Positive made in a smaller format than the original, such as a 16mm print made from a 35mm original."
     definition_ko: null
     source: "원서 Glossary p.118"
     principle_form: null
@@ -1036,7 +1036,7 @@ entries:
     locked: false
   - term: "Reel"
     translation: null
-    definition_en: "Metal or plastic hub with extended sides between which film is wound forprojection. Also, for silent-era motion pictures, an imprecise measure of run time.Each 1,000-foot, 35mm reel runs between 10 and 18 minutes, depending on pro-jection speed."
+    definition_en: "Metal or plastic hub with extended sides between which film is wound for projection. Also, for silent-era motion pictures, an imprecise measure of run time. Each 1,000-foot, 35mm reel runs between 10 and 18 minutes, depending on projection speed."
     definition_ko: null
     source: "원서 Glossary p.118"
     principle_form: null
@@ -1066,7 +1066,7 @@ entries:
     locked: false
   - term: "Relative humidity"
     translation: null
-    definition_en: "Ratio of the amount of water actually in the air to the maxi-mum air can hold at the same temperature. Abbreviated as RH."
+    definition_en: "Ratio of the amount of water actually in the air to the maximum air can hold at the same temperature. Abbreviated as RH."
     definition_ko: null
     source: "원서 Glossary p.118"
     principle_form: null
@@ -1096,7 +1096,7 @@ entries:
     locked: false
   - term: "Reversal original"
     translation: null
-    definition_en: "Film that is run through the camera and processed to produce apositive image. Positive reversal film has no corresponding negative."
+    definition_en: "Film that is run through the camera and processed to produce a positive image. Positive reversal film has no corresponding negative."
     definition_ko: null
     source: "원서 Glossary p.118"
     principle_form: null
@@ -1106,7 +1106,7 @@ entries:
     locked: false
   - term: "Rewind"
     translation: null
-    definition_en: "Hand-cranked or motorized device used in pairs to control the winding offilm for inspection and for transfer from reels to cores."
+    definition_en: "Hand-cranked or motorized device used in pairs to control the winding of film for inspection and for transfer from reels to cores."
     definition_ko: null
     source: "원서 Glossary p.118"
     principle_form: null
@@ -1116,7 +1116,7 @@ entries:
     locked: false
   - term: "RH"
     translation: null
-    definition_en: "Relative humidity. Ratio of the amount of water actually in the air to the max-imum that air can hold at that given temperature."
+    definition_en: "Relative humidity. Ratio of the amount of water actually in the air to the maximum that air can hold at that given temperature."
     definition_ko: null
     source: "원서 Glossary p.118"
     principle_form: null
@@ -1126,7 +1126,7 @@ entries:
     locked: false
   - term: "RLIN"
     translation: null
-    definition_en: "Research Libraries Information Network (www.rlg.org/rlin.html). Onlinesystem of the Research Libraries Group, the nonprofit group with more than 160university, library, archive, and historical society members."
+    definition_en: "Research Libraries Information Network (www.rlg.org/rlin.html). Online system of the Research Libraries Group, the nonprofit group with more than 160 university, library, archive, and historical society members."
     definition_ko: null
     source: "원서 Glossary p.118"
     principle_form: null
@@ -1176,7 +1176,7 @@ entries:
     locked: false
   - term: "Shrinkage gauge"
     translation: null
-    definition_en: "Device used to measure the extent to which film has contractedfrom its original dimensions. Compares the standardized distance between perfo-rations with that of the shrunken film and expresses the difference as a percentage."
+    definition_en: "Device used to measure the extent to which film has contracted from its original dimensions. Compares the standardized distance between perforations with that of the shrunken film and expresses the difference as a percentage."
     definition_ko: null
     source: "원서 Glossary p.119"
     principle_form: null
@@ -1186,7 +1186,7 @@ entries:
     locked: false
   - term: "Silent film"
     translation: null
-    definition_en: "Film made without a sound track. Also used to describe commercialmotion pictures produced before the widespread adoption of the sound film in 1929."
+    definition_en: "Film made without a sound track. Also used to describe commercial motion pictures produced before the widespread adoption of the sound film in 1929."
     definition_ko: null
     source: "원서 Glossary p.119"
     principle_form: null
@@ -1196,7 +1196,7 @@ entries:
     locked: false
   - term: "16mm"
     translation: null
-    definition_en: "Film gauge introduced in 1923 for the nontheatrical market. Measures 16millimeters in width."
+    definition_en: "Film gauge introduced in 1923 for the nontheatrical market. Measures 16 millimeters in width."
     definition_ko: null
     source: "원서 Glossary p.119"
     principle_form: null
@@ -1206,7 +1206,7 @@ entries:
     locked: false
   - term: "Small gauge film"
     translation: null
-    definition_en: "Umbrella term generally applied to 8mm and Super 8mm film,although it can be applied to any film less than 35 millimeters in width."
+    definition_en: "Umbrella term generally applied to 8mm and Super 8mm film, although it can be applied to any film less than 35 millimeters in width."
     definition_ko: null
     source: "원서 Glossary p.119"
     principle_form: null
@@ -1216,7 +1216,7 @@ entries:
     locked: false
   - term: "SMPTE"
     translation: null
-    definition_en: "Society of Motion Picture and Television Engineers (www.smpte.org). In-ternational technical association that publishes standards, recommended practices,and engineering guidelines for film, television, video, and multimedia materials."
+    definition_en: "Society of Motion Picture and Television Engineers (www.smpte.org). International technical association that publishes standards, recommended practices, and engineering guidelines for film, television, video, and multimedia materials."
     definition_ko: null
     source: "원서 Glossary p.119"
     principle_form: null
@@ -1226,7 +1226,7 @@ entries:
     locked: false
   - term: "Sound restoration"
     translation: null
-    definition_en: "Process through which original aural qualities of the film soundtrack are reconstructed. In restoration the sound is generally transferred to digitalfiles, where the sound damage—hiss, pops, clicks—can be removed."
+    definition_en: "Process through which original aural qualities of the film sound track are reconstructed. In restoration the sound is generally transferred to digital files, where the sound damage—hiss, pops, clicks—can be removed."
     definition_ko: null
     source: "원서 Glossary p.119"
     principle_form: null
@@ -1256,7 +1256,7 @@ entries:
     locked: false
   - term: "Splicer"
     translation: null
-    definition_en: "Piece of equipment for joining two pieces of film. Splicers come in manydesigns and may use cement, adhesive tape, or ultrasonic technology."
+    definition_en: "Piece of equipment for joining two pieces of film. Splicers come in many designs and may use cement, adhesive tape, or ultrasonic technology."
     definition_ko: null
     source: "원서 Glossary p.119"
     principle_form: null
@@ -1286,7 +1286,7 @@ entries:
     locked: false
   - term: "Sprocket"
     translation: null
-    definition_en: "Toothed mechanism that engages with film perforations to advance thefilm strip through a camera, printer, or projector."
+    definition_en: "Toothed mechanism that engages with film perforations to advance the film strip through a camera, printer, or projector."
     definition_ko: null
     source: "원서 Glossary p.119"
     principle_form: null
@@ -1296,7 +1296,7 @@ entries:
     locked: false
   - term: "Sprocket damage"
     translation: null
-    definition_en: "Tears, rips, and other physical damage to film perforations. Gen-erally caused by improper projection."
+    definition_en: "Tears, rips, and other physical damage to film perforations. Generally caused by improper projection."
     definition_ko: null
     source: "원서 Glossary p.119"
     principle_form: null
@@ -1306,7 +1306,7 @@ entries:
     locked: false
   - term: "Sprocket holes"
     translation: null
-    definition_en: "Holes, usually along the film edge, used to advance the film stripthrough a camera, printer, or projector. Also known as perforations."
+    definition_en: "Holes, usually along the film edge, used to advance the film strip through a camera, printer, or projector. Also known as perforations."
     definition_ko: null
     source: "원서 Glossary p.119"
     principle_form: null
@@ -1316,7 +1316,7 @@ entries:
     locked: false
   - term: "Staging area"
     translation: null
-    definition_en: "Room set at a temperature and humidity level between that of thecold vault and the workroom. Film is acclimated in the staging area before it ismoved to a new environment."
+    definition_en: "Room set at a temperature and humidity level between that of the cold vault and the workroom. Film is acclimated in the staging area before it is moved to a new environment."
     definition_ko: null
     source: "원서 Glossary p.119"
     principle_form: null
@@ -1336,7 +1336,7 @@ entries:
     locked: false
   - term: "Super 8mm"
     translation: null
-    definition_en: "Film measuring 8 millimeters in width, with smaller sprocket holesthan Regular 8mm film so that more area is left for the picture."
+    definition_en: "Film measuring 8 millimeters in width, with smaller sprocket holes than Regular 8mm film so that more area is left for the picture."
     definition_ko: null
     source: "원서 Glossary p.120"
     principle_form: null
@@ -1366,7 +1366,7 @@ entries:
     locked: false
   - term: "Telecine"
     translation: null
-    definition_en: "Piece of laboratory equipment that converts film images and sound intodigital or analog video images and sound."
+    definition_en: "Piece of laboratory equipment that converts film images and sound into digital or analog video images and sound."
     definition_ko: null
     source: "원서 Glossary p.120"
     principle_form: null
@@ -1376,7 +1376,7 @@ entries:
     locked: false
   - term: "Thermohygrometer"
     translation: null
-    definition_en: "Device for measuring temperature and relative humidity.Thermohygrometers that output data to graph form are called hygrothermographs."
+    definition_en: "Device for measuring temperature and relative humidity. Thermohygrometers that output data to graph form are called hygrothermographs."
     definition_ko: null
     source: "원서 Glossary p.120"
     principle_form: null
@@ -1386,7 +1386,7 @@ entries:
     locked: false
   - term: "35mm"
     translation: null
-    definition_en: "Standard film gauge for the theatrical film industry. Measures 35 millime-ters in width."
+    definition_en: "Standard film gauge for the theatrical film industry. Measures 35 millimeters in width."
     definition_ko: null
     source: "원서 Glossary p.120"
     principle_form: null
@@ -1406,7 +1406,7 @@ entries:
     locked: false
   - term: "Timing"
     translation: null
-    definition_en: "Process through which the laboratory technician determines the correctbrightness and color of a film element scene by scene. Sometimes called grading."
+    definition_en: "Process through which the laboratory technician determines the correct brightness and color of a film element scene by scene. Sometimes called grading."
     definition_ko: null
     source: "원서 Glossary p.120"
     principle_form: null
@@ -1436,7 +1436,7 @@ entries:
     locked: false
   - term: "Ultrasonic cleaner"
     translation: null
-    definition_en: "Piece of laboratory equipment in which film is passed througha solvent bath where high frequency vibrations dislodge dirt."
+    definition_en: "Piece of laboratory equipment in which film is passed through a solvent bath where high frequency vibrations dislodge dirt."
     definition_ko: null
     source: "원서 Glossary p.120"
     principle_form: null
@@ -1446,7 +1446,7 @@ entries:
     locked: false
   - term: "Ultrasonic splicer"
     translation: null
-    definition_en: "Machine that splices polyester film by fusing the two film endsusing high frequency energy."
+    definition_en: "Machine that splices polyester film by fusing the two film ends using high frequency energy."
     definition_ko: null
     source: "원서 Glossary p.120"
     principle_form: null
@@ -1456,7 +1456,7 @@ entries:
     locked: false
   - term: "U-matic videotape"
     translation: null
-    definition_en: "A format of three-quarter-inch analog videotape that is pack-aged in a cassette."
+    definition_en: "A format of three-quarter-inch analog videotape that is packaged in a cassette."
     definition_ko: null
     source: "원서 Glossary p.120"
     principle_form: null
@@ -1466,7 +1466,7 @@ entries:
     locked: false
   - term: "Union catalog"
     translation: null
-    definition_en: "Reference tool that brings together in a unified sequence informa-tion on the holdings of two or more repositories."
+    definition_en: "Reference tool that brings together in a unified sequence information on the holdings of two or more repositories."
     definition_ko: null
     source: "원서 Glossary p.120"
     principle_form: null
@@ -1486,7 +1486,7 @@ entries:
     locked: false
   - term: "VHS videotape"
     translation: null
-    definition_en: "A format of one-half-inch analog videotape that is packaged in acassette."
+    definition_en: "A format of one-half-inch analog videotape that is packaged in a cassette."
     definition_ko: null
     source: "원서 Glossary p.120"
     principle_form: null
@@ -1506,7 +1506,7 @@ entries:
     locked: false
   - term: "Wet-gate printing"
     translation: null
-    definition_en: "Printing process during which motion picture film is brieflyimmersed in a chemical bath that helps to fill in scratches. A wet gate can beincorporated into a film printer or a telecine. Also known as liquid-gate printing. ACVL Handbook: Recommended Practices for Motion Picture and Video Laboratory Services, 5th ed. Hollywood, CA: Association of Cinema and Video Labor-atories, n.d. Adelstein, Peter Z. IPI Media Storage Quick Reference. Rochester, NY: Image Permanence Institute, Rochester Institute of Technology, 2004. AMIA Cataloging and Documentation Committee. AMIA Compendium of Moving Image Cataloging Practice. Edited by Abigail Leab Martin. Beverly Hills, CA:Association of Moving Image Archivists; Chicago: Society of AmericanArchivists, 2001. AMIM Revision Committee and Motion Picture, Broadcasting, and Recorded Sound Division. Archival Moving Image Materials: A Cataloging Manual. 2nded. Washington, D.C.: Cataloging Distribution Service, Library of Con-gress, 2000. Ascher, Steven, and Edward Pincus. The Filmmaker’s Handbook: A Comprehensive Guide for the Digital Age. Rev. ed. New York: Plume, 1999. Bellardo, Lewis J., and Lynn Lady Bellardo, comps. A Glossary for Archivists, Manuscript Curators, and Records Managers. Chicago: Society of AmericanArchivists, 1992. Besek, June M. Copyright Issues Relevant to the Creation of a Digital Archive: A Pre- liminary Assessment. Washington, D.C.: Council on Library and InformationResources: Library of Congress, 2003. Also available at www.clir.org/pubs/abstract/pub112abst.html. Bigourdan, Jean-Louis, and James M. Reilly. Environment and Enclosures in Film Preservation: Final Report to the Office of Preservation, National Endowmentfor the Humanities. Rochester, NY: Image Permanence Institute, RochesterInstitute of Technology, 1997. Blasko, Edward, Benjamin A. Luccitti, and Susan F. Morris, eds. The Book of Film Care. 2nd ed. Kodak Pub. H-23. Rochester, NY: Eastman Kodak Company,1992. Bowser, Eileen, and John Kuiper, eds. A Handbook for Film Archives. New York: Garland Publishing, 1991."
+    definition_en: "Printing process during which motion picture film is briefly immersed in a chemical bath that helps to fill in scratches. A wet gate can be incorporated into a film printer or a telecine. Also known as liquid-gate printing."
     definition_ko: null
     source: "원서 Glossary p.120"
     principle_form: null
