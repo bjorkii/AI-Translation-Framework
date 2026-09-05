@@ -1,0 +1,15 @@
+# 용어집 — 원어/번역어 대응 및 표기 결정
+# 스키마: 파이프라인 문서 3절 참조
+#
+# - term: Preservation                  # 원어
+#   translation: 보존                    # 번역어
+#   pos: noun                            # 품사
+#   context: "복원(restoration)과 구분해서 쓰는 상위 개념"
+#   rejected: "보전 — 국내 아카이브 실무에서 통용도가 낮음"
+#   principle_form: null                 # 맞춤법 원칙 표기
+#   adopted_form: null                   # 채택 표기
+#   basis: null                          # 근거(규정 조항 등)
+#   first_chapter: ch01                  # 최초 결정 챕터
+#   locked: false                        # true = 잠금(변경 시 사용자 승인 필요)
+
+entries: []
