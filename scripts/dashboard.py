@@ -59,7 +59,7 @@ def parse_glossary():
             return mm.group(1) if (mm and mm.group(1) is not None) else None
         entries.append({
             "term": term, "translation": f("translation"), "tbd": f("tbd"),
-            "notation": f("notation"), "context": f("context"),
+            "notation": f("notation"), "context": f("context"), "full": f("full"),
             "definition_en": f("definition_en"), "source": f("source"),
         })
     return entries
@@ -119,7 +119,7 @@ def build_state():
     def enrich(e):
         c = ctx.get(e["term"], {}) or {}
         return {"term": e["term"], "translation": e["translation"], "tbd": e["tbd"],
-                "notation": e["notation"], "context": e["context"],
+                "notation": e["notation"], "context": e["context"], "full": e["full"],
                 "definition_en": e["definition_en"],
                 "quotes": c.get("quotes", []),
                 "options": c.get("options", []) or ([o.strip() for o in e["tbd"].split("|")] if e["tbd"] else [])}
@@ -173,9 +173,10 @@ def read_log():
 
 # ---------------------------------------------------------------- 파일 쓰기
 
-def apply_decision(term, choice, note):
-    if len(choice) > 40:
-        return False, "번역어가 너무 깁니다(%d자). 표기만 남기고 설명은 메모 칸에 넣어 주세요." % len(choice)
+def apply_decision(term, choice, note, full=None):
+    if len(choice) > 60:
+        return False, ("번역어가 너무 깁니다(%d자). 본문에 들어갈 표기만 남기고, "
+                       "약어의 정식 명칭은 '풀어쓴 이름' 칸에, 사용 규칙은 메모 칸에 넣어 주세요." % len(choice))
     if '"' in choice:
         return False, "번역어에 큰따옴표는 넣을 수 없습니다. 작은따옴표를 써 주세요."
     path = ROOT / "glossary" / "glossary.yaml"
@@ -188,8 +189,11 @@ def apply_decision(term, choice, note):
     body = re.sub(r'^\s{4}translation:.*$', '    translation: "%s"' % choice, body, count=1, flags=re.M)
     body = re.sub(r'^\s{4}tbd:.*\n', '', body, flags=re.M)
     body = re.sub(r'^\s{4}notation:.*\n', '', body, flags=re.M)
+    body = re.sub(r'^\s{4}full:.*\n', '', body, flags=re.M)
     if note:
         body = body.rstrip("\n") + '\n    notation: "%s"\n' % note.replace('"', "'")
+    if full:
+        body = body.rstrip("\n") + '\n    full: "%s"\n' % full.replace('"', "'")
     path.write_text(txt[:m.start()] + head + body + txt[m.end():], encoding="utf-8")
     log_decision("decide", term, choice, note)
     return True, "확정: %s → %s" % (term, choice)
@@ -403,7 +407,8 @@ class Handler(BaseHTTPRequestHandler):
             elif self.path.startswith("/api/rename"):
                 ok, msg = rename_term(req.get("term", "").strip(), req.get("choice", "").strip())
             else:
-                ok, msg = apply_decision(req.get("term", ""), req.get("choice", ""), req.get("note", ""))
+                ok, msg = apply_decision(req.get("term", ""), req.get("choice", ""),
+                                         req.get("note", ""), req.get("full", ""))
             self._send(200 if ok else 400, json.dumps({"ok": ok, "message": msg}, ensure_ascii=False))
         except Exception as e:
             self._send(500, json.dumps({"ok": False, "message": str(e)}, ensure_ascii=False))

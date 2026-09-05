@@ -66,7 +66,7 @@ entries:
     first_chapter: glossary
     locked: false
   - term: "AMIA"
-    translation: null
+    translation: "AMIA"
     definition_en: "Association of Moving Image Archivists (www.amianet.org). Professional organization for film, video, and television archivists and preservationists."
     definition_ko: null
     source: "원서 Glossary p.111"
@@ -75,6 +75,9 @@ entries:
     basis: null
     first_chapter: glossary
     locked: false
+    notation: "원문에 풀어쓰기(괄호)가 표기된 경우는 함께 표기"
+    full: "Association of Moving Image Archivists"
+
   - term: "Analog videotape"
     translation: null
     definition_en: "Videotape that records sound and image information using frequency-modulated signals. Digital videotape, in contrast, records information as numeric values."
@@ -468,7 +471,7 @@ entries:
     first_chapter: glossary
     locked: false
   - term: "FIAF"
-    translation: null
+    translation: "FIAF(국제필름아카이브연맹)"
     definition_en: "La Fédération Internationale des Archives du Film/International Federation of Film Archives (www.fiafnet.org). International association for film archives and museums."
     definition_ko: null
     source: "원서 Glossary p.114"
@@ -477,6 +480,8 @@ entries:
     basis: null
     first_chapter: glossary
     locked: false
+    notation: "각 챕터 첫 등장시에만 국문 병기"
+
   - term: "Film cement"
     translation: null
     definition_en: "Solvent used to join two pieces of film, thus creating a splice. Cements now on the market cannot be used with polyester film."

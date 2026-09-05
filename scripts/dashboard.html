@@ -251,6 +251,7 @@ function listSection(key, title, items, tip){
     h+="</div><div class=\"two\">";
     for(const x of shown)
       h+='<div class="pair" data-term="'+esc(x.term)+'"><span class="en">'+esc(dispTerm(x))
+        +(x.full?' <span class="tip">— '+esc(x.full)+"</span>":"")
         +'</span><span>'+esc(x.translation||"—")+"</span></div>";
     h+="</div>";
     if(!shown.length) h+='<p class="sub">해당 글자로 시작하는 용어가 없습니다.</p>';
@@ -311,7 +312,8 @@ function renderGlossary(){
 
 function termCard(t,isEdit){
   const key=esc(t.term), cur=t.current||t.translation||"";
-  let h='<div class="term'+(isEdit?" edit":"")+'"><h3>'+esc(dispTerm(t))+"</h3>";
+  let h='<div class="term'+(isEdit?" edit":"")+'"><h3>'+esc(dispTerm(t))
+    +(t.full?' <span class="tip" style="font-size:14px;font-weight:400">— '+esc(t.full)+"</span>":"")+"</h3>";
   if(t.context) h+='<p class="why">'+esc(t.context)+"</p>";
   else if(t.definition_en) h+='<p class="why">'+esc(t.definition_en)+"</p>";
   for(const q of (t.quotes||[]))
@@ -324,6 +326,8 @@ function termCard(t,isEdit){
   }
   h+='<div class="row">'
     +'<input placeholder="번역어 직접 입력" value="'+(isEdit?esc(cur):"")+'" data-term="'+key+'" data-k="choice">'
+    +'<input placeholder="풀어쓴 이름 (선택) — 예: Association of Moving Image Archivists" value="'+esc(t.full||"")+'" data-term="'+key+'" data-k="full">'
+    +"</div><div class=\"row\">"
     +'<input placeholder="표기 규칙 메모 (선택) — 예: 첫 등장 시 원문 병기" value="'+esc(t.notation||"")+'" data-term="'+key+'" data-k="note">'
     +'<button class="save" data-term="'+key+'">저장</button>'
     +(isEdit?'<button class="save" data-cancel="1">닫기</button>':"")+"</div>";
@@ -383,26 +387,28 @@ function currentOf(term){
   const x=(S.glossary.all_items||[]).find(y=>y.term===term);
   return x ? (x.translation||"") : "";
 }
+function fullOf(term){ const i=inputOf(term,"full"); return i? i.value.trim() : ""; }
 function saveRow(term){
   const ci=inputOf(term,"choice");
   const val=(ci && ci.value.trim()) || currentOf(term);
   if(!val){ alert("번역어를 고르거나 직접 입력한 뒤 저장해 주세요."); return; }
-  decide(term,val,noteOf(term));
+  decide(term,val,noteOf(term),fullOf(term));
 }
 async function post(url,body){
   const r=await fetch(url,{method:"POST",headers:{"Content-Type":"application/json"},
     body:JSON.stringify(body)});
-  const j=await r.json(); if(!j.ok) alert(j.message||"처리하지 못했습니다.");
-  editing=null; lastJSON=""; await tick();
+  const j=await r.json();
+  if(!j.ok){ alert(j.message||"처리하지 못했습니다."); return false; }  // 입력 내용 보존
+  editing=null; lastJSON=""; await tick(); return true;
 }
 async function addTerm(){
   const t=el("newTerm").value.trim(), v=el("newTr").value.trim(), n=el("newNote").value.trim();
   if(!t||!v){ alert("원어와 번역어를 모두 입력해 주세요."); return; }
   await post("/api/add",{term:t,choice:v,note:n});
 }
-async function decide(term,choice,note){
+async function decide(term,choice,note,full){
   if(document.activeElement && document.activeElement.blur) document.activeElement.blur();
-  await post("/api/decide",{term:term,choice:choice,note:note||""});
+  await post("/api/decide",{term:term,choice:choice,note:note||"",full:full||fullOf(term)});
 }
 
 let glossaryStale=false, lastPercent=null;
