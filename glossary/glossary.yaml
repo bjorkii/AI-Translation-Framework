@@ -86,8 +86,7 @@ entries:
     first_chapter: glossary
     locked: false
   - term: "Answer print"
-    translation: "안서 프린트"
-    tbd: "안서 프린트 | 초벌 프린트 | 시험 프린트"
+    translation: "앤서프린트(Answer Print)"
     context: "실험실이 색보정 후 처음 내는 프린트. 실무 통용 표기 확인 필요"
     definition_en: "First positive film copy in which each scene has been corrected for brightness and color. Created to check the quality of the production, printing, or preservation elements. Usually presented to the client for approval. Also known as trial print."
     definition_ko: null
@@ -97,6 +96,8 @@ entries:
     basis: null
     first_chapter: glossary
     locked: false
+    notation: "첫 등장시에만 원문 병기"
+
   - term: "Balance stripe"
     translation: null
     definition_en: "On composite prints the magnetic stripe affixed to the film edge opposite the edge carrying the magnetic sound track. With a stripe along both edges, the film produces a more even roll when wound."
@@ -109,7 +110,6 @@ entries:
     locked: false
   - term: "Base"
     translation: "베이스"
-    tbd: "베이스 | 지지체"
     context: "필름 구조상 유제를 받치는 층. 실무는 '베이스', 학술 문맥은 '지지체'"
     definition_en: "In motion picture film, transparent layer that supports the photographic emulsion. Can be made of cellulose nitrate, cellulose acetate, or polyester plastic."
     definition_ko: null
@@ -518,7 +518,6 @@ entries:
     locked: false
   - term: "Footage"
     translation: "푸티지"
-    tbd: "푸티지 | 영상자료"
     context: "촬영된 필름 분량/자료"
     definition_en: "Measurement of film length in feet or frames. Also used to describe unedited positive film."
     definition_ko: null
@@ -661,8 +660,7 @@ entries:
     first_chapter: glossary
     locked: false
   - term: "Inspection"
-    translation: "검수"
-    tbd: "검수 | 점검"
+    translation: "점검"
     context: "필름 상태를 확인하는 작업. 3장 제목의 일부"
     definition_en: "Close examination of film to identify technical characteristics and physical condition."
     definition_ko: null
@@ -988,8 +986,7 @@ entries:
     first_chapter: glossary
     locked: false
   - term: "Original"
-    translation: "원본"
-    tbd: "원본 | 오리지널"
+    translation: "원본 필름"
     context: "단독으로는 '원본', 'camera original'은 '카메라 오리지널'로 복합어 유지 검토"
     definition_en: "Film artifact that can be used as source material in duplication. Also used to describe film exposed in the camera."
     definition_ko: null
@@ -1031,7 +1028,6 @@ entries:
     locked: false
   - term: "Polyester"
     translation: "폴리에스터"
-    tbd: "폴리에스터 | 폴리에스테르"
     context: "외래어표기법은 '폴리에스터', 화학 분야는 '폴리에스테르'가 우세"
     definition_en: "Toughest and most chemically stable safety film base used today."
     definition_ko: null
@@ -1226,8 +1222,7 @@ entries:
     first_chapter: glossary
     locked: false
   - term: "Rewind"
-    translation: "리와인드"
-    tbd: "리와인드 | 되감기대"
+    translation: "되감기"
     context: "행위이자 장비 명칭. 장비는 '되감기대'가 실무 통용"
     definition_en: "Hand-cranked or motorized device used in pairs to control the winding of film for inspection and for transfer from reels to cores."
     definition_ko: null

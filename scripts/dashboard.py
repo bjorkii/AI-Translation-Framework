@@ -104,7 +104,11 @@ def build_state():
             "untouched": len([e for e in gl if not e["translation"] and not e["tbd"]]),
             "pending_items": pending,
             "decided_items": [{"term": e["term"], "translation": e["translation"],
-                               "notation": e["notation"]} for e in decided],
+                               "notation": e["notation"], "context": e["context"],
+                               "definition_en": e["definition_en"],
+                               "quotes": (ctx.get(e["term"], {}) or {}).get("quotes", []),
+                               "options": (ctx.get(e["term"], {}) or {}).get("options", [])}
+                              for e in decided],
         },
     }
 
@@ -128,6 +132,23 @@ def apply_decision(term, choice, note):
     path.write_text(txt, encoding="utf-8")
     return True, "확정: %s → %s" % (term, choice)
 
+def add_term(term, translation, note):
+    """용어집에 새 항목을 추가한다."""
+    path = ROOT / "glossary" / "glossary.yaml"
+    txt = path.read_text(encoding="utf-8")
+    if re.search(r'  - term: "' + re.escape(term) + r'"', txt):
+        return False, "이미 있는 용어다: " + term
+    block = '  - term: "%s"\n    translation: "%s"\n' % (term, translation)
+    if note:
+        block += '    notation: "%s"\n' % note.replace('"', "'")
+    block += ('    definition_en: null\n    definition_ko: null\n'
+              '    source: "대시보드에서 추가"\n    principle_form: null\n'
+              '    adopted_form: null\n    basis: null\n'
+              '    first_chapter: null\n    locked: false\n')
+    path.write_text(txt.rstrip("\n") + "\n" + block, encoding="utf-8")
+    return True, "추가: %s → %s" % (term, translation)
+
+
 # ---------------------------------------------------------------- HTTP
 
 class Handler(BaseHTTPRequestHandler):
@@ -149,12 +170,16 @@ class Handler(BaseHTTPRequestHandler):
             self._send(404, json.dumps({"error": "not found"}))
 
     def do_POST(self):
-        if not self.path.startswith("/api/decide"):
+        if not (self.path.startswith("/api/decide") or self.path.startswith("/api/add")):
             return self._send(404, json.dumps({"error": "not found"}))
         n = int(self.headers.get("Content-Length", "0"))
         try:
             req = json.loads(self.rfile.read(n) or b"{}")
-            ok, msg = apply_decision(req.get("term", ""), req.get("choice", ""), req.get("note", ""))
+            if self.path.startswith("/api/add"):
+                ok, msg = add_term(req.get("term", "").strip(),
+                                   req.get("choice", "").strip(), req.get("note", ""))
+            else:
+                ok, msg = apply_decision(req.get("term", ""), req.get("choice", ""), req.get("note", ""))
             self._send(200 if ok else 400, json.dumps({"ok": ok, "message": msg}, ensure_ascii=False))
         except Exception as e:
             self._send(500, json.dumps({"ok": False, "message": str(e)}, ensure_ascii=False))

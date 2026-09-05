@@ -63,6 +63,8 @@ overflow-x:auto;font-size:13px;line-height:1.55}
 .pair{display:flex;justify-content:space-between;gap:10px;padding:5px 0;
 border-bottom:1px solid var(--border);font-size:13.5px}
 .pair .en{color:var(--muted)}
+.pair.edit{cursor:pointer}
+.pair.edit:hover{background:var(--surface2)}
 h2{font-size:15px;margin:26px 0 10px}
 .hidden{display:none}
 </style></head><body><div class="wrap">
@@ -81,7 +83,7 @@ h2{font-size:15px;margin:26px 0 10px}
 <section id="glossary" class="hidden"></section>
 </div>
 <script>
-let S=null, tab="overview", lastJSON="";
+let S=null, tab="overview", lastJSON="", editing=null;
 const el=id=>document.getElementById(id);
 document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{
   tab=b.dataset.tab;
@@ -127,60 +129,102 @@ function renderGlossary(){
   const g=S.glossary;
   let h='<div class="cards">'+card("전체 항목",g.total)+card("확정",g.decided)
        +card("결정 대기",g.pending)+card("미착수",g.untouched)+"</div>";
+
   h+="<h2>결정이 필요한 용어 ("+g.pending+")</h2>";
   if(!g.pending) h+='<p class="sub">모두 확정됐다.</p>';
-  for(const t of g.pending_items){
-    const key=esc(t.term);
-    h+='<div class="term"><h3>'+key+"</h3>";
-    if(t.context) h+='<p class="why">'+esc(t.context)+"</p>";
-    for(const q of (t.quotes||[]))
-      h+='<div class="q"><span class="p">원서 p.'+esc(q.page)+'</span><span class="t">'+esc(q.text)+"</span></div>";
+  for(const t of g.pending_items) h+=termCard(t,false);
+
+  h+='<h2>확정된 용어 ('+g.decided+') <span class="sub">— 눌러서 수정</span></h2>';
+  const ed=(g.decided_items||[]).find(d=>d.term===editing);
+  if(ed) h+=termCard(ed,true);
+  h+='<div class="two">';
+  for(const d of g.decided_items)
+    h+='<div class="pair edit" data-term="'+esc(d.term)+'"><span class="en">'+esc(d.term)
+      +'</span><span>'+esc(d.translation)+"</span></div>";
+  h+="</div>";
+
+  h+='<h2>용어 추가</h2><div class="term"><div class="row">'
+    +'<input id="newTerm" placeholder="원어 (예: Work print)">'
+    +'<input id="newTr" placeholder="번역어">'
+    +'<input id="newNote" placeholder="메모 (선택)">'
+    +'<button class="save" id="addBtn">추가</button></div></div>';
+
+  el("glossary").innerHTML=h;
+  bindGlossary();
+}
+
+function termCard(t,isEdit){
+  const key=esc(t.term), cur=t.current||t.translation||"";
+  let h='<div class="term"><h3>'+key+(isEdit?' <span class="sub">— 수정 중</span>':"")+"</h3>";
+  if(t.context) h+='<p class="why">'+esc(t.context)+"</p>";
+  else if(t.definition_en) h+='<p class="why">'+esc(t.definition_en)+"</p>";
+  for(const q of (t.quotes||[]))
+    h+='<div class="q"><span class="p">원서 p.'+esc(q.page)+'</span><span class="t">'+esc(q.text)+"</span></div>";
+  if((t.options||[]).length){
     h+='<div class="opts">';
     for(const o of t.options)
-      h+='<button data-term="'+key+'" data-val="'+esc(o)+'"'+(t.current===o?' class="sel"':"")+">"+esc(o)+"</button>";
-    h+='</div><div class="row">'
-      +'<input placeholder="다른 표기 직접 입력" data-term="'+key+'" data-k="choice">'
-      +'<input placeholder="표기 규칙 메모 (선택) — 예: 첫 등장 시 원문 병기" data-term="'+key+'" data-k="note">'
-      +'<button class="save" data-term="'+key+'">저장</button>'
-      +"</div></div>";
+      h+='<button data-term="'+key+'" data-val="'+esc(o)+'"'+(cur===o?' class="sel"':"")+">"+esc(o)+"</button>";
+    h+="</div>";
   }
-  h+='<h2>확정된 용어 ('+g.decided+")</h2><div class=\"two\">";
-  for(const d of g.decided_items)
-    h+='<div class="pair"><span class="en">'+esc(d.term)+'</span><span>'+esc(d.translation)+"</span></div>";
-  h+="</div>";
-  el("glossary").innerHTML=h;
+  h+='<div class="row">'
+    +'<input placeholder="번역어 직접 입력" value="'+(isEdit?esc(cur):"")+'" data-term="'+key+'" data-k="choice">'
+    +'<input placeholder="표기 규칙 메모 (선택) — 예: 첫 등장 시 원문 병기" value="'+esc(t.notation||"")+'" data-term="'+key+'" data-k="note">'
+    +'<button class="save" data-term="'+key+'">저장</button>'
+    +(isEdit?'<button class="save" data-cancel="1">닫기</button>':"")
+    +"</div></div>";
+  return h;
+}
 
-  el("glossary").querySelectorAll(".opts button").forEach(b=>{
-    b.onclick=()=>decide(b.dataset.term, b.dataset.val, noteOf(b.dataset.term));
+function bindGlossary(){
+  const root=el("glossary");
+  root.querySelectorAll(".opts button").forEach(b=>{
+    b.onclick=()=>decide(b.dataset.term,b.dataset.val,noteOf(b.dataset.term));
   });
-  el("glossary").querySelectorAll(".save").forEach(b=>{
-    b.onclick=()=>saveRow(b.dataset.term);
+  root.querySelectorAll(".save[data-term]").forEach(b=>{ b.onclick=()=>saveRow(b.dataset.term); });
+  root.querySelectorAll(".save[data-cancel]").forEach(b=>{
+    b.onclick=()=>{ editing=null; lastJSON=""; tick(); };
   });
-  el("glossary").querySelectorAll("input").forEach(inp=>{
+  root.querySelectorAll(".pair.edit").forEach(p=>{
+    p.onclick=()=>{ editing=p.dataset.term; lastJSON=""; tick(); };
+  });
+  root.querySelectorAll("input[data-term]").forEach(inp=>{
     inp.onkeydown=e=>{ if(e.key==="Enter"){ e.preventDefault(); saveRow(inp.dataset.term); } };
   });
+  const add=el("addBtn"); if(add) add.onclick=addTerm;
 }
 
 function inputOf(term,k){
   return el("glossary").querySelector('input[data-term="'+CSS.escape(term)+'"][data-k="'+k+'"]');
 }
 function noteOf(term){ const i=inputOf(term,"note"); return i? i.value.trim() : ""; }
+function currentOf(term){
+  const p=(S.glossary.pending_items||[]).find(x=>x.term===term);
+  if(p) return p.current||"";
+  const d=(S.glossary.decided_items||[]).find(x=>x.term===term);
+  return d? (d.translation||"") : "";
+}
 
 function saveRow(term){
-  const choice=(inputOf(term,"choice")||{}).value ? inputOf(term,"choice").value.trim() : "";
-  const note=noteOf(term);
-  const cur=(S.glossary.pending_items.find(x=>x.term===term)||{}).current;
-  const val=choice||cur;
+  const ci=inputOf(term,"choice");
+  const val=(ci && ci.value.trim()) || currentOf(term);
   if(!val){ alert("번역어를 고르거나 직접 입력한 뒤 저장하세요."); return; }
-  decide(term,val,note);
+  decide(term,val,noteOf(term));
+}
+
+async function addTerm(){
+  const t=el("newTerm").value.trim(), v=el("newTr").value.trim(), n=el("newNote").value.trim();
+  if(!t||!v){ alert("원어와 번역어를 모두 입력하세요."); return; }
+  const r=await fetch("/api/add",{method:"POST",headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({term:t,choice:v,note:n})});
+  const j=await r.json(); if(!j.ok) alert(j.message||"추가하지 못했다.");
+  lastJSON=""; await tick();
 }
 
 async function decide(term,choice,note){
   if(document.activeElement && document.activeElement.blur) document.activeElement.blur();
   await fetch("/api/decide",{method:"POST",headers:{"Content-Type":"application/json"},
     body:JSON.stringify({term:term,choice:choice,note:note||""})});
-  lastJSON="";              // 저장 직후에는 강제로 다시 그린다
-  await tick();
+  editing=null; lastJSON=""; await tick();
 }
 
 async function tick(){
