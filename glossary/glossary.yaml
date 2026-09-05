@@ -1371,7 +1371,7 @@ entries:
     locked: false
   - term: "Splice"
     translation: "스플라이스"
-    tbd: "스플라이스 | 접합"
+    notation: "첫 등장 시 '스플라이스(splice, 접합)'로 원문·풀이 병기, 이후 '스플라이스'"
     context: "필름을 잇는 부분/행위"
     definition_en: "Joining of two film pieces usually by cement, tape, or ultrasonic technology."
     definition_ko: null
@@ -1383,7 +1383,7 @@ entries:
     locked: false
   - term: "Splicer"
     translation: "스플라이서"
-    tbd: "스플라이서 | 접합기"
+    notation: "첫 등장 시 '스플라이서(splicer, 필름 접합기)'로 원문·풀이 병기, 이후 '스플라이서'"
     context: "Splice의 번역어와 짝을 맞춰야 함"
     definition_en: "Piece of equipment for joining two pieces of film. Splicers come in many designs and may use cement, adhesive tape, or ultrasonic technology."
     definition_ko: null

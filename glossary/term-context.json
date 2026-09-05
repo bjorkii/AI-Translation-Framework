@@ -1,0 +1,196 @@
+{
+ "Answer print": {
+  "options": [
+   "안서 프린트",
+   "초벌 프린트",
+   "시험 프린트"
+  ],
+  "quotes": [
+   {
+    "page": "51",
+    "text": "The answer print is also based on the per-foot charge for new film stock."
+   },
+   {
+    "page": "46",
+    "text": "The answer print is used to test the quality of the preservation material."
+   }
+  ]
+ },
+ "Base": {
+  "options": [
+   "베이스",
+   "지지체"
+  ],
+  "quotes": [
+   {
+    "page": "9",
+    "text": "Polyester is the toughest and most chemically stable film base used today."
+   },
+   {
+    "page": "61",
+    "text": "However, if the film base succumbs to vinegar syndrome, the entire artifact is lost."
+   }
+  ]
+ },
+ "Conservation": {
+  "options": [
+   "보전",
+   "보존처리"
+  ],
+  "quotes": [
+   {
+    "page": "4",
+    "text": "Conservation is the protection of the original film artifact."
+   },
+   {
+    "page": "42",
+    "text": "Short of film-to-film duplication, there are significant steps that repositories can take to make the film accessible as part of their conservation strategy."
+   }
+  ]
+ },
+ "Footage": {
+  "options": [
+   "푸티지",
+   "영상자료"
+  ],
+  "quotes": [
+   {
+    "page": "40",
+    "text": "This historically important footage is now safely housed in the archive’s film vault at 40ºF and 35% relative humidity."
+   },
+   {
+    "page": "31",
+    "text": "It is possible to repair shrunken film by salvaging patches of film edge from discarded footage exhibiting a similar level of shrinkage."
+   }
+  ]
+ },
+ "Inspection": {
+  "options": [
+   "검수",
+   "점검"
+  ],
+  "quotes": [
+   {
+    "page": "28",
+    "text": "While films are generally repaired during inspection, tasks can be deferred until expertise is available."
+   },
+   {
+    "page": "25",
+    "text": "Markers of this sort are commonly found during the first-time inspection of production elements acquired from filmmakers or filmmaking organizations. 6."
+   }
+  ]
+ },
+ "Original": {
+  "options": [
+   "원본",
+   "오리지널"
+  ],
+  "quotes": [
+   {
+    "page": "4",
+    "text": "Conservation is the protection of the original film artifact."
+   },
+   {
+    "page": "37",
+    "text": "Another fairly straightforward case is the 8mm, Super 8mm, and 16mm reversal original."
+   }
+  ]
+ },
+ "Polyester": {
+  "options": [
+   "폴리에스터",
+   "폴리에스테르"
+  ],
+  "quotes": [
+   {
+    "page": "14",
+    "text": "A-D Strips are not designed for use with nitrate or polyester film."
+   },
+   {
+    "page": "9",
+    "text": "Polyester is the toughest and most chemically stable film base used today."
+   }
+  ]
+ },
+ "Rewind": {
+  "options": [
+   "리와인드",
+   "되감기대"
+  ],
+  "quotes": [
+   {
+    "page": "23",
+    "text": "Rewinds are used in pairs—one for the feed and the other for the take-up."
+   },
+   {
+    "page": "23",
+    "text": "The rewind is a tool that enables the preservationist to unwind and wind film slowly without stressing the perforations."
+   }
+  ]
+ },
+ "Split reel": {
+  "options": [
+   "스플릿 릴",
+   "분리형 릴"
+  ],
+  "quotes": [
+   {
+    "page": "26",
+    "text": "Films are transferred from reels to cores for storage (and back to reels for projection) using a split reel mounted on the vertical rewind."
+   },
+   {
+    "page": "26",
+    "text": "Providing support as the film is wound, the split reel may be mounted on either the feed or the take-up side. 26 Film Handling and Inspection QUESTIONS TO GUIDE YOUR INSPECTION 1."
+   }
+  ]
+ },
+ "Stock": {
+  "options": [
+   "필름 스톡",
+   "생필름"
+  ],
+  "quotes": [
+   {
+    "page": "15",
+    "text": "In some film stocks, yellow is the first to go; in others it is cyan."
+   },
+   {
+    "page": "51",
+    "text": "The answer print is also based on the per-foot charge for new film stock."
+   }
+  ]
+ },
+ "Vinegar syndrome": {
+  "options": [
+   "식초 증후군",
+   "비니거 신드롬"
+  ],
+  "quotes": [
+   {
+    "page": "61",
+    "text": "However, if the film base succumbs to vinegar syndrome, the entire artifact is lost."
+   },
+   {
+    "page": "66",
+    "text": "If the film is kept at room temperature, a tightly closed container will prevent the escape of acetic acid and can accelerate vinegar syndrome."
+   }
+  ]
+ },
+ "Access": {
+  "options": [
+   "이용",
+   "접근",
+   "활용"
+  ],
+  "quotes": [
+   {
+    "page": "73",
+    "text": "An important access point for many film researchers is subject."
+   },
+   {
+    "page": "4",
+    "text": "Access is the process through which film content is shared with the public."
+   }
+  ]
+ }
+}

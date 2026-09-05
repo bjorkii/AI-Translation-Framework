@@ -1,0 +1,24 @@
+{
+ "title": "The Film Preservation Guide",
+ "subtitle": "The Basics for Archives, Libraries, and Museums",
+ "publisher": "National Film Preservation Foundation (NFPF), 2004",
+ "direction": "영 → 한",
+ "file": "intermediate/FilmPreservationGuide-EN.pdf",
+ "total_file_pages": 133,
+ "printed_range": "i–xii, 1–121",
+ "page_offset": 12,
+ "text_layer": "born-digital (재OCR 불필요)",
+ "measured": {
+  "본문 장 수": 9,
+  "부록": 4,
+  "이미지": 69,
+  "이미지 있는 쪽": 43,
+  "링크 주석": 0,
+  "각주 참조": 130,
+  "각주 정의": 115,
+  "하이픈 분철": 609,
+  "용어집 항목": 160,
+  "정규화 불확실(본문)": "1.7%",
+  "정규화 불확실(후반부)": "18.5%"
+ }
+}
