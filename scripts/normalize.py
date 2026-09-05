@@ -60,8 +60,21 @@ def split_fn_defs(txt):
         else: outs.append((None, p.strip()))
     return outs
 
+def detect_body_size(doc, p0, p1):
+    import collections
+    c = collections.Counter()
+    for i in range(p0-1, p1):
+        for b in doc[i].get_text("dict")["blocks"]:
+            if b.get("type") != 0: continue
+            for l in b["lines"]:
+                for sp in l["spans"]:
+                    if sp["text"].strip(): c[round(sp["size"], 1)] += len(sp["text"])
+    return c.most_common(1)[0][0] if c else 11.0
+
 def main(pdf, p0, p1, chap, outpath=None):
     doc = pymupdf.open(pdf); labels = page_labels(doc)
+    BODY = detect_body_size(doc, p0, p1)
+    print(f"  (본문 폰트 자동 추정: {BODY}pt)")
     stats = dict(pages=0, blocks=0, paras=0, dehyphen=0, uncertain=0, headers_removed=0,
                  layout_uncertain=0, headings=0, captions=0, fn_refs=0, fn_defs=0, labels=0)
     out, notes = [], []
@@ -82,7 +95,7 @@ def main(pdf, p0, p1, chap, outpath=None):
             size = max(s["size"] for l in b["lines"] for s in l["spans"])
             rec = dict(x0=x0, y0=y0, size=size, lines=lines, txt=txt)
             # (b) 각주 정의 블록: 작은 폰트 + 페이지 하단부 + 번호로 시작
-            if size <= 10.4 and y0 > h*0.45 and FN_DEF_HEAD.match(txt):
+            if size < BODY - 0.4 and y0 > h*0.45 and FN_DEF_HEAD.match(txt):
                 fndefs.append(rec)
             else:
                 body.append(rec)
@@ -114,7 +127,9 @@ def main(pdf, p0, p1, chap, outpath=None):
             if TABLE_T.match(txt) or is_caps_label(txt):
                 # 표 제목 / 대문자 라벨: 본문 흐름에서 분리하고 연속 판정 대상에서 제외
                 out.append(f"\n**{txt}**\n"); stats["labels"] += 1; carry_idx = None; continue
-            if b["size"] <= 10.4 and len(txt) < 200:
+            if b["size"] < BODY - 0.4:
+                # 본문보다 작은 폰트 = 캡션/표/사이드바 등 구조 요소.
+                # 본문 문단 흐름을 끊지 않도록 carry_idx를 유지한 채 통과시킨다.
                 out.append(f"\n*{txt2}*\n"); stats["captions"] += 1; continue
 
             if carry_idx is not None:
