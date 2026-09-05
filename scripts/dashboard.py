@@ -300,7 +300,7 @@ def md_to_html(md):
         m = FN_DEF.match(line)
         if m:
             close()
-            out.append('<div class="fn"><a id="%s"></a><span class="fnno">%s</span>'
+            out.append('<div class="fn" id="%s"><span class="fnno">%s</span>'
                        '<div class="fnbody">%s</div></div>' % (m.group(1), str(int(m.group(2))), md_inline(m.group(3))))
             continue
         if line.lstrip().startswith("<"):
@@ -330,12 +330,12 @@ padding:3px 9px;display:inline-block;margin:8px 0}
 .pagemark{font-size:11.5px;color:var(--muted);background:var(--surface);border:1px solid var(--border);
 border-radius:5px;padding:1px 6px 1px 7px;white-space:nowrap;letter-spacing:.02em}
 .pagemark .tick{color:var(--accent);margin-left:5px;font-weight:600}
-.fn{display:grid;grid-template-columns:26px 1fr;gap:10px;align-items:start;
+.fn{display:grid;grid-template-columns:24px minmax(0,1fr);gap:12px;align-items:start;
 background:var(--surface);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;
 padding:11px 14px;margin:10px 0;font-size:14px;line-height:1.6}
 .fnno{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;
 border-radius:50%;background:var(--accent);color:var(--ground);font-size:12px;font-weight:700}
-.fnbody{color:var(--muted)}
+.fnbody{color:var(--muted);min-width:0}
 .fnbody a{text-decoration:none;font-size:15px}
 .fnbody em{font-style:italic}
 a{color:var(--accent)}
