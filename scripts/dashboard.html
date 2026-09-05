@@ -110,6 +110,8 @@ font-variant-numeric:tabular-nums}
 @keyframes flashcard{0%{box-shadow:0 0 0 0 var(--accent);background:var(--accent-soft)}
 100%{box-shadow:0 0 0 14px transparent;background:var(--surface)}}
 .term.flash{animation:flashcard 1.4s ease-out}
+@keyframes bump{0%{color:var(--accent);transform:scale(1.06)}100%{color:inherit;transform:scale(1)}}
+.stat .v.bump{animation:bump 1.1s ease-out;transform-origin:left center;display:inline-block}
 @media(prefers-reduced-motion:reduce){.term.flash{animation:none;box-shadow:0 0 0 3px var(--accent)}}
 .inbox{border-color:var(--warn)}
 .inbox > h2{border-left-color:var(--warn)}
@@ -403,18 +405,40 @@ async function decide(term,choice,note){
   await post("/api/decide",{term:term,choice:choice,note:note||""});
 }
 
+let glossaryStale=false, lastPercent=null;
+
 async function tick(){
   try{
     const r=await fetch("/api/state",{cache:"no-store"});
     const txt=await r.text();
-    el("live").textContent="갱신 "+new Date().toLocaleTimeString("ko-KR");
+    const typing=document.activeElement && document.activeElement.tagName==="INPUT"
+                 && el("glossary").contains(document.activeElement);
+    el("live").textContent=(typing?"입력 중 · ":"")+"갱신 "+new Date().toLocaleTimeString("ko-KR");
     if(txt===lastJSON) return;
-    const a=document.activeElement;
-    if(a && a.tagName==="INPUT"){ el("live").textContent="입력 중 — 갱신 보류"; return; }
     lastJSON=txt; S=JSON.parse(txt);
     el("book").textContent=(S.info.title||"")+" · "+(S.info.publisher||"")+" · "+(S.info.direction||"");
-    renderOverview(); renderChunks(); renderGlossary();
+
+    // 개요·청크는 항상 갱신한다 (진행율이 실시간으로 올라가야 하므로)
+    const changed = lastPercent!==null && S.progress.percent!==lastPercent;
+    renderOverview(); renderChunks();
+    if(changed){
+      const v=el("overview").querySelectorAll(".stat .v")[2];
+      if(v){ v.classList.remove("bump"); void v.offsetWidth; v.classList.add("bump"); }
+    }
+    lastPercent=S.progress.percent;
+
+    // 용어집은 입력 중일 때만 보류했다가, 입력이 끝나면 따라잡는다
+    if(typing) glossaryStale=true; else { glossaryStale=false; renderGlossary(); }
   }catch(e){ el("live").textContent="서버 연결 끊김"; }
 }
+
+document.addEventListener("focusout", ()=>{
+  setTimeout(()=>{
+    const a=document.activeElement;
+    const still=a && a.tagName==="INPUT" && el("glossary").contains(a);
+    if(glossaryStale && !still){ glossaryStale=false; renderGlossary(); }
+  },60);
+});
+
 tick(); setInterval(tick,2000);
 </script></body></html>
