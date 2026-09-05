@@ -261,8 +261,7 @@ entries:
     first_chapter: glossary
     locked: false
   - term: "Conservation"
-    translation: "보존처리"
-    tbd: "보전 | 보존처리"
+    translation: "기본 번역어를 원본 보존으로 두고, 5.1절처럼 문화재 담론을 인용하는 자리에는 "보존과 복원"으로"
     context: "원서는 필름의 물리적 보관·처치를 뜻함. 문화재 분야 conservation=보존처리, 다만 '보전'도 통용"
     definition_en: "Processes and activities resulting in the protection of the film original."
     definition_ko: null
@@ -721,7 +720,7 @@ entries:
     first_chapter: glossary
     locked: false
   - term: "IPI"
-    translation: "IPI"
+    translation: "IPI(Image Permanence Institute, 이미지 영구보존 연구소)"
     context: "Image Permanence Institute. 고유명사, 원문 유지 + 첫 등장 시 풀어씀"
     definition_en: "Image Permanence Institute (www.rit.edu/ipi). Research organization at the Rochester Institute of Technology that studies the effect of light, heat, pollutants, and humidity on imaging materials."
     definition_ko: null
@@ -731,6 +730,8 @@ entries:
     basis: null
     first_chapter: glossary
     locked: false
+    notation: "첫 등장시에만 괄호 병기"
+
   - term: "ISO"
     translation: null
     definition_en: "International Organization for Standardization (www.iso.org). International group that develops manufacturing and performance standards for many industries."
@@ -772,7 +773,7 @@ entries:
     first_chapter: glossary
     locked: false
   - term: "Leader"
-    translation: "리더"
+    translation: "리더필름"
     context: "필름 앞뒤에 붙이는 여분 필름"
     definition_en: "Blank film attached to the beginning and end of film rolls to facilitate handling. Sometimes used to separate short films or shots on a single film roll."
     definition_ko: null
@@ -925,7 +926,7 @@ entries:
     first_chapter: glossary
     locked: false
   - term: "Nitrate"
-    translation: "나이트레이트"
+    translation: "질산염 필름(Nitrate Film)"
     context: "외래어표기법 원칙·실무 통용 일치. '질산염 필름'은 화학 문맥에서만"
     definition_en: "Short for cellulose nitrate. Transparent plastic used as the base in the earliest 35mm film stock. Highly flammable, nitrate base film was phased out by the early 1950s."
     definition_ko: null
@@ -935,6 +936,8 @@ entries:
     basis: null
     first_chapter: glossary
     locked: false
+    notation: "매 챕터 첫 등장시 원문 병기"
+
   - term: "Nitrate decay"
     translation: null
     definition_en: "Chemical degradation of cellulose nitrate plastic film base that is accelerated by high relative humidity and temperature."
@@ -1399,8 +1402,7 @@ entries:
     first_chapter: glossary
     locked: false
   - term: "Split reel"
-    translation: "스플릿 릴"
-    tbd: "스플릿 릴 | 분리형 릴"
+    translation: "쪽 릴(분리형 릴)"
     context: "양쪽으로 분리되는 릴"
     definition_en: "Reel with a removable side. Used to transfer film between reels and cores."
     definition_ko: null
@@ -1410,6 +1412,8 @@ entries:
     basis: null
     first_chapter: glossary
     locked: false
+    notation: "챕터마다 첫 등장할 때만 괄호 병기"
+
   - term: "Sprocket"
     translation: "스프로킷"
     context: "표준"
@@ -1453,7 +1457,6 @@ entries:
     locked: false
   - term: "Stock"
     translation: "필름 스톡"
-    tbd: "필름 스톡 | 생필름"
     context: "raw stock=생필름. 단독 stock은 '필름 스톡'"
     definition_en: "General term for film. Applied particularly to unexposed film."
     definition_ko: null
@@ -1625,8 +1628,7 @@ entries:
     first_chapter: glossary
     locked: false
   - term: "Vinegar syndrome"
-    translation: "식초 증후군"
-    tbd: "식초 증후군 | 비니거 신드롬"
+    translation: "초산화 증후군"
     context: "아세테이트 필름 분해 현상. 실무에서 두 표기 혼용"
     definition_en: "Popular term for acetate decay."
     definition_ko: null
@@ -1636,6 +1638,8 @@ entries:
     basis: null
     first_chapter: glossary
     locked: false
+    notation: "첫 등장시에만 원문 병기"
+
   - term: "Wet-gate printing"
     translation: null
     definition_en: "Printing process during which motion picture film is briefly immersed in a chemical bath that helps to fill in scratches. A wet gate can be incorporated into a film printer or a telecine. Also known as liquid-gate printing."
@@ -1647,8 +1651,7 @@ entries:
     first_chapter: glossary
     locked: false
   - term: "Access"
-    translation: "이용"
-    tbd: "이용 | 접근 | 활용"
+    translation: "이용(access)"
     context: "아카이브가 소장자료를 이용자에게 제공하는 행위. 원서 9장 제목이자 1.3절 정의 대상. 원서 용어집에는 표제어로 없어 프로젝트에서 추가"
     definition_en: null
     definition_ko: null
@@ -1658,3 +1661,4 @@ entries:
     basis: null
     first_chapter: glossary
     locked: false
+    notation: "원문 병기"

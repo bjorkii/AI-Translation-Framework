@@ -12,32 +12,59 @@
 *{box-sizing:border-box}
 body{margin:0;background:var(--ground);color:var(--ink);font:15px/1.6 -apple-system,BlinkMacSystemFont,
 "Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif}
-.wrap{max-width:1080px;margin:0 auto;padding:28px 22px 64px}
+.wrap{max-width:1080px;margin:0 auto;padding:28px 22px 72px}
 header{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:6px}
 h1{font-size:22px;margin:0;letter-spacing:-.01em}
 .sub{color:var(--muted);font-size:13.5px}
 .live{margin-left:auto;font-size:11.5px;color:var(--faint);font-variant-numeric:tabular-nums}
-nav{display:flex;gap:6px;margin:20px 0 22px;border-bottom:1px solid var(--border)}
-nav button{font:inherit;font-size:14px;background:none;border:0;border-bottom:2px solid transparent;
-padding:9px 14px;color:var(--muted);cursor:pointer}
+
+nav{display:flex;gap:4px;margin:20px 0 24px;border-bottom:1px solid var(--border)}
+nav button{font:inherit;font-size:18px;background:none;border:0;border-bottom:2px solid transparent;
+padding:10px 18px;color:var(--muted);cursor:pointer}
 nav button[aria-selected=true]{color:var(--ink);border-bottom-color:var(--accent);font-weight:600}
-.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:22px}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:12px 14px}
+
+/* 섹션 구분 */
+.sect{background:var(--surface);border:1px solid var(--border);border-radius:12px;
+padding:20px 22px 22px;margin-bottom:20px}
+.sect > h2{font-size:19px;margin:0 0 14px;padding-left:11px;border-left:4px solid var(--accent);
+letter-spacing:-.01em}
+.sect > h2 .n{color:var(--muted);font-weight:400;font-size:16px}
+.sect > h2 .tip{color:var(--faint);font-weight:400;font-size:13px}
+
+/* 진행 현황 */
+.hero{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px;align-items:end}
+.stat .k{font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--faint);margin-bottom:4px}
+.stat .v{font-size:38px;font-weight:600;line-height:1.05;font-variant-numeric:tabular-nums;
+letter-spacing:-.02em}
+.stat .v small{font-size:16px;font-weight:400;color:var(--muted);margin-left:3px}
+.progbar{grid-column:1/-1;height:12px;border-radius:99px;background:var(--surface2);
+border:1px solid var(--border);overflow:hidden;margin-top:4px}
+.progbar span{display:block;height:100%;background:var(--accent);transition:width .3s ease}
+.progfoot{grid-column:1/-1;font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.card{background:var(--surface2);border:1px solid var(--border);border-radius:9px;padding:11px 13px}
 .card .k{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
-.card .v{font-size:19px;font-weight:600;font-variant-numeric:tabular-nums;margin-top:2px}
+.card .v{font-size:18px;font-weight:600;font-variant-numeric:tabular-nums;margin-top:2px}
 .card .v small{font-size:13px;font-weight:400;color:var(--muted)}
-table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--border);
-border-radius:9px;overflow:hidden}
-th,td{text-align:left;padding:9px 13px;border-bottom:1px solid var(--border);font-size:14px}
+
+table{width:100%;border-collapse:collapse}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--border);font-size:14px}
 th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);font-weight:600}
 tr:last-child td{border-bottom:0}
+tbody tr{cursor:pointer}
+tbody tr:hover{background:var(--surface2)}
 td.num{font-variant-numeric:tabular-nums;color:var(--muted);white-space:nowrap}
 .badge{display:inline-block;padding:2px 9px;border-radius:99px;font-size:11.5px;
 background:var(--surface2);color:var(--muted);border:1px solid var(--border)}
 .badge.on{background:var(--accent-soft);color:var(--accent);border-color:transparent}
 .badge.wait{background:var(--warn-soft);color:var(--warn);border-color:transparent}
-.term{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px 20px;
-margin-bottom:14px}
+.link{color:var(--accent);font-size:13px;text-decoration:none;margin-right:10px}
+.link.off{color:var(--faint);pointer-events:none}
+
+.term{background:var(--surface2);border:1px solid var(--border);border-radius:10px;
+padding:16px 18px;margin-bottom:12px}
+.term.edit{border-color:var(--accent);background:var(--surface)}
 .term h3{margin:0 0 3px;font-size:18px}
 .term .why{color:var(--muted);font-size:13.5px;margin:0 0 12px}
 .q{display:grid;grid-template-columns:64px 1fr;gap:11px;padding-left:11px;
@@ -45,27 +72,24 @@ border-left:2px solid var(--border2);margin-bottom:8px;align-items:baseline}
 .q .p{font-size:11.5px;color:var(--faint);font-variant-numeric:tabular-nums}
 .q .t{font-family:Georgia,"Times New Roman",serif;font-size:15px;line-height:1.5}
 .opts{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-.opts button{font:inherit;font-size:14px;background:var(--surface2);color:var(--ink);
+.opts button{font:inherit;font-size:14px;background:var(--surface);color:var(--ink);
 border:1px solid var(--border2);border-radius:8px;padding:8px 14px;cursor:pointer}
 .opts button:hover{border-color:var(--accent)}
 .opts button.sel{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
 .row{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;align-items:center}
-input{font:inherit;font-size:14px;background:var(--surface2);color:var(--ink);
+input{font:inherit;font-size:14px;background:var(--surface);color:var(--ink);
 border:1px solid var(--border);border-radius:7px;padding:8px 11px;flex:1 1 220px}
 input:focus{outline:2px solid var(--accent);outline-offset:1px}
 .save{flex:0 0 auto;font:inherit;font-size:13px;background:var(--surface2);color:var(--ink);
 border:1px solid var(--border2);border-radius:7px;padding:8px 14px;cursor:pointer}
 .save:hover{border-color:var(--accent)}
-.typing{font-size:12px;color:var(--warn)}
-pre{background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:14px;
-overflow-x:auto;font-size:13px;line-height:1.55}
+pre{background:var(--surface2);border:1px solid var(--border);border-radius:9px;padding:14px;
+overflow-x:auto;font-size:13px;line-height:1.55;margin:0}
 .two{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1px 20px}
-.pair{display:flex;justify-content:space-between;gap:10px;padding:5px 0;
-border-bottom:1px solid var(--border);font-size:13.5px}
+.pair{display:flex;justify-content:space-between;gap:10px;padding:6px 0;
+border-bottom:1px solid var(--border);font-size:13.5px;cursor:pointer}
+.pair:hover{background:var(--surface2)}
 .pair .en{color:var(--muted)}
-.pair.edit{cursor:pointer}
-.pair.edit:hover{background:var(--surface2)}
-h2{font-size:15px;margin:26px 0 10px}
 .hidden{display:none}
 </style></head><body><div class="wrap">
 <header>
@@ -83,71 +107,118 @@ h2{font-size:15px;margin:26px 0 10px}
 <section id="glossary" class="hidden"></section>
 </div>
 <script>
-let S=null, tab="overview", lastJSON="", editing=null;
+let S=null, tab="overview", lastJSON="", editing=null, query="";
 const el=id=>document.getElementById(id);
 document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{
   tab=b.dataset.tab;
   document.querySelectorAll("nav button").forEach(x=>x.setAttribute("aria-selected",x===b));
   ["overview","chunks","glossary"].forEach(t=>el(t).classList.toggle("hidden",t!==tab));
 });
-const esc=s=>(s==null?"":String(s)).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+const esc=s=>(s==null?"":String(s)).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const card=(k,v)=>'<div class="card"><div class="k">'+esc(k)+'</div><div class="v">'+v+"</div></div>";
+const stat=(k,v)=>'<div class="stat"><div class="k">'+esc(k)+'</div><div class="v">'+v+"</div></div>";
 
+/* ---------------- 개요 ---------------- */
 function renderOverview(){
-  const i=S.info||{}, m=i.measured||{}, g=S.glossary;
+  const i=S.info||{}, m=i.measured||{}, g=S.glossary, p=S.progress;
+  let h='<div class="sect"><h2>진행 현황</h2><div class="hero">'
+    +stat("번역 시작", '<span style="font-size:26px">'+esc(p.started)+"</span>")
+    +stat("경과", p.elapsed_days+"<small>일째</small>")
+    +stat("진행율", p.percent+"<small>%</small>")
+    +'<div class="progbar"><span style="width:'+p.percent+'%"></span></div>'
+    +'<div class="progfoot">청크 '+S.chunks.length+"개 × 단계 "+p.per_chunk
+    +"  ·  완료 단계 "+p.steps_done+" / "+p.steps_total+"</div>"
+    +"</div></div>";
+
   const done=S.chunks.filter(c=>c.has_source).length;
-  let h='<div class="cards">';
-  h+=card("원서 분량", (i.total_file_pages||"-")+"<small> 쪽</small>");
-  h+=card("인쇄 쪽번호", "<small>"+esc(i.printed_range||"-")+"</small>");
-  h+=card("텍스트 레이어", "<small>"+esc(i.text_layer||"-")+"</small>");
-  h+=card("정규화된 청크", done+'<small> / '+S.chunks.length+"</small>");
-  h+=card("용어집", g.decided+'<small> / '+g.total+" 확정</small>");
-  h+=card("결정 대기", g.pending+"<small> 건</small>");
-  h+='</div><h2>측정값</h2><div class="cards">';
-  for(const k in m) h+=card(k, "<small>"+esc(m[k])+"</small>");
-  h+="</div>";
-  if(S.commits.length) h+="<h2>최근 작업 기록</h2><pre>"+esc(S.commits.join("\n"))+"</pre>";
+  h+='<div class="sect"><h2>원서</h2><div class="cards">'
+    +card("분량",(i.total_file_pages||"-")+"<small> 쪽</small>")
+    +card("인쇄 쪽번호","<small>"+esc(i.printed_range||"-")+"</small>")
+    +card("텍스트 레이어","<small>"+esc(i.text_layer||"-")+"</small>")
+    +card("정규화된 청크",done+'<small> / '+S.chunks.length+"</small>")
+    +card("용어집",g.decided+'<small> / '+g.total+" 확정</small>")
+    +card("결정 대기",g.pending+"<small> 건</small>")+"</div></div>";
+
+  h+='<div class="sect"><h2>측정값</h2><div class="cards">';
+  for(const k in m) h+=card(k,"<small>"+esc(m[k])+"</small>");
+  h+="</div></div>";
+
+  if(S.commits.length)
+    h+='<div class="sect"><h2>최근 작업 기록</h2><pre>'+esc(S.commits.join("\n"))+"</pre></div>";
   el("overview").innerHTML=h;
 }
 
+/* ---------------- 청크 ---------------- */
 function renderChunks(){
-  let h="<table><tr><th>청크</th><th>제목</th><th>원서 쪽</th><th>분량</th><th>단계</th><th>비고</th></tr>";
+  let h='<div class="sect"><h2>청크 목록 <span class="tip">— 행을 누르면 새 탭에서 내용 보기</span></h2>'
+    +"<table><thead><tr><th>청크</th><th>제목</th><th>원서 쪽</th><th>분량</th><th>단계</th><th>보기</th></tr></thead><tbody>";
   for(const c of S.chunks){
     const on=c.stage!=="pending";
-    h+="<tr><td>"+esc(c.id)+"</td><td>"+esc(c.title)+"</td>"
+    h+='<tr data-id="'+esc(c.id)+'" data-src="'+(c.has_source?1:0)+'" data-tgt="'+(c.has_target?1:0)+'">'
+      +"<td>"+esc(c.id)+"</td><td>"+esc(c.title)+"</td>"
       +'<td class="num">'+esc((c.printed||[]).join("–"))+"</td>"
       +'<td class="num">'+esc(c.pages||"")+"</td>"
-      +'<td><span class="badge '+(on?"on":"wait")+'">'+esc(c.stage)+"</span></td>"
-      +"<td>"+(c.split?'<span class="badge">절 단위 분할</span> ':"")
-      +(c.parser?'<span class="badge">'+esc(c.parser)+"</span>":"")+"</td></tr>";
+      +'<td><span class="badge '+(on?"on":"wait")+'">'+esc(c.stage_label||c.stage)+"</span>"
+      +(c.split?' <span class="badge">절 분할</span>':"")
+      +(c.parser?' <span class="badge">'+esc(c.parser)+"</span>":"")+"</td>"
+      +'<td><a class="link'+(c.has_source?"":" off")+'" target="_blank" href="/view?kind=source&id='+esc(c.id)+'">원문</a>'
+      +'<a class="link'+(c.has_target?"":" off")+'" target="_blank" href="/view?kind=chapters&id='+esc(c.id)+'">번역본</a></td></tr>';
   }
-  h+="</table><h2>status.md</h2><pre>"+esc(S.status_md||"(비어 있음)")+"</pre>";
+  h+='</tbody></table></div><div class="sect"><h2>status.md</h2><pre>'+esc(S.status_md||"(비어 있음)")+"</pre></div>";
   el("chunks").innerHTML=h;
+  el("chunks").querySelectorAll("tbody tr").forEach(tr=>{
+    tr.onclick=e=>{
+      if(e.target.tagName==="A") return;
+      const id=tr.dataset.id;
+      const kind=tr.dataset.tgt==="1"?"chapters":"source";
+      if(tr.dataset.src==="0"&&tr.dataset.tgt==="0"){ alert("아직 만들어진 파일이 없습니다."); return; }
+      window.open("/view?kind="+kind+"&id="+encodeURIComponent(id),"_blank");
+    };
+  });
 }
 
+/* ---------------- 용어집 ---------------- */
 function renderGlossary(){
   const g=S.glossary;
-  let h='<div class="cards">'+card("전체 항목",g.total)+card("확정",g.decided)
-       +card("결정 대기",g.pending)+card("미착수",g.untouched)+"</div>";
+  let h='<div class="sect"><h2>현황</h2><div class="cards">'
+    +card("전체 항목",g.total)+card("확정",g.decided)
+    +card("결정 대기",g.pending)+card("미착수",g.untouched)+"</div></div>";
 
-  h+="<h2>결정이 필요한 용어 ("+g.pending+")</h2>";
-  if(!g.pending) h+='<p class="sub">모두 확정됐다.</p>';
-  for(const t of g.pending_items) h+=termCard(t,false);
+  const ed=(g.all_items||[]).find(d=>d.term===editing);
+  if(ed) h+='<div class="sect"><h2>수정 중</h2>'+termCard(ed,true)+"</div>";
 
-  h+='<h2>확정된 용어 ('+g.decided+') <span class="sub">— 눌러서 수정</span></h2>';
-  const ed=(g.decided_items||[]).find(d=>d.term===editing);
-  if(ed) h+=termCard(ed,true);
-  h+='<div class="two">';
-  for(const d of g.decided_items)
-    h+='<div class="pair edit" data-term="'+esc(d.term)+'"><span class="en">'+esc(d.term)
-      +'</span><span>'+esc(d.translation)+"</span></div>";
+  h+='<div class="sect"><h2>결정이 필요한 용어 <span class="n">('+g.pending+')</span></h2>';
+  h+= g.pending ? g.pending_items.map(t=>termCard(t,false)).join("")
+                : '<p class="sub">모두 확정</p>';
   h+="</div>";
 
-  h+='<h2>용어 추가</h2><div class="term"><div class="row">'
+  h+='<div class="sect"><h2>확정된 용어 <span class="n">('+g.decided+')</span>'
+    +' <span class="tip">— 누르면 수정</span></h2><div class="two">';
+  for(const d of g.decided_items)
+    h+='<div class="pair" data-term="'+esc(d.term)+'"><span class="en">'+esc(d.term)
+      +'</span><span>'+esc(d.translation)+"</span></div>";
+  h+="</div></div>";
+
+  h+='<div class="sect"><h2>용어 추가</h2><div class="row">'
     +'<input id="newTerm" placeholder="원어 (예: Work print)">'
     +'<input id="newTr" placeholder="번역어">'
     +'<input id="newNote" placeholder="메모 (선택)">'
     +'<button class="save" id="addBtn">추가</button></div></div>';
+
+  const q=query.trim().toLowerCase();
+  const hits=q ? (g.all_items||[]).filter(x=>
+      x.term.toLowerCase().includes(q) || (x.translation||"").toLowerCase().includes(q)) : [];
+  h+='<div class="sect"><h2>용어 검색</h2><div class="row">'
+    +'<input id="q" placeholder="원어 또는 번역어로 검색" value="'+esc(query)+'"></div>';
+  if(q){
+    h+='<p class="sub" style="margin:12px 0 6px">'+hits.length+"건</p><div class=\"two\">";
+    for(const x of hits.slice(0,120))
+      h+='<div class="pair" data-term="'+esc(x.term)+'"><span class="en">'+esc(x.term)+"</span><span>"
+        +esc(x.translation|| (x.tbd?"미정":"—"))+"</span></div>";
+    h+="</div>";
+    if(hits.length>120) h+='<p class="sub">앞 120건만 표시</p>';
+  }
+  h+="</div>";
 
   el("glossary").innerHTML=h;
   bindGlossary();
@@ -155,7 +226,7 @@ function renderGlossary(){
 
 function termCard(t,isEdit){
   const key=esc(t.term), cur=t.current||t.translation||"";
-  let h='<div class="term"><h3>'+key+(isEdit?' <span class="sub">— 수정 중</span>':"")+"</h3>";
+  let h='<div class="term'+(isEdit?" edit":"")+'"><h3>'+key+"</h3>";
   if(t.context) h+='<p class="why">'+esc(t.context)+"</p>";
   else if(t.definition_en) h+='<p class="why">'+esc(t.definition_en)+"</p>";
   for(const q of (t.quotes||[]))
@@ -184,13 +255,17 @@ function bindGlossary(){
   root.querySelectorAll(".save[data-cancel]").forEach(b=>{
     b.onclick=()=>{ editing=null; lastJSON=""; tick(); };
   });
-  root.querySelectorAll(".pair.edit").forEach(p=>{
-    p.onclick=()=>{ editing=p.dataset.term; lastJSON=""; tick(); };
+  root.querySelectorAll(".pair[data-term]").forEach(p=>{
+    p.onclick=()=>{ editing=p.dataset.term; lastJSON=""; tick();
+      window.scrollTo({top:0,behavior:"smooth"}); };
   });
   root.querySelectorAll("input[data-term]").forEach(inp=>{
     inp.onkeydown=e=>{ if(e.key==="Enter"){ e.preventDefault(); saveRow(inp.dataset.term); } };
   });
   const add=el("addBtn"); if(add) add.onclick=addTerm;
+  const q=el("q");
+  if(q) q.oninput=()=>{ query=q.value; lastJSON=""; const pos=q.selectionStart;
+    renderGlossary(); const n=el("q"); if(n){ n.focus(); n.setSelectionRange(pos,pos); } };
 }
 
 function inputOf(term,k){
@@ -198,28 +273,23 @@ function inputOf(term,k){
 }
 function noteOf(term){ const i=inputOf(term,"note"); return i? i.value.trim() : ""; }
 function currentOf(term){
-  const p=(S.glossary.pending_items||[]).find(x=>x.term===term);
-  if(p) return p.current||"";
-  const d=(S.glossary.decided_items||[]).find(x=>x.term===term);
-  return d? (d.translation||"") : "";
+  const x=(S.glossary.all_items||[]).find(y=>y.term===term);
+  return x ? (x.translation||"") : "";
 }
-
 function saveRow(term){
   const ci=inputOf(term,"choice");
   const val=(ci && ci.value.trim()) || currentOf(term);
-  if(!val){ alert("번역어를 고르거나 직접 입력한 뒤 저장하세요."); return; }
+  if(!val){ alert("번역어를 고르거나 직접 입력한 뒤 저장해 주세요."); return; }
   decide(term,val,noteOf(term));
 }
-
 async function addTerm(){
   const t=el("newTerm").value.trim(), v=el("newTr").value.trim(), n=el("newNote").value.trim();
-  if(!t||!v){ alert("원어와 번역어를 모두 입력하세요."); return; }
+  if(!t||!v){ alert("원어와 번역어를 모두 입력해 주세요."); return; }
   const r=await fetch("/api/add",{method:"POST",headers:{"Content-Type":"application/json"},
     body:JSON.stringify({term:t,choice:v,note:n})});
-  const j=await r.json(); if(!j.ok) alert(j.message||"추가하지 못했다.");
+  const j=await r.json(); if(!j.ok) alert(j.message||"추가하지 못했습니다.");
   lastJSON=""; await tick();
 }
-
 async function decide(term,choice,note){
   if(document.activeElement && document.activeElement.blur) document.activeElement.blur();
   await fetch("/api/decide",{method:"POST",headers:{"Content-Type":"application/json"},
@@ -232,12 +302,9 @@ async function tick(){
     const r=await fetch("/api/state",{cache:"no-store"});
     const txt=await r.text();
     el("live").textContent="갱신 "+new Date().toLocaleTimeString("ko-KR");
-    if(txt===lastJSON) return;                       // 바뀐 것이 없으면 다시 그리지 않는다
+    if(txt===lastJSON) return;
     const a=document.activeElement;
-    if(a && a.tagName==="INPUT"){                    // 입력 중에는 화면을 갈아치우지 않는다
-      el("live").textContent="입력 중 — 갱신 보류";
-      return;
-    }
+    if(a && a.tagName==="INPUT"){ el("live").textContent="입력 중 — 갱신 보류"; return; }
     lastJSON=txt; S=JSON.parse(txt);
     el("book").textContent=(S.info.title||"")+" · "+(S.info.publisher||"")+" · "+(S.info.direction||"");
     renderOverview(); renderChunks(); renderGlossary();
