@@ -56,7 +56,9 @@ def md_table(rows):
     """추출한 표를 마크다운 표로. 셀 안의 줄바꿈은 <br>로 살린다."""
     def cell(c):
         c = (c or "").strip()
+        c = re.sub(r"([A-Za-z])-\s*\n\s*([a-z])", r"\1\2", c)   # 셀 안 줄 끝 하이픈 분철 복원
         c = re.sub(r"\s*\n\s*", " ", c)
+        c = re.sub(r"([A-Za-z])-\s+([a-z]{2,})", r"\1\2", c)     # 이미 공백으로 합쳐진 경우
         c = re.sub(r"\s+", " ", c)
         return c.replace("|", "\\|")
     rows = [[cell(c) for c in r] for r in rows if any((c or "").strip() for c in r)]

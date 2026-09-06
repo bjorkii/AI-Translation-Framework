@@ -1020,8 +1020,8 @@ entries:
     basis: null
     first_chapter: glossary
     locked: false
-  - term: "Outtakes"
-    translation: null
+  - term: "outtake"
+    translation: "미사용 컷"
     definition_en: "Footage not used in a completed film."
     definition_ko: null
     source: "원서 Glossary p.117"

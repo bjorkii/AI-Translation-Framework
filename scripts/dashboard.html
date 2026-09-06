@@ -340,7 +340,7 @@ function termCard(t,isEdit){
     +(isEdit?'<button class="save" data-cancel="1">닫기</button>':"")+"</div>";
   if(isEdit)
     h+='<div class="row">'
-      +'<input placeholder="원어 수정 — 새 원어를 입력" value="'+key+'" data-term="'+key+'" data-k="rename">'
+      +'<input placeholder="새 원어를 입력 (현재: '+key+')" value="" data-term="'+key+'" data-k="rename">'
       +'<button class="save" data-rename="'+key+'">원어 수정</button>'
       +'<button class="save danger" data-del="'+key+'">삭제</button></div>';
   return h+"</div>";
@@ -362,10 +362,12 @@ function bindGlossary(){
     b.onclick=()=>{ editing=null; lastJSON=""; tick(); };
   });
   root.querySelectorAll(".save[data-rename]").forEach(b=>{
-    b.onclick=()=>{
+    b.onclick=async()=>{
       const t=b.dataset.rename, inp=inputOf(t,"rename"), v=inp?inp.value.trim():"";
-      if(!v||v===t){ alert("새 원어를 입력해 주세요."); return; }
-      post("/api/rename",{term:t,choice:v});
+      if(!v){ alert("바꿀 새 원어를 입력해 주세요."); return; }
+      if(v===t){ alert("현재 원어와 같습니다."); return; }
+      const ok=await post("/api/rename",{term:t,choice:v});
+      if(ok){ editing=v; flashPending=true; lastJSON=""; await tick(); }
     };
   });
   root.querySelectorAll(".save[data-del]").forEach(b=>{
@@ -418,14 +420,16 @@ async function decide(term,choice,note,full){
   await post("/api/decide",{term:term,choice:choice,note:note||"",full:full||fullOf(term)});
 }
 
-let glossaryStale=false, lastPercent=null;
+let glossaryStale=false, lastPercent=null, pressing=false;
 
 async function tick(){
   try{
     const r=await fetch("/api/state",{cache:"no-store"});
     const txt=await r.text();
-    const typing=document.activeElement && document.activeElement.tagName==="INPUT"
-                 && el("glossary").contains(document.activeElement);
+    const ae=document.activeElement;
+    const typing=(pressing) ||
+                 (ae && (ae.tagName==="INPUT"||ae.tagName==="TEXTAREA")
+                  && el("glossary").contains(ae));
     el("live").textContent=(typing?"입력 중 · ":"")+"갱신 "+new Date().toLocaleTimeString("ko-KR");
     if(txt===lastJSON) return;
     lastJSON=txt; S=JSON.parse(txt);
@@ -448,7 +452,6 @@ async function tick(){
 // 입력칸에 커서가 있을 때 버튼을 누르면 focusout이 먼저 일어난다.
 // 그 자리에서 다시 그리면 누르던 버튼이 사라져 클릭이 삼켜지므로,
 // 마우스를 누르고 있는 동안에는 다시 그리기를 미룬다.
-let pressing=false;
 document.addEventListener("pointerdown", e=>{
   const g=el("glossary");
   if(g && g.contains(e.target)) pressing=true;
