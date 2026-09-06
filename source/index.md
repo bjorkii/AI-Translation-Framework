@@ -56,9 +56,9 @@ East Tennessee State University, 56 Eastman Kodak Company film stocks, 6, 7, 8, 
 <!-- LINEBREAK-UNCERTAIN -->
 38–39 8mm as source material, 37 dating, 25n6, 93 duplication, 49–50 history, 7–8, 11 plastic support, 9 repairing, 31 reversal film, 10–11, 37 shrinkage, 15
 
-<!-- LAYOUT-UNCERTAIN: p.116 좌8/우9 블록 — 읽기 순서 시각 확인 필요 -->
-
 [원서 p.115]
+
+<!-- LAYOUT-UNCERTAIN: p.116 좌8/우9 블록 — 읽기 순서 시각 확인 필요 -->
 
 <!-- LINEBREAK-UNCERTAIN -->
 8mm (continued) sound tracks, 12–13 storage on reels, 26 Elmo, 43n5, 85 emergency preparedness, 67 emulsion, 8, 9–10 and curl, 23 damage, 13–16, 48–49, 63 ESTAR, 9 estimates, lab, 46, 50–53 exhibition
@@ -73,7 +73,7 @@ Film Archives film cultural and evidentiary value, 3,
 5, 36 dating, 25–26, 93 uniqueness, 36–39 film archiving, history, 1–3 film bases damage, 13–17 types, 8–9, 10 *See also* acetate film; nitrate film;
 
 <!-- LINEBREAK-UNCERTAIN -->
-polyester film film cans labels, 27, 28 opening, 21–22 replacing, 26 sealing v. venting, 63, 66 selecting, 66–67 film cement, 9, 28–29, 30–31 film equipment basic list, 19–21, 32–33 secondhand, 20 vendors, 97–98 *See also* specific equipment Film Forever, 62 film format, 6n2, 12–13 film handling, 13, 19–33 film laboratories. *See* laboratories film repairs, 12, 28–31 equipment needed, 33 in lab estimate, 51–52 prioritizing, 28 film rulers, 19, 25 film viewers, 21, 24, 43 film-to-film duplication. *See* duplica- tion film-video converter, 43n5, 85 fine grain master, 47n flatbed editing tables, 21, 24, 86 Florida Moving Image Archive, 90–91 *Footage*, 38 footage counters, 19, 21, 24–25 frame enlargements, 77, 88 freezers and refrigerators, 57, 62–63, 64,
+polyester film film cans labels, 27, 28 opening, 21–22 replacing, 26 sealing v. venting, 63, 66 selecting, 66–67 film cement, 9, 28–29, 30–31 film equipment basic list, 19–21, 32–33 secondhand, 20 vendors, 97–98 *See also* specific equipment Film Forever, 62 film format, 6n2, 12–13 film handling, 13, 19–33 film laboratories. *See* laboratories film repairs, 12, 28–31 equipment needed, 33 in lab estimate, 51–52 prioritizing, 28 film rulers, 19, 25 film viewers, 21, 24, 43 film-to-film duplication. *See* duplication film-video converter, 43n5, 85 fine grain master, 47n flatbed editing tables, 21, 24, 86 Florida Moving Image Archive, 90–91 *Footage*, 38 footage counters, 19, 21, 24–25 frame enlargements, 77, 88 freezers and refrigerators, 57, 62–63, 64,
 
 <!-- LINEBREAK-UNCERTAIN -->
 66, 68 full-coat mags, 13 fungus. *See* mold, mildew, and fungus gauges, types, 6–8, 9 George Eastman House, 1, 53n, 65,
@@ -146,9 +146,9 @@ technical language, 46 vendor list, 95–96 working with, 41, 50–53, 55 labspe
 <!-- LINEBREAK-UNCERTAIN -->
 video masters measuring film length, 24–25 metadata standards, 75 Minnesota Historical Society, 67, 92 MIT Museum, 38 mold, mildew, and fungus conditions for growth, 60n, 61 identifying, 13–14, 18 removing, 21–22, 31–32 molecular sieves, 66, 67
 
-<!-- LAYOUT-UNCERTAIN: p.118 좌9/우9 블록 — 읽기 순서 시각 확인 필요 -->
-
 [원서 p.117]
+
+<!-- LAYOUT-UNCERTAIN: p.118 좌9/우9 블록 — 읽기 순서 시각 확인 필요 -->
 
 <!-- LINEBREAK-UNCERTAIN -->
 Moving Image Collections (MIC)
@@ -205,9 +205,9 @@ optical sound tracks South Dakota Art Museum, 87 splicers, 28–31 splices, 10, 
 <!-- LINEBREAK-UNCERTAIN -->
 *also* specific types of equipment staging, 64–65 Steenbeck, 21n storage, 59–69 as cornerstone of preservation planning, 3–4, 42–44, 68 effect on film decay, 13–17, 69 for nitrate, 65–66 improving, 61–64 IPI recommendations, 59–61 monitoring, 64 removing films from, 64–65 vendors, 63–64
 
-<!-- LAYOUT-UNCERTAIN: p.120 좌3/우5 블록 — 읽기 순서 시각 확인 필요 -->
-
 [원서 p.119]
+
+<!-- LAYOUT-UNCERTAIN: p.120 좌3/우5 블록 — 읽기 순서 시각 확인 필요 -->
 
 <!-- LINEBREAK-UNCERTAIN -->
 Super 8mm duplication, 49–50 history, 7–8 plastic support, 9 reversal film, 10–11, 37 shrinkage, 15 sound tracks, 12–13 tail, 27, 28 tape splicer, 29–30 Technicolor, 11, 81 telecine, 43n5, 49, 51, 85 temperature effect on film, 14, 15, 16, 59–61 in storage areas, 62–63, 64–65, 68 measuring, 61, 64 thermohygrometer, 61, 64 35mm as source material, 5, 37, 39, 69 history, 6–7, 8, 11 plastic support, 9 sound tracks, 12–13 *This Is Our City*, 5, 35 timing, 47n, 48 tinting, 11 *Toll of the Sea*, 81 training, 28 triacetate. *See* acetate film trial print, 46 28mm, 8, 9, 39

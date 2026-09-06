@@ -1,4 +1,1573 @@
 {
- "todo": [],
- "resolved": 1
+ "todo": [
+  {
+   "chunk": "ch03",
+   "line": 52,
+   "marker": "LAYOUT-UNCERTAIN",
+   "page": "22",
+   "why": "읽기 순서 확인 필요",
+   "context": "[원서 p.21] / <!-- LAYOUT-UNCERTAIN: p.22 좌2/우3 블록 — 읽기 순서 시각 확인 필요 --> / Use a screwdriver to open a difficult can."
+  },
+  {
+   "chunk": "ch03",
+   "line": 68,
+   "marker": "LAYOUT-UNCERTAIN",
+   "page": "23",
+   "why": "읽기 순서 확인 필요",
+   "context": "[원서 p.22] / <!-- LAYOUT-UNCERTAIN: p.23 좌4/우1 블록 — 읽기 순서 시각 확인 필요 --> / **STEP TWO: USING REWINDS.** The rewind is a tool that enables the preservationist to unwind and wind film slowly without stressing the perforations. Rewinds are used in pairs—one for the feed and the other for the take-up. They can be operated left-to-right or right-to-left, depending on preference.<a id=\"back-ch03-003\"></a>["
+  },
+  {
+   "chunk": "ch03",
+   "line": 104,
+   "marker": "LAYOUT-UNCERTAIN",
+   "page": "25",
+   "why": "읽기 순서 확인 필요",
+   "context": "<a id=\"fn-ch03-004\"></a> **[각주]** Many archives routinely examine films offered as gifts and use visual assessment to determine if the materials should be acquired.  [↩](#back-ch03-004) / <!-- LAYOUT-UNCERTAIN: p.25 좌5/우1 블록 — 읽기 순서 시각 확인 필요 --> / During inspection you should also test older repairs. Remove any paper clips, tape, or paper affixed to the film,<a id=\"back-ch03-005\"></a>[⁵](#fn-ch03-"
+  },
+  {
+   "chunk": "ch03",
+   "line": 168,
+   "marker": "LAYOUT-UNCERTAIN",
+   "page": "27",
+   "why": "읽기 순서 확인 필요",
+   "context": "[원서 p.26] / <!-- LAYOUT-UNCERTAIN: p.27 좌4/우1 블록 — 읽기 순서 시각 확인 필요 --> / To wind a film on a core, select the split reel and core that match the film gauge. Wind the film onto the core inside the open split reel, following the steps illustrated to the right. If the leader is too short or damaged, it might be necessary to replace it (see 3.5) so that there is enough to go around the core at least th"
+  },
+  {
+   "chunk": "ch03",
+   "line": 188,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "28",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "For labeling film leader, most organizations stick to the basics, such as / <!-- LINEBREAK-UNCERTAIN --> / • Short title or accession number • Location code • Reel number for a multi-reel work (for example, REEL 1 OF 2) • Beginning (HEAD) or end (TAIL) of the reel of film / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "ch03",
+   "line": 191,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "28",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "• Short title or accession number • Location code • Reel number for a multi-reel work (for example, REEL 1 OF 2) • Beginning (HEAD) or end (TAIL) of the reel of film / <!-- LINEBREAK-UNCERTAIN --> / More information, of course, can be written on the film container (see 6.6). / ### 3.5 REPAIRING FILM"
+  },
+  {
+   "chunk": "ch03",
+   "line": 234,
+   "marker": "LAYOUT-UNCERTAIN",
+   "page": "31",
+   "why": "읽기 순서 확인 필요",
+   "context": "[원서 p.30] / <!-- LAYOUT-UNCERTAIN: p.31 좌5/우1 블록 — 읽기 순서 시각 확인 필요 --> / The basic steps for making a cement splice:"
+  },
+  {
+   "chunk": "ch04",
+   "line": 118,
+   "marker": "LAYOUT-UNCERTAIN",
+   "page": "40",
+   "why": "읽기 순서 확인 필요",
+   "context": "[원서 p.39] / <!-- LAYOUT-UNCERTAIN: p.40 좌7/우1 블록 — 읽기 순서 시각 확인 필요 --> / ### CASE STUDY: UNIVERSITY OF ALASKA FAIRBANKS"
+  },
+  {
+   "chunk": "ch05",
+   "line": 127,
+   "marker": "VISUAL-CHECK",
+   "page": "47",
+   "why": "표·상자 구조 대조 필요",
+   "context": "<!-- 사이드바 시작 · 원서 p.47 --> / <!-- VISUAL-CHECK: 원서 p.47 상자를 행·열로 되살렸습니다. 원본과 대조해 주세요. --> / | Composite Answer Print | Composite Viewing Print | / |---|---| / <!-- 사이드바 끝 -->"
+  },
+  {
+   "chunk": "ch05",
+   "line": 141,
+   "marker": "VISUAL-CHECK",
+   "page": "47",
+   "why": "표·상자 구조 대조 필요",
+   "context": "<!-- 사이드바 시작 · 원서 p.47 --> / <!-- VISUAL-CHECK: 원서 p.47 상자를 행·열로 되살렸습니다. 원본과 대조해 주세요. --> / | Duplicating Positive*** | Dupe Negative** | / |---|---|"
+  },
+  {
+   "chunk": "ch05",
+   "line": 155,
+   "marker": "VISUAL-CHECK",
+   "page": "47",
+   "why": "표·상자 구조 대조 필요",
+   "context": "<!-- 사이드바 시작 · 원서 p.47 --> / <!-- VISUAL-CHECK: 원서 p.47 상자를 행·열로 되살렸습니다. 원본과 대조해 주세요. --> / | Composite Answer Print | Composite Viewing Print | / |---|---| / <!-- 사이드바 끝 -->"
+  },
+  {
+   "chunk": "ch05",
+   "line": 170,
+   "marker": "LAYOUT-UNCERTAIN",
+   "page": "48",
+   "why": "읽기 순서 확인 필요",
+   "context": "[원서 p.47] / <!-- LAYOUT-UNCERTAIN: p.48 좌5/우1 블록 — 읽기 순서 시각 확인 필요 --> / color and brightness. When planning to use an answer print for access, budget-minded preservationists should be sure that the print is “well-timed,” that is, produced with the correct color and brightness throughout. Once this is accomplished, subsequent access prints should match the approved answer print."
+  },
+  {
+   "chunk": "ch05",
+   "line": 208,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "50",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "[원서 p.49] / <!-- LINEBREAK-UNCERTAIN --> / Gauge Initiative have brought about a reassessment of amateur gauges.<a id=\"back-ch05-010\"></a>[¹⁰](#fn-ch05-010) A number of laboratories now have successful techniques for handling small gauge film. Because of the difficulty in finding and servicing 8mm equipment, most preservationists duplicate 8mm and Super 8mm onto 16mm film. / Some silent amateur fi"
+  },
+  {
+   "chunk": "ch05",
+   "line": 246,
+   "marker": "VISUAL-CHECK",
+   "page": "52",
+   "why": "표·상자 구조 대조 필요",
+   "context": "<!-- 상자 시작 · 원서 p.52 --> / <!-- VISUAL-CHECK: 원서 p.52 상자를 행·열로 되살렸습니다. 원본과 대조해 주세요. --> / **Title:** *Excavations at High Mesa* **Source Material:** 16mm color reversal original, silent (450 ft.) / | **Procedure** | **Amount** | _____ **Rate** | **Total** |"
+  },
+  {
+   "chunk": "ch05",
+   "line": 290,
+   "marker": "LAYOUT-UNCERTAIN",
+   "page": "53",
+   "why": "읽기 순서 확인 필요",
+   "context": "[원서 p.52] / <!-- LAYOUT-UNCERTAIN: p.53 좌3/우1 블록 — 읽기 순서 시각 확인 필요 --> / shipping, and insertion of credits. Before signing off on an estimate, be sure you understand each phase of the project and check the math."
+  },
+  {
+   "chunk": "ch05",
+   "line": 316,
+   "marker": "LAYOUT-UNCERTAIN",
+   "page": "54",
+   "why": "읽기 순서 확인 필요",
+   "context": "[원서 p.53] / <!-- LAYOUT-UNCERTAIN: p.54 좌3/우1 블록 — 읽기 순서 시각 확인 필요 --> / **STEPS IN PACKING A SAFETY FILM FOR SHIPPING**"
+  },
+  {
+   "chunk": "ch05",
+   "line": 362,
+   "marker": "LAYOUT-UNCERTAIN",
+   "page": "57",
+   "why": "읽기 순서 확인 필요",
+   "context": "[원서 p.56] / <!-- LAYOUT-UNCERTAIN: p.57 좌8/우1 블록 — 읽기 순서 시각 확인 필요 --> / ### CASE STUDY: CALIFORNIA PACIFIC MEDICAL CENTER"
+  },
+  {
+   "chunk": "ch05",
+   "line": 384,
+   "marker": "LAYOUT-UNCERTAIN",
+   "page": "58",
+   "why": "읽기 순서 확인 필요",
+   "context": "[원서 p.57] / <!-- LAYOUT-UNCERTAIN: p.58 좌6/우1 블록 — 읽기 순서 시각 확인 필요 --> / ### CASE STUDY: VISUAL COMMUNICATIONS"
+  },
+  {
+   "chunk": "ch06",
+   "line": 65,
+   "marker": "LAYOUT-UNCERTAIN",
+   "page": "62",
+   "why": "읽기 순서 확인 필요",
+   "context": "[원서 p.61] / <!-- LAYOUT-UNCERTAIN: p.62 좌5/우2 블록 — 읽기 순서 시각 확인 필요 --> / **COLD STORAGE VAULTS.** For large and medium-size collections the best solution is often an insulated cold storage room with humidity control and air circulation. IPI recommends a desiccant-based dehumidification unit that will control humidity for the entire storage area. With this arrangement, no additional desiccants are n"
+  },
+  {
+   "chunk": "ch06",
+   "line": 173,
+   "marker": "LAYOUT-UNCERTAIN",
+   "page": "66",
+   "why": "읽기 순서 확인 필요",
+   "context": "<a id=\"fn-ch06-008\"></a> **[각주]** See National Fire Protection Association, Standard for the Storage and Handling of Cellulose Nitrate Film, NFPA 40 (Quincy, MA: National Fire Protection Association, 2001), which can be purchased online at www.nfpa.org. See also Safe Handling, Storage, and Destruction of Nitrate-Based Motion Picture Films, Kodak Pub. H-182 (Rochester, NY: Eastman Kodak Company, 20"
+  },
+  {
+   "chunk": "ch06",
+   "line": 197,
+   "marker": "LAYOUT-UNCERTAIN",
+   "page": "67",
+   "why": "읽기 순서 확인 필요",
+   "context": "[원서 p.66] / <!-- LAYOUT-UNCERTAIN: p.67 좌3/우1 블록 — 읽기 순서 시각 확인 필요 --> / The cans or boxes you choose will depend on your institution’s storage conditions and funding. Whatever type you select, make sure that the container is chemically inert, physically stable, and expected to last as long as the film it houses. The enclosure’s size should match that of the film. Always stack containers horizontal"
+  },
+  {
+   "chunk": "ch07",
+   "line": 119,
+   "marker": "VISUAL-CHECK",
+   "page": "73",
+   "why": "표·상자 구조 대조 필요",
+   "context": "<!-- 상자 시작 · 원서 p.73 --> / <!-- VISUAL-CHECK: 원서 p.73 상자를 행·열로 되살렸습니다. 원본과 대조해 주세요. --> / | Date(s): | 1892–1988; mostly 1925–1940 | / |---|---| / | Size: | Approximately 12 cubic feet of papers; approximately 100 photographs; and 1 reel of 16mm motion picture film. |"
+  },
+  {
+   "chunk": "ch07",
+   "line": 143,
+   "marker": "VISUAL-CHECK",
+   "page": "74",
+   "why": "표·상자 구조 대조 필요",
+   "context": "<!-- 상자 시작 · 원서 p.74 --> / <!-- VISUAL-CHECK: 원서 p.74 상자를 행·열로 되살렸습니다. 원본과 대조해 주세요. --> / | **Title:** | Beef Rings the Bell | / |---|---| / | **Year:** | ca. 1960s |"
+  },
+  {
+   "chunk": "ch07",
+   "line": 169,
+   "marker": "LAYOUT-UNCERTAIN",
+   "page": "76",
+   "why": "읽기 순서 확인 필요",
+   "context": "[원서 p.75] / <!-- LAYOUT-UNCERTAIN: p.76 좌6/우1 블록 — 읽기 순서 시각 확인 필요 --> / ### CASE STUDY: NORTHEAST HISTORIC FILM"
+  },
+  {
+   "chunk": "ch08",
+   "line": 68,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "81",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "[원서 p.80] / <!-- LINEBREAK-UNCERTAIN --> / Group deposited the original camera negative for *Toll of the Sea* (1922), the earliest surviving feature made in the two-color Technicolor process, with the UCLA Film and Television Archive, which meticulously restored the film. Although the film is no longer protected by copyright, the use of UCLA’s restoration is still governed by the deposit agreement"
+  },
+  {
+   "chunk": "ch09",
+   "line": 2,
+   "marker": "LAYOUT-UNCERTAIN",
+   "page": "85",
+   "why": "읽기 순서 확인 필요",
+   "context": "<!-- LAYOUT-UNCERTAIN: p.85 좌6/우1 블록 — 읽기 순서 시각 확인 필요 --> / ## 9. ACCESS"
+  },
+  {
+   "chunk": "ch09",
+   "line": 26,
+   "marker": "LAYOUT-UNCERTAIN",
+   "page": "86",
+   "why": "읽기 순서 확인 필요",
+   "context": "[원서 p.85] / <!-- LAYOUT-UNCERTAIN: p.86 좌7/우1 블록 — 읽기 순서 시각 확인 필요 --> / Digital video is of sufficient quality for broadcast and can be output to DVD for researchers or to tape for licensing requests (see 9.4)."
+  },
+  {
+   "chunk": "ch09",
+   "line": 46,
+   "marker": "LAYOUT-UNCERTAIN",
+   "page": "87",
+   "why": "읽기 순서 확인 필요",
+   "context": "*Several Friends* (1969), directed by Charles Burnett, among the films showcased at the 11th UCLA Festival of Preservation in 2002. / <!-- LAYOUT-UNCERTAIN: p.87 좌4/우1 블록 — 읽기 순서 시각 확인 필요 --> / ### 9.3 INTERNET EXHIBITION"
+  },
+  {
+   "chunk": "ch09",
+   "line": 62,
+   "marker": "LAYOUT-UNCERTAIN",
+   "page": "88",
+   "why": "읽기 순서 확인 필요",
+   "context": "<a id=\"fn-ch09-002\"></a> **[각주]** The Prelinger Archives, discussed in 4.4 and accessible at www.archive.org/movies, provides another example of the film access possibilities afforded by the Internet.  [↩](#back-ch09-002) / <!-- LAYOUT-UNCERTAIN: p.88 좌6/우1 블록 — 읽기 순서 시각 확인 필요 --> / Many organizations strive to provide this extra service, if not barred by copyright or donor restrictions (see 8.1, "
+  },
+  {
+   "chunk": "ch09",
+   "line": 78,
+   "marker": "LAYOUT-UNCERTAIN",
+   "page": "89",
+   "why": "읽기 순서 확인 필요",
+   "context": "<a id=\"fn-ch09-003\"></a> **[각주]** For a discussion of licensing for museums, see Michael S. Shapiro and Brett I. Miller, A Museum Guide to Copyright and Trademark (Washington, D.C.: American Association of Museums, 1999), 123–46.  [↩](#back-ch09-003) / <!-- LAYOUT-UNCERTAIN: p.89 좌6/우1 블록 — 읽기 순서 시각 확인 필요 --> / Institutions often waive licensing fees for educational uses that further public exposu"
+  },
+  {
+   "chunk": "ch09",
+   "line": 96,
+   "marker": "LAYOUT-UNCERTAIN",
+   "page": "90",
+   "why": "읽기 순서 확인 필요",
+   "context": "[원서 p.89] / <!-- LAYOUT-UNCERTAIN: p.90 좌3/우1 블록 — 읽기 순서 시각 확인 필요 --> / The National Center for Jewish Film disseminates film as well as videotape. As a nonprofit distributor of moving images relating to the Jewish experience, it provides copies of Yiddish-language works preserved by the archive as well as independent documentaries and narratives. These copies are shipped to film festivals, nonpro"
+  },
+  {
+   "chunk": "ch09",
+   "line": 116,
+   "marker": "LAYOUT-UNCERTAIN",
+   "page": "91",
+   "why": "읽기 순서 확인 필요",
+   "context": "[원서 p.90] / <!-- LAYOUT-UNCERTAIN: p.91 좌3/우1 블록 — 읽기 순서 시각 확인 필요 --> / <!-- LINEBREAK-UNCERTAIN --> / “illustrated history” cruises of the Miami waterfront. For the bus and the boat tours, riders pay a modest fee.<a id=\"back-ch09-004\"></a>[⁴](#fn-ch09-004) The tours have heightened public awareness of the archive’s programs and led to donations."
+  },
+  {
+   "chunk": "ch09",
+   "line": 118,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "91",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "<!-- LAYOUT-UNCERTAIN: p.91 좌3/우1 블록 — 읽기 순서 시각 확인 필요 --> / <!-- LINEBREAK-UNCERTAIN --> / “illustrated history” cruises of the Miami waterfront. For the bus and the boat tours, riders pay a modest fee.<a id=\"back-ch09-004\"></a>[⁴](#fn-ch09-004) The tours have heightened public awareness of the archive’s programs and led to donations. / The Alaska Film Archives of the University of Alaska Fairbank"
+  },
+  {
+   "chunk": "ch09",
+   "line": 131,
+   "marker": "LAYOUT-UNCERTAIN",
+   "page": "92",
+   "why": "읽기 순서 확인 필요",
+   "context": "[원서 p.91] / <!-- LAYOUT-UNCERTAIN: p.92 좌7/우1 블록 — 읽기 순서 시각 확인 필요 --> / ### CASE STUDY: MINNESOTA HISTORICAL SOCIETY"
+  },
+  {
+   "chunk": "appA",
+   "line": 2,
+   "marker": "LAYOUT-UNCERTAIN",
+   "page": "93",
+   "why": "읽기 순서 확인 필요",
+   "context": "<!-- LAYOUT-UNCERTAIN: p.93 좌6/우2 블록 — 읽기 순서 시각 확인 필요 --> / ## APPENDIX A: EDGE CODE CHART"
+  },
+  {
+   "chunk": "appA",
+   "line": 16,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "93",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "■ ▲ ■ ● ● ▲ ● / <!-- LINEBREAK-UNCERTAIN --> / ● ■ ▲ / **WHERE EASTMAN KODAK STOCK WAS MANUFACTURED**"
+  },
+  {
+   "chunk": "appA",
+   "line": 37,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "93",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "1982 1983 1984 1985 1986 1987 1988 1989 1990 1991 1992 1993 1994 1995 1996 1997 1998 1999 2000 2001 / <!-- LINEBREAK-UNCERTAIN --> / 1956 **KL** 1957 **KN** 1958 **KS** 1959 **LN** 1960 **LS** 1961 **NS** 1962 **K** 1963 **L** 1964 **N** 1965 **S** 1966 **KLT** 1967 **KNT** 1968 **KST** 1969 **LNT** 1970 **LST** 1971 **NST** 1972 **KT** 1973 **LT** 1974 **NT** / <!-- 상자 시작 · 원서 p.93 -->"
+  },
+  {
+   "chunk": "appC",
+   "line": 2,
+   "marker": "LAYOUT-UNCERTAIN",
+   "page": "95",
+   "why": "읽기 순서 확인 필요",
+   "context": "<!-- LAYOUT-UNCERTAIN: p.95 좌8/우6 블록 — 읽기 순서 시각 확인 필요 --> / ## APPENDIX C: SELECTED FILM PRESERVATION LABORATORIES"
+  },
+  {
+   "chunk": "appC",
+   "line": 8,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "95",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Audio Mechanics (*sound track*) 1200 W. Magnolia Blvd. Burbank, CA 91506 Phone: 818-846-5525 Web site: www.audiomechanics.com / <!-- LINEBREAK-UNCERTAIN --> / BB Optics 108 Franklin St. New York, NY 10013 Phone: 212-966-6253 Web site: www.bboptics.com/bboptics.html / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "appC",
+   "line": 11,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "95",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "BB Optics 108 Franklin St. New York, NY 10013 Phone: 212-966-6253 Web site: www.bboptics.com/bboptics.html / <!-- LINEBREAK-UNCERTAIN --> / Bono Film and Video Services 3200 Lee Hwy. Arlington, VA 22207 Phone: 703-243-0800 Web site: www.bonofilm.com / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "appC",
+   "line": 14,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "95",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Bono Film and Video Services 3200 Lee Hwy. Arlington, VA 22207 Phone: 703-243-0800 Web site: www.bonofilm.com / <!-- LINEBREAK-UNCERTAIN --> / Brodsky & Treadway (*film-to-videotape transfer of reversal originals*) P.O. Box 335 69 Warehouse Ln. Rowley, MA 01969 Phone: 978-948-7985 Web site: www.littlefilm.com / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "appC",
+   "line": 17,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "95",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Brodsky & Treadway (*film-to-videotape transfer of reversal originals*) P.O. Box 335 69 Warehouse Ln. Rowley, MA 01969 Phone: 978-948-7985 Web site: www.littlefilm.com / <!-- LINEBREAK-UNCERTAIN --> / Chace Productions Inc. (*sound track*) 201 S. Victory Blvd. Burbank, CA 91502 Phone: 800-842-8346 Web site: www.chace.com / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "appC",
+   "line": 20,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "95",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Chace Productions Inc. (*sound track*) 201 S. Victory Blvd. Burbank, CA 91502 Phone: 800-842-8346 Web site: www.chace.com / <!-- LINEBREAK-UNCERTAIN --> / Cinema Arts Inc. Huckleberry Hill, Arts Building Angels, PA 18445 Phone: 570-676-4145 / Note: This is a selective list of American commercial laboratories experienced in the preservation copying and restoration of motion pictures. It is provided"
+  },
+  {
+   "chunk": "appC",
+   "line": 25,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "95",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Note: This is a selective list of American commercial laboratories experienced in the preservation copying and restoration of motion pictures. It is provided as a public service and does not constitute an endorsement by the National Film Preservation Foundation. For a fuller listing of film and video laboratories, see the Association of Cinema and Video Laboratories Web site, www.acvl.org. / <!-- "
+  },
+  {
+   "chunk": "appC",
+   "line": 28,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "95",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "CinemaLab 2735 S. Raritan St. Englewood, CO 80110 Phone: 303-783-1020 Web site: www.westerncine.com / <!-- LINEBREAK-UNCERTAIN --> / Cineric Inc. 630 Ninth Ave., Ste. 508 New York, NY 10036 Phone: 212-586-4822 Web site: www.cineric.com / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "appC",
+   "line": 31,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "95",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Cineric Inc. 630 Ninth Ave., Ste. 508 New York, NY 10036 Phone: 212-586-4822 Web site: www.cineric.com / <!-- LINEBREAK-UNCERTAIN --> / Cinetech 27200 Tourney Rd., Ste. 100 Valencia, CA 91355 Phone: 877-492-9000 Web site: www.cinetech.com / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "appC",
+   "line": 34,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "95",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Cinetech 27200 Tourney Rd., Ste. 100 Valencia, CA 91355 Phone: 877-492-9000 Web site: www.cinetech.com / <!-- LINEBREAK-UNCERTAIN --> / Colorlab Corp. 5708 Arundel Ave. Rockville, MD 20852 Phone: 301-770-2128 Web site: www.colorlab.com / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "appC",
+   "line": 37,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "95",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Colorlab Corp. 5708 Arundel Ave. Rockville, MD 20852 Phone: 301-770-2128 Web site: www.colorlab.com / <!-- LINEBREAK-UNCERTAIN --> / Crest National 6721 Romaine St. Los Angeles, CA 90038 Phone: 323-860-1300 Web site: www.crestnational.com / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "appC",
+   "line": 40,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "95",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Crest National 6721 Romaine St. Los Angeles, CA 90038 Phone: 323-860-1300 Web site: www.crestnational.com / <!-- LINEBREAK-UNCERTAIN --> / DJ Audio (*sound track*) 10806 Ventura Blvd., Ste. 2 Studio City, CA 91604 Phone: 818-760-1673 E-mail: djaudio@aol.com / <!-- LAYOUT-UNCERTAIN: p.96 좌5/우6 블록 — 읽기 순서 시각 확인 필요 -->"
+  },
+  {
+   "chunk": "appC",
+   "line": 43,
+   "marker": "LAYOUT-UNCERTAIN",
+   "page": "96",
+   "why": "읽기 순서 확인 필요",
+   "context": "DJ Audio (*sound track*) 10806 Ventura Blvd., Ste. 2 Studio City, CA 91604 Phone: 818-760-1673 E-mail: djaudio@aol.com / <!-- LAYOUT-UNCERTAIN: p.96 좌5/우6 블록 — 읽기 순서 시각 확인 필요 --> / [원서 p.95]"
+  },
+  {
+   "chunk": "appC",
+   "line": 47,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "96",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "[원서 p.95] / <!-- LINEBREAK-UNCERTAIN --> / DuArt Film and Video 245 W. 55th St. New York, NY 10019 Phone: 800-523-8278 Web site: www.duart.com / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "appC",
+   "line": 50,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "96",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "DuArt Film and Video 245 W. 55th St. New York, NY 10019 Phone: 800-523-8278 Web site: www.duart.com / <!-- LINEBREAK-UNCERTAIN --> / Erickson Archival Telecine (*film-to-video transfer*) 11900 Baltimore Ave., Ste. E Beltsville, MD 20705 Phone: 301-210-9988 Web site: www.ericksonarchival.com / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "appC",
+   "line": 53,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "96",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Erickson Archival Telecine (*film-to-video transfer*) 11900 Baltimore Ave., Ste. E Beltsville, MD 20705 Phone: 301-210-9988 Web site: www.ericksonarchival.com / <!-- LINEBREAK-UNCERTAIN --> / Film Technology Company Inc. 726 N. Cole Ave. Los Angeles, CA 90038 Phone: 323-464-3456 Web site: www.filmtech.com / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "appC",
+   "line": 56,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "96",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Film Technology Company Inc. 726 N. Cole Ave. Los Angeles, CA 90038 Phone: 323-464-3456 Web site: www.filmtech.com / <!-- LINEBREAK-UNCERTAIN --> / FotoKem Film and Video 2801 W. Alameda Ave. Burbank, CA 91505 Phone: 818-846-3101 Web site: www.fotokem.com / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "appC",
+   "line": 59,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "96",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "FotoKem Film and Video 2801 W. Alameda Ave. Burbank, CA 91505 Phone: 818-846-3101 Web site: www.fotokem.com / <!-- LINEBREAK-UNCERTAIN --> / Monaco Film Labs 234 Ninth St. San Francisco, CA 94103 Phone: 415-864-5350 Web site: www.monacosf.com / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "appC",
+   "line": 62,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "96",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Monaco Film Labs 234 Ninth St. San Francisco, CA 94103 Phone: 415-864-5350 Web site: www.monacosf.com / <!-- LINEBREAK-UNCERTAIN --> / NT Audio Video Film Labs (*sound track*) 1833 Centinela Ave. Santa Monica, CA 90404 Phone: 310-828-1098 Web site: www.ntaudio.com / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "appC",
+   "line": 65,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "96",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "NT Audio Video Film Labs (*sound track*) 1833 Centinela Ave. Santa Monica, CA 90404 Phone: 310-828-1098 Web site: www.ntaudio.com / <!-- LINEBREAK-UNCERTAIN --> / Summit Film Lab & Media Services 1020 Napor Blvd. Pittsburgh, PA 15205 Phone: 412-937-9333 Web site: www.summitfilmlab.com / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "appC",
+   "line": 68,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "96",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Summit Film Lab & Media Services 1020 Napor Blvd. Pittsburgh, PA 15205 Phone: 412-937-9333 Web site: www.summitfilmlab.com / <!-- LINEBREAK-UNCERTAIN --> / Technicolor Creative Services 4050 Lankershim Blvd. North Hollywood, CA 91608 Phone: 818-505-2835 Web site: www.technicolor.com / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "appC",
+   "line": 71,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "96",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Technicolor Creative Services 4050 Lankershim Blvd. North Hollywood, CA 91608 Phone: 818-505-2835 Web site: www.technicolor.com / <!-- LINEBREAK-UNCERTAIN --> / Trackwise Inc. (*sound track*) 123 W. 18th St., 7th Fl. New York, NY 10011 Phone: 212-627-7700 / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "appC",
+   "line": 74,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "96",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Trackwise Inc. (*sound track*) 123 W. 18th St., 7th Fl. New York, NY 10011 Phone: 212-627-7700 / <!-- LINEBREAK-UNCERTAIN --> / Triage Motion Picture Services 516 N. Larchmont Blvd. Los Angeles, CA 90004 Phone: 323-962-7420 Web site: www.triage.to / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "appC",
+   "line": 77,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "96",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Triage Motion Picture Services 516 N. Larchmont Blvd. Los Angeles, CA 90004 Phone: 323-962-7420 Web site: www.triage.to / <!-- LINEBREAK-UNCERTAIN --> / YCM Laboratories 3140 Clybourne Ave. Burbank, CA 91505 Phone: 818-843-5300 / [원서 p.96]"
+  },
+  {
+   "chunk": "appD",
+   "line": 2,
+   "marker": "LAYOUT-UNCERTAIN",
+   "page": "97",
+   "why": "읽기 순서 확인 필요",
+   "context": "<!-- LAYOUT-UNCERTAIN: p.97 좌7/우6 블록 — 읽기 순서 시각 확인 필요 --> / ## APPENDIX D: SELECTED EQUIPMENT AND SUPPLY VENDORS"
+  },
+  {
+   "chunk": "appD",
+   "line": 10,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "97",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Christy’s Editorial Film and Video Supply 3625 W. Pacific Ave. Burbank, CA 91505 Phone: 800-468-6391 Web site: www.christys.net / <!-- LINEBREAK-UNCERTAIN --> / Hollywood Film Company 3294 E. 26th St. Los Angeles, CA 90023 Phone: 323-261-3700 Web site: www.hollywoodfilmco.com / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "appD",
+   "line": 13,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "97",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Hollywood Film Company 3294 E. 26th St. Los Angeles, CA 90023 Phone: 323-261-3700 Web site: www.hollywoodfilmco.com / <!-- LINEBREAK-UNCERTAIN --> / J&R Moviola 1135 N. Mansfield Ave. Los Angeles, CA 90038 Phone: 323-467-3107 Web site: www.moviola.com / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "appD",
+   "line": 16,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "97",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "J&R Moviola 1135 N. Mansfield Ave. Los Angeles, CA 90038 Phone: 323-467-3107 Web site: www.moviola.com / <!-- LINEBREAK-UNCERTAIN --> / Motion Picture Enterprises Inc. P.O. Box 276 Tarrytown, NY 10591 Phone: 212-245-0969 E-mail: info@mpe.net / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "appD",
+   "line": 19,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "97",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Motion Picture Enterprises Inc. P.O. Box 276 Tarrytown, NY 10591 Phone: 212-245-0969 E-mail: info@mpe.net / <!-- LINEBREAK-UNCERTAIN --> / Neumade Products Corp. 30–40 Pecks Ln. Newtown, CT 06470 Phone: 203-270-1100 Web site: www.neumade.com / Note: This is a selective list of firms that specialize in motion picture equipment, containers, and conservation supplies. It is provided as a public servi"
+  },
+  {
+   "chunk": "appD",
+   "line": 28,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "97",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Conservation Resources International 5532 Port Royal Rd. Springfield, VA 22151 Phone: 800-634-6932 Web site: www.conservationresources.com / <!-- LINEBREAK-UNCERTAIN --> / FPC Inc. 6677 Santa Monica Blvd. Los Angeles, CA 90038 Phone: 800-814-1333 Web site: www.fpcfilm.com / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "appD",
+   "line": 31,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "97",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "FPC Inc. 6677 Santa Monica Blvd. Los Angeles, CA 90038 Phone: 800-814-1333 Web site: www.fpcfilm.com / <!-- LINEBREAK-UNCERTAIN --> / Gaylord Bros. P.O. Box 4901 Syracuse, NY 13221 Phone: 800-634-6307 Web site: www.gaylord.com. / Light Impressions P.O. Box 787 Brea, CA 92822 Phone: 800-828-6216 Web site: www.lightimpressionsdirect.com"
+  },
+  {
+   "chunk": "appD",
+   "line": 36,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "97",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Light Impressions P.O. Box 787 Brea, CA 92822 Phone: 800-828-6216 Web site: www.lightimpressionsdirect.com / <!-- LINEBREAK-UNCERTAIN --> / National Film Preservation Products Inc. 3236 Union St. North Chili, NY 14541 Phone: 585-594-1026 Web site: www.nfppi.com / <!-- LAYOUT-UNCERTAIN: p.98 좌4/우3 블록 — 읽기 순서 시각 확인 필요 -->"
+  },
+  {
+   "chunk": "appD",
+   "line": 39,
+   "marker": "LAYOUT-UNCERTAIN",
+   "page": "98",
+   "why": "읽기 순서 확인 필요",
+   "context": "National Film Preservation Products Inc. 3236 Union St. North Chili, NY 14541 Phone: 585-594-1026 Web site: www.nfppi.com / <!-- LAYOUT-UNCERTAIN: p.98 좌4/우3 블록 — 읽기 순서 시각 확인 필요 --> / [원서 p.97]"
+  },
+  {
+   "chunk": "appD",
+   "line": 43,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "98",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "[원서 p.97] / <!-- LINEBREAK-UNCERTAIN --> / Plastic Reel Corporation of America Western Region 8140 Webb Ave. North Hollywood, CA 91605 Web site: www.prcofamerica.com / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "appD",
+   "line": 46,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "98",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Plastic Reel Corporation of America Western Region 8140 Webb Ave. North Hollywood, CA 91605 Web site: www.prcofamerica.com / <!-- LINEBREAK-UNCERTAIN --> / RTI Tek Media Supply Company 4700 W. Chase Ave. Lincolnwood, IL 60712 Phone: 800-323-7520 or 847-677-3000 Web site: www.rtico.com/tekmedia / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "appD",
+   "line": 49,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "98",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "RTI Tek Media Supply Company 4700 W. Chase Ave. Lincolnwood, IL 60712 Phone: 800-323-7520 or 847-677-3000 Web site: www.rtico.com/tekmedia / <!-- LINEBREAK-UNCERTAIN --> / Stil Design 3, Valliere St., Ste. 103 Quebec City, QC G1K 6S9, Canada Phone: 888-414-0449 Web site: www.stildesign.com / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "appD",
+   "line": 52,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "98",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Stil Design 3, Valliere St., Ste. 103 Quebec City, QC G1K 6S9, Canada Phone: 888-414-0449 Web site: www.stildesign.com / <!-- LINEBREAK-UNCERTAIN --> / Talas 568 Broadway New York, NY 10012 Phone: 212-219-0770 Web site: www.talasonline.com / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "appD",
+   "line": 55,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "98",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Talas 568 Broadway New York, NY 10012 Phone: 212-219-0770 Web site: www.talasonline.com / <!-- LINEBREAK-UNCERTAIN --> / Tayloreel Corporation P.O. Box 476 Oakwood, GA 30566 Phone: 770-503-1612 Web site: www.tayloreel.com / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "appD",
+   "line": 58,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "98",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Tayloreel Corporation P.O. Box 476 Oakwood, GA 30566 Phone: 770-503-1612 Web site: www.tayloreel.com / <!-- LINEBREAK-UNCERTAIN --> / Tuscan Corporation 7115 Virginia Rd., Ste. 111-6 Crystal Lake, IL 60014 Phone: 888-457-5811 Web site: www.tuscancorp.com / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "appD",
+   "line": 61,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "98",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Tuscan Corporation 7115 Virginia Rd., Ste. 111-6 Crystal Lake, IL 60014 Phone: 888-457-5811 Web site: www.tuscancorp.com / <!-- LINEBREAK-UNCERTAIN --> / Urbanski Film P.O. Box 438 Orland Park, IL 60462 Phone: 708-460-9082 Web site: www.urbanskifilm.com / [원서 p.98]"
+  },
+  {
+   "chunk": "biblio",
+   "line": 6,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "109",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "*ACVL Handbook: Recommended Practices for Motion Picture and Video Laboratory* / <!-- LINEBREAK-UNCERTAIN --> / *Services*, 5th ed. Hollywood, CA: Association of Cinema and Video Laboratories, n.d. / Adelstein, Peter Z. *IPI Media Storage Quick Reference*. Rochester, NY: Image"
+  },
+  {
+   "chunk": "biblio",
+   "line": 11,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "109",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Adelstein, Peter Z. *IPI Media Storage Quick Reference*. Rochester, NY: Image / <!-- LINEBREAK-UNCERTAIN --> / Permanence Institute, Rochester Institute of Technology, 2004. / AMIA Cataloging and Documentation Committee. *AMIA Compendium of Moving*"
+  },
+  {
+   "chunk": "biblio",
+   "line": 16,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "109",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "AMIA Cataloging and Documentation Committee. *AMIA Compendium of Moving* / <!-- LINEBREAK-UNCERTAIN --> / *Image Cataloging Practice*. Edited by Abigail Leab Martin. Beverly Hills, CA: Association of Moving Image Archivists; Chicago: Society of American Archivists, 2001. / AMIM Revision Committee and Motion Picture, Broadcasting, and Recorded"
+  },
+  {
+   "chunk": "biblio",
+   "line": 21,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "109",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "AMIM Revision Committee and Motion Picture, Broadcasting, and Recorded / <!-- LINEBREAK-UNCERTAIN --> / Sound Division. *Archival Moving Image Materials: A Cataloging Manual*. 2nd ed. Washington, D.C.: Cataloging Distribution Service, Library of Congress, 2000. / Ascher, Steven, and Edward Pincus. *The Filmmaker’s Handbook: A Comprehensive*"
+  },
+  {
+   "chunk": "biblio",
+   "line": 26,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "109",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Ascher, Steven, and Edward Pincus. *The Filmmaker’s Handbook: A Comprehensive* / <!-- LINEBREAK-UNCERTAIN --> / *Guide for the Digital Age*. Rev. ed. New York: Plume, 1999. / Bellardo, Lewis J., and Lynn Lady Bellardo, comps. *A Glossary for Archivists,*"
+  },
+  {
+   "chunk": "biblio",
+   "line": 31,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "109",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Bellardo, Lewis J., and Lynn Lady Bellardo, comps. *A Glossary for Archivists,* / <!-- LINEBREAK-UNCERTAIN --> / *Manuscript Curators, and Records Managers*. Chicago: Society of American Archivists, 1992. / Besek, June M. *Copyright Issues Relevant to the Creation of a Digital Archive: A Pre-*"
+  },
+  {
+   "chunk": "biblio",
+   "line": 36,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "109",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Besek, June M. *Copyright Issues Relevant to the Creation of a Digital Archive: A Pre-* / <!-- LINEBREAK-UNCERTAIN --> / *liminary Assessment*. Washington, D.C.: Council on Library and Information Resources: Library of Congress, 2003. Also available at www.clir.org/pubs/ abstract/pub112abst.html. / Bigourdan, Jean-Louis, and James M. Reilly. *Environment and Enclosures in Film*"
+  },
+  {
+   "chunk": "biblio",
+   "line": 41,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "109",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Bigourdan, Jean-Louis, and James M. Reilly. *Environment and Enclosures in Film* / <!-- LINEBREAK-UNCERTAIN --> / *Preservation: Final Report to the Office of Preservation, National Endowment for the Humanities*. Rochester, NY: Image Permanence Institute, Rochester Institute of Technology, 1997. / Blasko, Edward, Benjamin A. Luccitti, and Susan F. Morris, eds. *The Book of Film*"
+  },
+  {
+   "chunk": "biblio",
+   "line": 46,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "109",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Blasko, Edward, Benjamin A. Luccitti, and Susan F. Morris, eds. *The Book of Film* / <!-- LINEBREAK-UNCERTAIN --> / *Care*. 2nd ed. Kodak Pub. H-23. Rochester, NY: Eastman Kodak Company, 1992. / Bowser, Eileen, and John Kuiper, eds. *A Handbook for Film Archives*. New York:"
+  },
+  {
+   "chunk": "biblio",
+   "line": 61,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "110",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Coe, Brian. *The History of Movie Photography*. Westfield, NJ: Eastview Editions, / <!-- LINEBREAK-UNCERTAIN --> / 1981. / Davidson, Steven, and Gregory Lukow, eds. *The Administration of Television News-*"
+  },
+  {
+   "chunk": "biblio",
+   "line": 66,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "110",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Davidson, Steven, and Gregory Lukow, eds. *The Administration of Television News-* / <!-- LINEBREAK-UNCERTAIN --> / *film and Videotape Collections: A Curatorial Manual*. Los Angeles: American Film Institute; Miami: Louis Wolfson II Media History Center, 1997. / *FIAF International FilmArchive Database*. CD-ROM. New York: Ovid, 2001–3."
+  },
+  {
+   "chunk": "biblio",
+   "line": 73,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "110",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "FIAF Preservation Commission. *Technical Manual of the FIAF Preservation Com-* / <!-- LINEBREAK-UNCERTAIN --> / *mission*. Brussels, Belgium: International Federation of Film Archives, 1993. / *Film Preservation 1993: A Study of the Current State of American Film Preservation*."
+  },
+  {
+   "chunk": "biblio",
+   "line": 82,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "110",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "*Footage: The Worldwide Moving Image Sourcebook*. New York: Second Line Search, / <!-- LINEBREAK-UNCERTAIN --> / 1997. / Gartenberg, Jon., comp. *Glossary of Filmographic Terms*. 2nd ed. Brussels, Belgium:"
+  },
+  {
+   "chunk": "biblio",
+   "line": 91,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "110",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Gracy, Karen F. “Documenting the Process of Film Preservation.” *Moving Image* 3 / <!-- LINEBREAK-UNCERTAIN --> / (Spring 2003): 1–41. / *IPI Storage Guide for Acetate Film: Instructions for Using the Wheel, Graphs, and*"
+  },
+  {
+   "chunk": "biblio",
+   "line": 96,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "110",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "*IPI Storage Guide for Acetate Film: Instructions for Using the Wheel, Graphs, and* / <!-- LINEBREAK-UNCERTAIN --> / *Tables*. Rochester, NY: Image Permanence Institute, Rochester Institute of Technology, 1993. / Jackson, Kevin. *The Language of Cinema*. New York: Routledge, 1998."
+  },
+  {
+   "chunk": "biblio",
+   "line": 107,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "110",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "*Keepers of the Frame*. VHS. Produced by Randy Gitsch and directed by Mark / <!-- LINEBREAK-UNCERTAIN --> / McLaughlin. New York: WinStar TV & Video, 1999. / Kilchesty, Albert, ed. *Big as Life: An American History of 8mm Films*. San Fran- cisco: Foundation for Art in Cinema, 1998."
+  },
+  {
+   "chunk": "biblio",
+   "line": 114,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "110",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Kula, Sam. *Appraising Moving Images: Assessing the Archival and Monetary Value of* / <!-- LINEBREAK-UNCERTAIN --> / *Film and Video Records*. Lanham, MD: Scarecrow Press, 2002. / MacLean, Margaret, and Ben H. Davis, eds. *Time & Bits: Managing Digital Conti-*"
+  },
+  {
+   "chunk": "biblio",
+   "line": 121,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "111",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "[원서 p.110] / <!-- LINEBREAK-UNCERTAIN --> / MacLeish, Bruce, and Greg Harris. *Bringing Up Boomer: Archival Care of Mid-* / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "biblio",
+   "line": 124,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "111",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "MacLeish, Bruce, and Greg Harris. *Bringing Up Boomer: Archival Care of Mid-* / <!-- LINEBREAK-UNCERTAIN --> / *Twentieth Century Media*. Technical Leaflet 195. Nashville: American Association for State and Local History, 1996. Originally published in *History News* 51 (Autumn 1996). / “Manual for Access to Film Collections.” *Journal of Film Preservation* 55 (December"
+  },
+  {
+   "chunk": "biblio",
+   "line": 129,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "111",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "“Manual for Access to Film Collections.” *Journal of Film Preservation* 55 (December / <!-- LINEBREAK-UNCERTAIN --> / 1997): 3–51. Also available at www.fiafnet.org/pdf/uk/fiaf55.pdf. / Mibach, Lisa. *Collections Care: What to Do When You Can’t Afford to Do Anything*."
+  },
+  {
+   "chunk": "biblio",
+   "line": 142,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "111",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "National Fire Protection Association. *Standard for the Storage and Handling of Cel-* / <!-- LINEBREAK-UNCERTAIN --> / *lulose Nitrate Film*. NFPA 40. Quincy, MA: National Fire Protection Association, 2001. Also available at www.nfpa.org. / Nichols, Stephen G., and Abby Smith. *The Evidence in Hand: Report of the Task*"
+  },
+  {
+   "chunk": "biblio",
+   "line": 147,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "111",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Nichols, Stephen G., and Abby Smith. *The Evidence in Hand: Report of the Task* / <!-- LINEBREAK-UNCERTAIN --> / *Force on the Artifact in Library Collections*. Washington, D.C.: Council on Library and Information Resources, 2001. Also available at www.clir.org/ pubs/abstract/pub103abst.html. / *Playback: Preserving Analog Video.*DVD. Produced by Bay Area Video Coalition."
+  },
+  {
+   "chunk": "biblio",
+   "line": 156,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "111",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "*The Race to Save 100 Years*. VHS. Produced by James Gentilcore, Richard P. May, / <!-- LINEBREAK-UNCERTAIN --> / Roger Mayer, and Patrick Murphy and directed by Scott Benson. Los Angeles: Turner Entertainment; Warner Bros., 1997. / Read, Paul, and Mark-Paul Meyer, eds. *Restoration of Motion Picture Film*. Oxford;"
+  },
+  {
+   "chunk": "biblio",
+   "line": 167,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "111",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Reilly, James M. *Storage Guide for Color Photographic Materials: Caring for Color* / <!-- LINEBREAK-UNCERTAIN --> / *Slides, Prints, Negatives, and Movie Films*. Albany, NY: University of the State of New York, New York State Education Department, New York State Library, New York State Program for the Conservation and Preservation of Library Research Materials, 1998. / *Safe Handling, Storage, an"
+  },
+  {
+   "chunk": "biblio",
+   "line": 172,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "111",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "*Safe Handling, Storage, and Destruction of Nitrate-Based Motion Picture Films*. Kodak / <!-- LINEBREAK-UNCERTAIN --> / Pub. H-182. Rochester, NY: Eastman Kodak Company, 2003. Also available at www.kodak.com. / [원서 p.111]"
+  },
+  {
+   "chunk": "biblio",
+   "line": 183,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "112",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "*Television and Video Preservation 1997: A Report on the Current State of American* / <!-- LINEBREAK-UNCERTAIN --> / *Television and Video Preservation.* 4 vols. Washington, D.C.: Library of Congress, 1997. Also available at lcweb.loc.gov/film/tvstudy.html. / *Treasures from American Film Archives: 50 Preserved Films*. 4-DVD set and program notes. Curated by Scott Simmon; music curated by Martin M"
+  },
+  {
+   "chunk": "biblio",
+   "line": 200,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "112",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "American Association for State and Local History (AASLH) www.aaslh.org / <!-- LINEBREAK-UNCERTAIN --> / American Association of Museums (AAM) www.aam-us.org / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "biblio",
+   "line": 203,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "112",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "American Association of Museums (AAM) www.aam-us.org / <!-- LINEBREAK-UNCERTAIN --> / Association of Moving Image Archivists (AMIA) www.amianet.org / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "biblio",
+   "line": 206,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "112",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Association of Moving Image Archivists (AMIA) www.amianet.org / <!-- LINEBREAK-UNCERTAIN --> / Conservation OnLine: Resources for Conservation Professionals palimpsest.stanford.edu / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "biblio",
+   "line": 209,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "112",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Conservation OnLine: Resources for Conservation Professionals palimpsest.stanford.edu / <!-- LINEBREAK-UNCERTAIN --> / Eastman Kodak Company www.kodak.com / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "biblio",
+   "line": 212,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "112",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Eastman Kodak Company www.kodak.com / <!-- LINEBREAK-UNCERTAIN --> / Film Forever: The Home Film Preservation Guide www.filmforever.org / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "biblio",
+   "line": 215,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "112",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Film Forever: The Home Film Preservation Guide www.filmforever.org / <!-- LINEBREAK-UNCERTAIN --> / Image Permanence Institute (IPI), Rochester Institute of Technology www.rit.edu/ipi / [원서 p.112]"
+  },
+  {
+   "chunk": "biblio",
+   "line": 220,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "113",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "[원서 p.112] / <!-- LINEBREAK-UNCERTAIN --> / Independent Media Arts Preservation (IMAP) www.imappreserve.org / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "biblio",
+   "line": 223,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "113",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Independent Media Arts Preservation (IMAP) www.imappreserve.org / <!-- LINEBREAK-UNCERTAIN --> / International Federation of Film Archives (FIAF) www.fiafnet.org / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "biblio",
+   "line": 226,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "113",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "International Federation of Film Archives (FIAF) www.fiafnet.org / <!-- LINEBREAK-UNCERTAIN --> / Internet Archive: Movie Archive www.archive.org/movies / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "biblio",
+   "line": 229,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "113",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Internet Archive: Movie Archive www.archive.org/movies / <!-- LINEBREAK-UNCERTAIN --> / Library of Congress www.loc.gov / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "biblio",
+   "line": 232,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "113",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Library of Congress www.loc.gov / <!-- LINEBREAK-UNCERTAIN --> / Moving Image Collections (MIC) gondolin.rutgers.edu/MIC/ / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "biblio",
+   "line": 235,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "113",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Moving Image Collections (MIC) gondolin.rutgers.edu/MIC/ / <!-- LINEBREAK-UNCERTAIN --> / National Film Preservation Board (NFPB) lcweb.loc.gov/film / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "biblio",
+   "line": 238,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "113",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "National Film Preservation Board (NFPB) lcweb.loc.gov/film / <!-- LINEBREAK-UNCERTAIN --> / National Film Preservation Foundation (NFPF) www.filmpreservation.org / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "biblio",
+   "line": 241,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "113",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "National Film Preservation Foundation (NFPF) www.filmpreservation.org / <!-- LINEBREAK-UNCERTAIN --> / Online Computer Library Center (OCLC) www.oclc.org / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "biblio",
+   "line": 244,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "113",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Online Computer Library Center (OCLC) www.oclc.org / <!-- LINEBREAK-UNCERTAIN --> / Research Libraries Information Network (RLIN), Research Libraries Group www.rlg.org/rlin.html / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "biblio",
+   "line": 247,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "113",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Research Libraries Information Network (RLIN), Research Libraries Group www.rlg.org/rlin.html / <!-- LINEBREAK-UNCERTAIN --> / ScreenSound Australia (National Screen and Sound Archive of Australia) www.screensound.gov.au / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "biblio",
+   "line": 250,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "113",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "ScreenSound Australia (National Screen and Sound Archive of Australia) www.screensound.gov.au / <!-- LINEBREAK-UNCERTAIN --> / U.S. Copyright Office www.copyright.gov / ### SELECTED LISTSERVS AND DISCUSSION GROUPS"
+  },
+  {
+   "chunk": "biblio",
+   "line": 257,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "113",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Association of Moving Image Archivists (AMIA) AMIA-L: An Online Forum for Moving Image Archivists www.amianet.org/amial/amial.html / <!-- LINEBREAK-UNCERTAIN --> / H-Net Humanities & Social Sciences Online H-Film Discussion Group (cinema history and uses of media) www.h-net.org/~film / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "biblio",
+   "line": 260,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "113",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "H-Net Humanities & Social Sciences Online H-Film Discussion Group (cinema history and uses of media) www.h-net.org/~film / <!-- LINEBREAK-UNCERTAIN --> / Society of American Archivists (SAA) Archives and Archivists Listserv www.archivists.org/listservs/index.asp#archives-archivists / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "biblio",
+   "line": 263,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "113",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Society of American Archivists (SAA) Archives and Archivists Listserv www.archivists.org/listservs/index.asp#archives-archivists / <!-- LINEBREAK-UNCERTAIN --> / Visual Materials Section, Cataloging and Access Roundtable List www.lib.lsu.edu/SAA/vmelist.html / [원서 p.113]"
+  },
+  {
+   "chunk": "index",
+   "line": 2,
+   "marker": "LAYOUT-UNCERTAIN",
+   "page": "114",
+   "why": "읽기 순서 확인 필요",
+   "context": "<!-- LAYOUT-UNCERTAIN: p.114 좌8/우8 블록 — 읽기 순서 시각 확인 필요 --> / ## INDEX"
+  },
+  {
+   "chunk": "index",
+   "line": 8,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "114",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "A and B rolls as source material, 37, 39, 46–47 use, 10 access, 85–92 as part of preservation, 3–4, 42–44 defined, 4 for commercial users, 87–89 for researchers, 73–75, 85–86 loans, 89–90 public programs, 86–87, 89–91 role in leveraging support, 56, 91 access copies and fair use, 81 storage, 62, 68 types, 42–45, 85–86 accession numbers, 28, 72 acetate decay and cold storage, 14, 61, 62, 66 and ven"
+  },
+  {
+   "chunk": "index",
+   "line": 11,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "114",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "17, 18, 59 in magnetic tracks, 17 measuring, 14 acetate film history, 8, 9 IPI storage recommendations, / <!-- LINEBREAK-UNCERTAIN --> / 60–61 shipping, 53–55 acquisitions policy, 36 provenance information, 27, 34–35 rights issues, 80–81 selection, 24n, 36 A-D Strips, 14, 18, 32, 62 *Airplanes at Play*, 38 amateur films in multimedia collections, 34 on reversal film, 10 small gauge, 7–8, 49–50 sou"
+  },
+  {
+   "chunk": "index",
+   "line": 14,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "114",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "60–61 shipping, 53–55 acquisitions policy, 36 provenance information, 27, 34–35 rights issues, 80–81 selection, 24n, 36 A-D Strips, 14, 18, 32, 62 *Airplanes at Play*, 38 amateur films in multimedia collections, 34 on reversal film, 10 small gauge, 7–8, 49–50 sound, 13 value as documents, 36 American Library Association, 38 / <!-- LINEBREAK-UNCERTAIN --> / American Memory project, 87 analog videot"
+  },
+  {
+   "chunk": "index",
+   "line": 17,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "114",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "American Memory project, 87 analog videotape, 43 answer prints and fair use, 81 in lab estimate, 51, 52 use in duplication, 46–48, 55 artifact, 4, 34, 41, 50 Association of Moving Image / <!-- LINEBREAK-UNCERTAIN --> / Archivists (AMIA) / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "index",
+   "line": 20,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "114",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Archivists (AMIA) / <!-- LINEBREAK-UNCERTAIN --> / cataloging projects, 71, 75 history, 2 listserv, 38 shrinkage-gauge lending service, 15 Small Gauge Initiative, 49–50 training, 28n audio tracks. *See* sound tracks avant-garde films, 8, 13, 37, 50 balance stripe, 12 base. *See* film bases Bell Museum of Natural History, 56 “best” surviving source material, 34, / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "index",
+   "line": 23,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "114",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "cataloging projects, 71, 75 history, 2 listserv, 38 shrinkage-gauge lending service, 15 Small Gauge Initiative, 49–50 training, 28n audio tracks. *See* sound tracks avant-garde films, 8, 13, 37, 50 balance stripe, 12 base. *See* film bases Bell Museum of Natural History, 56 “best” surviving source material, 34, / <!-- LINEBREAK-UNCERTAIN --> / 36–39 Betacam SP videotape, 43, 45 binder, 8, 9, 10 bl"
+  },
+  {
+   "chunk": "index",
+   "line": 26,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "114",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "36–39 Betacam SP videotape, 43, 45 binder, 8, 9, 10 black-and-white film, 9–10 / <!-- LINEBREAK-UNCERTAIN --> / IPI storage recommendations, 60 spliced with color, 50 *Business Screen Magazine*, 35 / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "index",
+   "line": 29,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "114",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "IPI storage recommendations, 60 spliced with color, 50 *Business Screen Magazine*, 35 / <!-- LINEBREAK-UNCERTAIN --> / California Pacific Medical Center, 57 camera original, 10, 37 catalog record components, 72–73 for multimedia collections, 73 subject access, 73–74 templates, 75 cataloging, 70–76 [원서 p.114] cellulose acetate base film. *See* acetate film cellulose nitrate base film. *See* nitrate"
+  },
+  {
+   "chunk": "index",
+   "line": 32,
+   "marker": "LAYOUT-UNCERTAIN",
+   "page": "115",
+   "why": "읽기 순서 확인 필요",
+   "context": "California Pacific Medical Center, 57 camera original, 10, 37 catalog record components, 72–73 for multimedia collections, 73 subject access, 73–74 templates, 75 cataloging, 70–76 [원서 p.114] cellulose acetate base film. *See* acetate film cellulose nitrate base film. *See* nitrate film cement splicers, 29, 30–31 cine clubs, 7 *Clash of the Wolves*, 80 cleaning film by laboratory, 51, 52 in-house, "
+  },
+  {
+   "chunk": "index",
+   "line": 34,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "115",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "<!-- LAYOUT-UNCERTAIN: p.115 좌10/우7 블록 — 읽기 순서 시각 확인 필요 --> / <!-- LINEBREAK-UNCERTAIN --> / 60–61 precautions in handling, 12, 24 condensation, 62–63 conservation, 3–4, 42–44, 68 ethics, 41–42 *See also* access copies; artifact; / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "index",
+   "line": 37,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "115",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "60–61 precautions in handling, 12, 24 condensation, 62–63 conservation, 3–4, 42–44, 68 ethics, 41–42 *See also* access copies; artifact; / <!-- LINEBREAK-UNCERTAIN --> / source material; storage contact printing, 49 containers, 26–27, 66–67. *See also* film cans copyright, 77–80, 81–84 and orphan films, 3, 79, 81 checking status, 78 defined, 77–80 permissions, 80, 81, 82, 83, 84, 87, / <!-- LINEBR"
+  },
+  {
+   "chunk": "index",
+   "line": 40,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "115",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "source material; storage contact printing, 49 containers, 26–27, 66–67. *See also* film cans copyright, 77–80, 81–84 and orphan films, 3, 79, 81 checking status, 78 defined, 77–80 permissions, 80, 81, 82, 83, 84, 87, / <!-- LINEBREAK-UNCERTAIN --> / 88 published v. unpublished works, / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "index",
+   "line": 43,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "115",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "88 published v. unpublished works, / <!-- LINEBREAK-UNCERTAIN --> / 78–79 records, 35–36, 78 rights of repositories, 81–82 term, 78, 79 *See also* donor agreements; licensing cores, film, 21–23, 26–27, 67 Cronar, 9 *Cruisin’ J-Town*, 58 curators, selection duties of, 34–40 curl, 14, 23 data loggers, 64 date codes. *See* edge codes deposit agreements, 80–81, 83 desiccants, 62, 66, 67 diacetate. *Se"
+  },
+  {
+   "chunk": "index",
+   "line": 50,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "115",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "access copies, 43, 45, 57, 86 IPI storage recommendations, / <!-- LINEBREAK-UNCERTAIN --> / 60–61 legal issues of publication, 77, 80, 81 / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "index",
+   "line": 53,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "115",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "60–61 legal issues of publication, 77, 80, 81 / <!-- LINEBREAK-UNCERTAIN --> / East Tennessee State University, 56 Eastman Kodak Company film stocks, 6, 7, 8, 9, 11 molecular sieves, 67 edge codes, 25–26, 40, 93 Edison Company, 42 *Educational Film Guide*, 35 educational films, assessing uniqueness, / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "index",
+   "line": 56,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "115",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "East Tennessee State University, 56 Eastman Kodak Company film stocks, 6, 7, 8, 9, 11 molecular sieves, 67 edge codes, 25–26, 40, 93 Edison Company, 42 *Educational Film Guide*, 35 educational films, assessing uniqueness, / <!-- LINEBREAK-UNCERTAIN --> / 38–39 8mm as source material, 37 dating, 25n6, 93 duplication, 49–50 history, 7–8, 11 plastic support, 9 repairing, 31 reversal film, 10–11, 37 s"
+  },
+  {
+   "chunk": "index",
+   "line": 59,
+   "marker": "LAYOUT-UNCERTAIN",
+   "page": "116",
+   "why": "읽기 순서 확인 필요",
+   "context": "38–39 8mm as source material, 37 dating, 25n6, 93 duplication, 49–50 history, 7–8, 11 plastic support, 9 repairing, 31 reversal film, 10–11, 37 shrinkage, 15 / <!-- LAYOUT-UNCERTAIN: p.116 좌8/우9 블록 — 읽기 순서 시각 확인 필요 --> / [원서 p.115]"
+  },
+  {
+   "chunk": "index",
+   "line": 63,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "116",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "[원서 p.115] / <!-- LINEBREAK-UNCERTAIN --> / 8mm (continued) sound tracks, 12–13 storage on reels, 26 Elmo, 43n5, 85 emergency preparedness, 67 emulsion, 8, 9–10 and curl, 23 damage, 13–16, 48–49, 63 ESTAR, 9 estimates, lab, 46, 50–53 exhibition / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "index",
+   "line": 66,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "116",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "8mm (continued) sound tracks, 12–13 storage on reels, 26 Elmo, 43n5, 85 emergency preparedness, 67 emulsion, 8, 9–10 and curl, 23 damage, 13–16, 48–49, 63 ESTAR, 9 estimates, lab, 46, 50–53 exhibition / <!-- LINEBREAK-UNCERTAIN --> / Internet, 38, 77, 82, 87, 89 loans, 90–91 rights issues, 55, 77, 82, 83, 87 screenings, 1, 86–87, 89–90 exhibition prints, 89–90 fair use, 81, 82 FIAF. *See* Internat"
+  },
+  {
+   "chunk": "index",
+   "line": 69,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "116",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Internet, 38, 77, 82, 87, 89 loans, 90–91 rights issues, 55, 77, 82, 83, 87 screenings, 1, 86–87, 89–90 exhibition prints, 89–90 fair use, 81, 82 FIAF. *See* International Federation of / <!-- LINEBREAK-UNCERTAIN --> / Film Archives film cultural and evidentiary value, 3, / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "index",
+   "line": 72,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "116",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Film Archives film cultural and evidentiary value, 3, / <!-- LINEBREAK-UNCERTAIN --> / 5, 36 dating, 25–26, 93 uniqueness, 36–39 film archiving, history, 1–3 film bases damage, 13–17 types, 8–9, 10 *See also* acetate film; nitrate film; / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "index",
+   "line": 75,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "116",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "5, 36 dating, 25–26, 93 uniqueness, 36–39 film archiving, history, 1–3 film bases damage, 13–17 types, 8–9, 10 *See also* acetate film; nitrate film; / <!-- LINEBREAK-UNCERTAIN --> / polyester film film cans labels, 27, 28 opening, 21–22 replacing, 26 sealing v. venting, 63, 66 selecting, 66–67 film cement, 9, 28–29, 30–31 film equipment basic list, 19–21, 32–33 secondhand, 20 vendors, 97–98 *See "
+  },
+  {
+   "chunk": "index",
+   "line": 78,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "116",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "polyester film film cans labels, 27, 28 opening, 21–22 replacing, 26 sealing v. venting, 63, 66 selecting, 66–67 film cement, 9, 28–29, 30–31 film equipment basic list, 19–21, 32–33 secondhand, 20 vendors, 97–98 *See also* specific equipment Film Forever, 62 film format, 6n2, 12–13 film handling, 13, 19–33 film laboratories. *See* laboratories film repairs, 12, 28–31 equipment needed, 33 in lab es"
+  },
+  {
+   "chunk": "index",
+   "line": 81,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "116",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "66, 68 full-coat mags, 13 fungus. *See* mold, mildew, and fungus gauges, types, 6–8, 9 George Eastman House, 1, 53n, 65, / <!-- LINEBREAK-UNCERTAIN --> / 88 gloves, 20 government films, 38, 39 grants, 3, 56 / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "index",
+   "line": 84,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "116",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "88 gloves, 20 government films, 38, 39 grants, 3, 56 / <!-- LINEBREAK-UNCERTAIN --> / Harry Smith Archives, 89 head, 28 home movies. *See* amateur films hot splicer, 30 humidity and cold storage, 62–63, 64–65 and curl, 23 effect on film, 14, 15, 16, 59–61 measuring, 61, 64 hygrometer, 64 / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "index",
+   "line": 87,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "116",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Harry Smith Archives, 89 head, 28 home movies. *See* amateur films hot splicer, 30 humidity and cold storage, 62–63, 64–65 and curl, 23 effect on film, 14, 15, 16, 59–61 measuring, 61, 64 hygrometer, 64 / <!-- LINEBREAK-UNCERTAIN --> / Image Permanence Institute (IPI), 14, / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "index",
+   "line": 90,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "116",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Image Permanence Institute (IPI), 14, / <!-- LINEBREAK-UNCERTAIN --> / 59–61, 64, 66. *See also* A-D Strips *Increasing Farm Efficiency*, 69 Independent Media Arts Preservation, / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "index",
+   "line": 93,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "116",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "59–61, 64, 66. *See also* A-D Strips *Increasing Farm Efficiency*, 69 Independent Media Arts Preservation, / <!-- LINEBREAK-UNCERTAIN --> / 75 industrial films, assessing uniqueness, [원서 p.116] inspection and lab estimate, 50–52 equipment needed, 33 how to do, 21–26 types of damage and decay, 13–18, / <!-- LAYOUT-UNCERTAIN: p.117 좌9/우10 블록 — 읽기 순서 시각 확인 필요 -->"
+  },
+  {
+   "chunk": "index",
+   "line": 96,
+   "marker": "LAYOUT-UNCERTAIN",
+   "page": "117",
+   "why": "읽기 순서 확인 필요",
+   "context": "75 industrial films, assessing uniqueness, [원서 p.116] inspection and lab estimate, 50–52 equipment needed, 33 how to do, 21–26 types of damage and decay, 13–18, / <!-- LAYOUT-UNCERTAIN: p.117 좌9/우10 블록 — 읽기 순서 시각 확인 필요 --> / <!-- LINEBREAK-UNCERTAIN --> / 21 written reports, 24, 28, 51, 94 Institute of Museum and Library"
+  },
+  {
+   "chunk": "index",
+   "line": 98,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "117",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "<!-- LAYOUT-UNCERTAIN: p.117 좌9/우10 블록 — 읽기 순서 시각 확인 필요 --> / <!-- LINEBREAK-UNCERTAIN --> / 21 written reports, 24, 28, 51, 94 Institute of Museum and Library / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "index",
+   "line": 101,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "117",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "21 written reports, 24, 28, 51, 94 Institute of Museum and Library / <!-- LINEBREAK-UNCERTAIN --> / Services, 56 *Institutional Amnesia*, 91 insurance for shipping, 53 intermediate materials, 46, 48 International Federation of Film / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "index",
+   "line": 104,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "117",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Services, 56 *Institutional Amnesia*, 91 insurance for shipping, 53 intermediate materials, 46, 48 International Federation of Film / <!-- LINEBREAK-UNCERTAIN --> / Archives (FIAF), 1, 2, 16, 37, 41n2 internegative, 46, 47n Internet catalog access, 75, 76 film access, 38, 76, 77, 82, 83, 87, / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "index",
+   "line": 107,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "117",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Archives (FIAF), 1, 2, 16, 37, 41n2 internegative, 46, 47n Internet catalog access, 75, 76 film access, 38, 76, 77, 82, 83, 87, / <!-- LINEBREAK-UNCERTAIN --> / 89 Web site list, 112–113 interpositive, 39, 47n intertitles, 42, 92 IPI. *See* Image Permanence Institute *IPI Media Storage Quick Reference*, / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "index",
+   "line": 110,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "117",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "89 Web site list, 112–113 interpositive, 39, 47n intertitles, 42, 92 IPI. *See* Image Permanence Institute *IPI Media Storage Quick Reference*, / <!-- LINEBREAK-UNCERTAIN --> / 59–60 ISO (International Organization for / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "index",
+   "line": 113,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "117",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "59–60 ISO (International Organization for / <!-- LINEBREAK-UNCERTAIN --> / Standardization), 59–60, 65, 66 / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "index",
+   "line": 116,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "117",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Standardization), 59–60, 65, 66 / <!-- LINEBREAK-UNCERTAIN --> / Japanese American National Museum, / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "index",
+   "line": 119,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "117",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Japanese American National Museum, / <!-- LINEBREAK-UNCERTAIN --> / 36 Johns Hopkins University, 91 / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "index",
+   "line": 122,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "117",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "36 Johns Hopkins University, 91 / <!-- LINEBREAK-UNCERTAIN --> / *Kearney and Its People*, 35 Kem, 21n Kodachrome, 11, 57 Kodacolor, 11 Kodak. *See* Eastman Kodak Company labeling, 27–28 laboratories processes, 48–49 products, 46–48 project costs, 42, 46, 50–53 repairs by, 28, 51 specialization, 46, 50 laboratories (continued) / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "index",
+   "line": 125,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "117",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "*Kearney and Its People*, 35 Kem, 21n Kodachrome, 11, 57 Kodacolor, 11 Kodak. *See* Eastman Kodak Company labeling, 27–28 laboratories processes, 48–49 products, 46–48 project costs, 42, 46, 50–53 repairs by, 28, 51 specialization, 46, 50 laboratories (continued) / <!-- LINEBREAK-UNCERTAIN --> / technical language, 46 vendor list, 95–96 working with, 41, 50–53, 55 labspeak, 46 leader replacing, 27"
+  },
+  {
+   "chunk": "index",
+   "line": 128,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "117",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "technical language, 46 vendor list, 95–96 working with, 41, 50–53, 55 labspeak, 46 leader replacing, 27 use, 10, 27–28 lenticular color, 11 Library of Congress cataloging tools, 71, 73, 75 copyright records, 35–36, 78 film collection, 1, 38, 80, 87 film tour, 5 national planning efforts, 2–3, 75, / <!-- LINEBREAK-UNCERTAIN --> / 80 Web site, 38, 87 licensing, 56, 81–82, 83, 86, 87–89 light box, 21"
+  },
+  {
+   "chunk": "index",
+   "line": 131,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "117",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "80 Web site, 38, 87 licensing, 56, 81–82, 83, 86, 87–89 light box, 21, 23–24 listservs, 38–39, 113 loans and nonprofit distribution, 81, / <!-- LINEBREAK-UNCERTAIN --> / 89–90 magnetic sound tracks, 12–13 as source material, 37, 39, 46–48, / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "index",
+   "line": 134,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "117",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "89–90 magnetic sound tracks, 12–13 as source material, 37, 39, 46–48, / <!-- LINEBREAK-UNCERTAIN --> / 58 decay, 17, 18 IPI storage recommendations, / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "index",
+   "line": 137,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "117",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "58 decay, 17, 18 IPI storage recommendations, / <!-- LINEBREAK-UNCERTAIN --> / 60–61, 63 precautions in handling, 24, 25, / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "index",
+   "line": 140,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "117",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "60–61, 63 precautions in handling, 24, 25, / <!-- LINEBREAK-UNCERTAIN --> / 30, 31 *Mahagonny*, 89 *Maine Marine Worm Industry*, 76 managing duplication projects, 50–53, / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "index",
+   "line": 143,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "117",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "30, 31 *Mahagonny*, 89 *Maine Marine Worm Industry*, 76 managing duplication projects, 50–53, / <!-- LINEBREAK-UNCERTAIN --> / 55 MARC format, 70, 71, 75, 76 masters. *See* preservation masters; / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "index",
+   "line": 146,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "117",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "55 MARC format, 70, 71, 75, 76 masters. *See* preservation masters; / <!-- LINEBREAK-UNCERTAIN --> / video masters measuring film length, 24–25 metadata standards, 75 Minnesota Historical Society, 67, 92 MIT Museum, 38 mold, mildew, and fungus conditions for growth, 60n, 61 identifying, 13–14, 18 removing, 21–22, 31–32 molecular sieves, 66, 67 / <!-- LAYOUT-UNCERTAIN: p.118 좌9/우9 블록 — 읽기 순서 시각 확인 "
+  },
+  {
+   "chunk": "index",
+   "line": 149,
+   "marker": "LAYOUT-UNCERTAIN",
+   "page": "118",
+   "why": "읽기 순서 확인 필요",
+   "context": "video masters measuring film length, 24–25 metadata standards, 75 Minnesota Historical Society, 67, 92 MIT Museum, 38 mold, mildew, and fungus conditions for growth, 60n, 61 identifying, 13–14, 18 removing, 21–22, 31–32 molecular sieves, 66, 67 / <!-- LAYOUT-UNCERTAIN: p.118 좌9/우9 블록 — 읽기 순서 시각 확인 필요 --> / [원서 p.117]"
+  },
+  {
+   "chunk": "index",
+   "line": 153,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "118",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "[원서 p.117] / <!-- LINEBREAK-UNCERTAIN --> / Moving Image Collections (MIC) / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "index",
+   "line": 156,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "118",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Moving Image Collections (MIC) / <!-- LINEBREAK-UNCERTAIN --> / project, 75, 76 Moviola, 21n MPEG-7, 75 multimedia collections, 2, 34–35 cataloging, 73 IPI storage recommendations, / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "index",
+   "line": 159,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "118",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "project, 75, 76 Moviola, 21n MPEG-7, 75 multimedia collections, 2, 34–35 cataloging, 73 IPI storage recommendations, / <!-- LINEBREAK-UNCERTAIN --> / 59–61 Museum of Modern Art, 1, 42 / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "index",
+   "line": 162,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "118",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "59–61 Museum of Modern Art, 1, 42 / <!-- LINEBREAK-UNCERTAIN --> / National Archives and Records / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "index",
+   "line": 165,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "118",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "National Archives and Records / <!-- LINEBREAK-UNCERTAIN --> / Administration, 1, 38 National Center for Jewish Film, 90 National Endowment for the Arts, 56 National Endowment for the / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "index",
+   "line": 168,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "118",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Administration, 1, 38 National Center for Jewish Film, 90 National Endowment for the Arts, 56 National Endowment for the / <!-- LINEBREAK-UNCERTAIN --> / Humanities, 56, 68, 91 National Film Preservation / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "index",
+   "line": 171,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "118",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Humanities, 56, 68, 91 National Film Preservation / <!-- LINEBREAK-UNCERTAIN --> / Foundation, 2, 56, 80, 81 National Fire Protection Association, 65 National Historical Publications and / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "index",
+   "line": 174,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "118",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Foundation, 2, 56, 80, 81 National Fire Protection Association, 65 National Historical Publications and / <!-- LINEBREAK-UNCERTAIN --> / Records Commission, 56 National Science Foundation, 75 Nebraska State Historical Society, 35, / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "index",
+   "line": 177,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "118",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Records Commission, 56 National Science Foundation, 75 Nebraska State Historical Society, 35, / <!-- LINEBREAK-UNCERTAIN --> / 69 negatives, 10 as source material, 37, 39, 46–47 newsreels, 88–89 9.5mm, 8, 9 nitrate blooms, 16 nitrate film case studies, 5, 69 decay, 16, 18, 69 disposal, 16 flammability, 8 history, 6–7, 8, 9 identification, 8 shipping, 53 storage, 60, 65–66 *Norman Bel Geddes’ Hamle"
+  },
+  {
+   "chunk": "index",
+   "line": 180,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "118",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "69 negatives, 10 as source material, 37, 39, 46–47 newsreels, 88–89 9.5mm, 8, 9 nitrate blooms, 16 nitrate film case studies, 5, 69 decay, 16, 18, 69 disposal, 16 flammability, 8 history, 6–7, 8, 9 identification, 8 shipping, 53 storage, 60, 65–66 *Norman Bel Geddes’ Hamlet*, 84 Northeast Historic Film, 68, 76, 89 / <!-- LINEBREAK-UNCERTAIN --> / OCLC, 38, 75 *Ojibwe Work*, 92 Oklahoma Historical "
+  },
+  {
+   "chunk": "index",
+   "line": 183,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "118",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "OCLC, 38, 75 *Ojibwe Work*, 92 Oklahoma Historical Society, 5 one-light transfer, 51 optical printing, 49, 51 optical sound tracks, 12–13, 47 oral history, 35 orphan films, 2–3 outtakes, 88–89 paper prints, 87 perforations damaged, 13, 20, 24, 25, 32 function, 6 in 8mm and 16mm, 7–8 repairing, 31 use in measuring shrinkage, 15 Photographic Activity Test (PAT), 66 polyester film history, 8, 9 IPI s"
+  },
+  {
+   "chunk": "index",
+   "line": 186,
+   "marker": "LAYOUT-UNCERTAIN",
+   "page": "119",
+   "why": "읽기 순서 확인 필요",
+   "context": "68 Preservation Calculator, 61 preservation copying. *See* duplication preservation masters and fair use, 81 geographic separation of, 63–64 in lab estimate, 51 inspecting, 55 role of, 4, 41, 42–45 storing, 68 types, 42, 46–48 presstape, 30, 31 production elements as acquisitions, 10, 21, 25n5 as source material, 37, 39 projectors, 6, 7, 11, 12 damage by, 13, 15, 20, 48 for archival screenings, 90"
+  },
+  {
+   "chunk": "index",
+   "line": 188,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "119",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "<!-- LAYOUT-UNCERTAIN: p.119 좌9/우10 블록 — 읽기 순서 시각 확인 필요 --> / <!-- LINEBREAK-UNCERTAIN --> / 16mm A and B rolls, 10 as source material, 37–39 case studies, 40, 57, 58, 76, 84, / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "index",
+   "line": 191,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "119",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "16mm A and B rolls, 10 as source material, 37–39 case studies, 40, 57, 58, 76, 84, / <!-- LINEBREAK-UNCERTAIN --> / 92 history, 7, 8, 11 plastic support, 9 reduction prints, 11, 37 reversal film, 10, 37, 40 shrinkage, 15 sound tracks, 12–13 small gauge film, 6, 12, 15, 20, 49–50. / *See also* 8mm; Super 8mm; 16mm Society of American Archivists, 28n,"
+  },
+  {
+   "chunk": "index",
+   "line": 196,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "119",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "*See also* 8mm; Super 8mm; 16mm Society of American Archivists, 28n, / <!-- LINEBREAK-UNCERTAIN --> / 38, 71 source material, 36–39, 43–44, 46–48 sound reader, 24 sound tracks, 12–13 duplication and restoration, 46–49, / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "index",
+   "line": 199,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "119",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "38, 71 source material, 36–39, 43–44, 46–48 sound reader, 24 sound tracks, 12–13 duplication and restoration, 46–49, / <!-- LINEBREAK-UNCERTAIN --> / 58 *See also* magnetic sound tracks; / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "index",
+   "line": 202,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "119",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "58 *See also* magnetic sound tracks; / <!-- LINEBREAK-UNCERTAIN --> / optical sound tracks South Dakota Art Museum, 87 splicers, 28–31 splices, 10, 13, 40, 50 cement v. tape, 28–29 handling damaged, 20, 24, 25 how to make, 28–31 splicing tape, 9, 25, 28, 29–30 for repairing perforations, 31 removal by hand, 29 split reels, 21, 23, 26–27, 33 for estimating film length, 25 sprocket holes. *See* perf"
+  },
+  {
+   "chunk": "index",
+   "line": 205,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "119",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "optical sound tracks South Dakota Art Museum, 87 splicers, 28–31 splices, 10, 13, 40, 50 cement v. tape, 28–29 handling damaged, 20, 24, 25 how to make, 28–31 splicing tape, 9, 25, 28, 29–30 for repairing perforations, 31 removal by hand, 29 split reels, 21, 23, 26–27, 33 for estimating film length, 25 sprocket holes. *See* perforations sprocket-driven equipment, 6, 28. *See* / <!-- LINEBREAK-UNCE"
+  },
+  {
+   "chunk": "index",
+   "line": 208,
+   "marker": "LAYOUT-UNCERTAIN",
+   "page": "120",
+   "why": "읽기 순서 확인 필요",
+   "context": "*also* specific types of equipment staging, 64–65 Steenbeck, 21n storage, 59–69 as cornerstone of preservation planning, 3–4, 42–44, 68 effect on film decay, 13–17, 69 for nitrate, 65–66 improving, 61–64 IPI recommendations, 59–61 monitoring, 64 removing films from, 64–65 vendors, 63–64 / <!-- LAYOUT-UNCERTAIN: p.120 좌3/우5 블록 — 읽기 순서 시각 확인 필요 --> / [원서 p.119]"
+  },
+  {
+   "chunk": "index",
+   "line": 212,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "120",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "[원서 p.119] / <!-- LINEBREAK-UNCERTAIN --> / Super 8mm duplication, 49–50 history, 7–8 plastic support, 9 reversal film, 10–11, 37 shrinkage, 15 sound tracks, 12–13 tail, 27, 28 tape splicer, 29–30 Technicolor, 11, 81 telecine, 43n5, 49, 51, 85 temperature effect on film, 14, 15, 16, 59–61 in storage areas, 62–63, 64–65, 68 measuring, 61, 64 thermohygrometer, 61, 64 35mm as source material, 5, 37, "
+  },
+  {
+   "chunk": "index",
+   "line": 215,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "120",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "Super 8mm duplication, 49–50 history, 7–8 plastic support, 9 reversal film, 10–11, 37 shrinkage, 15 sound tracks, 12–13 tail, 27, 28 tape splicer, 29–30 Technicolor, 11, 81 telecine, 43n5, 49, 51, 85 temperature effect on film, 14, 15, 16, 59–61 in storage areas, 62–63, 64–65, 68 measuring, 61, 64 thermohygrometer, 61, 64 35mm as source material, 5, 37, 39, 69 history, 6–7, 8, 11 plastic support, "
+  },
+  {
+   "chunk": "index",
+   "line": 218,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "120",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "UCLA Film and Television Archive, 1, / <!-- LINEBREAK-UNCERTAIN --> / 81, 86 ultrasonic film cleaners, 32, 51 damage to tape splices, 28 ultrasonic splicers, 9, 29, 30 U-matic videotape, 43 union catalog, 75 uniqueness, 34, 36–39 University of Alaska Fairbanks, 26, 40, / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "index",
+   "line": 221,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "120",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "81, 86 ultrasonic film cleaners, 32, 51 damage to tape splices, 28 ultrasonic splicers, 9, 29, 30 U-matic videotape, 43 union catalog, 75 uniqueness, 34, 36–39 University of Alaska Fairbanks, 26, 40, / <!-- LINEBREAK-UNCERTAIN --> / 91 University of South Carolina Newsfilm / <!-- LINEBREAK-UNCERTAIN -->"
+  },
+  {
+   "chunk": "index",
+   "line": 224,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "120",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "91 University of South Carolina Newsfilm / <!-- LINEBREAK-UNCERTAIN --> / Library, 88–89 University of Texas at Austin, 84 U.S. Copyright Office, 35, 78 Utah State Historical Society, 86–87 vaults, storage, 62, 63–64, 65–66, 68 VHS videotape, 43, 45, 55 video masters, 43, 45, 68, 85 videotape access use, 42–43, 85–86 in lab estimate, 51–52 IPI storage recommendations, 60–61 publication, 92 transfe"
+  },
+  {
+   "chunk": "index",
+   "line": 241,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "121",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "CHAIRMAN OF THE BOARD Roger L. Mayer / <!-- LINEBREAK-UNCERTAIN --> / DIRECTORS Laurence Fishburne I. Michael Heyman The Hon. Robert W. Kastenmeier Cecilia deMille Presley John Ptak Robert G. Rehme Eric J. Schwartz Martin Scorsese James H. Billington, The Librarian of Congress (*ex officio*) / ### STAFF Annette Melville, Director Jeff Lambert, Assistant Director David Wells, Programs Manager Rebec"
+  }
+ ],
+ "resolved": 0
 }
