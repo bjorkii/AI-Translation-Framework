@@ -51,10 +51,21 @@ def tone_anchor():
     m = re.search(r"^-\s*\*\*\[톤 앵커\]\*\*\s*(\S+)", g, re.M)
     return m.group(1) if m else None
 
+def visual_gate(cid):
+    """원문 구조가 확인되지 않은 청크는 번역 컨텍스트를 내주지 않는다."""
+    import subprocess, sys
+    r = subprocess.run([sys.executable, str(ROOT / "scripts" / "check_visual.py"), cid, "--gate"],
+                       capture_output=True, text=True)
+    if r.returncode:
+        print(r.stdout.rstrip())
+        print("\n중단했습니다. 시각 판독을 마친 뒤 다시 실행해 주세요.")
+        sys.exit(1)
+
 def main(cid, as_json=False):
     src = ROOT / "source" / (cid + ".md")
     if not src.exists():
         print("정규화된 원문이 없습니다: source/%s.md" % cid); return
+    visual_gate(cid)
     text = src.read_text(encoding="utf-8")
     entries = parse_glossary()
     hits = find_terms(text, entries)

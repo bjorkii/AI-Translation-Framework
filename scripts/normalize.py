@@ -95,19 +95,115 @@ def footnote_rule_y(page):
           and d["rect"].y0 > page.rect.height * 0.45]
     return min(ys) if ys else None
 
-def sidebar_rects(page):
-    """회색으로 채운 상자 = 사이드바(측주). 이미지 테두리(흰 채움)와 구분한다."""
-    out = []
+def box_rects(page, text_blocks):
+    """본문과 구분되는 상자를 찾는다.
+
+    두 종류가 있다.
+      · 회색으로 채운 상자  = 사이드바(측주)
+      · 테두리만 두른 상자  = 서식·기입표 (원서 p.52 견적서, p.74 숏 리스트)
+    사진 테두리도 테두리 상자지만 안에 텍스트가 없으므로 걸러진다.
+    """
+    cands, out = [], []
     for d in page.get_drawings():
-        f = d.get("fill")
         r = d["rect"]
-        if not f or d["type"] != "f":
+        if r.width < 90 or r.height < 55:
             continue
-        if r.width < 90 or r.height < 60:
+        f = d.get("fill")
+        gray = bool(f and d["type"] == "f"
+                    and abs(f[0]-f[1]) < .02 and abs(f[1]-f[2]) < .02 and 0.7 < f[0] < 0.97)
+        stroked = (d["type"] == "s")
+        if gray or stroked:
+            cands.append(((r.x0, r.y0, r.x1, r.y1), "사이드바" if gray else "상자"))
+    # 같은 상자가 '회색 채움'과 '테두리 선' 두 번 그려지는 경우가 많다.
+    # 거의 같은 사각형은 하나로 합치고, 회색(사이드바) 쪽 이름을 우선한다.
+    merged = []
+    for rect, kind in cands:
+        hit = None
+        for j, (r2, k2) in enumerate(merged):
+            if all(abs(a - b) <= 3 for a, b in zip(rect, r2)):
+                hit = j; break
+        if hit is None:
+            merged.append((rect, kind))
+        elif kind == "사이드바":
+            merged[hit] = (rect, kind)
+
+    for rect, kind in merged:
+        n = sum(1 for b in text_blocks if inside(b["bbox"], rect))
+        if n < 2:                      # 사진 테두리 등 텍스트 없는 상자는 제외
             continue
-        if abs(f[0]-f[1]) < .02 and abs(f[1]-f[2]) < .02 and 0.7 < f[0] < 0.97:
-            out.append((r.x0, r.y0, r.x1, r.y1))
+        out.append((rect, kind))
+
+    def area(r): return (r[2]-r[0]) * (r[3]-r[1])
+    # 큰 상자가 작은 상자를 품는 경우, 안쪽 것만 남긴다
+    out = [(r, k) for r, k in out
+           if not any(area(r2) < area(r) - 1 and inside(r2, r, pad=1) for r2, _ in out)]
     return out
+
+def box_to_markdown(blocks, stats):
+    """상자 안 블록을 행·열로 되살린다.
+
+    상자 안에는 서식(라벨:값)이나 표가 들어 있는 경우가 많다. y좌표로 행을,
+    x좌표로 열을 잡으면 조판 순서와 무관하게 원래 구조를 복원할 수 있다.
+    열이 하나뿐이면 그냥 문단으로 본다.
+    반환: (마크다운, 표로 재구성했는가)
+    """
+    rows = []
+    for b in sorted(blocks, key=lambda b: (round(b["y0"] / 6), b["x0"])):
+        if rows and abs(rows[-1][0] - b["y0"]) <= 6:
+            rows[-1][1].append(b)
+        else:
+            rows.append((b["y0"], [b]))
+    ncol = max(len(r[1]) for r in rows) if rows else 0
+    if ncol < 2:
+        # 상자 제목이 두 줄로 조판되면 별개 블록으로 잡힌다 — 대문자 제목끼리는 이어붙인다
+        parts = []
+        for _, cells in rows:
+            for b in cells:
+                t = styled_text(b["raw"], stats).replace("\n", " ").strip()
+                if not t:
+                    continue
+                if parts and is_caps_label(parts[-1]) and is_caps_label(t):
+                    parts[-1] = parts[-1] + " " + t
+                else:
+                    parts.append(t)
+        if parts and is_caps_label(parts[0].replace("**", "")):
+            parts[0] = "**%s**" % parts[0].replace("**", "")
+        return "\n>\n".join("> " + x for x in parts), False
+    # 열 경계: 여러 칸이 있는 행들의 x 좌표를 모아 군집화
+    # 열 개수는 '한 행에 들어간 칸의 최대 개수'로 정하고,
+    # x 좌표를 그 개수만큼 나눈다 (간격이 가장 크게 벌어지는 곳에서 자른다).
+    xs = sorted(round(b["x0"]) for _, cells in rows if len(cells) > 1 for b in cells)
+    if not xs:
+        return "\n\n".join(styled_text(b["raw"], stats) for _, cells in rows for b in cells), False
+    gaps = sorted(range(1, len(xs)), key=lambda i: xs[i] - xs[i-1], reverse=True)
+    cuts = sorted(gaps[:max(0, ncol - 1)])
+    groups, start = [], 0
+    for c in cuts + [len(xs)]:
+        if c > start:
+            groups.append(xs[start:c]); start = c
+    cols = [sum(g) / len(g) for g in groups] or [xs[0]]
+    def col_of(b):
+        return min(range(len(cols)), key=lambda j: abs(b["x0"] - cols[j]))
+    lead, table, tail = [], [], []
+    for _, cells in rows:
+        if len(cells) == 1 and not table:
+            lead.append(cells[0]); continue
+        if len(cells) == 1 and table:
+            tail.append(cells[0]); continue
+        line = [""] * len(cols)
+        for b in cells:
+            c = col_of(b)
+            t = styled_text(b["raw"], stats).replace("\n", " ")
+            line[c] = (line[c] + " " + t).strip()
+        table.append(line)
+    md = []
+    for b in lead:
+        md.append(styled_text(b["raw"], stats))
+    if table:
+        md.append(md_table(table))
+    for b in tail:
+        md.append(styled_text(b["raw"], stats))
+    return "\n\n".join(x for x in md if x), True
 
 def md_table(rows):
     """추출한 표를 마크다운 표로. 셀 안의 줄바꿈은 <br>로 살린다."""
@@ -170,9 +266,9 @@ def styled_text(block, stats, mark_refs=False):
                 continue
             if (mark_refs and base and sp["size"] <= base - 1.5
                     and re.fullmatch(r"\s*\d{1,2}\s*", t)):
-                parts.append((FNMARK_O + t.strip() + FNMARK_C, False))
+                parts.append((FNMARK_O + t.strip() + FNMARK_C, (False, False)))
                 continue
-            parts.append((t, bool(sp["flags"] & 2)))
+            parts.append((t, (bool(sp["flags"] & 2), bool(sp["flags"] & 16))))
         if not parts:
             continue
         if frags:
@@ -187,15 +283,27 @@ def styled_text(block, stats, mark_refs=False):
                 frags.append((" ", frags[-1][1]))
         frags.extend(parts)
     # 이탤릭 구간을 묶어 표시
+    def emit(buf, style):
+        """style = (이탤릭, 볼드). 원서의 강조를 마크다운으로 옮긴다."""
+        if not style or not any(style) or not buf.strip():
+            return buf
+        it, bd = style
+        lead = buf[:len(buf) - len(buf.lstrip())]
+        trail = buf[len(buf.rstrip()):]
+        core = buf.strip()
+        if bd:  core = "**%s**" % core
+        if it:  core = "*%s*" % core
+        return "%s%s%s" % (lead, core, trail)           # 앞뒤 공백을 표시 밖으로
+
     out, buf, cur = "", "", None
     for t, it in frags:
         if cur is None:
             cur = it
         if it != cur:
-            out += ("*%s*" % buf.strip()) if (cur and buf.strip()) else buf
+            out += emit(buf, cur)
             buf, cur = "", it
         buf += t
-    out += ("*%s*" % buf.strip()) if (cur and buf.strip()) else buf
+    out += emit(buf, cur)
     return re.sub(r"\s{2,}", " ", out).strip()
 
 def join_lines(lines, stats):
@@ -229,6 +337,66 @@ def detect_body_size(doc, p0, p1):
                     if sp["text"].strip(): c[round(sp["size"], 1)] += len(sp["text"])
     return c.most_common(1)[0][0] if c else 11.0
 
+def apply_overrides(text, chap):
+    """시각 판독 결과(source/overrides/<청크>.yaml)를 반영한다.
+
+    사람(또는 AI)이 원본 페이지를 직접 보고 내린 판단을 파일로 남겨두면,
+    원문을 다시 생성해도 그 판단이 사라지지 않는다.
+
+    verdict
+      ok      구조에 문제 없음 — 표시만 제거
+      join    앞 문단과 이어지는 한 문장 — 합치고 표시 제거
+      split   별개의 문단이 맞음 — 표시만 제거
+      replace text: 로 준 내용으로 해당 블록을 교체
+    """
+    import os
+    f = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                     "source", "overrides", chap + ".yaml")
+    if not os.path.exists(f):
+        return text, 0
+    try:
+        import yaml
+        d = yaml.safe_load(open(f, encoding="utf-8")) or {}
+    except Exception:
+        return text, 0
+    rules = d.get("resolved") or []
+    if not rules:
+        return text, 0
+
+    def page_at(pos):
+        m = re.search(r"\[원서 p\.([^\]]+)\]", text[pos:])
+        return m.group(1) if m else None
+
+    applied = 0
+    for r in rules:
+        key = r.get("marker", "")
+        pg = str(r.get("page", ""))
+        verdict = r.get("verdict", "ok")
+        want = r.get("match")
+        pat = re.compile(r"\n*<!-- " + re.escape(key) + r"[^>]*-->\n")
+        pos = 0
+        while True:
+            m = pat.search(text, pos)
+            if not m:
+                break
+            if page_at(m.start()) != pg:
+                pos = m.end(); continue
+            after = text[m.end():m.end() + 120]
+            if want and not after.lstrip().startswith(want):
+                pos = m.end(); continue
+            if verdict == "join":
+                text = text[:m.start()] + " " + text[m.end():]
+            elif verdict == "replace":
+                nxt = text.find("\n\n", m.end())
+                nxt = nxt if nxt > 0 else len(text)
+                text = text[:m.start()] + "\n\n" + (r.get("text") or "").strip() + text[nxt:]
+            else:                       # ok / split
+                text = text[:m.start()] + "\n\n" + text[m.end():]
+            applied += 1
+            pos = m.start()
+            break
+    return re.sub(r"\n{3,}", "\n\n", text), applied
+
 def main(pdf, p0, p1, chap, outpath=None):
     doc = pymupdf.open(pdf); labels = page_labels(doc)
     build_lexicon(doc)
@@ -236,7 +404,7 @@ def main(pdf, p0, p1, chap, outpath=None):
     print(f"  (본문 폰트 자동 추정: {BODY}pt)")
     stats = dict(pages=0, blocks=0, paras=0, dehyphen=0, uncertain=0, headers_removed=0,
                  layout_uncertain=0, headings=0, captions=0, fn_refs=0, fn_defs=0, labels=0,
-                 tables=0, table_cells=0, sidebars=0)
+                 tables=0, table_cells=0, sidebars=0, visual_check=0)
     out, notes = [], []
     carry_idx = None      # out 리스트에서 직전 본문 문단의 위치
     pending = {"mark": None, "warn": None}   # 아직 배치하지 않은 페이지 마커 / 레이아웃 경고
@@ -275,8 +443,12 @@ def main(pdf, p0, p1, chap, outpath=None):
                                "rows": len(data), "cols": ncol})
         except Exception:
             pass
-        # (2) 회색 상자 사이드바
-        sboxes = sidebar_rects(page)
+        # (2) 상자(사이드바 / 서식 상자)
+        _tb = [dict(bbox=b["bbox"]) for b in page.get_text("dict")["blocks"]
+               if b.get("type") == 0]
+        boxes = box_rects(page, _tb)
+        sboxes = [r for r, _ in boxes]
+        bkinds = [k for _, k in boxes]
         # (3) 각주 구분선 — 이 선 아래만 각주 정의로 인정
         rule_y = footnote_rule_y(page)
         body, fndefs, sides = [], [], {i: [] for i in range(len(sboxes))}
@@ -329,13 +501,15 @@ def main(pdf, p0, p1, chap, outpath=None):
             txt = FNREF_MARK.sub("", txt)   # 표시용 원문(참조 제거)
             bare = txt                      # 문장 종료 판정용
 
+            # 제목·라벨은 이미 마크다운 서식을 붙이므로 볼드 표시를 겹쳐 쓰지 않는다
+            head = txt.replace("**", "")
             if b["size"] >= 15:
-                flush_mark(); out.append(f"\n## {txt}\n"); stats["headings"] += 1; carry_idx = None; continue
+                flush_mark(); out.append(f"\n## {head}\n"); stats["headings"] += 1; carry_idx = None; continue
             if b["size"] >= 13:
-                flush_mark(); out.append(f"\n### {txt}\n"); stats["headings"] += 1; carry_idx = None; continue
-            if (TABLE_T.match(txt) and len(txt) < 110) or is_caps_label(txt):
+                flush_mark(); out.append(f"\n### {head}\n"); stats["headings"] += 1; carry_idx = None; continue
+            if (TABLE_T.match(head) and len(head) < 110) or is_caps_label(head):
                 # 표 제목 / 대문자 라벨: 본문 흐름에서 분리하고 연속 판정 대상에서 제외
-                flush_mark(); out.append(f"\n**{txt}**\n"); stats["labels"] += 1; carry_idx = None; continue
+                flush_mark(); out.append(f"\n**{head}**\n"); stats["labels"] += 1; carry_idx = None; continue
             if b["size"] < BODY - 0.4:
                 # 본문보다 작은 폰트 = 캡션/표/사이드바 등 구조 요소.
                 # 본문 문단 흐름을 끊지 않도록 carry_idx를 유지한 채 통과시킨다.
@@ -378,17 +552,20 @@ def main(pdf, p0, p1, chap, outpath=None):
             stats["tables"] += 1
             out.append("\n<!-- 표: %d행 %d열 · 원서 p.%s -->\n%s\n"
                        % (t["rows"], t["cols"], label, t["md"]))
-        # 사이드바(측주 상자)
+        # 상자(사이드바 / 서식 상자)
         for i, blocks_ in sides.items():
             if not blocks_:
                 continue
-            blocks_.sort(key=lambda b: b["y0"])
+            kind = bkinds[i] if i < len(bkinds) else "상자"
             stats["sidebars"] += 1
             flush_mark()
-            body_md = "\n>\n".join("> " + styled_text(b["raw"], stats).replace("\n", " ")
-                                   for b in blocks_)
-            out.append("\n<!-- 사이드바 시작 · 원서 p.%s -->\n%s\n<!-- 사이드바 끝 -->\n"
-                       % (label, body_md))
+            body_md, as_table = box_to_markdown(blocks_, stats)
+            warn = ("\n<!-- VISUAL-CHECK: 원서 p.%s 상자를 행·열로 되살렸습니다. "
+                    "원본과 대조해 주세요. -->" % label) if as_table else ""
+            if as_table:
+                stats["visual_check"] += 1
+            out.append("\n<!-- %s 시작 · 원서 p.%s -->%s\n%s\n<!-- %s 끝 -->\n"
+                       % (kind, label, warn, body_md, kind))
 
         # 각주 정의 -> 페이지 텍스트 말미 (페이지 마커 직전)
         for b in fndefs:
@@ -400,6 +577,8 @@ def main(pdf, p0, p1, chap, outpath=None):
 
     flush_mark(); flush_warn()
     text = re.sub(r"\n{3,}", "\n\n", "".join(out))
+    text, n_ovr = apply_overrides(text, chap)
+    stats["overrides"] = n_ovr
     if outpath: open(outpath, "w").write(text)
     print("=== 정규화 통계 (v3) ===")
     for k, v in stats.items(): print(f"  {k}: {v}")

@@ -9,7 +9,7 @@
    {
     "page": "99",
     "chunk": "gloss",
-    "text": "A and B rolls Paired production elements that are printed in succession to hide transitions or splices between shots and to produce fades or dissolves."
+    "text": "Bellardo and Lynn Lady Bellardo. **A and B rolls** Paired production elements that are printed in succession to hide transitions or splices between shots and to produce fades or dissolves."
    }
   ],
   "hits": 7,
@@ -28,9 +28,9 @@
     "text": "Using the VHS access copy of the answer print as a quality control tool is not satisfactory."
    },
    {
-    "page": "99",
-    "chunk": "gloss",
-    "text": "Access copy Film, video, or digital copy used for public service."
+    "page": "81",
+    "chunk": "ch08",
+    "text": "Film archives interpret this provision, as well as “fair use,” described in 8.7, to embrace the creation of a preservation master, answer print, and access copy."
    }
   ],
   "hits": 5,
@@ -43,17 +43,17 @@
  "Acetate": {
   "quotes": [
    {
-    "page": "100",
-    "chunk": "gloss",
-    "text": "Film with an acetate base is often called acetate film."
+    "page": "9",
+    "chunk": "ch02",
+    "text": "Unlike nitrate or acetate film, polyester cannot be spliced with currently available film cement."
    },
    {
-    "page": "60",
+    "page": "62",
     "chunk": "ch06",
-    "text": "Nitrate and acetate base film should be frozen if there are signs of decay."
+    "text": "Acetate films in advanced decay should be copied immediately or frozen until duplication is feasible."
    }
   ],
-  "hits": 33,
+  "hits": 27,
   "chunks": [
    "ch02",
    "ch05",
@@ -64,17 +64,17 @@
  "Acetate decay": {
   "quotes": [
    {
-    "page": "15",
+    "page": "14",
     "chunk": "ch02",
-    "text": "Although shrinkage is a major symptom of acetate decay, it also affects nitrate and can be aggravated by overly dry storage conditions."
+    "text": "As acetate film decays, it shrinks, loses flexibility, curls, and warps. > **MEASURING ACETATE DECAY WITH A-D STRIPS** > > IPI's A-D Strips are an easy way to check for acetate decay."
    },
    {
     "page": "99",
     "chunk": "gloss",
-    "text": "Acetate decay Chemical deterioration of acetate plastic accelerated by high relative humidity and temperature."
+    "text": "Film base introduced as safe, nonflammable substitute for nitrate base film. **Acetate decay** Chemical deterioration of acetate plastic accelerated by high relative humidity and temperature."
    }
   ],
-  "hits": 10,
+  "hits": 9,
   "chunks": [
    "ch02",
    "gloss"
@@ -90,7 +90,7 @@
    {
     "page": "99",
     "chunk": "gloss",
-    "text": "ACVL Association of Cinema and Video Laboratories (www.acvl.org)."
+    "text": "Also known as vinegar syndrome because of the odor released during the decay process. **ACVL** Association of Cinema and Video Laboratories (www.acvl.org)."
    }
   ],
   "hits": 2,
@@ -104,12 +104,12 @@
    {
     "page": "14",
     "chunk": "ch02",
-    "text": "Instructions are found in IPI’s User's Guide for A-D Strips, which can be downloaded from www.rit.edu/ipi. > > A-D Strips are not designed for use with nitrate or polyester film."
+    "text": "Instructions are found in IPI’s *User's Guide for A-D Strips*, which can be downloaded from www.rit.edu/ipi. > > A-D Strips are not designed for use with nitrate or polyester film."
    },
    {
     "page": "99",
     "chunk": "gloss",
-    "text": "A-D Strips Diagnostic tool developed by the Image Permanence Institute to test the level of acetate decay in cellulose acetate base film."
+    "text": "International organization serving film and video laboratory professionals. **A-D Strips** Diagnostic tool developed by the Image Permanence Institute to test the level of acetate decay in cellulose acetate base film. **AMIA** Association of Moving Image Archivists (www.amianet.org)."
    }
   ],
   "hits": 3,
@@ -123,7 +123,7 @@
    {
     "page": "72",
     "chunk": "ch07",
-    "text": "Sources like AMIM2 and the AMIA Compendiumdefine how these data elements are applied."
+    "text": "Sources like *AMIM2* and the *AMIA Compendium* define how these data elements are applied."
    },
    {
     "page": "50",
@@ -143,17 +143,17 @@
  "Analog videotape": {
   "quotes": [
    {
-    "page": "108",
-    "chunk": "gloss",
-    "text": "VHS videotape A format of one-half-inch analog videotape that is packaged in a cassette."
-   },
-   {
     "page": "43",
     "chunk": "ch05",
-    "text": "Under most conditions, analog videotape retains an acceptable signal for 20 to 30 years, although poor handling, dirty equipment, and heat and humidity will, of course, shorten its life span."
+    "text": "Demand, along with the other factors discussed in chapter 4, should also be considered when prioritizing films for full film-to-film preservation. **ANALOG VIDEOTAPE.** Analog video is a flexible and inexpensive access tool."
+   },
+   {
+    "page": "99",
+    "chunk": "gloss",
+    "text": "Professional organization for film, video, and television archivists and preservationists. **Analog videotape** Videotape that records sound and image information using frequency-modulated signals."
    }
   ],
-  "hits": 6,
+  "hits": 3,
   "chunks": [
    "ch05",
    "gloss"
@@ -172,12 +172,12 @@
     "text": "The answer print is also based on the per-foot charge for new film stock."
    },
    {
-    "page": "106",
-    "chunk": "gloss",
-    "text": "Usually accomplished through review of the answer print."
+    "page": "81",
+    "chunk": "ch08",
+    "text": "Film archives interpret this provision, as well as “fair use,” described in 8.7, to embrace the creation of a preservation master, answer print, and access copy."
    }
   ],
-  "hits": 18,
+  "hits": 17,
   "chunks": [
    "ch05",
    "ch08",
@@ -194,7 +194,7 @@
    {
     "page": "100",
     "chunk": "gloss",
-    "text": "Balance stripe On composite prints the magnetic stripe affixed to the film edge opposite the edge carrying the magnetic sound track."
+    "text": "**Balance stripe** On composite prints the magnetic stripe affixed to the film edge opposite the edge carrying the magnetic sound track."
    }
   ],
   "hits": 3,
@@ -210,17 +210,17 @@
   ],
   "quotes": [
    {
-    "page": "100",
-    "chunk": "gloss",
-    "text": "Film with an acetate base is often called acetate film."
-   },
-   {
     "page": "28",
     "chunk": "ch03",
     "text": "The tape method works for all film bases and is reversible."
+   },
+   {
+    "page": "9",
+    "chunk": "ch02",
+    "text": "Polyester is the toughest and most chemically stable film base used today."
    }
   ],
-  "hits": 56,
+  "hits": 48,
   "chunks": [
    "ch02",
    "ch03",
@@ -233,55 +233,38 @@
  "Betacam SP": {
   "quotes": [
    {
-    "page": "100",
-    "chunk": "gloss",
-    "text": "Betacam SP A format of analog videotape that measures one-half inch in width and is packaged in a cassette."
-   },
-   {
     "page": "43",
     "chunk": "ch05",
     "text": "For more than a decade the video format of choice was BetaCam SP, the half-inch analog tape that gained acceptance in the television industry in the 1980s."
    }
   ],
-  "hits": 2,
+  "hits": 1,
   "chunks": [
-   "ch05",
-   "gloss"
+   "ch05"
   ]
  },
  "Binder": {
   "quotes": [
    {
-    "page": "10",
+    "page": "9",
     "chunk": "ch02",
-    "text": "Emulsion Gelatin binder Silver particle Base Cross section of black-and-white film."
-   },
-   {
-    "page": "100",
-    "chunk": "gloss",
-    "text": "Binder In motion picture film, the material in the emulsion that holds the imageforming particles or dyes."
+    "text": "Polyester is sold under various trade names, such as Cronar (Dupont) and ESTAR (Kodak). **EMULSION.** The emulsion carries the photosensitive materials in a gelatin binder, forming the image-creating layer."
    }
   ],
-  "hits": 4,
+  "hits": 3,
   "chunks": [
-   "ch02",
-   "gloss"
+   "ch02"
   ]
  },
  "Blowup": {
   "quotes": [
    {
-    "page": "100",
-    "chunk": "gloss",
-    "text": "Blowup Film made in a larger format than the original, such as a 16mm print made from an 8mm original."
-   },
-   {
     "page": "102",
     "chunk": "gloss",
-    "text": "Also known as blowup."
+    "text": "Also known as blowup. **Equalization** In sound preservation, the process of changing the level or volume of selected frequency ranges to improve overall sound quality. **Exhibition print** Positive created for film screenings."
    }
   ],
-  "hits": 2,
+  "hits": 1,
   "chunks": [
    "gloss"
   ]
@@ -289,14 +272,14 @@
  "Buffered": {
   "quotes": [
    {
+    "page": "100",
+    "chunk": "gloss",
+    "text": "Also called enlargement. **Buffered** Cardboard that has been chemically treated to adjust acid content prior to its use in film containers. **Camera original** Film exposed in the camera. **Cellulose acetate** Family of transparent plastics introduced as a nonflammable substitute for cellulose nitrate base film."
+   },
+   {
     "page": "66",
     "chunk": "ch06",
     "text": "Cardboard boxes should be either neutral or buffered and composed of lignin-free materials."
-   },
-   {
-    "page": "100",
-    "chunk": "gloss",
-    "text": "Buffered Cardboard that has been chemically treated to adjust acid content prior to its use in film containers."
    }
   ],
   "hits": 2,
@@ -313,9 +296,9 @@
     "text": "Among the factors to consider are (1) number of copies known to exist in other collections, (2) number of generations of your film from the camera original, (3) completeness of your copy (gauged by accounts of the film’s original length), and (4) its physical condition."
    },
    {
-    "page": "10",
-    "chunk": "ch02",
-    "text": "Thus, with reversal film, the camera original can become the projection print without use of an intervening negative."
+    "page": "100",
+    "chunk": "gloss",
+    "text": "Also called enlargement. **Buffered** Cardboard that has been chemically treated to adjust acid content prior to its use in film containers. **Camera original** Film exposed in the camera. **Cellulose acetate** Family of transparent plastics introduced as a nonflammable substitute for cellulose nitrate base film."
    }
   ],
   "hits": 3,
@@ -328,17 +311,17 @@
  "Cellulose acetate": {
   "quotes": [
    {
-    "page": "100",
-    "chunk": "gloss",
-    "text": "Can be made of cellulose nitrate, cellulose acetate, or polyester plastic."
+    "page": "8",
+    "chunk": "ch02",
+    "text": "Both the base and the emulsion are subject to decay. **FILM BASES.** Over the years manufacturers have used three types of transparent plastic for the film base: first cellulose nitrate, then cellulose acetate, and most recently polyester."
    },
    {
-    "page": "9",
-    "chunk": "ch02",
-    "text": "Manufacturers found a safe substitute for cellulose nitrate by exploring plastics in the cellulose acetate family."
+    "page": "100",
+    "chunk": "gloss",
+    "text": "Also called enlargement. **Buffered** Cardboard that has been chemically treated to adjust acid content prior to its use in film containers. **Camera original** Film exposed in the camera. **Cellulose acetate** Family of transparent plastics introduced as a nonflammable substitute for cellulose nitrate base film."
    }
   ],
-  "hits": 9,
+  "hits": 7,
   "chunks": [
    "ch02",
    "gloss"
@@ -349,12 +332,12 @@
    {
     "page": "9",
     "chunk": "ch02",
-    "text": "FILM GAUGES AND THEIR SUPPORT MATERIAL Cellulose diacetate motion picture film is thought to have been introduced in 1909.The first extant example dates from 1912."
+    "text": "FILM GAUGES AND THEIR SUPPORT MATERIAL** *Cellulose diacetate motion picture film is thought to have been introduced in 1909.The first extant example dates from 1912."
    },
    {
-    "page": "101",
+    "page": "100",
     "chunk": "gloss",
-    "text": "Diacetate Short for cellulose diacetate."
+    "text": "Film with an acetate base is often called acetate film. **Cellulose diacetate** Earliest safety film base. **Cellulose nitrate** Transparent plastic used as the base in the earliest 35mm film stock."
    }
   ],
   "hits": 5,
@@ -368,7 +351,7 @@
    {
     "page": "105",
     "chunk": "gloss",
-    "text": "Nitrate decay Chemical degradation of cellulose nitrate plastic film base that is accelerated by high relative humidity and temperature."
+    "text": "It is printed to produce a positive for projection and viewing. **Nitrate** Short for cellulose nitrate."
    },
    {
     "page": "16",
@@ -376,7 +359,7 @@
     "text": "Nitrate degradation is a chemical process that occurs because of two factors: the nature of cellulose nitrate plastic itself and the way that the film is stored."
    }
   ],
-  "hits": 16,
+  "hits": 15,
   "chunks": [
    "ch02",
    "ch06",
@@ -386,47 +369,31 @@
  "Cellulose triacetate": {
   "quotes": [
    {
-    "page": "100",
+    "page": "108",
     "chunk": "gloss",
-    "text": "Cellulose triacetate Strongest acetate film base used for motion picture film."
+    "text": "Sometimes called grading. **Triacetate** Short for cellulose triacetate."
    },
    {
-    "page": "9",
+    "page": "10",
     "chunk": "ch02",
-    "text": "Diacetate was followed in the 1930s by cellulose acetate propionate and cellulose acetate butyrate, and in the late 1940s by cellulose triacetate."
+    "text": "Each brought a technical improvement: Cellulose acetate propionate and cellulose acetate butyrate overcame the physical weakness of cellulose diacetate but were not as strong as cellulose triacetate."
    }
   ],
-  "hits": 5,
+  "hits": 4,
   "chunks": [
    "ch02",
    "gloss"
   ]
  },
  "Check print": {
-  "quotes": [
-   {
-    "page": "100",
-    "chunk": "gloss",
-    "text": "Check print Usually a one-light positive film copy created to check the quality of the production, printing, or preservation elements."
-   }
-  ],
-  "hits": 1,
-  "chunks": [
-   "gloss"
-  ]
+  "quotes": [],
+  "hits": 0,
+  "chunks": []
  },
  "Color correction": {
-  "quotes": [
-   {
-    "page": "100",
-    "chunk": "gloss",
-    "text": "Color correction In the transfer of film to video, the process of adjusting the color and brightness from scene to scene."
-   }
-  ],
-  "hits": 1,
-  "chunks": [
-   "gloss"
-  ]
+  "quotes": [],
+  "hits": 0,
+  "chunks": []
  },
  "Color fading": {
   "quotes": [
@@ -436,12 +403,12 @@
     "text": "Heat and high relative humidity are the main culprits in color fading."
    },
    {
-    "page": "50",
-    "chunk": "ch05",
-    "text": "Are there separate sound elements? • What decay and damage does the film exhibit: color fading, shrinkage, warping and curling, image deterioration, tears, broken splices, damaged perforations, vinegar syndrome? • What masters and access copies are required for your project? • Will you add credits or other introductory material to the masters and access copies?"
+    "page": "100",
+    "chunk": "gloss",
+    "text": "The term is used to describe adjustments made during transfer of either black-and-white or color film. **Color fading** Decay of photographic images caused by the chemical instability of the dyes."
    }
   ],
-  "hits": 3,
+  "hits": 4,
   "chunks": [
    "ch02",
    "ch05",
@@ -453,12 +420,12 @@
    {
     "page": "100",
     "chunk": "gloss",
-    "text": "Color reversal intermediate Film stock introduced in the late 1960s for making internegatives directly from negatives or internegatives and interpositives directly from interpositives."
+    "text": "As the dyes break down, contrast is also lost and the film eventually takes on a washed-out monochromatic look. **Color reversal intermediate** Film stock introduced in the late 1960s for making internegatives directly from negatives or internegatives and interpositives directly from interpositives."
    },
    {
     "page": "101",
     "chunk": "gloss",
-    "text": "CRI Color reversal intermediate."
+    "text": "Also known as combined print or married print. **Conservation** Processes and activities resulting in the protection of the film original. **Contact printing** Laboratory process in which a film copy is made through direct physical contact between the source material and raw film stock. **Core** Hub on which film is wound for storage. **CRI** Color reversal intermediate."
    }
   ],
   "hits": 2,
@@ -495,17 +462,17 @@
   ],
   "quotes": [
    {
-    "page": "4",
-    "chunk": "ch01",
-    "text": "Conservation is the protection of the original film artifact."
-   },
-   {
     "page": "42",
     "chunk": "ch05",
     "text": "Short of film-to-film duplication, there are significant steps that repositories can take to make the film accessible as part of their conservation strategy."
+   },
+   {
+    "page": "4",
+    "chunk": "ch01",
+    "text": "Like other museum objects and library materials, film needs continuing care to extend its useful life. **CONSERVATION.** Conservation is the protection of the original film artifact."
    }
   ],
-  "hits": 10,
+  "hits": 9,
   "chunks": [
    "ch01",
    "ch03",
@@ -519,7 +486,7 @@
    {
     "page": "101",
     "chunk": "gloss",
-    "text": "Contact printing Laboratory process in which a film copy is made through direct physical contact between the source material and raw film stock."
+    "text": "Also known as combined print or married print. **Conservation** Processes and activities resulting in the protection of the film original. **Contact printing** Laboratory process in which a film copy is made through direct physical contact between the source material and raw film stock. **Core** Hub on which film is wound for storage. **CRI** Color reversal intermediate."
    }
   ],
   "hits": 1,
@@ -530,17 +497,17 @@
  "Core": {
   "quotes": [
    {
-    "page": "103",
-    "chunk": "gloss",
-    "text": "Head out Film wound on a reel or core so that its beginning is on the outside."
-   },
-   {
     "page": "26",
     "chunk": "ch03",
     "text": "A split reel consists of two flat discs that “split” apart to accommodate the core."
+   },
+   {
+    "page": "75",
+    "chunk": "ch07",
+    "text": "The Dublin Core Metadata Element Set and the MPEG-7 Multimedia Content Description Interface are standardized sets of data elements for describing physical and digital materials."
    }
   ],
-  "hits": 34,
+  "hits": 31,
   "chunks": [
    "ch03",
    "ch04",
@@ -553,14 +520,14 @@
  "CRI": {
   "quotes": [
    {
-    "page": "100",
-    "chunk": "gloss",
-    "text": "Often abbreviated as CRI."
-   },
-   {
     "page": "101",
     "chunk": "gloss",
-    "text": "CRI Color reversal intermediate."
+    "text": "Also known as combined print or married print. **Conservation** Processes and activities resulting in the protection of the film original. **Contact printing** Laboratory process in which a film copy is made through direct physical contact between the source material and raw film stock. **Core** Hub on which film is wound for storage. **CRI** Color reversal intermediate."
+   },
+   {
+    "page": "100",
+    "chunk": "gloss",
+    "text": "Often abbreviated as CRI. **Combined print** Film positive carrying both picture and sound track."
    }
   ],
   "hits": 2,
@@ -578,7 +545,7 @@
    {
     "page": "101",
     "chunk": "gloss",
-    "text": "Data logger Electronic instrument used to record temperature, relative humidity, light intensity, and other variables that affect collection materials."
+    "text": "Film stock introduced in the late 1960s for making internegatives directly from negatives or internegatives and interpositives directly from interpositives. **Data logger** Electronic instrument used to record temperature, relative humidity, light intensity, and other variables that affect collection materials. **Diacetate** Short for cellulose diacetate."
    }
   ],
   "hits": 4,
@@ -592,12 +559,12 @@
    {
     "page": "9",
     "chunk": "ch02",
-    "text": "FILM GAUGES AND THEIR SUPPORT MATERIAL Cellulose diacetate motion picture film is thought to have been introduced in 1909.The first extant example dates from 1912."
+    "text": "FILM GAUGES AND THEIR SUPPORT MATERIAL** *Cellulose diacetate motion picture film is thought to have been introduced in 1909.The first extant example dates from 1912."
    },
    {
-    "page": "101",
+    "page": "100",
     "chunk": "gloss",
-    "text": "Diacetate Short for cellulose diacetate."
+    "text": "Film with an acetate base is often called acetate film. **Cellulose diacetate** Earliest safety film base. **Cellulose nitrate** Transparent plastic used as the base in the earliest 35mm film stock."
    }
   ],
   "hits": 6,
@@ -609,14 +576,14 @@
  "Digi Beta": {
   "quotes": [
    {
+    "page": "101",
+    "chunk": "gloss",
+    "text": "Also known as DBC, Digi Beta, and Digibeta. **Digital videotape** Videotape that stores picture and sound as numeric values."
+   },
+   {
     "page": "43",
     "chunk": "ch05",
     "text": "With the increasing popularity of digital tape, some organizations have switched to half-inch Digital Betacam tape (also known as Digi Beta or DBC), which is now preferred for broadcast."
-   },
-   {
-    "page": "101",
-    "chunk": "gloss",
-    "text": "Also known as DBC, Digi Beta, and Digibeta."
    }
   ],
   "hits": 4,
@@ -630,7 +597,7 @@
    {
     "page": "101",
     "chunk": "gloss",
-    "text": "Digital Betacam A format of one-half-inch digital videotape that is packaged in a cassette."
+    "text": "Early safety film base. **Digi Beta** Short for Digital Betacam. **Digital Betacam** A format of one-half-inch digital videotape that is packaged in a cassette."
    },
    {
     "page": "43",
@@ -638,7 +605,7 @@
     "text": "With the increasing popularity of digital tape, some organizations have switched to half-inch Digital Betacam tape (also known as Digi Beta or DBC), which is now preferred for broadcast."
    }
   ],
-  "hits": 6,
+  "hits": 5,
   "chunks": [
    "ch05",
    "gloss"
@@ -647,14 +614,14 @@
  "Digital videotape": {
   "quotes": [
    {
-    "page": "101",
-    "chunk": "gloss",
-    "text": "Digital Betacam A format of one-half-inch digital videotape that is packaged in a cassette."
-   },
-   {
     "page": "85",
     "chunk": "ch09",
     "text": "As costs drop, preservationists are moving to digital videotape as the medium for the video master."
+   },
+   {
+    "page": "101",
+    "chunk": "gloss",
+    "text": "Also known as DBC, Digi Beta, and Digibeta. **Digital videotape** Videotape that stores picture and sound as numeric values."
    }
   ],
   "hits": 4,
@@ -673,7 +640,7 @@
    {
     "page": "39",
     "chunk": "ch04",
-    "text": "ASSESSING THE UNIQUENESS OF FILM MATERIALS: SUMMARY An interpositive is a color production or preservation element made from a negative original and then used to create a duplicate negative from which many prints can be generated."
+    "text": "ASSESSING THE UNIQUENESS OF FILM MATERIALS: SUMMARY** *An interpositive is a color production or preservation element made from a negative original and then used to create a duplicate negative from which many prints can be generated."
    }
   ],
   "hits": 4,
@@ -687,10 +654,10 @@
    {
     "page": "101",
     "chunk": "gloss",
-    "text": "For black-and-white film the duplicating positive is called a finegrain master; for color film, it is called an interpositive."
+    "text": "Sometimes shortened to dupe negative or dupe neg. **Duplicating positive** Generic term for the new positive intermediate created during preservation copying from a negative original."
    }
   ],
-  "hits": 6,
+  "hits": 5,
   "chunks": [
    "gloss"
   ]
@@ -703,12 +670,12 @@
     "text": "Acetate films in advanced decay should be copied immediately or frozen until duplication is feasible."
    },
    {
-    "page": "13",
-    "chunk": "ch02",
-    "text": "But scratches are permanent, though they sometimes can be minimized in the laboratory during duplication."
+    "page": "43",
+    "chunk": "ch05",
+    "text": "For reference service, organizations are also increasingly relying on video copies of works protected through film-to-film duplication."
    }
   ],
-  "hits": 39,
+  "hits": 37,
   "chunks": [
    "ch01",
    "ch02",
@@ -728,18 +695,17 @@
    {
     "page": "45",
     "chunk": "ch05",
-    "text": "DUPLICATING YOUR FILM: OPTIONS AND TRADE-OFFS | Duplication Approach | Benefits | Limitations | |---|---|---| | Film, along with film print and VHS tape or DVD access copy | • Long-term protection of original."
+    "text": "DUPLICATING YOUR FILM: OPTIONS AND TRADE-OFFS** | Duplication Approach | Benefits | Limitations | |---|---|---| | Film, along with film print and VHS tape or DVD access copy | • Long-term protection of original."
    }
   ],
-  "hits": 14,
+  "hits": 13,
   "chunks": [
    "ch01",
    "ch03",
    "ch05",
    "ch06",
    "ch08",
-   "ch09",
-   "gloss"
+   "ch09"
   ]
  },
  "Edge code": {
@@ -755,13 +721,12 @@
     "text": "For 8mm edge codes used after 1965, see the Web site www.filmforever.org."
    }
   ],
-  "hits": 17,
+  "hits": 16,
   "chunks": [
    "appA",
    "ch02",
    "ch03",
-   "ch04",
-   "gloss"
+   "ch04"
   ]
  },
  "8mm": {
@@ -772,12 +737,12 @@
     "text": "Because of its small size, 8mm film is usually kept on reels."
    },
    {
-    "page": "106",
-    "chunk": "gloss",
-    "text": "Regular 8mm Term applied to 8mm film to distinguish it from Super 8mm."
+    "page": "37",
+    "chunk": "ch04",
+    "text": "Another fairly straightforward case is the 8mm, Super 8mm, and 16mm reversal original."
    }
   ],
-  "hits": 39,
+  "hits": 35,
   "chunks": [
    "appA",
    "ch02",
@@ -791,9 +756,9 @@
  "Emulsion": {
   "quotes": [
    {
-    "page": "14",
+    "page": "13",
     "chunk": "ch02",
-    "text": "Once the organisms have eaten into the emulsion, however, the image loss is irreversible."
+    "text": "While base and emulsion are both prone to chemical decay, some film stocks or batches may be more vulnerable than others."
    },
    {
     "page": "23",
@@ -801,7 +766,7 @@
     "text": "Curl is generally caused by either low humidity (curl toward the emulsion) or extremely high humidity (curl away from the emulsion)."
    }
   ],
-  "hits": 27,
+  "hits": 25,
   "chunks": [
    "ch02",
    "ch03",
@@ -815,7 +780,7 @@
    {
     "page": "102",
     "chunk": "gloss",
-    "text": "Emulsion out Film wound so that the base side faces the center of the reel."
+    "text": "**Emulsion out** Film wound so that the base side faces the center of the reel. **Enlargement print** Print made on a larger format than the original, such as a 16mm print made from an 8mm original."
    }
   ],
   "hits": 1,
@@ -828,7 +793,7 @@
    {
     "page": "102",
     "chunk": "gloss",
-    "text": "Enlargement print Print made on a larger format than the original, such as a 16mm print made from an 8mm original."
+    "text": "**Emulsion out** Film wound so that the base side faces the center of the reel. **Enlargement print** Print made on a larger format than the original, such as a 16mm print made from an 8mm original."
    }
   ],
   "hits": 1,
@@ -841,7 +806,7 @@
    {
     "page": "102",
     "chunk": "gloss",
-    "text": "Equalization In sound preservation, the process of changing the level or volume of selected frequency ranges to improve overall sound quality."
+    "text": "Also known as blowup. **Equalization** In sound preservation, the process of changing the level or volume of selected frequency ranges to improve overall sound quality. **Exhibition print** Positive created for film screenings."
    }
   ],
   "hits": 1,
@@ -852,14 +817,14 @@
  "Exhibition print": {
   "quotes": [
    {
+    "page": "107",
+    "chunk": "gloss",
+    "text": "Also known as exhibition print. **Shrinkage** Contraction of film from its original dimensions. **Shrinkage gauge** Device used to measure the extent to which film has contracted from its original dimensions."
+   },
+   {
     "page": "89",
     "chunk": "ch09",
     "text": "Unrestricted collections of this kind are heavily used by teachers, students, and independent and community mediamakers and serve as excellent promotion for the repository and its activities. 9.5 LOAN AND DISTRIBUTION Many film archives have active loan programs for 16mm and 35mm exhibition prints."
-   },
-   {
-    "page": "107",
-    "chunk": "gloss",
-    "text": "Also known as exhibition print."
    }
   ],
   "hits": 4,
@@ -876,9 +841,9 @@
     "text": "This publication is available on the FIAF Web site at www.fiafnet.org/pdf/uk/fiaf55.pdf."
    },
    {
-    "page": "38",
-    "chunk": "ch04",
-    "text": "This is published as part of the annually updated FIAF International FilmArchive Database and is available on CD-ROM from Ovid (formerly SilverPlatter), www.ovid.com."
+    "page": "102",
+    "chunk": "gloss",
+    "text": "Also known as show print. **FIAF** La Fédération Internationale des Archives du Film/International Federation of Film Archives (www.fiafnet.org)."
    }
   ],
   "hits": 11,
@@ -901,10 +866,10 @@
    {
     "page": "30",
     "chunk": "ch03",
-    "text": "When using film cement, always work in a well-ventilated area. > ULTRASONIC SPLICERS > > High-end ultrasonic splicers fuse film together without using splicing tape or cement and are used for splicing polyester film."
+    "text": "Making a splice using presstape. **USING FILM CEMENT.** In this type of splice, one film edge is cemented on top of the other, yielding a tiny repair that is almost double thickness."
    }
   ],
-  "hits": 5,
+  "hits": 6,
   "chunks": [
    "ch02",
    "ch03",
@@ -921,7 +886,7 @@
    {
     "page": "102",
     "chunk": "gloss",
-    "text": "Film cleaner Solvent applied to the film surface to remove dirt, oil, dust, and wax."
+    "text": "Cements now on the market cannot be used with polyester film. **Film cleaner** Solvent applied to the film surface to remove dirt, oil, dust, and wax."
    }
   ],
   "hits": 13,
@@ -939,9 +904,9 @@
     "text": "A more convenient and efficient way to view film is with a tabletop film viewer."
    },
    {
-    "page": "102",
-    "chunk": "gloss",
-    "text": "Film viewer Machine with screen for viewing film at a workstation."
+    "page": "43",
+    "chunk": "ch05",
+    "text": "Some organizations make low-cost VHS copies in-house on a film-video converter, sometimes known by the brand name Elmo (see 9.1), which operates like a camera hooked up to a film viewer."
    }
   ],
   "hits": 7,
@@ -955,19 +920,13 @@
  "Fine grain master": {
   "quotes": [
    {
-    "page": "47",
-    "chunk": "ch05",
-    "text": "Usually called fine grain master for black and white and interpositive for color."
-   },
-   {
     "page": "102",
     "chunk": "gloss",
-    "text": "Fine grain master New duplicating positive made in the preservation copying of black-and-white film."
+    "text": "Film viewers range from simple tabletop devices to sophisticated flatbed editing consoles. **Fine grain master** New duplicating positive made in the preservation copying of black-and-white film."
    }
   ],
-  "hits": 2,
+  "hits": 1,
   "chunks": [
-   "ch05",
    "gloss"
   ]
  },
@@ -988,7 +947,7 @@
     "text": "It is possible to repair shrunken film by salvaging patches of film edge from discarded footage exhibiting a similar level of shrinkage."
    }
   ],
-  "hits": 28,
+  "hits": 27,
   "chunks": [
    "ch01",
    "ch03",
@@ -1002,14 +961,14 @@
  "Footage counter": {
   "quotes": [
    {
-    "page": "102",
-    "chunk": "gloss",
-    "text": "Footage counter Measurement device that counts feet or frames of film."
-   },
-   {
     "page": "24",
     "chunk": "ch03",
     "text": "A footage counter provides a precise way of pinpointing the spots where problems occur as well as measuring film length."
+   },
+   {
+    "page": "102",
+    "chunk": "gloss",
+    "text": "Also used to describe unedited positive film. **Footage counter** Measurement device that counts feet or frames of film."
    }
   ],
   "hits": 5,
@@ -1026,12 +985,12 @@
     "text": "Formats are standardized for film gauges now in commercial use."
    },
    {
-    "page": "71",
-    "chunk": "ch07",
-    "text": "The MARC format is designed to be used in conjunction with cataloging rules."
+    "page": "60",
+    "chunk": "ch06",
+    "text": "ISO recommendations in a format that is easy to apply in collection planning."
    }
   ],
-  "hits": 25,
+  "hits": 21,
   "chunks": [
    "ch02",
    "ch05",
@@ -1049,12 +1008,12 @@
     "text": "Cut the two ends of the film, generally at the frame line, so that the newly cut edges are parallel."
    },
    {
-    "page": "105",
-    "chunk": "gloss",
-    "text": "Optical printing Laboratory process in which the image is projected through a lens and copied onto raw stock, frame by frame."
+    "page": "15",
+    "chunk": "ch02",
+    "text": "Shrinkage is a particular problem for small gauge films because of the smaller size of the film frame and the mechanical precision required of the equipment."
    }
   ],
-  "hits": 25,
+  "hits": 23,
   "chunks": [
    "ch02",
    "ch03",
@@ -1069,15 +1028,15 @@
    {
     "page": "88",
     "chunk": "ch09",
-    "text": "Repositories may license frame enlargements as well as footage."
+    "text": "Frame enlargements have long been a feature of scholarly cinema history publishing."
    },
    {
     "page": "102",
     "chunk": "gloss",
-    "text": "Frame enlargement Still photograph that reproduces a single frame of motion picture film."
+    "text": "Sometimes used as a unit of measurement, e.g., frames per second. **Frame enlargement** Still photograph that reproduces a single frame of motion picture film. **Full-coat mag** Short for full-coat magnetic sound track."
    }
   ],
-  "hits": 9,
+  "hits": 8,
   "chunks": [
    "ch08",
    "ch09",
@@ -1092,9 +1051,9 @@
     "text": "These elements, sometimes called full-coat mags, have a dullbrown magnetic recording layer covering one side of the film surface."
    },
    {
-    "page": "102",
+    "page": "104",
     "chunk": "gloss",
-    "text": "Full-coat mag Short for full-coat magnetic sound track."
+    "text": "Magnetic sound track can be affixed to a print as a stripe along the film edge or exist as a separate element (full-coat mag)."
    }
   ],
   "hits": 3,
@@ -1106,17 +1065,17 @@
  "Gate": {
   "quotes": [
    {
-    "page": "49",
-    "chunk": "ch05",
-    "text": "A wet gate can be incorporated into a film printer or a telecine, the device through which film is transferred to videotape."
+    "page": "104",
+    "chunk": "gloss",
+    "text": "Also known as wet-gate printing. **Loupe** Magnifying eyepiece used in film identification. **Magnetic sound track** Motion picture sound track in which the sound information is carried by magnetic oxide."
    },
    {
-    "page": "108",
-    "chunk": "gloss",
-    "text": "Wet-gate printing Printing process during which motion picture film is briefly immersed in a chemical bath that helps to fill in scratches."
+    "page": "48",
+    "chunk": "ch05",
+    "text": "The following are some of the more common techniques. **WET-GATE PRINTING.** Scratches and abrasions inevitably scar older film materials, particularly reversal originals that have been run through camera and projector."
    }
   ],
-  "hits": 12,
+  "hits": 13,
   "chunks": [
    "ch02",
    "ch05",
@@ -1132,12 +1091,12 @@
     "text": "Formats are standardized for film gauges now in commercial use."
    },
    {
-    "page": "7",
+    "page": "6",
     "chunk": "ch02",
-    "text": "The film gauge most frequently found in American archives, libraries, and museums is 16mm."
+    "text": "For each film gauge there is a family of like-gauged equipment and supplies designed to work together."
    }
   ],
-  "hits": 44,
+  "hits": 43,
   "chunks": [
    "ch02",
    "ch03",
@@ -1150,14 +1109,14 @@
  "Grading": {
   "quotes": [
    {
-    "page": "103",
-    "chunk": "gloss",
-    "text": "Grading Process through which the laboratory technician determines the correct brightness and color of a film element scene by scene."
-   },
-   {
     "page": "108",
     "chunk": "gloss",
-    "text": "Sometimes called grading."
+    "text": "Sometimes called grading. **Triacetate** Short for cellulose triacetate."
+   },
+   {
+    "page": "103",
+    "chunk": "gloss",
+    "text": "**Gate** Mechanism in a camera, projector, or printer that holds the film strip. **Gauge** Width of the motion picture film from edge to edge, expressed in millimeters. **Grading** Process through which the laboratory technician determines the correct brightness and color of a film element scene by scene."
    }
   ],
   "hits": 2,
@@ -1175,10 +1134,10 @@
    {
     "page": "103",
     "chunk": "gloss",
-    "text": "Head out Film wound on a reel or core so that its beginning is on the outside."
+    "text": "Also known as timing. **Head** Beginning of film roll. **Head out** Film wound on a reel or core so that its beginning is on the outside. **Hygrometer** Device for measuring relative humidity. **IMAP** Independent Media Arts Preservation (www.imappreserve.org)."
    }
   ],
-  "hits": 7,
+  "hits": 6,
   "chunks": [
    "ch02",
    "ch03",
@@ -1191,7 +1150,7 @@
    {
     "page": "103",
     "chunk": "gloss",
-    "text": "Head out Film wound on a reel or core so that its beginning is on the outside."
+    "text": "Also known as timing. **Head** Beginning of film roll. **Head out** Film wound on a reel or core so that its beginning is on the outside. **Hygrometer** Device for measuring relative humidity. **IMAP** Independent Media Arts Preservation (www.imappreserve.org)."
    }
   ],
   "hits": 1,
@@ -1202,14 +1161,14 @@
  "Hygrometer": {
   "quotes": [
    {
+    "page": "103",
+    "chunk": "gloss",
+    "text": "Also known as timing. **Head** Beginning of film roll. **Head out** Film wound on a reel or core so that its beginning is on the outside. **Hygrometer** Device for measuring relative humidity. **IMAP** Independent Media Arts Preservation (www.imappreserve.org)."
+   },
+   {
     "page": "64",
     "chunk": "ch06",
     "text": "You can also take regular temperature and relative humidity readings of your storage area using a thermohygrometer or a thermometer and a hygrometer."
-   },
-   {
-    "page": "103",
-    "chunk": "gloss",
-    "text": "Hygrometer Device for measuring relative humidity."
    }
   ],
   "hits": 2,
@@ -1228,7 +1187,7 @@
    {
     "page": "103",
     "chunk": "gloss",
-    "text": "IMAP Independent Media Arts Preservation (www.imappreserve.org)."
+    "text": "Also known as timing. **Head** Beginning of film roll. **Head out** Film wound on a reel or core so that its beginning is on the outside. **Hygrometer** Device for measuring relative humidity. **IMAP** Independent Media Arts Preservation (www.imappreserve.org)."
    }
   ],
   "hits": 3,
@@ -1238,17 +1197,9 @@
   ]
  },
  "In-camera": {
-  "quotes": [
-   {
-    "page": "103",
-    "chunk": "gloss",
-    "text": "In-camera Any process or effect that is achieved within the camera itself during shooting rather than through manipulation at a later stage of production."
-   }
-  ],
-  "hits": 1,
-  "chunks": [
-   "gloss"
-  ]
+  "quotes": [],
+  "hits": 0,
+  "chunks": []
  },
  "Inspection": {
   "options": [
@@ -1267,7 +1218,7 @@
     "text": "Before the sessions, each participant sent a film print to Eastman House for inspection."
    }
   ],
-  "hits": 25,
+  "hits": 24,
   "chunks": [
    "appB",
    "ch03",
@@ -1285,12 +1236,12 @@
     "text": "This intermediate is used to create a new track negative."
    },
    {
-    "page": "101",
+    "page": "103",
     "chunk": "gloss",
-    "text": "Duplicating positive Generic term for the new positive intermediate created during preservation copying from a negative original."
+    "text": "This intermediate preservation element is made from a negative original and is used to produce a color duplicate negative, called an internegative."
    }
   ],
-  "hits": 10,
+  "hits": 9,
   "chunks": [
    "ch05",
    "gloss"
@@ -1309,7 +1260,7 @@
     "text": "Color is generally more expensive; the creation of a new internegative and print for a 1,000-foot 16mm print is estimated to cost between $1,800 and $4,300."
    }
   ],
-  "hits": 9,
+  "hits": 7,
   "chunks": [
    "ch05",
    "gloss"
@@ -1318,17 +1269,17 @@
  "Interpositive": {
   "quotes": [
    {
-    "page": "47",
-    "chunk": "ch05",
-    "text": "Usually called fine grain master for black and white and interpositive for color."
+    "page": "39",
+    "chunk": "ch04",
+    "text": "ASSESSING THE UNIQUENESS OF FILM MATERIALS: SUMMARY** *An interpositive is a color production or preservation element made from a negative original and then used to create a duplicate negative from which many prints can be generated."
    },
    {
-    "page": "101",
+    "page": "100",
     "chunk": "gloss",
-    "text": "For black-and-white film the duplicating positive is called a finegrain master; for color film, it is called an interpositive."
+    "text": "As the dyes break down, contrast is also lost and the film eventually takes on a washed-out monochromatic look. **Color reversal intermediate** Film stock introduced in the late 1960s for making internegatives directly from negatives or internegatives and interpositives directly from interpositives."
    }
   ],
-  "hits": 11,
+  "hits": 7,
   "chunks": [
    "ch04",
    "ch05",
@@ -1343,9 +1294,9 @@
     "text": "Killy edited the footage into four films with descriptive intertitles and distributed prints to schools and libraries."
    },
    {
-    "page": "103",
-    "chunk": "gloss",
-    "text": "Intertitles In silent films, the screens of text containing dialogue and other information about the narrative or action."
+    "page": "42",
+    "chunk": "ch05",
+    "text": "The museum developed intertitles that were so similar to the Edison Company’s typographical style that they were virtually indistinguishable from the originals."
    }
   ],
   "hits": 5,
@@ -1360,15 +1311,10 @@
    {
     "page": "103",
     "chunk": "gloss",
-    "text": "IP Abbreviation for interpositive, the duplicating positive created during the preservation copying of color film."
-   },
-   {
-    "page": "103",
-    "chunk": "gloss",
-    "text": "Sometimes abbreviated as IP."
+    "text": "Sometimes abbreviated as IP. **Intertitles** In silent films, the screens of text containing dialogue and other information about the narrative or action. **IP** Abbreviation for interpositive, the duplicating positive created during the preservation copying of color film. **IPI** Image Permanence Institute (www.rit.edu/ipi)."
    }
   ],
-  "hits": 2,
+  "hits": 1,
   "chunks": [
    "gloss"
   ]
@@ -1376,14 +1322,14 @@
  "IPI": {
   "quotes": [
    {
-    "page": "60",
+    "page": "61",
     "chunk": "ch06",
-    "text": "HOW TEMPERATURES AFFECT FILM MATERIALS (when RH is between 30% and 50%) Source: IPI Media Storage Quick Reference."
+    "text": "For most film materials IPI finds that frozen temperatures, if RH is held between 30% and 50%, extend useful life."
    },
    {
     "page": "14",
     "chunk": "ch02",
-    "text": "Instructions are found in IPI’s User's Guide for A-D Strips, which can be downloaded from www.rit.edu/ipi. > > A-D Strips are not designed for use with nitrate or polyester film."
+    "text": "Instructions are found in IPI’s *User's Guide for A-D Strips*, which can be downloaded from www.rit.edu/ipi. > > A-D Strips are not designed for use with nitrate or polyester film."
    }
   ],
   "hits": 25,
@@ -1403,7 +1349,7 @@
    {
     "page": "103",
     "chunk": "gloss",
-    "text": "ISO International Organization for Standardization (www.iso.org)."
+    "text": "Research organization at the Rochester Institute of Technology that studies the effect of light, heat, pollutants, and humidity on imaging materials. **ISO** International Organization for Standardization (www.iso.org)."
    }
   ],
   "hits": 8,
@@ -1417,7 +1363,7 @@
    {
     "page": "103",
     "chunk": "gloss",
-    "text": "Kinetoscope loop Piece of film used in a kinetoscope, the personal viewing machine publicly introduced by Thomas Edison and W.K.L."
+    "text": "International group that develops manufacturing and performance standards for many industries. **Kinetoscope loop** Piece of film used in a kinetoscope, the personal viewing machine publicly introduced by Thomas Edison and W.K.L."
    }
   ],
   "hits": 1,
@@ -1430,12 +1376,12 @@
    {
     "page": "11",
     "chunk": "ch02",
-    "text": "Manufacturers have significantly improved the stability of photographic dyes, but fading is still a major preservation problem with older color films. > LENTICULAR FILM: BLACK AND > > WHITE OR “COLOR”? > > Before introducing Kodachrome, Kodak sold an unusual type of 16mm black-and-white film that projects as a color image when shown through a customized projector with a three-color lens."
+    "text": "Manufacturers have significantly improved the stability of photographic dyes, but fading is still a major preservation problem with older color films. > **LENTICULAR FILM: BLACK AND WHITE OR “COLOR”?** > > Before introducing Kodachrome, Kodak sold an unusual type of 16mm black-and-white film that projects as a color image when shown through a customized projector with a three-color lens."
    },
    {
     "page": "104",
     "chunk": "gloss",
-    "text": "Kodachrome Color reversal motion picture film introduced by Kodak to the 16mm market in 1935."
+    "text": "**Kodachrome** Color reversal motion picture film introduced by Kodak to the 16mm market in 1935."
    }
   ],
   "hits": 5,
@@ -1450,7 +1396,7 @@
    {
     "page": "104",
     "chunk": "gloss",
-    "text": "Kodacolor Lenticular color motion picture film introduced by Kodak to the 16mm market in 1928."
+    "text": "See also Kodacolor. **Licensing** Transfer of rights from the rights holder to another party generally for a specific use, duration, and territory. **Light box** Illuminated box with glass or plastic surface used for examining film. **Liquid-gate printing** Printing process during which motion picture film is briefly immersed in a chemical bath that helps to fill in scratches."
    },
    {
     "page": "11",
@@ -1458,7 +1404,7 @@
     "text": "For identification, first check for the word KODACOLOR printed on the film edge (see 3.3 on edge codes)."
    }
   ],
-  "hits": 2,
+  "hits": 3,
   "chunks": [
    "ch02",
    "gloss"
@@ -1472,9 +1418,9 @@
     "text": "Leaders come in colors and are customized for different uses."
    },
    {
-    "page": "10",
-    "chunk": "ch02",
-    "text": "A Roll Shot 1 Shot 3 Leader B Roll Leader Leader Shot 2 With 16mm A and B rolls, the shots are divided between two rolls of film and separated by leader."
+    "page": "104",
+    "chunk": "gloss",
+    "text": "Term also used by Kodak for color still photographic film. **Leader** Blank film attached to the beginning and end of film rolls to facilitate handling."
    }
   ],
   "hits": 16,
@@ -1497,7 +1443,7 @@
    {
     "page": "11",
     "chunk": "ch02",
-    "text": "Manufacturers have significantly improved the stability of photographic dyes, but fading is still a major preservation problem with older color films. > LENTICULAR FILM: BLACK AND > > WHITE OR “COLOR”? > > Before introducing Kodachrome, Kodak sold an unusual type of 16mm black-and-white film that projects as a color image when shown through a customized projector with a three-color lens."
+    "text": "Manufacturers have significantly improved the stability of photographic dyes, but fading is still a major preservation problem with older color films. > **LENTICULAR FILM: BLACK AND WHITE OR “COLOR”?** > > Before introducing Kodachrome, Kodak sold an unusual type of 16mm black-and-white film that projects as a color image when shown through a customized projector with a three-color lens."
    }
   ],
   "hits": 3,
@@ -1509,9 +1455,9 @@
  "Licensing": {
   "quotes": [
    {
-    "page": "88",
+    "page": "86",
     "chunk": "ch09",
-    "text": "Granting permission to outside parties to reuse archival motion picture materials in other contexts is called licensing."
+    "text": "Digital video is of sufficient quality for broadcast and can be output to DVD for researchers or to tape for licensing requests (see 9.4)."
    },
    {
     "page": "83",
@@ -1537,7 +1483,7 @@
    {
     "page": "104",
     "chunk": "gloss",
-    "text": "Light box Illuminated box with glass or plastic surface used for examining film."
+    "text": "See also Kodacolor. **Licensing** Transfer of rights from the rights holder to another party generally for a specific use, duration, and territory. **Light box** Illuminated box with glass or plastic surface used for examining film. **Liquid-gate printing** Printing process during which motion picture film is briefly immersed in a chemical bath that helps to fill in scratches."
    }
   ],
   "hits": 5,
@@ -1551,7 +1497,7 @@
    {
     "page": "104",
     "chunk": "gloss",
-    "text": "Liquid-gate printing Printing process during which motion picture film is briefly immersed in a chemical bath that helps to fill in scratches."
+    "text": "See also Kodacolor. **Licensing** Transfer of rights from the rights holder to another party generally for a specific use, duration, and territory. **Light box** Illuminated box with glass or plastic surface used for examining film. **Liquid-gate printing** Printing process during which motion picture film is briefly immersed in a chemical bath that helps to fill in scratches."
    },
    {
     "page": "108",
@@ -1567,14 +1513,14 @@
  "Loupe": {
   "quotes": [
    {
+    "page": "104",
+    "chunk": "gloss",
+    "text": "Also known as wet-gate printing. **Loupe** Magnifying eyepiece used in film identification. **Magnetic sound track** Motion picture sound track in which the sound information is carried by magnetic oxide."
+   },
+   {
     "page": "21",
     "chunk": "ch03",
     "text": "The following procedures assume the most basic setup—portable rewinds, split reels, and a light box with a magnifying loupe."
-   },
-   {
-    "page": "104",
-    "chunk": "gloss",
-    "text": "Loupe Magnifying eyepiece used in film identification."
    }
   ],
   "hits": 7,
@@ -1593,7 +1539,7 @@
    {
     "page": "104",
     "chunk": "gloss",
-    "text": "Magnetic sound track Motion picture sound track in which the sound information is carried by magnetic oxide."
+    "text": "Also known as wet-gate printing. **Loupe** Magnifying eyepiece used in film identification. **Magnetic sound track** Motion picture sound track in which the sound information is carried by magnetic oxide."
    }
   ],
   "hits": 14,
@@ -1616,7 +1562,7 @@
    {
     "page": "100",
     "chunk": "gloss",
-    "text": "Balance stripe On composite prints the magnetic stripe affixed to the film edge opposite the edge carrying the magnetic sound track."
+    "text": "**Balance stripe** On composite prints the magnetic stripe affixed to the film edge opposite the edge carrying the magnetic sound track."
    }
   ],
   "hits": 3,
@@ -1628,14 +1574,14 @@
  "Magnetic track deterioration": {
   "quotes": [
    {
-    "page": "104",
-    "chunk": "gloss",
-    "text": "Magnetic track deterioration Decay of the sound track that results in sound loss due to shedding, sticking, or layer separation."
-   },
-   {
     "page": "17",
     "chunk": "ch02",
-    "text": "MAGNETIC TRACK DETERIORATION."
+    "text": "**MAGNETIC TRACK DETERIORATION.** Preservationists have observed that acetate films with magnetic sound tracks are especially vulnerable to vinegar syndrome, leading scientists to speculate that the iron oxide in the magnetic track may act as a catalyst in acetate decay."
+   },
+   {
+    "page": "104",
+    "chunk": "gloss",
+    "text": "Often shortened to magnetic track or mag track. **Magnetic stripe** In a composite print, the stripe of magnetic oxide applied near the film edge to carry the sound record or affixed to the opposite edge for balance. **Magnetic track deterioration** Decay of the sound track that results in sound loss due to shedding, sticking, or layer separation. **MARC** Machine Readable Cataloging."
    }
   ],
   "hits": 2,
@@ -1647,17 +1593,17 @@
  "MARC": {
   "quotes": [
    {
-    "page": "71",
+    "page": "70",
     "chunk": "ch07",
-    "text": "The MARC format is designed to be used in conjunction with cataloging rules."
+    "text": "The best-known data structure standard is the MARC format developed by the library community."
    },
    {
     "page": "104",
     "chunk": "gloss",
-    "text": "MARC Machine Readable Cataloging."
+    "text": "Often shortened to magnetic track or mag track. **Magnetic stripe** In a composite print, the stripe of magnetic oxide applied near the film edge to carry the sound record or affixed to the opposite edge for balance. **Magnetic track deterioration** Decay of the sound track that results in sound loss due to shedding, sticking, or layer separation. **MARC** Machine Readable Cataloging."
    }
   ],
-  "hits": 15,
+  "hits": 14,
   "chunks": [
    "ch07",
    "gloss"
@@ -1666,9 +1612,9 @@
  "Married print": {
   "quotes": [
    {
-    "page": "101",
+    "page": "104",
     "chunk": "gloss",
-    "text": "Also known as combined print or married print."
+    "text": "International standard for bibliographic data adopted by the library community to facilitate electronic data sharing. **Married print** Another term for composite print."
    }
   ],
   "hits": 3,
@@ -1689,7 +1635,7 @@
     "text": "All safety film originals, masters, film copies, and video masters are kept in this environment."
    }
   ],
-  "hits": 42,
+  "hits": 40,
   "chunks": [
    "ch01",
    "ch05",
@@ -1709,7 +1655,7 @@
    {
     "page": "104",
     "chunk": "gloss",
-    "text": "The development of MIC is sponsored by the Association of Moving Image Archivists and the Library of Congress."
+    "text": "Also known as preservation master. **MIC** Moving Image Collections (gondolin.rutgers.edu/MIC/)."
    }
   ],
   "hits": 6,
@@ -1723,7 +1669,7 @@
    {
     "page": "105",
     "chunk": "gloss",
-    "text": "Mute Sound film element that carries only picture."
+    "text": "**Mute** Sound film element that carries only picture. **Negative** Film carrying the reverse image of the motion picture subject."
    }
   ],
   "hits": 1,
@@ -1744,7 +1690,7 @@
     "text": "The negative is developed and printed to make a positive for projection."
    }
   ],
-  "hits": 40,
+  "hits": 38,
   "chunks": [
    "ch02",
    "ch03",
@@ -1758,17 +1704,17 @@
  "Nitrate": {
   "quotes": [
    {
-    "page": "16",
+    "page": "8",
     "chunk": "ch02",
-    "text": "The best-known form of film deterioration is nitrate decay."
+    "text": "Nitrate fires are virtually impossible to extinguish once they start burning."
    },
    {
-    "page": "60",
-    "chunk": "ch06",
-    "text": "Nitrate and acetate base film should be frozen if there are signs of decay."
+    "page": "105",
+    "chunk": "gloss",
+    "text": "It is printed to produce a positive for projection and viewing. **Nitrate** Short for cellulose nitrate."
    }
   ],
-  "hits": 68,
+  "hits": 65,
   "chunks": [
    "ch01",
    "ch02",
@@ -1785,12 +1731,12 @@
    {
     "page": "16",
     "chunk": "ch02",
-    "text": "The best-known form of film deterioration is nitrate decay."
+    "text": "But for the present both approaches are far beyond the budget of noncommercial film collections. **NITRATE DECAY.** The best-known form of film deterioration is nitrate decay."
    },
    {
     "page": "105",
     "chunk": "gloss",
-    "text": "Nitrate decay Chemical degradation of cellulose nitrate plastic film base that is accelerated by high relative humidity and temperature."
+    "text": "Highly flammable, nitrate base film was phased out by the early 1950s. **Nitrate decay** Chemical degradation of cellulose nitrate plastic film base that is accelerated by high relative humidity and temperature. **OCLC** Online Computer Library Center (www.oclc.org)."
    }
   ],
   "hits": 4,
@@ -1807,9 +1753,9 @@
     "text": "Also worth checking are the bibliographic utilities OCLC and RLIN for the film records contributed by universities, archives, and museums (see 7.4)."
    },
    {
-    "page": "75",
-    "chunk": "ch07",
-    "text": "For decades libraries and archives have pooled catalog records through two major bibliographic databases, the Online Computer Library Center (OCLC) and the Research Libraries Information Network (RLIN)."
+    "page": "105",
+    "chunk": "gloss",
+    "text": "Highly flammable, nitrate base film was phased out by the early 1950s. **Nitrate decay** Chemical degradation of cellulose nitrate plastic film base that is accelerated by high relative humidity and temperature. **OCLC** Online Computer Library Center (www.oclc.org)."
    }
   ],
   "hits": 3,
@@ -1824,7 +1770,7 @@
    {
     "page": "105",
     "chunk": "gloss",
-    "text": "One-light print Film print produced with a single level of color and brightness for all scenes."
+    "text": "Nonprofit membership organization hosting an online catalog system used by libraries around the world. **One-light print** Film print produced with a single level of color and brightness for all scenes. **Optical printing** Laboratory process in which the image is projected through a lens and copied onto raw stock, frame by frame."
    }
   ],
   "hits": 1,
@@ -1835,17 +1781,17 @@
  "Optical printing": {
   "quotes": [
    {
-    "page": "105",
-    "chunk": "gloss",
-    "text": "Optical printing Laboratory process in which the image is projected through a lens and copied onto raw stock, frame by frame."
+    "page": "49",
+    "chunk": "ch05",
+    "text": "A wet gate can be incorporated into a film printer or a telecine, the device through which film is transferred to videotape. **OPTICAL PRINTING.** Introduced to motion pictures in the 1920s for special effects, optical printers have since been adapted for other applications."
    },
    {
-    "page": "51",
-    "chunk": "ch05",
-    "text": "Special laboratory processes such as wet-gate or optical printing can be factored into the cost of the master or reflected as a surcharge."
+    "page": "105",
+    "chunk": "gloss",
+    "text": "Nonprofit membership organization hosting an online catalog system used by libraries around the world. **One-light print** Film print produced with a single level of color and brightness for all scenes. **Optical printing** Laboratory process in which the image is projected through a lens and copied onto raw stock, frame by frame."
    }
   ],
-  "hits": 3,
+  "hits": 4,
   "chunks": [
    "ch05",
    "gloss"
@@ -1854,14 +1800,14 @@
  "Optical sound track": {
   "quotes": [
    {
+    "page": "107",
+    "chunk": "gloss",
+    "text": "In restoration the sound is generally transferred to digital files, where the sound damage—hiss, pops, clicks—can be removed. **Sound track.** See Magnetic sound track and Optical sound track. **Splice** Joining of two film pieces usually by cement, tape, or ultrasonic technology. **Splicer** Piece of equipment for joining two pieces of film."
+   },
+   {
     "page": "13",
     "chunk": "ch02",
     "text": "Similarly, filmmakers and preservationists may put the optical sound track on separate trackonly reels."
-   },
-   {
-    "page": "105",
-    "chunk": "gloss",
-    "text": "Optical sound track Photographically printed sound record carried on the film print or produced as a separate element."
    }
   ],
   "hits": 5,
@@ -1878,17 +1824,17 @@
   ],
   "quotes": [
    {
-    "page": "4",
-    "chunk": "ch01",
-    "text": "Conservation is the protection of the original film artifact."
-   },
-   {
     "page": "37",
     "chunk": "ch04",
     "text": "Another fairly straightforward case is the 8mm, Super 8mm, and 16mm reversal original."
+   },
+   {
+    "page": "41",
+    "chunk": "ch05",
+    "text": "Whatever effort is invested to save a film, the actions should not damage the original."
    }
   ],
-  "hits": 95,
+  "hits": 89,
   "chunks": [
    "ch01",
    "ch02",
@@ -1901,7 +1847,7 @@
    "gloss"
   ]
  },
- "Outtakes": {
+ "outtake": {
   "quotes": [
    {
     "page": "89",
@@ -1909,9 +1855,9 @@
     "text": "Unidentified woman aviator (ca. 1920s), from Movietone News outtakes preserved by the University of South Carolina Newsfilm Library."
    },
    {
-    "page": "72",
-    "chunk": "ch07",
-    "text": "A family’s home movies, a series of educational films by a university department, or a film and its outtakes can be treated as a cohesive unit, a collection, to maintain the contextual relationships among the items."
+    "page": "105",
+    "chunk": "gloss",
+    "text": "Also used to describe film exposed in the camera. **Outtakes** Footage not used in a completed film. **PAT** Photographic Activity Test."
    }
   ],
   "hits": 4,
@@ -1926,7 +1872,7 @@
    {
     "page": "105",
     "chunk": "gloss",
-    "text": "PAT Photographic Activity Test."
+    "text": "Also used to describe film exposed in the camera. **Outtakes** Footage not used in a completed film. **PAT** Photographic Activity Test."
    }
   ],
   "hits": 1,
@@ -1942,12 +1888,12 @@
     "text": "When the film is incorrectly threaded in the projector, perforations can be stretched, ripped, or torn apart."
    },
    {
-    "page": "23",
-    "chunk": "ch03",
-    "text": "The rewind is a tool that enables the preservationist to unwind and wind film slowly without stressing the perforations."
+    "page": "107",
+    "chunk": "gloss",
+    "text": "Also known as perforations. **Staging area** Room set at a temperature and humidity level between that of the cold vault and the workroom."
    }
   ],
-  "hits": 16,
+  "hits": 15,
   "chunks": [
    "ch02",
    "ch03",
@@ -1968,12 +1914,12 @@
     "text": "Polyester is the toughest and most chemically stable film base used today."
    },
    {
-    "page": "30",
-    "chunk": "ch03",
-    "text": "When using film cement, always work in a well-ventilated area. > ULTRASONIC SPLICERS > > High-end ultrasonic splicers fuse film together without using splicing tape or cement and are used for splicing polyester film."
+    "page": "105",
+    "chunk": "gloss",
+    "text": "Also known as sprocket holes. **Polyester** Toughest and most chemically stable safety film base used today. **Positive** Film that has a positive image of the motion picture subject."
    }
   ],
-  "hits": 17,
+  "hits": 15,
   "chunks": [
    "ch02",
    "ch03",
@@ -1985,17 +1931,17 @@
  "Positive": {
   "quotes": [
    {
-    "page": "105",
-    "chunk": "gloss",
-    "text": "It is printed to produce a positive for projection and viewing."
-   },
-   {
     "page": "12",
     "chunk": "ch02",
     "text": "A viewing positive with a sound track is called a composite print."
+   },
+   {
+    "page": "105",
+    "chunk": "gloss",
+    "text": "The negative is exposed in the camera or created from a positive in the laboratory."
    }
   ],
-  "hits": 36,
+  "hits": 34,
   "chunks": [
    "ch02",
    "ch03",
@@ -2016,7 +1962,7 @@
     "text": "Film preservation is not a onetime operation but an ongoing process."
    }
   ],
-  "hits": 161,
+  "hits": 153,
   "chunks": [
    "appB",
    "ch01",
@@ -2039,9 +1985,9 @@
     "text": "The preservation master is generally priced per foot, based on the length of the film original."
    },
    {
-    "page": "105",
+    "page": "104",
     "chunk": "gloss",
-    "text": "Preservation master Sound and picture elements that are sufficient for printing new film copies without reuse of the original source."
+    "text": "Also known as preservation master. **MIC** Moving Image Collections (gondolin.rutgers.edu/MIC/)."
    }
   ],
   "hits": 12,
@@ -2057,7 +2003,7 @@
    {
     "page": "48",
     "chunk": "ch05",
-    "text": "During printing the film is temporarily immersed in a chemi-"
+    "text": "During printing the film is temporarily immersed in a chemical"
    },
    {
     "page": "12",
@@ -2065,7 +2011,7 @@
     "text": "Most optical tracks are photographically exposed directly onto the film during printing."
    }
   ],
-  "hits": 20,
+  "hits": 19,
   "chunks": [
    "ch02",
    "ch05",
@@ -2081,15 +2027,14 @@
     "text": "When the film is sent to the laboratory for processing, it is slit to create two 8mm strips."
    },
    {
-    "page": "106",
-    "chunk": "gloss",
-    "text": "Processing Range of laboratory procedures used to develop and fix the latent image in exposed motion picture film."
+    "page": "9",
+    "chunk": "ch02",
+    "text": "The emulsion of raw black-and-white motion picture film contains silver salts that are converted to metallic silver particles during processing."
    }
   ],
-  "hits": 3,
+  "hits": 2,
   "chunks": [
-   "ch02",
-   "gloss"
+   "ch02"
   ]
  },
  "Projector": {
@@ -2105,7 +2050,7 @@
     "text": "When lenticular film is shown through a three-color projector lens, it appears in color on the screen."
    }
   ],
-  "hits": 22,
+  "hits": 20,
   "chunks": [
    "ch02",
    "ch03",
@@ -2127,11 +2072,10 @@
     "text": "George Eastman House provides these reproductions for motion pictures that are represented by preservation materials and are in the public domain."
    }
   ],
-  "hits": 7,
+  "hits": 6,
   "chunks": [
    "ch08",
-   "ch09",
-   "gloss"
+   "ch09"
   ]
  },
  "Quality control": {
@@ -2140,17 +2084,11 @@
     "page": "55",
     "chunk": "ch05",
     "text": "Using the VHS access copy of the answer print as a quality control tool is not satisfactory."
-   },
-   {
-    "page": "106",
-    "chunk": "gloss",
-    "text": "Quality control Process through which preservationists check the acceptability of preservation elements."
    }
   ],
-  "hits": 7,
+  "hits": 6,
   "chunks": [
-   "ch05",
-   "gloss"
+   "ch05"
   ]
  },
  "Raw stock": {
@@ -2158,12 +2096,12 @@
    {
     "page": "105",
     "chunk": "gloss",
-    "text": "Optical printing Laboratory process in which the image is projected through a lens and copied onto raw stock, frame by frame."
+    "text": "Nonprofit membership organization hosting an online catalog system used by libraries around the world. **One-light print** Film print produced with a single level of color and brightness for all scenes. **Optical printing** Laboratory process in which the image is projected through a lens and copied onto raw stock, frame by frame."
    },
    {
     "page": "106",
     "chunk": "gloss",
-    "text": "Raw stock Unexposed film."
+    "text": "Usually accomplished through review of the answer print. **Raw stock** Unexposed film. **Redimensioning** Chemical treatment that temporarily returns shrunken film to close to original dimensions for preservation copying."
    }
   ],
   "hits": 2,
@@ -2176,15 +2114,15 @@
    {
     "page": "49",
     "chunk": "ch05",
-    "text": "Redimensioning is a destructive process that may permanently damage the original and should only be used in extreme cases. 5.6 REGULAR 8MM AND SUPER 8MM Commercial preservation laboratories have only recently turned attention to Regular 8mm and Super 8mm."
+    "text": "Digital sound restoration is already part of the preservation arsenal. **REDIMENSIONING.** This last-chance measure is appropriate only for severely shrunken film."
    },
    {
     "page": "106",
     "chunk": "gloss",
-    "text": "Redimensioning Chemical treatment that temporarily returns shrunken film to close to original dimensions for preservation copying."
+    "text": "Usually accomplished through review of the answer print. **Raw stock** Unexposed film. **Redimensioning** Chemical treatment that temporarily returns shrunken film to close to original dimensions for preservation copying."
    }
   ],
-  "hits": 2,
+  "hits": 3,
   "chunks": [
    "ch05",
    "gloss"
@@ -2195,7 +2133,7 @@
    {
     "page": "106",
     "chunk": "gloss",
-    "text": "Reduction print Positive made in a smaller format than the original, such as a 16mm print made from a 35mm original."
+    "text": "This process may result in permanent damage to the original and should be used only in extreme cases. **Reduction print** Positive made in a smaller format than the original, such as a 16mm print made from a 35mm original. **Reel** Metal or plastic hub with extended sides between which film is wound for projection."
    },
    {
     "page": "37",
@@ -2217,12 +2155,12 @@
     "text": "Because of its small size, 8mm film is usually kept on reels."
    },
    {
-    "page": "103",
-    "chunk": "gloss",
-    "text": "Head out Film wound on a reel or core so that its beginning is on the outside."
+    "page": "72",
+    "chunk": "ch07",
+    "text": "For example, in a film record, the field that libraries call “physical description” or museums call “dimensions” is often used to list the number of reels, length, type of film element, and color and sound characteristics."
    }
   ],
-  "hits": 49,
+  "hits": 46,
   "chunks": [
    "ch02",
    "ch03",
@@ -2238,12 +2176,12 @@
    {
     "page": "62",
     "chunk": "ch06",
-    "text": "Frozen storage is not advised for reference prints or frequently consulted materials. > FREEZING TO SLOW ADVANCED > > VINEGAR SYNDROME > > Acetate films at the A-D Strip level of 2 (see 2.6) are at a critical threshold in the decay process."
+    "text": "Frozen storage is not advised for reference prints or frequently consulted materials. > **FREEZING TO SLOW ADVANCED VINEGAR SYNDROME** > > Acetate films at the A-D Strip level of 2 (see 2.6) are at a critical threshold in the decay process."
    },
    {
     "page": "106",
     "chunk": "gloss",
-    "text": "Reference print Positive film copy made for projection and public access."
+    "text": "Each 1,000-foot, 35mm reel runs between 10 and 18 minutes, depending on projection speed. **Reference print** Positive film copy made for projection and public access. **Regular 8mm** Term applied to 8mm film to distinguish it from Super 8mm. **Relative humidity** Ratio of the amount of water actually in the air to the maximum air can hold at the same temperature."
    }
   ],
   "hits": 2,
@@ -2255,17 +2193,17 @@
  "Regular 8mm": {
   "quotes": [
    {
-    "page": "106",
-    "chunk": "gloss",
-    "text": "Regular 8mm Term applied to 8mm film to distinguish it from Super 8mm."
+    "page": "49",
+    "chunk": "ch05",
+    "text": "Redimensioning is a destructive process that may permanently damage the original and should only be used in extreme cases. 5.6 REGULAR 8MM AND SUPER 8MM Commercial preservation laboratories have only recently turned attention to Regular 8mm and Super 8mm."
    },
    {
     "page": "7",
     "chunk": "ch02",
-    "text": "Another common gauge in repositories is 8mm, often called Regular 8mm, which was introduced by Kodak in 1932 for home moviemakers."
+    "text": "Thus, most 16mm films in archives, libraries, and museums date from the 1920s through the early 1980s. **REGULAR 8MM AND SUPER 8MM.** Another common gauge in repositories is 8mm, often called Regular 8mm, which was introduced by Kodak in 1932 for home moviemakers."
    }
   ],
-  "hits": 6,
+  "hits": 4,
   "chunks": [
    "ch02",
    "ch05",
@@ -2302,9 +2240,9 @@
     "text": "Polyester is the film stock now generally used for new 35mm release prints shown in American theaters."
    },
    {
-    "page": "46",
-    "chunk": "ch05",
-    "text": "The duplication of older film differs substantially from the mass production of theatrical release prints, and over the last few decades several dozen American labs have moved into this specialty."
+    "page": "106",
+    "chunk": "gloss",
+    "text": "Abbreviated as RH. **Release print** Print made for distribution. **Restoration** Reconstruction of a specific version of a film. **Reversal original** Film that is run through the camera and processed to produce a positive image."
    }
   ],
   "hits": 3,
@@ -2319,15 +2257,15 @@
    {
     "page": "49",
     "chunk": "ch05",
-    "text": "Digital sound restoration is already part of the preservation arsenal."
+    "text": "The digital data created during sound restoration is archived for future use."
    },
    {
-    "page": "4",
-    "chunk": "ch01",
-    "text": "Film restoration, unlike art or paper restoration, always involves duplicating the original artifact."
+    "page": "81",
+    "chunk": "ch08",
+    "text": "Although the film is no longer protected by copyright, the use of UCLA’s restoration is still governed by the deposit agreement made many years ago."
    }
   ],
-  "hits": 22,
+  "hits": 21,
   "chunks": [
    "ch01",
    "ch05",
@@ -2344,9 +2282,9 @@
     "text": "Another fairly straightforward case is the 8mm, Super 8mm, and 16mm reversal original."
    },
    {
-    "page": "106",
-    "chunk": "gloss",
-    "text": "Reversal original Film that is run through the camera and processed to produce a positive image."
+    "page": "48",
+    "chunk": "ch05",
+    "text": "The following are some of the more common techniques. **WET-GATE PRINTING.** Scratches and abrasions inevitably scar older film materials, particularly reversal originals that have been run through camera and projector."
    }
   ],
   "hits": 6,
@@ -2371,7 +2309,7 @@
    {
     "page": "106",
     "chunk": "gloss",
-    "text": "Rewind Hand-cranked or motorized device used in pairs to control the winding of film for inspection and for transfer from reels to cores."
+    "text": "Positive reversal film has no corresponding negative. **Rewind** Hand-cranked or motorized device used in pairs to control the winding of film for inspection and for transfer from reels to cores. **RH** Relative humidity."
    }
   ],
   "hits": 18,
@@ -2388,12 +2326,12 @@
     "text": "In this structure, which opened in 2003, the moving image collection is maintained at 45°F and 25% RH."
    },
    {
-    "page": "23",
-    "chunk": "ch03",
-    "text": "If you let the film acclimate under more moderate relative humidity conditions (40% to 60% RH), it will usually flatten out."
+    "page": "106",
+    "chunk": "gloss",
+    "text": "Abbreviated as RH. **Release print** Print made for distribution. **Restoration** Reconstruction of a specific version of a film. **Reversal original** Film that is run through the camera and processed to produce a positive image."
    }
   ],
-  "hits": 9,
+  "hits": 10,
   "chunks": [
    "ch03",
    "ch06",
@@ -2410,7 +2348,7 @@
    {
     "page": "106",
     "chunk": "gloss",
-    "text": "RLIN Research Libraries Information Network (www.rlg.org/rlin.html)."
+    "text": "Ratio of the amount of water actually in the air to the maximum that air can hold at that given temperature. **RLIN** Research Libraries Information Network (www.rlg.org/rlin.html)."
    }
   ],
   "hits": 3,
@@ -2430,10 +2368,10 @@
    {
     "page": "13",
     "chunk": "ch02",
-    "text": "But scratches are permanent, though they sometimes can be minimized in the laboratory during duplication."
+    "text": "But scratches are permanent, though they sometimes can be minimized in the laboratory during duplication. **MOLD, MILDEW, AND FUNGUS.** A film stored under humid conditions can become a host for mold, mildew, and fungus."
    }
   ],
-  "hits": 13,
+  "hits": 12,
   "chunks": [
    "ch02",
    "ch03",
@@ -2448,15 +2386,15 @@
    {
     "page": "74",
     "chunk": "ch07",
-    "text": "Shot List: 00:05:18:06–00:08:47: Color, sound, ca. 1960s."
+    "text": "The scenes that make up a single film can be individually described in a shot list."
    },
    {
     "page": "107",
     "chunk": "gloss",
-    "text": "Shot list Finding aid that describes the content of each film scene or segment."
+    "text": "**Scratch** Scrape or abrasion to either the base or the emulsion side of film. **Shot list** Finding aid that describes the content of each film scene or segment. **Show print** Positive created for film screenings."
    }
   ],
-  "hits": 6,
+  "hits": 5,
   "chunks": [
    "ch07",
    "gloss"
@@ -2467,12 +2405,12 @@
    {
     "page": "102",
     "chunk": "gloss",
-    "text": "Also known as show print."
+    "text": "Also known as show print. **FIAF** La Fédération Internationale des Archives du Film/International Federation of Film Archives (www.fiafnet.org)."
    },
    {
     "page": "107",
     "chunk": "gloss",
-    "text": "Show print Positive created for film screenings."
+    "text": "**Scratch** Scrape or abrasion to either the base or the emulsion side of film. **Shot list** Finding aid that describes the content of each film scene or segment. **Show print** Positive created for film screenings."
    }
   ],
   "hits": 2,
@@ -2488,12 +2426,12 @@
     "text": "What is the degree of shrinkage as measured by a shrinkage gauge or by comparing to fresh film stock (see 2.6)? > > 12."
    },
    {
-    "page": "15",
-    "chunk": "ch02",
-    "text": "Although shrinkage is a major symptom of acetate decay, it also affects nitrate and can be aggravated by overly dry storage conditions."
+    "page": "69",
+    "chunk": "ch06",
+    "text": "Given the film’s casual storage over the years, it is not surprising that the print had suffered damage, from broken sprockets to warping and shrinkage."
    }
   ],
-  "hits": 17,
+  "hits": 15,
   "chunks": [
    "ch02",
    "ch03",
@@ -2513,7 +2451,7 @@
    {
     "page": "16",
     "chunk": "ch02",
-    "text": "Prints and negatives can experience fading at different rates. > USING A SHRINKAGE GAUGE > > A shrinkage gauge is a tool for measuring the degree of shrinkage in motion picture film."
+    "text": "Prints and negatives can experience fading at different rates. > **USING A SHRINKAGE GAUGE** > > A shrinkage gauge is a tool for measuring the degree of shrinkage in motion picture film."
    }
   ],
   "hits": 5,
@@ -2531,9 +2469,9 @@
     "text": "For such prints, it is worth calling an archive specializing in silent film or checking the silent film database of the International Federation of Film Archives (FIAF)."
    },
    {
-    "page": "103",
+    "page": "107",
     "chunk": "gloss",
-    "text": "Intertitles In silent films, the screens of text containing dialogue and other information about the narrative or action."
+    "text": "Compares the standardized distance between perforations with that of the shrunken film and expresses the difference as a percentage. **Silent film** Film made without a sound track."
    }
   ],
   "hits": 6,
@@ -2551,12 +2489,12 @@
     "text": "Another fairly straightforward case is the 8mm, Super 8mm, and 16mm reversal original."
    },
    {
-    "page": "7",
-    "chunk": "ch02",
-    "text": "The film gauge most frequently found in American archives, libraries, and museums is 16mm."
+    "page": "26",
+    "chunk": "ch03",
+    "text": "For 16mm and 35mm storage, the better choice is an inert plastic core measuring at least three inches in diameter."
    }
   ],
-  "hits": 68,
+  "hits": 64,
   "chunks": [
    "ch02",
    "ch03",
@@ -2571,14 +2509,14 @@
  "Small gauge film": {
   "quotes": [
    {
-    "page": "107",
-    "chunk": "gloss",
-    "text": "Small gauge film Umbrella term generally applied to 8mm and Super 8mm film, although it can be applied to any film less than 35 millimeters in width."
-   },
-   {
     "page": "15",
     "chunk": "ch02",
     "text": "Shrinkage is a particular problem for small gauge films because of the smaller size of the film frame and the mechanical precision required of the equipment."
+   },
+   {
+    "page": "107",
+    "chunk": "gloss",
+    "text": "Measures 16 millimeters in width. **Small gauge film** Umbrella term generally applied to 8mm and Super 8mm film, although it can be applied to any film less than 35 millimeters in width. **SMPTE** Society of Motion Picture and Television Engineers (www.smpte.org)."
    }
   ],
   "hits": 4,
@@ -2593,7 +2531,7 @@
    {
     "page": "107",
     "chunk": "gloss",
-    "text": "SMPTE Society of Motion Picture and Television Engineers (www.smpte.org)."
+    "text": "Measures 16 millimeters in width. **Small gauge film** Umbrella term generally applied to 8mm and Super 8mm film, although it can be applied to any film less than 35 millimeters in width. **SMPTE** Society of Motion Picture and Television Engineers (www.smpte.org)."
    }
   ],
   "hits": 1,
@@ -2606,12 +2544,12 @@
    {
     "page": "49",
     "chunk": "ch05",
-    "text": "Digital sound restoration is already part of the preservation arsenal."
+    "text": "The digital data created during sound restoration is archived for future use."
    },
    {
     "page": "107",
     "chunk": "gloss",
-    "text": "Sound restoration Process through which original aural qualities of the film sound track are reconstructed."
+    "text": "International technical association that publishes standards, recommended practices, and engineering guidelines for film, television, video, and multimedia materials. **Sound restoration** Process through which original aural qualities of the film sound track are reconstructed."
    }
   ],
   "hits": 4,
@@ -2628,9 +2566,9 @@
     "text": "If a print in advanced decay is frozen to conserve the film base, there is a risk of damage to the sound track."
    },
    {
-    "page": "102",
+    "page": "104",
     "chunk": "gloss",
-    "text": "Full-coat mag Short for full-coat magnetic sound track."
+    "text": "Film positive carrying both picture and sound track. **Master** In film preservation, the sound and picture elements that are sufficient for printing new film copies without reuse of the original source."
    }
   ],
   "hits": 11,
@@ -2652,10 +2590,10 @@
    {
     "page": "99",
     "chunk": "gloss",
-    "text": "A and B rolls Paired production elements that are printed in succession to hide transitions or splices between shots and to produce fades or dissolves."
+    "text": "Bellardo and Lynn Lady Bellardo. **A and B rolls** Paired production elements that are printed in succession to hide transitions or splices between shots and to produce fades or dissolves."
    }
   ],
-  "hits": 28,
+  "hits": 26,
   "chunks": [
    "ch02",
    "ch03",
@@ -2674,10 +2612,10 @@
    {
     "page": "107",
     "chunk": "gloss",
-    "text": "Splicer Piece of equipment for joining two pieces of film."
+    "text": "In restoration the sound is generally transferred to digital files, where the sound damage—hiss, pops, clicks—can be removed. **Sound track.** See Magnetic sound track and Optical sound track. **Splice** Joining of two film pieces usually by cement, tape, or ultrasonic technology. **Splicer** Piece of equipment for joining two pieces of film."
    }
   ],
-  "hits": 20,
+  "hits": 19,
   "chunks": [
    "ch02",
    "ch03",
@@ -2692,12 +2630,12 @@
     "text": "Splicing tape or cement can be used to affix the replacement edges to the damaged film.This is a difficult task and should be performed only by experienced technicians."
    },
    {
-    "page": "105",
-    "chunk": "gloss",
-    "text": "Presstape Adhesive splicing tape prepared in ready-cut segments."
+    "page": "9",
+    "chunk": "ch02",
+    "text": "It can, however, be spliced with splicing tape or an ultrasonic splicer."
    }
   ],
-  "hits": 11,
+  "hits": 10,
   "chunks": [
    "ch02",
    "ch03",
@@ -2718,10 +2656,10 @@
    {
     "page": "107",
     "chunk": "gloss",
-    "text": "Split reel Reel with a removable side."
+    "text": "Splicers come in many designs and may use cement, adhesive tape, or ultrasonic technology. **Splicing tape** Adhesive tape for repairing film. **Split reel** Reel with a removable side."
    }
   ],
-  "hits": 15,
+  "hits": 14,
   "chunks": [
    "ch03",
    "gloss"
@@ -2730,17 +2668,17 @@
  "Sprocket": {
   "quotes": [
    {
-    "page": "31",
-    "chunk": "ch03",
-    "text": "Repairing torn or broken sprocket holes is a tedious but important task."
-   },
-   {
     "page": "6",
     "chunk": "ch02",
     "text": "Film format is a broader term that takes into account gauge; width, height, and position of the image; and sprocket hole size and placement."
+   },
+   {
+    "page": "69",
+    "chunk": "ch06",
+    "text": "Given the film’s casual storage over the years, it is not surprising that the print had suffered damage, from broken sprockets to warping and shrinkage."
    }
   ],
-  "hits": 22,
+  "hits": 20,
   "chunks": [
    "ch02",
    "ch03",
@@ -2753,7 +2691,7 @@
    {
     "page": "107",
     "chunk": "gloss",
-    "text": "Sprocket damage Tears, rips, and other physical damage to film perforations."
+    "text": "Used to transfer film between reels and cores. **Sprocket** Toothed mechanism that engages with film perforations to advance the film strip through a camera, printer, or projector. **Sprocket damage** Tears, rips, and other physical damage to film perforations."
    }
   ],
   "hits": 1,
@@ -2764,17 +2702,17 @@
  "Sprocket holes": {
   "quotes": [
    {
-    "page": "31",
-    "chunk": "ch03",
-    "text": "Repairing torn or broken sprocket holes is a tedious but important task."
+    "page": "7",
+    "chunk": "ch02",
+    "text": "Many 8mm cameras use a spool or magazine containing 16mm film stock that is perforated with twice as many sprocket holes per foot as normal 16mm."
    },
    {
-    "page": "108",
+    "page": "105",
     "chunk": "gloss",
-    "text": "Super 8mm Film measuring 8 millimeters in width, with smaller sprocket holes than Regular 8mm film so that more area is left for the picture."
+    "text": "Also known as sprocket holes. **Polyester** Toughest and most chemically stable safety film base used today. **Positive** Film that has a positive image of the motion picture subject."
    }
   ],
-  "hits": 16,
+  "hits": 15,
   "chunks": [
    "ch02",
    "ch03",
@@ -2830,17 +2768,17 @@
  "Super 8mm": {
   "quotes": [
    {
-    "page": "106",
-    "chunk": "gloss",
-    "text": "Regular 8mm Term applied to 8mm film to distinguish it from Super 8mm."
-   },
-   {
     "page": "31",
     "chunk": "ch03",
     "text": "Because of the small scale, 8mm and Super 8mm films are difficult to repair."
+   },
+   {
+    "page": "37",
+    "chunk": "ch04",
+    "text": "Another fairly straightforward case is the 8mm, Super 8mm, and 16mm reversal original."
    }
   ],
-  "hits": 15,
+  "hits": 14,
   "chunks": [
    "ch02",
    "ch03",
@@ -2852,40 +2790,33 @@
  "Tail": {
   "quotes": [
    {
-    "page": "108",
-    "chunk": "gloss",
-    "text": "Tail out Film wound on a reel or core so that its end is on the outside of the roll."
-   },
-   {
     "page": "28",
     "chunk": "ch03",
     "text": "Some prefer using different color leader for the head and the tail."
+   },
+   {
+    "page": "40",
+    "chunk": "ch04",
+    "text": "Before starting inspection, the curator let the films acclimate and carefully rewound them onto larger-diameter cores, adding new leader at the head and tail."
    }
   ],
-  "hits": 5,
+  "hits": 3,
   "chunks": [
    "ch03",
-   "ch04",
-   "gloss"
+   "ch04"
   ]
  },
  "Tail out": {
   "quotes": [
-   {
-    "page": "108",
-    "chunk": "gloss",
-    "text": "Tail out Film wound on a reel or core so that its end is on the outside of the roll."
-   },
    {
     "page": "27",
     "chunk": "ch03",
     "text": "For storage, some repositories wind films tail out (with the beginning at the core), so that films will have to be rewound, and presumably reinspected, before they can be viewed from start to finish."
    }
   ],
-  "hits": 2,
+  "hits": 1,
   "chunks": [
-   "ch03",
-   "gloss"
+   "ch03"
   ]
  },
  "Telecine": {
@@ -2901,7 +2832,7 @@
     "text": "A wet gate can be incorporated into a film printer or a telecine."
    }
   ],
-  "hits": 5,
+  "hits": 4,
   "chunks": [
    "ch05",
    "ch09",
@@ -2913,7 +2844,7 @@
    {
     "page": "108",
     "chunk": "gloss",
-    "text": "Thermohygrometers that output data to graph form are called hygrothermographs. 35mm Standard film gauge for the theatrical film industry."
+    "text": "Thermohygrometers that output data to graph form are called hygrothermographs. **35mm** Standard film gauge for the theatrical film industry."
    },
    {
     "page": "61",
@@ -2921,7 +2852,7 @@
     "text": "If you are unable to gather this information by computer, you can use an inexpensive thermohygrometer, which measures both temperature and relative humidity."
    }
   ],
-  "hits": 5,
+  "hits": 4,
   "chunks": [
    "ch06",
    "gloss"
@@ -2930,9 +2861,9 @@
  "35mm": {
   "quotes": [
    {
-    "page": "6",
+    "page": "9",
     "chunk": "ch02",
-    "text": "This is why films created with the 70mm IMAX system appear so clear and crisp. 35MM."
+    "text": "Polyester is the film stock now generally used for new 35mm release prints shown in American theaters."
    },
    {
     "page": "26",
@@ -2940,7 +2871,7 @@
     "text": "For 16mm and 35mm storage, the better choice is an inert plastic core measuring at least three inches in diameter."
    }
   ],
-  "hits": 43,
+  "hits": 42,
   "chunks": [
    "ch01",
    "ch02",
@@ -2958,7 +2889,7 @@
    {
     "page": "108",
     "chunk": "gloss",
-    "text": "Timed print Print in which the color and brightness are adjusted scene by scene."
+    "text": "Measures 35 millimeters in width. **Timed print** Print in which the color and brightness are adjusted scene by scene. **Timing** Process through which the laboratory technician determines the correct brightness and color of a film element scene by scene."
    }
   ],
   "hits": 1,
@@ -2971,12 +2902,12 @@
    {
     "page": "108",
     "chunk": "gloss",
-    "text": "Timing Process through which the laboratory technician determines the correct brightness and color of a film element scene by scene."
+    "text": "Measures 35 millimeters in width. **Timed print** Print in which the color and brightness are adjusted scene by scene. **Timing** Process through which the laboratory technician determines the correct brightness and color of a film element scene by scene."
    },
    {
     "page": "103",
     "chunk": "gloss",
-    "text": "Also known as timing."
+    "text": "Also known as timing. **Head** Beginning of film roll. **Head out** Film wound on a reel or core so that its beginning is on the outside. **Hygrometer** Device for measuring relative humidity. **IMAP** Independent Media Arts Preservation (www.imappreserve.org)."
    }
   ],
   "hits": 2,
@@ -2987,17 +2918,17 @@
  "Triacetate": {
   "quotes": [
    {
-    "page": "100",
+    "page": "108",
     "chunk": "gloss",
-    "text": "Cellulose triacetate Strongest acetate film base used for motion picture film."
+    "text": "Sometimes called grading. **Triacetate** Short for cellulose triacetate."
    },
    {
-    "page": "9",
+    "page": "10",
     "chunk": "ch02",
-    "text": "Diacetate was followed in the 1930s by cellulose acetate propionate and cellulose acetate butyrate, and in the late 1940s by cellulose triacetate."
+    "text": "Each brought a technical improvement: Cellulose acetate propionate and cellulose acetate butyrate overcame the physical weakness of cellulose diacetate but were not as strong as cellulose triacetate."
    }
   ],
-  "hits": 5,
+  "hits": 4,
   "chunks": [
    "ch02",
    "gloss"
@@ -3008,31 +2939,12 @@
    {
     "page": "46",
     "chunk": "ch05",
-    "text": "Complex restorations may require successive answer prints to obtain the correct > LABSPEAK > > What is the difference between a first trial print and an answer print?"
+    "text": "Complex restorations may require successive answer prints to obtain the correct > **LABSPEAK** > > What is the difference between a first trial print and an answer print?"
    },
    {
     "page": "99",
     "chunk": "gloss",
     "text": "Also known as trial print."
-   }
-  ],
-  "hits": 3,
-  "chunks": [
-   "ch05",
-   "gloss"
-  ]
- },
- "Ultrasonic cleaner": {
-  "quotes": [
-   {
-    "page": "108",
-    "chunk": "gloss",
-    "text": "Ultrasonic cleaner Piece of laboratory equipment in which film is passed through a solvent bath where high frequency vibrations dislodge dirt."
-   },
-   {
-    "page": "51",
-    "chunk": "ch05",
-    "text": "Generally cleaning is performed with an ultrasonic cleaner, a device in which film is passed through a solvent bath where high frequency vibrations dislodge all but the most entrenched dirt."
    }
   ],
   "hits": 2,
@@ -3041,12 +2953,25 @@
    "gloss"
   ]
  },
+ "Ultrasonic cleaner": {
+  "quotes": [
+   {
+    "page": "51",
+    "chunk": "ch05",
+    "text": "Generally cleaning is performed with an ultrasonic cleaner, a device in which film is passed through a solvent bath where high frequency vibrations dislodge all but the most entrenched dirt."
+   }
+  ],
+  "hits": 1,
+  "chunks": [
+   "ch05"
+  ]
+ },
  "Ultrasonic splicer": {
   "quotes": [
    {
     "page": "30",
     "chunk": "ch03",
-    "text": "When using film cement, always work in a well-ventilated area. > ULTRASONIC SPLICERS > > High-end ultrasonic splicers fuse film together without using splicing tape or cement and are used for splicing polyester film."
+    "text": "When using film cement, always work in a well-ventilated area. > **ULTRASONIC SPLICERS** > > High-end ultrasonic splicers fuse film together without using splicing tape or cement and are used for splicing polyester film."
    },
    {
     "page": "9",
@@ -3054,25 +2979,16 @@
     "text": "It can, however, be spliced with splicing tape or an ultrasonic splicer."
    }
   ],
-  "hits": 5,
+  "hits": 4,
   "chunks": [
    "ch02",
-   "ch03",
-   "gloss"
+   "ch03"
   ]
  },
  "U-matic videotape": {
-  "quotes": [
-   {
-    "page": "108",
-    "chunk": "gloss",
-    "text": "U-matic videotape A format of three-quarter-inch analog videotape that is packaged in a cassette."
-   }
-  ],
-  "hits": 1,
-  "chunks": [
-   "gloss"
-  ]
+  "quotes": [],
+  "hits": 0,
+  "chunks": []
  },
  "Union catalog": {
   "quotes": [
@@ -3080,17 +2996,11 @@
     "page": "75",
     "chunk": "ch07",
     "text": "The template, and other useful information, is found at the organization’s Web site, www.imappreserve.org. 7.4 SHARING RECORDS The union catalog planned by MIC’s developers will be a boon to film preservationists and researchers alike."
-   },
-   {
-    "page": "108",
-    "chunk": "gloss",
-    "text": "Union catalog Reference tool that brings together in a unified sequence information on the holdings of two or more repositories."
    }
   ],
-  "hits": 4,
+  "hits": 3,
   "chunks": [
-   "ch07",
-   "gloss"
+   "ch07"
   ]
  },
  "Vault": {
@@ -3101,9 +3011,9 @@
     "text": "This historically important footage is now safely housed in the archive’s film vault at 40ºF and 35% relative humidity."
    },
    {
-    "page": "44",
-    "chunk": "ch05",
-    "text": "The best way to protect film content for the future is still the time-honored approach of copying film onto film and storing it in a cold, dry vault."
+    "page": "107",
+    "chunk": "gloss",
+    "text": "Also known as perforations. **Staging area** Room set at a temperature and humidity level between that of the cold vault and the workroom."
    }
   ],
   "hits": 10,
@@ -3119,19 +3029,18 @@
    {
     "page": "92",
     "chunk": "ch09",
-    "text": "The final product, titled Ojibwe Work, is a 36-page booklet and VHS videotape."
+    "text": "The final product, titled *Ojibwe Work*, is a 36-page booklet and VHS videotape."
    },
    {
-    "page": "108",
-    "chunk": "gloss",
-    "text": "VHS videotape A format of one-half-inch analog videotape that is packaged in a cassette."
+    "page": "43",
+    "chunk": "ch05",
+    "text": "VHS videotape serves as a stand-in for the original, which can be retired to safekeeping in cold storage."
    }
   ],
-  "hits": 4,
+  "hits": 3,
   "chunks": [
    "ch05",
-   "ch09",
-   "gloss"
+   "ch09"
   ]
  },
  "Vinegar syndrome": {
@@ -3148,10 +3057,10 @@
    {
     "page": "99",
     "chunk": "gloss",
-    "text": "Also known as vinegar syndrome because of the odor released during the decay process."
+    "text": "Also known as vinegar syndrome because of the odor released during the decay process. **ACVL** Association of Cinema and Video Laboratories (www.acvl.org)."
    }
   ],
-  "hits": 14,
+  "hits": 13,
   "chunks": [
    "ch02",
    "ch03",
@@ -3164,18 +3073,19 @@
  "Wet-gate printing": {
   "quotes": [
    {
-    "page": "108",
+    "page": "104",
     "chunk": "gloss",
-    "text": "Wet-gate printing Printing process during which motion picture film is briefly immersed in a chemical bath that helps to fill in scratches."
+    "text": "Also known as wet-gate printing. **Loupe** Magnifying eyepiece used in film identification. **Magnetic sound track** Motion picture sound track in which the sound information is carried by magnetic oxide."
    },
    {
-    "page": "69",
-    "chunk": "ch06",
-    "text": "Using wet-gate printing to minimize the carryover of scratches from the source material, the lab produced a new 35mm negative and print."
+    "page": "48",
+    "chunk": "ch05",
+    "text": "The following are some of the more common techniques. **WET-GATE PRINTING.** Scratches and abrasions inevitably scar older film materials, particularly reversal originals that have been run through camera and projector."
    }
   ],
-  "hits": 2,
+  "hits": 3,
   "chunks": [
+   "ch05",
    "ch06",
    "gloss"
   ]
@@ -3188,17 +3098,17 @@
   ],
   "quotes": [
    {
-    "page": "43",
-    "chunk": "ch05",
-    "text": "Analog video is a flexible and inexpensive access tool."
-   },
-   {
     "page": "73",
     "chunk": "ch07",
-    "text": "Abstract: Not all materials are available for immediate access."
+    "text": "An important access point for many film researchers is subject."
+   },
+   {
+    "page": "48",
+    "chunk": "ch05",
+    "text": "Once this is accomplished, subsequent access prints should match the approved answer print."
    }
   ],
-  "hits": 68,
+  "hits": 66,
   "chunks": [
    "ch01",
    "ch03",
@@ -3227,9 +3137,9 @@
  "Moving image": {
   "quotes": [
    {
-    "page": "92",
-    "chunk": "ch09",
-    "text": "Access to Native American moving images is important to the Ojibwe communities in Minnesota."
+    "page": "104",
+    "chunk": "gloss",
+    "text": "Also known as preservation master. **MIC** Moving Image Collections (gondolin.rutgers.edu/MIC/)."
    },
    {
     "page": "68",
@@ -3237,7 +3147,7 @@
     "text": "In this structure, which opened in 2003, the moving image collection is maintained at 45°F and 25% RH."
    }
   ],
-  "hits": 37,
+  "hits": 35,
   "chunks": [
    "ch01",
    "ch03",
@@ -3252,17 +3162,17 @@
  "Storage": {
   "quotes": [
    {
-    "page": "63",
-    "chunk": "ch06",
-    "text": "A third option is to rent storage space from a commercial vendor."
-   },
-   {
     "page": "26",
     "chunk": "ch03",
     "text": "Reels are designed to hold films for projection, not long-term storage."
+   },
+   {
+    "page": "44",
+    "chunk": "ch05",
+    "text": "For film, cold and dry storage conditions are the equivalent of preventive medicine."
    }
   ],
-  "hits": 91,
+  "hits": 89,
   "chunks": [
    "ch01",
    "ch02",

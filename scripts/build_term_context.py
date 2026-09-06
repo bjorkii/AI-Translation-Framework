@@ -28,7 +28,10 @@ def clean(s):
     s = re.sub(r"\*\*\[각주\]\*\*", "", s)
     s = MARK.sub("", s)
     s = re.sub(r"<!--.*?-->", "", s)
-    s = re.sub(r"[*_`#]", "", s)
+    s = re.sub(r"^\s*[>|]+\s*", "", s)
+    # **굵게** / *기울임* 은 그대로 둔다 — 용례를 볼 때 원서의 강조가 보여야
+    # 'one-light print' 처럼 소제목인지 본문인지 헷갈리지 않는다.
+    s = re.sub(r"[`#]", "", s)
     return re.sub(r"\s+", " ", s).strip()
 
 def sentences_with_pages():

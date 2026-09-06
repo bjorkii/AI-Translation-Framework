@@ -1,0 +1,52 @@
+# ch02 시각 판독 결과 (파이프라인 2.0 에스컬레이션)
+# 원본 페이지 이미지를 직접 확인하고 내린 판단. 원문을 다시 생성해도 유지된다.
+resolved:
+  - page: "8"
+    marker: LAYOUT-UNCERTAIN
+    verdict: ok
+    note: "2단 조판이 아니라 사진 옆 텍스트 랩(왼쪽 사진 + 오른쪽 본문). 추출 순서 정상."
+    by: ai
+    at: 2026-09-06
+
+  - page: "9"
+    marker: LINEBREAK-UNCERTAIN
+    match: "FILM printed along the edge."
+    verdict: join
+    note: "'the words SAFETY FILM printed along the edge' 한 문장. 원서에서 SAFETY FILM이 소형 대문자로 조판돼 줄이 갈렸을 뿐 문단 경계가 아님."
+    by: ai
+    at: 2026-09-06
+
+  - page: "10"
+    marker: LAYOUT-UNCERTAIN
+    verdict: ok
+    note: "단면도(유제/베이스 라벨)와 A·B롤 도해가 오른쪽에 배치된 텍스트 랩. 본문 순서 정상. 도해 라벨은 별도 문단으로 남아 있으므로 번역 시 도판 라벨로 처리."
+    by: ai
+    at: 2026-09-06
+
+  - page: "11"
+    marker: LAYOUT-UNCERTAIN
+    verdict: ok
+    note: "오른쪽 회색 상자는 렌티큘러 필름 사이드바. 상자로 분리 처리됨. 본문 순서 정상."
+    by: ai
+    at: 2026-09-06
+
+  - page: "14"
+    marker: LAYOUT-UNCERTAIN
+    verdict: ok
+    note: "오른쪽에 사진 2장 + A-D 스트립 사이드바. 사이드바는 분리 처리됨. 본문 순서 정상."
+    by: ai
+    at: 2026-09-06
+
+  - page: "15"
+    marker: LAYOUT-UNCERTAIN
+    verdict: ok
+    note: "오른쪽에 수축 게이지 사이드바(두 꼭지). 분리 처리됨. 본문 순서 정상."
+    by: ai
+    at: 2026-09-06
+
+  - page: "16"
+    marker: LAYOUT-UNCERTAIN
+    verdict: ok
+    note: "하단에 질산염 부식 사진 + '질산염 부식 5단계' 사이드바. 분리 처리됨. 본문 순서 정상."
+    by: ai
+    at: 2026-09-06
