@@ -8,3 +8,7 @@ Claude outputs/
 
 # AI가 원본 페이지를 눈으로 확인할 때 쓰는 임시 렌더 이미지
 intermediate/pagescan/
+
+# 도판 이미지는 PDF에서 다시 뽑을 수 있으므로 버전관리하지 않는다
+# (scripts/normalize_all.py --force 로 재생성)
+assets/figures/

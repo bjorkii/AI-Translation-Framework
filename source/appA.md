@@ -1,5 +1,9 @@
 
-<!-- LAYOUT-UNCERTAIN: p.93 좌6/우2 블록 — 읽기 순서 시각 확인 필요 -->
+<!-- LAYOUT-UNCERTAIN: p.93 좌4/우2 블록 — 읽기 순서 시각 확인 필요 -->
+
+<!-- VISUAL-CHECK 도판 · 원서 p.93 · 원본과 대조 필요 -->
+
+![](assets/figures/appA-p93-1.png)
 
 ## APPENDIX A: EDGE CODE CHART
 
@@ -13,16 +17,21 @@ These charts reproduce the date edge codes from Kodak and Dupont motion picture 
 
 ■ ▲ ■ ● ● ▲ ●
 
+<!-- 상자 시작 · 원서 p.93 -->
+> ●
+>
+> **+ + +** ▲ ● ■
+<!-- 상자 끝 -->
+
 <!-- LINEBREAK-UNCERTAIN -->
 ● ■ ▲
 
-**WHERE EASTMAN KODAK STOCK WAS MANUFACTURED**
+<!-- VISUAL-CHECK 도판 · 원서 p.93 · 원본과 대조 필요 -->
 
-**•**
+![](assets/figures/appA-p93-2.png)
 
-**• • • •**
-
-**S A F E T Y -** ROCHESTER **S A F E T Y -** CANADA **S A F E T Y -** ENGLAND **S A F E T Y -** FRANCE **S A F E T Y -** AUSTRALIA
+<!-- 도판 라벨 · 원서 p.93 -->
+S A F E T Y - ROCHESTER S A F E T Y - CANADA S A F E T Y - ENGLAND S A F E T Y - FRANCE S A F E T Y - AUSTRALIA · • · • • • • · WHERE EASTMAN KODAK STOCK WAS MANUFACTURED
 
 ### Source: Adapted from a design by Lauren Jones-Joseph, Sabucat Productions. *The code for 1968 is ++.
 
@@ -36,11 +45,5 @@ These charts reproduce the date edge codes from Kodak and Dupont motion picture 
 
 <!-- LINEBREAK-UNCERTAIN -->
 1956 **KL** 1957 **KN** 1958 **KS** 1959 **LN** 1960 **LS** 1961 **NS** 1962 **K** 1963 **L** 1964 **N** 1965 **S** 1966 **KLT** 1967 **KNT** 1968 **KST** 1969 **LNT** 1970 **LST** 1971 **NST** 1972 **KT** 1973 **LT** 1974 **NT**
-
-<!-- 상자 시작 · 원서 p.93 -->
-> ●
->
-> **+ + +** ▲ ● ■
-<!-- 상자 끝 -->
 
 [원서 p.93]

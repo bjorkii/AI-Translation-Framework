@@ -8,8 +8,10 @@ v1 대비 개선:
       해당 페이지 텍스트 말미(페이지 마커 직전)에 배치
 사용법: normalize.py <pdf> <시작PDF쪽> <끝PDF쪽> <챕터ID> [출력.md]
 """
-import sys, re
+import sys, re, os
 import pymupdf
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import figures as figmod
 
 ABBR = re.compile(r"\b(Mr|Mrs|Ms|Dr|Prof|St|Jr|Sr|vs|etc|cf|approx|ca|No|Vol|pp|Fig|ed|eds|Inc|Co)\.$", re.I)
 END  = re.compile(r"[.!?:;”\"’')\]]\s*$")
@@ -400,11 +402,15 @@ def apply_overrides(text, chap):
 def main(pdf, p0, p1, chap, outpath=None):
     doc = pymupdf.open(pdf); labels = page_labels(doc)
     build_lexicon(doc)
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    figdir = os.path.join(root, "assets", "figures")
+    os.makedirs(figdir, exist_ok=True)
     BODY = detect_body_size(doc, p0, p1)
     print(f"  (본문 폰트 자동 추정: {BODY}pt)")
     stats = dict(pages=0, blocks=0, paras=0, dehyphen=0, uncertain=0, headers_removed=0,
                  layout_uncertain=0, headings=0, captions=0, fn_refs=0, fn_defs=0, labels=0,
-                 tables=0, table_cells=0, sidebars=0, visual_check=0)
+                 tables=0, table_cells=0, sidebars=0, visual_check=0,
+                 figures=0, fig_labels=0)
     out, notes = [], []
     carry_idx = None      # out 리스트에서 직전 본문 문단의 위치
     pending = {"mark": None, "warn": None}   # 아직 배치하지 않은 페이지 마커 / 레이아웃 경고
@@ -451,6 +457,8 @@ def main(pdf, p0, p1, chap, outpath=None):
         bkinds = [k for _, k in boxes]
         # (3) 각주 구분선 — 이 선 아래만 각주 정의로 인정
         rule_y = footnote_rule_y(page)
+        # (4) 도판(사진·도해) 영역 — 표·사이드바와 겹치지 않는 것만
+        figs = figmod.find_figures(page, exclude=[t["bbox"] for t in tables] + list(sboxes))
         body, fndefs, sides = [], [], {i: [] for i in range(len(sboxes))}
         for b in page.get_text("dict")["blocks"]:
             if b.get("type") != 0: continue
@@ -476,10 +484,44 @@ def main(pdf, p0, p1, chap, outpath=None):
             else:
                 body.append(rec)
 
+        # 캡션이 도판 사이에 끼어 있으면 거기서 나눈다 (사진-캡션-사진 구조)
+        split = []
+        for f in figs:
+            split.extend(figmod.split_by_captions(f, body, BODY))
+        figs = split
+        figclaim = {i: {"labels": [], "caption": None} for i in range(len(figs))}
+        # 도판 안의 글자 조각은 본문에서 빼고 도판에 붙인다
+        keep = []
+        for b in body:
+            fi = next((i for i, f in enumerate(figs)
+                       if b["size"] < BODY - 0.4 and figmod.inside(b["bbox"], f, pad=4)), None)
+            if fi is None:
+                keep.append(b)
+            else:
+                figclaim[fi]["labels"].append(b["txt"]); stats["fig_labels"] += 1
+        body = keep
+
+        # 도판 바로 아래의 작은 글씨를 캡션으로 떼어 도판에 붙인다
+        for fi, f in enumerate(figs):
+            cap = figmod.caption_for(f, body, BODY)
+            if cap is not None:
+                figclaim[fi]["caption"] = cap["txt"]
+                cap["is_caption_of"] = fi
+        body = [b for b in body if b.get("is_caption_of") is None]
+
         rights = [b for b in body if b["x0"] > w*0.45 and len(b["txt"]) > 40]
         lefts  = [b for b in body if b["x0"] <= w*0.45 and len(b["txt"]) > 40]
         multi = bool(rights and lefts)
-        body.sort(key=lambda b: ((0 if b["x0"] <= w*0.45 else 1), b["y0"]) if multi else (0, b["y0"]))
+        def order(x0, y0):
+            return ((0 if x0 <= w*0.45 else 1), y0) if multi else (0, y0)
+        # 표·도판·상자도 본문과 같은 기준으로 줄 세운다.
+        # (예전에는 페이지 끝에 몰아 넣어서 원서 p.60처럼 '표 제목 → 본문 → 표' 로 뒤집혔다)
+        elems = [("body", order(b["x0"], b["y0"]), b) for b in body]
+        elems += [("table", order(t["bbox"][0], t["bbox"][1]), t) for t in tables]
+        elems += [("fig", order(f[0], f[1]), (fi, f)) for fi, f in enumerate(figs)]
+        elems += [("box", order(min(x["x0"] for x in bl), min(x["y0"] for x in bl)), (bi, bl))
+                  for bi, bl in sides.items() if bl]
+        elems.sort(key=lambda e: e[1])
         label = labels.get(i, f"?{i+1}")
         if multi:
             stats["layout_uncertain"] += 1
@@ -488,7 +530,58 @@ def main(pdf, p0, p1, chap, outpath=None):
             pending["warn"] = (f"\n<!-- LAYOUT-UNCERTAIN: p.{label} "
                                f"좌{len(lefts)}/우{len(rights)} 블록 — 읽기 순서 시각 확인 필요 -->\n")
 
-        for b in body:
+        def emit_nonbody(kind, item, label):
+            """표·도판·상자를 읽기 순서 그 자리에 내보낸다."""
+            if kind == "fig":
+                fi, f = item
+                flush_mark(); stats["figures"] += 1
+                name = "%s-p%s-%d.png" % (chap, label, fi + 1)
+                if figdir:
+                    try:
+                        figmod.render(page, f, os.path.join(figdir, name))
+                    except Exception as e:
+                        print("  !! 도판 렌더 실패 %s: %s" % (name, e))
+                cap = figclaim[fi]["caption"] or ""
+                figlabels = figclaim[fi]["labels"]
+                # 도판 영역이 캡션까지 감싼 경우: 라벨 중 문장꼴을 캡션으로 올린다
+                if not cap and figlabels:
+                    sent = [t for t in figlabels
+                            if len(t) > 20 and t.rstrip().endswith((".", "?", "!"))]
+                    if sent:
+                        cap = max(sent, key=len)
+                        figlabels = [t for t in figlabels if t != cap]
+                out.append("\n<!-- VISUAL-CHECK 도판 · 원서 p.%s · 원본과 대조 필요 -->\n" % label)
+                stats["visual_check"] += 1
+                out.append("\n![%s](assets/figures/%s)\n" % (cap.replace("]", ")"), name))
+                if figlabels:
+                    out.append("\n<!-- 도판 라벨 · 원서 p.%s -->\n%s\n"
+                               % (label, " · ".join(figlabels)))
+            elif kind == "table":
+                t = item
+                if not t["md"]:
+                    return
+                flush_mark(); stats["tables"] += 1; stats["visual_check"] += 1
+                out.append("\n<!-- VISUAL-CHECK 표 %d행 %d열 · 원서 p.%s · 원본과 대조 필요 -->\n%s\n"
+                           % (t["rows"], t["cols"], label, t["md"]))
+            elif kind == "box":
+                bi, blocks_ = item
+                kindname = bkinds[bi] if bi < len(bkinds) else "상자"
+                stats["sidebars"] += 1
+                flush_mark()
+                body_md, as_table = box_to_markdown(blocks_, stats)
+                warn = ""
+                if as_table:
+                    stats["visual_check"] += 1
+                    warn = ("\n<!-- VISUAL-CHECK 상자 속 표 · 원서 p.%s · 원본과 대조 필요 -->"
+                            % label)
+                out.append("\n<!-- %s 시작 · 원서 p.%s -->%s\n%s\n<!-- %s 끝 -->\n"
+                           % (kindname, label, warn, body_md, kindname))
+
+        for kind, _ord, item in elems:
+            if kind != "body":
+                emit_nonbody(kind, item, label)
+                continue
+            b = item
             stats["blocks"] += 1
             txt = styled_text(b["raw"], stats, mark_refs=True)
             # (a) 각주 참조번호(위첨자 스팬) -> 앵커 링크
@@ -544,28 +637,7 @@ def main(pdf, p0, p1, chap, outpath=None):
             flush_mark()
             out.append(f"\n{txt2}\n"); carry_idx = len(out)-1; stats["paras"] += 1
 
-        # 표: 본문 뒤, 각주 앞에 놓는다
-        for t in sorted(tables, key=lambda t: t["bbox"][1]):
-            if not t["md"]:
-                continue
-            flush_mark()
-            stats["tables"] += 1
-            out.append("\n<!-- 표: %d행 %d열 · 원서 p.%s -->\n%s\n"
-                       % (t["rows"], t["cols"], label, t["md"]))
-        # 상자(사이드바 / 서식 상자)
-        for i, blocks_ in sides.items():
-            if not blocks_:
-                continue
-            kind = bkinds[i] if i < len(bkinds) else "상자"
-            stats["sidebars"] += 1
-            flush_mark()
-            body_md, as_table = box_to_markdown(blocks_, stats)
-            warn = ("\n<!-- VISUAL-CHECK: 원서 p.%s 상자를 행·열로 되살렸습니다. "
-                    "원본과 대조해 주세요. -->" % label) if as_table else ""
-            if as_table:
-                stats["visual_check"] += 1
-            out.append("\n<!-- %s 시작 · 원서 p.%s -->%s\n%s\n<!-- %s 끝 -->\n"
-                       % (kind, label, warn, body_md, kind))
+        # (표·도판·상자는 위 elems 루프에서 읽기 순서대로 이미 나갔다)
 
         # 각주 정의 -> 페이지 텍스트 말미 (페이지 마커 직전)
         for b in fndefs:

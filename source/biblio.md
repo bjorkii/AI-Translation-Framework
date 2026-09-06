@@ -1,4 +1,8 @@
 
+<!-- VISUAL-CHECK 도판 · 원서 p.109 · 원본과 대조 필요 -->
+
+![](assets/figures/biblio-p109-1.png)
+
 ## SELECTED BIBLIOGRAPHY
 
 *ACVL Handbook: Recommended Practices for Motion Picture and Video Laboratory*

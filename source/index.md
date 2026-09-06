@@ -1,6 +1,10 @@
 
 <!-- LAYOUT-UNCERTAIN: p.114 좌8/우8 블록 — 읽기 순서 시각 확인 필요 -->
 
+<!-- VISUAL-CHECK 도판 · 원서 p.114 · 원본과 대조 필요 -->
+
+![](assets/figures/index-p114-1.png)
+
 ## INDEX
 
 A and B rolls as source material, 37, 39, 46–47 use, 10 access, 85–92 as part of preservation, 3–4, 42–44 defined, 4 for commercial users, 87–89 for researchers, 73–75, 85–86 loans, 89–90 public programs, 86–87, 89–91 role in leveraging support, 56, 91 access copies and fair use, 81 storage, 62, 68 types, 42–45, 85–86 accession numbers, 28, 72 acetate decay and cold storage, 14, 61, 62, 66 and vented cans, 66 causes and identification, 14–15,

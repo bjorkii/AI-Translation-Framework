@@ -1,4 +1,8 @@
 
+<!-- VISUAL-CHECK 도판 · 원서 p.99 · 원본과 대조 필요 -->
+
+![](assets/figures/gloss-p99-1.png)
+
 ## GLOSSARY
 
 Covered here are film preservation terms and abbreviations mentioned in this guide. Definitions reflect the usage in the text. For additional film preservation terms, see the technical glossary included on ScreenSound Australia’s Web site, www.screensound.gov.au, and FIAF’s *Glossary of Filmographic Terms*, compiled by Jon Gartenberg. For definitions of genres, film types, and technical terms more common to filmmaking or exhibition, see Kevin Jackson’s *The Language of Cinema*. For general archival terminology, see SAA’s *A Glossary for Archivists, Manuscript Curators, and Records Managers*, compiled by Lewis J. Bellardo and Lynn Lady Bellardo.

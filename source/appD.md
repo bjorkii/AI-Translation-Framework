@@ -1,6 +1,10 @@
 
 <!-- LAYOUT-UNCERTAIN: p.97 좌7/우6 블록 — 읽기 순서 시각 확인 필요 -->
 
+<!-- VISUAL-CHECK 도판 · 원서 p.97 · 원본과 대조 필요 -->
+
+![](assets/figures/appD-p97-1.png)
+
 ## APPENDIX D: SELECTED EQUIPMENT AND SUPPLY VENDORS
 
 **FILM EQUIPMENT AND SUPPLIES**

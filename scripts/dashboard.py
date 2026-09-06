@@ -271,16 +271,60 @@ def rename_term(term, new_term, actor="user"):
 def md_inline(s):
     s = _html.escape(s, quote=False)
     s = re.sub(r"&lt;(/?(?:a|b|i|em|strong|br|span|sup|sub)\b[^&]*?)&gt;", r"<\1>", s)  # 앵커 등 통과
-    s = re.sub(r"!\[(.*?)\]\((.*?)\)", r'<figure><img src="\2" alt="\1"><figcaption>\1</figcaption></figure>', s)
-    s = re.sub(r"\[(.*?)\]\((.*?)\)", r'<a href="\2">\1</a>', s)
+    # 페이지 마커를 링크보다 먼저 치환한다.
+    # 나중에 하면 링크 정규식이 '[원서 p.42] … [⁵](#fn-…)' 를 하나의 링크로 잘못 묶어
+    # 그 사이 문장이 통째로 링크 안에 삼켜진다.
+    s = re.sub(r"\[원서 (p\.[^\]]+)\]",
+               r'<span class="pagemark" title="원서 \1이 여기서 끝납니다">원서 \1 여기까지<span class="tick">⇥</span></span>', s)
+    # 링크 텍스트·주소에 대괄호/괄호가 다시 나오지 않도록 막아 범위가 번지지 않게 한다
+    def _img(m):
+        alt, src = m.group(1), m.group(2)
+        if not src.startswith(("http", "/", "data:")):
+            src = "/" + src.lstrip("./")          # assets/figures/x.png -> /assets/figures/x.png
+        cap = ('<figcaption>%s</figcaption>' % alt) if alt.strip() else ""
+        return '<figure><img src="%s" alt="%s" loading="lazy">%s</figure>' % (src, alt, cap)
+    s = re.sub(r"!\[([^\]\[]*)\]\(([^()\s]*)\)", _img, s)
+    s = re.sub(r"\[([^\]\[]*)\]\(([^()\s]*)\)", r'<a href="\2">\1</a>', s)
     s = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", s)
     s = re.sub(r"(?<!\*)\*([^*]+)\*(?!\*)", r"<em>\1</em>", s)
     s = re.sub(r"`([^`]+)`", r"<code>\1</code>", s)
-    s = re.sub(r"\[원서 (p\.[^\]]+)\]",
-               r'<span class="pagemark" title="원서 \1이 여기서 끝납니다">원서 \1 여기까지<span class="tick">⇥</span></span>', s)
     return s
 
 FN_DEF = re.compile(r'^\s*<a id="(fn-[\w.-]+?-(\d+))"></a>\s*(?:\*\*)?\[각주\](?:\*\*)?\s*(.*)$')
+
+TABLE_ROW = re.compile(r"^\s*\|(.+)\|\s*$")
+TABLE_SEP = re.compile(r"^\s*\|[\s:|-]+\|\s*$")
+
+def _cells(line):
+    body = TABLE_ROW.match(line).group(1)
+    # 셀 안의 이스케이프된 파이프(\|)는 자르지 않는다
+    parts, buf, esc = [], "", False
+    for ch in body:
+        if esc:
+            buf += ch if ch == "|" else "\\" + ch
+            esc = False
+        elif ch == "\\":
+            esc = True
+        elif ch == "|":
+            parts.append(buf); buf = ""
+        else:
+            buf += ch
+    parts.append(buf)
+    return [c.strip() for c in parts]
+
+def md_table_html(rows):
+    """마크다운 표 -> HTML 표. 첫 줄은 머리행, 둘째 줄은 구분선."""
+    head = _cells(rows[0])
+    body = [_cells(r) for r in rows[2:]]
+    n = max([len(head)] + [len(r) for r in body]) if body else len(head)
+    def pad(r): return r + [""] * (n - len(r))
+    h = ["<div class='tablewrap'><table><thead><tr>"]
+    h += ["<th>%s</th>" % md_inline(c) for c in pad(head)]
+    h.append("</tr></thead><tbody>")
+    for r in body:
+        h.append("<tr>" + "".join("<td>%s</td>" % md_inline(c) for c in pad(r)) + "</tr>")
+    h.append("</tbody></table></div>")
+    return "".join(h)
 
 def md_to_html(md):
     out, in_code, in_ul, in_ol = [], False, False, False
@@ -296,7 +340,9 @@ def md_to_html(md):
             meta = "\n".join(lines[1:end])
             out.append('<div class="meta"><pre>' + _html.escape(meta) + "</pre></div>")
             lines = lines[end + 1:]
-    for raw in lines:
+    pend = list(lines)
+    while pend:
+        raw = pend.pop(0)
         line = raw.rstrip()
         if line.strip().startswith("```"):
             close(); out.append("</pre>" if in_code else "<pre class='code'>"); in_code = not in_code; continue
@@ -313,6 +359,18 @@ def md_to_html(md):
             out.append("<h%d>%s</h%d>" % (n, md_inline(m.group(2)), n)); continue
         if re.match(r"^\s*(-{3,}|\*{3,})\s*$", line):
             close(); out.append("<hr>"); continue
+        if TABLE_ROW.match(line) and not TABLE_SEP.match(line):
+            # 표는 여러 줄이 모여야 하나이므로 뒤따르는 표 줄을 모두 모은다
+            close()
+            rows = [line]
+            while pend and TABLE_ROW.match(pend[0].rstrip()):
+                rows.append(pend.pop(0).rstrip())
+            if len(rows) >= 2 and TABLE_SEP.match(rows[1]):
+                out.append(md_table_html(rows))
+            else:
+                for r in rows:
+                    out.append("<p>%s</p>" % md_inline(r))
+            continue
         m = re.match(r"^\s*>\s?(.*)$", line)
         if m:
             close(); out.append("<blockquote>%s</blockquote>" % md_inline(m.group(1))); continue
@@ -375,6 +433,14 @@ blockquote{margin:0 0 15px;padding-left:14px;border-left:3px solid var(--border)
 pre.code{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;
 overflow-x:auto;font-size:13px}
 hr{border:0;border-top:1px solid var(--border);margin:28px 0}
+.tablewrap{overflow-x:auto;margin:16px 0;border:1px solid var(--border);border-radius:8px;
+background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.55}
+th,td{padding:8px 12px;text-align:left;vertical-align:top;border-bottom:1px solid var(--border)}
+th{background:var(--ground);font-weight:600;font-size:13px;white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+td{color:var(--muted)}
+td:first-child{color:var(--ink);font-weight:500}
 """
 
 COMPARE_CSS = """
@@ -815,6 +881,18 @@ class Handler(BaseHTTPRequestHandler):
             cid = re.sub(r"[^A-Za-z0-9_-]", "", (q.get("id", [""])[0]))
             kind = "source" if q.get("kind", ["source"])[0] == "source" else "chapters"
             self._send(200, render_view(kind, cid), "text/html; charset=utf-8")
+        elif u.path.startswith("/assets/"):
+            # 도판 이미지 — 프로젝트 폴더 밖으로는 절대 못 나가게 경로를 검사한다
+            rel = u.path.lstrip("/")
+            f = (ROOT / rel).resolve()
+            base = (ROOT / "assets").resolve()
+            if not str(f).startswith(str(base)) or not f.is_file():
+                return self._send(404, json.dumps({"error": "not found"}))
+            ext = f.suffix.lower()
+            ctype = {".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg",
+                     ".gif": "image/gif", ".svg": "image/svg+xml",
+                     ".webp": "image/webp"}.get(ext, "application/octet-stream")
+            self._send(200, f.read_bytes(), ctype)
         elif u.path in ("/", "/index.html"):
             self._send(200, read("scripts/dashboard.html", "<h1>scripts/dashboard.html 파일이 없습니다.</h1>"),
                        "text/html; charset=utf-8")
