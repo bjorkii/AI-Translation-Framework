@@ -792,6 +792,8 @@ entries:
     basis: null
     first_chapter: glossary
     locked: false
+    nomatch: "leader | leaders"
+
   - term: "Lenticular film"
     translation: null
     definition_en: "Black-and-white film in which the base is embossed lengthwise with ridges that act as semicylindrical lenses. When lenticular film is shown through a three-color projector lens, it appears in color on the screen. See also Kodacolor."
