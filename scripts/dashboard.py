@@ -391,6 +391,34 @@ border:1px solid var(--border);border-radius:7px;padding:6px 10px}
 .ok .state{font-size:12px;color:var(--faint)}
 .warn{background:var(--mark-soft);color:var(--mark);border-radius:8px;padding:10px 14px;
 margin-bottom:20px;font-size:13.5px}
+.bar{position:sticky;top:0;z-index:5;background:var(--ground);padding:10px 0 12px;
+display:flex;gap:14px;align-items:center;flex-wrap:wrap;border-bottom:1px solid var(--border);
+margin-bottom:20px;font-size:13px}
+.bar .cnt{font-variant-numeric:tabular-nums;color:var(--muted)}
+.bar button{font:inherit;font-size:12.5px;border:1px solid var(--border);border-radius:7px;
+padding:5px 12px;background:var(--surface);color:var(--ink);cursor:pointer}
+.bar button.on{background:var(--accent);border-color:var(--accent);color:var(--ground)}
+.pair{position:relative;padding-left:10px}
+.pair::before{content:"";position:absolute;left:0;top:2px;bottom:22px;width:3px;border-radius:2px;
+background:transparent}
+.pair.st-approved::before{background:#2f6b4f}
+.pair.st-rejected::before{background:#a8443a}
+.pair.st-note::before{background:var(--border2)}
+.phead{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.phead .no{font-size:11px;color:var(--faint);font-variant-numeric:tabular-nums}
+.hist{font:inherit;font-size:11.5px;border:1px solid var(--border);border-radius:99px;
+padding:1px 9px;background:var(--surface);color:var(--muted);cursor:pointer}
+.hist:hover{border-color:var(--accent);color:var(--ink)}
+.pair .side.quiet,.pair .histlog{display:none}
+.pair.open .side.quiet,.pair.open .histlog{display:block}
+.histlog{margin:6px 0 0 16px;font-size:12px;color:var(--muted);border-left:2px dashed var(--border);
+padding:4px 12px}
+.histlog div{margin:2px 0;font-variant-numeric:tabular-nums}
+.ok.folded .body{display:none}
+.ok .toggle{font:inherit;font-size:12.5px;border:0;background:none;color:var(--muted);
+cursor:pointer;padding:0}
+.ok .toggle:hover{color:var(--ink)}
+.ok .body{display:flex;gap:8px;align-items:center;flex-wrap:wrap;width:100%;margin-top:8px}
 .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-bottom:22px}
 .legend span{display:inline-flex;align-items:center;gap:6px}
 .legend i{width:12px;height:12px;border-radius:3px;display:inline-block}
@@ -458,11 +486,16 @@ def render_compare(cid):
             reviews[st] = m
     approvals = load_json("reviews/%s-approvals.json" % cid, {})
 
-    body = ('<div class="legend">'
-            '<span><i style="background:var(--faint)"></i>원문</span>'
-            '<span><i style="background:var(--accent)"></i>AI 번역</span>'
-            '<span><i style="background:#7a9e3a"></i>AI 감수</span>'
-            '<span><ins>추가</ins></span><span><del>삭제</del></span></div>')
+    body = ('<div class="bar">'
+            '<span class="cnt">확정 <b id="done">0</b> / %d</span>'
+            '<button id="onlyOpen">미확정만 보기</button>'
+            '<span class="cnt" style="margin-left:auto">단계 변경이 있는 문단만 감수 단락이 표시됩니다</span>'
+            '</div>' % max(len(A), *[len(t[3]) for t in tracks]))
+    body += ('<div class="legend">'
+             '<span><i style="background:var(--faint)"></i>원문</span>'
+             '<span><i style="background:var(--accent)"></i>AI 번역</span>'
+             '<span><i style="background:#7a9e3a"></i>AI 감수</span>'
+             '<span><ins>추가</ins></span><span><del>삭제</del></span></div>')
     lens = {len(t[3]) for t in tracks} | {len(A)}
     if len(lens) > 1:
         body += ('<div class="warn">단계별 문단 수가 다릅니다 — 원문 %d개, %s. '
@@ -471,55 +504,139 @@ def render_compare(cid):
 
     n_blocks = max([len(A)] + [len(t[3]) for t in tracks])
     for i in range(n_blocks):
-        body += '<div class="pair">'
-        body += ('<div class="side src"><span class="tag">원문</span>%s</div>'
-                 % (to_html(A[i]) if i < len(A) else "<p>(없음)</p>"))
+        rec = approvals.get(str(i)) or {}
+        cur = rec.get("current") or (rec if rec.get("status") else None)
+        hist = rec.get("history", [])
+        st_cls = " st-" + {"approved": "approved", "rejected": "rejected",
+                           "note": "note"}.get((cur or {}).get("status", ""), "none")
+        changed_stages = 0
+
+        rows = []
         prev = None
         for st, label, cls, blocks_ in tracks:
-            cur = blocks_[i] if i < len(blocks_) else ""
-            if not cur:
+            cur_txt = blocks_[i] if i < len(blocks_) else ""
+            if not cur_txt:
                 continue
-            shown = cur if prev is None else diff_marked(prev, cur)
-            changed = (prev is not None and prev != cur)
-            tag = label + ("" if prev is None else (" · 전 단계에서 수정" if changed else " · 변경 없음"))
-            body += ('<div class="side %s"><span class="tag">%s</span>%s</div>'
-                     % (cls, _html.escape(tag), to_html(shown)))
+            first = prev is None
+            changed = (not first) and prev != cur_txt
+            if changed:
+                changed_stages += 1
+            shown = cur_txt if first else diff_marked(prev, cur_txt)
+            tag = label + ("" if first else (" · 전 단계에서 수정" if changed else " · 변경 없음"))
+            quiet = "" if (first or changed) else " quiet"   # 변경 없는 단계는 이력에서만 표시
+            note_html = ""
             for c in reviews.get(st, {}).get(i, []):
-                body += ('<div class="note"><b>%s · %s</b> — %s<br>원문: %s / %s → %s</div>'
-                         % (_html.escape(c.get("severity", "")), _html.escape(c.get("type", "")),
-                            _html.escape(c.get("comment", "")), _html.escape(c.get("source", "")),
-                            _html.escape(c.get("before", "")), _html.escape(c.get("after", ""))))
-            prev = cur
-        st_ = approvals.get(str(i), {})
-        body += ('<div class="ok" data-block="%d">'
-                 '<button class="yes%s">승인</button><button class="no%s">반려</button>'
-                 '<input placeholder="의견 메모 (선택)" value="%s">'
-                 '<span class="state">%s</span></div>'
-                 % (i, " on" if st_.get("status") == "approved" else "",
-                    " on" if st_.get("status") == "rejected" else "",
-                    _html.escape(st_.get("note", "")),
-                    _html.escape(("확인 " + st_.get("ts", "")[:16].replace("T", " ")) if st_.get("status") else "미확인")))
+                note_html += ('<div class="note"><b>%s · %s</b> — %s<br>원문: %s / %s → %s</div>'
+                              % (_html.escape(c.get("severity", "")), _html.escape(c.get("type", "")),
+                                 _html.escape(c.get("comment", "")), _html.escape(c.get("source", "")),
+                                 _html.escape(c.get("before", "")), _html.escape(c.get("after", ""))))
+            rows.append('<div class="side %s%s"><span class="tag">%s</span>%s</div>%s'
+                        % (cls, quiet, _html.escape(tag), to_html(shown), note_html))
+            prev = cur_txt
+
+        badge = ""
+        if changed_stages or len(hist) > 1:
+            badge = ('<button class="hist">이력 %d</button>'
+                     % (changed_stages + max(0, len(hist) - 1)))
+        folded = "" if (changed_stages or cur) else " folded"
+
+        body += ('<div class="pair%s" data-block="%d" data-confirmed="%d">'
+                 % (st_cls, i, 1 if cur else 0))
+        body += ('<div class="phead"><span class="no">문단 %d</span>%s</div>' % (i + 1, badge))
+        body += ('<div class="side src"><span class="tag">원문</span>%s</div>'
+                 % (to_html(A[i]) if i < len(A) else "<p>(없음)</p>"))
+        body += "".join(rows)
+        if len(hist) > 1:
+            log = "".join('<div>%s · %s%s</div>'
+                          % (_html.escape(h.get("ts", "")[:16].replace("T", " ")),
+                             {"approved": "승인", "rejected": "반려", "note": "메모",
+                              "withdrawn": "철회"}.get(h.get("status", ""), h.get("status", "")),
+                             ("  — " + _html.escape(h["note"])) if h.get("note") else "")
+                          for h in hist)
+            body += '<div class="histlog"><b>확인 이력</b>%s</div>' % log
+
+        sel = (cur or {}).get("status", "")
+        body += ('<div class="ok%s" data-block="%d" data-confirmed="%d">'
+                 '<button class="toggle">%s</button>'
+                 '<div class="body">'
+                 '<button class="yes%s"%s>승인</button>'
+                 '<button class="no%s"%s>반려</button>'
+                 '<input placeholder="의견 메모 (선택)" value="%s"%s>'
+                 '<button class="commit">%s</button>'
+                 '<span class="state">%s</span>'
+                 '</div></div>'
+                 % (folded, i, 1 if cur else 0,
+                    "사용자 확인" if not cur else "사용자 확인 · 확정됨",
+                    " on" if sel == "approved" else "", " disabled" if cur else "",
+                    " on" if sel == "rejected" else "", " disabled" if cur else "",
+                    _html.escape((cur or {}).get("note", "")), " disabled" if cur else "",
+                    "철회" if cur else "확정",
+                    _html.escape(("확정 " + cur["ts"][:16].replace("T", " ")) if cur else "미확정")))
         body += "</div>"
     return _wrap_compare(cid, body)
 
 COMPARE_JS = """
+function refreshCount(){
+  var all=document.querySelectorAll('.pair').length;
+  var done=document.querySelectorAll('.pair[data-confirmed="1"]').length;
+  document.getElementById('done').textContent=done;
+}
+document.querySelectorAll('.hist').forEach(function(b){
+  b.onclick=function(){ b.closest('.pair').classList.toggle('open'); };
+});
+document.querySelectorAll('.ok .toggle').forEach(function(b){
+  b.onclick=function(){ b.closest('.ok').classList.toggle('folded'); };
+});
 document.querySelectorAll('.ok').forEach(function(row){
   var blk=row.dataset.block, inp=row.querySelector('input');
-  function send(status){
+  var yes=row.querySelector('.yes'), no=row.querySelector('.no');
+  var commit=row.querySelector('.commit'), state=row.querySelector('.state');
+  var pair=document.querySelector('.pair[data-block="'+blk+'"]');
+  function locked(on){
+    [yes,no,inp].forEach(function(el){ el.disabled=on; });
+    commit.textContent=on?'철회':'확정';
+    row.querySelector('.toggle').textContent=on?'사용자 확인 · 확정됨':'사용자 확인';
+  }
+  // 선택은 화면에서만 (다시 누르면 해제) — 저장은 '확정'을 눌러야 일어납니다
+  yes.onclick=function(){ if(yes.disabled)return;
+    var on=yes.classList.toggle('on'); if(on) no.classList.remove('on'); };
+  no.onclick=function(){ if(no.disabled)return;
+    var on=no.classList.toggle('on'); if(on) yes.classList.remove('on'); };
+  commit.onclick=function(){
+    var confirmed=row.dataset.confirmed==='1';
+    var status;
+    if(confirmed){ status='withdrawn'; }
+    else if(yes.classList.contains('on')) status='approved';
+    else if(no.classList.contains('on')) status='rejected';
+    else if(inp.value.trim()) status='note';
+    else { alert('승인 또는 반려를 고르거나 메모를 남긴 뒤 확정해 주세요.'); return; }
     fetch('/api/approve',{method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({chunk:CID,block:blk,status:status,note:inp.value})})
-      .then(function(r){return r.json();})
-      .then(function(j){
-        if(!j.ok){ alert(j.message||'저장하지 못했습니다.'); return; }
-        row.querySelector('.yes').classList.toggle('on',status==='approved');
-        row.querySelector('.no').classList.toggle('on',status==='rejected');
-        row.querySelector('.state').textContent='확인 '+new Date().toLocaleString('ko-KR');
-      });
-  }
-  row.querySelector('.yes').onclick=function(){send('approved');};
-  row.querySelector('.no').onclick=function(){send('rejected');};
-  inp.onkeydown=function(e){ if(e.key==='Enter'){ send(row.querySelector('.no').classList.contains('on')?'rejected':'approved'); } };
+    .then(function(r){return r.json();}).then(function(j){
+      if(!j.ok){ alert(j.message||'저장하지 못했습니다.'); return; }
+      if(status==='withdrawn'){
+        row.dataset.confirmed='0'; pair.dataset.confirmed='0';
+        pair.className=pair.className.replace(/ st-\\w+/,'')+' st-none';
+        state.textContent='미확정'; locked(false);
+      }else{
+        row.dataset.confirmed='1'; pair.dataset.confirmed='1';
+        pair.className=pair.className.replace(/ st-\\w+/,'')+' st-'+
+          (status==='approved'?'approved':status==='rejected'?'rejected':'note');
+        state.textContent='확정 '+new Date().toLocaleString('ko-KR');
+        locked(true);
+      }
+      refreshCount();
+    });
+  };
 });
+var onlyBtn=document.getElementById('onlyOpen');
+onlyBtn.onclick=function(){
+  var on=onlyBtn.classList.toggle('on');
+  document.querySelectorAll('.pair').forEach(function(p){
+    p.style.display=(on && p.dataset.confirmed==='1')?'none':'';
+  });
+};
+refreshCount();
 """
 
 def _wrap_compare(cid, body):
@@ -546,7 +663,11 @@ def render_view(kind, cid):
             % (cid, label, VIEW_CSS, _html.escape(cid), _html.escape(label), body))
 
 def set_approval(cid, block, status, note):
-    if status not in ("approved", "rejected"):
+    """문단 확인 상태를 기록한다. 현재 상태와 이력을 함께 남긴다.
+
+    status: approved(승인) / rejected(반려) / note(메모만) / withdrawn(철회)
+    """
+    if status not in ("approved", "rejected", "note", "withdrawn"):
         return False, "알 수 없는 상태입니다."
     path = ROOT / "reviews" / ("%s-approvals.json" % cid)
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -556,11 +677,19 @@ def set_approval(cid, block, status, note):
             data = json.loads(path.read_text(encoding="utf-8"))
         except Exception:
             data = {}
-    data[str(block)] = {"status": status, "note": note or "",
-                        "ts": datetime.now().isoformat(timespec="seconds")}
+    key = str(block)
+    rec = data.get(key) or {"history": []}
+    if "history" not in rec:                       # 이전 단일 상태 구조에서 이월
+        rec = {"history": [rec] if rec.get("status") else []}
+    entry = {"status": status, "note": note or "",
+             "ts": datetime.now().isoformat(timespec="seconds")}
+    rec["history"].append(entry)
+    rec["current"] = None if status == "withdrawn" else entry
+    data[key] = rec
     path.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
-    log_decision("approve" if status == "approved" else "reject",
-                 "%s 문단 %s" % (cid, block), status, note or "")
+    label = {"approved": "approve", "rejected": "reject",
+             "note": "note", "withdrawn": "withdraw"}[status]
+    log_decision(label, "%s 문단 %s" % (cid, block), status, note or "")
     return True, "저장했습니다."
 
 
