@@ -25,7 +25,7 @@ out = ("# 진행 상태\n\n"
        "번역 시작 %s · %d일째 · 진행율 %s%% (%d/%d 단계)\n\n"
        "단계: %s\n\n"
        "| 청크 | 제목 | 원서 쪽 | 분량 | 단계 |\n|---|---|---|---|---|\n%s\n\n"
-       "용어집: 전체 %d항목 · 확정 %d · 결정 대기 %d · 미착수 %d\n\n"
+       "용어집: 전체 %d항목 · 확정 %d · 결정 대기 %d · 미검토 %d\n\n"
        "> 이 파일은 `scripts/update_status.py`가 생성합니다. 직접 고치지 말고 스크립트를 다시 실행해 주세요.\n"
        ) % (p["started"], p["elapsed_days"], p["percent"], p["steps_done"], p["steps_total"],
             " → ".join(p["stage_labels"]), "\n".join(rows),
