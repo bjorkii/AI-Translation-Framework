@@ -56,7 +56,6 @@ table{width:100%;border-collapse:collapse}
 th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--border);font-size:14px}
 th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);font-weight:600}
 tr:last-child td{border-bottom:0}
-tbody tr{cursor:pointer}
 tbody tr:hover{background:var(--surface2)}
 td.num{font-variant-numeric:tabular-nums;color:var(--muted);white-space:nowrap}
 .badge{display:inline-block;padding:2px 9px;border-radius:99px;font-size:11.5px;
@@ -64,7 +63,7 @@ background:var(--surface2);color:var(--muted);border:1px solid var(--border)}
 .badge.on{background:var(--accent-soft);color:var(--accent);border-color:transparent}
 .badge.wait{background:var(--warn-soft);color:var(--warn);border-color:transparent}
 .link{color:var(--accent);font-size:13px;text-decoration:none;margin-right:10px}
-.link.off{color:var(--faint);pointer-events:none}
+.link.off{color:var(--faint);opacity:.45;cursor:default;text-decoration:none;margin-right:10px}
 
 .term{background:var(--surface2);border:1px solid var(--border);border-radius:10px;
 padding:16px 18px;margin-bottom:12px}
@@ -210,7 +209,7 @@ function renderOverview(){
 
 /* ---------------- 청크 ---------------- */
 function renderChunks(){
-  let h='<div class="sect"><h2>청크 목록 <span class="tip">— 행을 누르면 새 탭에서 내용 보기</span></h2>'
+  let h='<div class="sect"><h2>청크 목록 <span class="tip">— 오른쪽 링크로 새 탭에서 열기</span></h2>'
     +"<table><thead><tr><th>청크</th><th>제목</th><th>원서 쪽</th><th>분량</th><th>단계</th><th>보기</th></tr></thead><tbody>";
   for(const c of S.chunks){
     const on=c.stage!=="pending";
@@ -221,18 +220,17 @@ function renderChunks(){
       +'<td><span class="badge '+(on?"on":"wait")+'">'+esc(c.stage_label||c.stage)+"</span>"
       +(c.split?' <span class="badge">절 분할</span>':"")
       +(c.parser?' <span class="badge">'+esc(c.parser)+"</span>":"")+"</td>"
-      +'<td><a class="link'+(c.has_source?"":" off")+'" target="_blank" href="/view?kind=source&id='+esc(c.id)+'">원문</a>'
-      +'<a class="link'+(c.has_target?"":" off")+'" target="_blank" href="/view?kind=chapters&id='+esc(c.id)+'">번역본</a></td></tr>';
+      +"<td>"
+      +(c.has_source?'<a class="link" target="_blank" href="/view?kind=source&id='+esc(c.id)+'">원문</a>'
+                    :'<span class="link off">원문</span>')
+      +(c.has_target?'<a class="link" target="_blank" href="/view?kind=chapters&id='+esc(c.id)+'">번역본</a>'
+                    :'<span class="link off">번역본</span>')
+      +(c.has_source&&c.has_target?'<a class="link" target="_blank" href="/compare?id='+esc(c.id)+'">대조</a>'
+                    :'<span class="link off">대조</span>')
+      +"</td></tr>";
   }
   h+='</tbody></table></div><div class="sect"><h2>status.md</h2><pre>'+esc(S.status_md||"(비어 있음)")+"</pre></div>";
   el("chunks").innerHTML=h;
-  el("chunks").querySelectorAll("tbody tr").forEach(tr=>{
-    tr.onclick=e=>{
-      if(e.target.tagName==="A") return;
-      if(tr.dataset.src==="0"&&tr.dataset.tgt==="0"){ alert("아직 만들어진 파일이 없습니다."); return; }
-      window.open("/view?kind="+(tr.dataset.tgt==="1"?"chapters":"source")+"&id="+encodeURIComponent(tr.dataset.id),"_blank");
-    };
-  });
 }
 
 /* ---------------- 용어집 ---------------- */

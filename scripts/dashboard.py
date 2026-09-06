@@ -361,6 +361,48 @@ overflow-x:auto;font-size:13px}
 hr{border:0;border-top:1px solid var(--border);margin:28px 0}
 """
 
+COMPARE_CSS = """
+.pair{margin:0 0 26px}
+.side{border-radius:0 8px 8px 0;padding:10px 16px;margin-bottom:6px}
+.side.src{border-left:3px solid var(--faint);background:transparent}
+.side.tgt{border-left:3px solid var(--accent);background:var(--surface)}
+.side .tag{display:block;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+color:var(--faint);margin-bottom:4px}
+.side.src p,.side.src li{font-family:Georgia,"Times New Roman",serif;color:var(--muted)}
+.side p:last-child{margin-bottom:0}
+.side h1,.side h2,.side h3{margin:2px 0 6px}
+.warn{background:var(--mark-soft);color:var(--mark);border-radius:8px;padding:10px 14px;
+margin-bottom:20px;font-size:13.5px}
+"""
+
+def split_blocks(md):
+    md = re.sub(r"^---\n.*?\n---\n", "", md, flags=re.S)
+    return [b.strip() for b in md.split("\n\n") if b.strip()]
+
+def render_compare(cid):
+    a = ROOT / "source" / (cid + ".md")
+    b = ROOT / "chapters" / (cid + ".md")
+    if not (a.exists() and b.exists()):
+        body = "<p>대조하려면 원문과 번역본이 모두 있어야 합니다.</p>"
+    else:
+        A, B = split_blocks(a.read_text(encoding="utf-8")), split_blocks(b.read_text(encoding="utf-8"))
+        body = ""
+        if len(A) != len(B):
+            body += ('<div class="warn">문단 수가 다릅니다 — 원문 %d개, 번역본 %d개. '
+                     '문단 1:1 대응이 깨졌을 수 있으니 확인이 필요합니다.</div>' % (len(A), len(B)))
+        for i in range(max(len(A), len(B))):
+            body += '<div class="pair">'
+            body += ('<div class="side src"><span class="tag">원문</span>%s</div>'
+                     % (md_to_html(A[i]) if i < len(A) else "<p>(없음)</p>"))
+            body += ('<div class="side tgt"><span class="tag">번역</span>%s</div>'
+                     % (md_to_html(B[i]) if i < len(B) else "<p>(없음)</p>"))
+            body += "</div>"
+    return ("<!doctype html><html lang='ko'><head><meta charset='utf-8'>"
+            "<meta name='viewport' content='width=device-width,initial-scale=1'>"
+            "<title>%s · 원문/번역 대조</title><style>%s%s</style></head><body><div class='page'>"
+            "<div class='crumb'>%s · 원문/번역 대조</div>%s</div></body></html>"
+            % (cid, VIEW_CSS, COMPARE_CSS, _html.escape(cid), body))
+
 def render_view(kind, cid):
     folder = "source" if kind == "source" else "chapters"
     label = "원문(정규화)" if kind == "source" else "번역본"
@@ -391,6 +433,10 @@ class Handler(BaseHTTPRequestHandler):
         u = urlparse(self.path)
         if u.path == "/api/state":
             self._send(200, json.dumps(build_state(), ensure_ascii=False))
+        elif u.path == "/compare":
+            q = parse_qs(u.query)
+            cid = re.sub(r"[^A-Za-z0-9_-]", "", (q.get("id", [""])[0]))
+            self._send(200, render_compare(cid), "text/html; charset=utf-8")
         elif u.path == "/view":
             q = parse_qs(u.query)
             cid = re.sub(r"[^A-Za-z0-9_-]", "", (q.get("id", [""])[0]))

@@ -32,10 +32,10 @@ chapters:
 
 back_matter:
   # parser: 각 구간에 적용할 파서 유형 (파이프라인 2.0절 구간별 방침)
-  - {id: appA,   file: [105, 105], printed: [93, 93],   title: "Appendix A", parser: record}
-  - {id: appB,   file: [106, 106], printed: [94, 94],   title: "Appendix B", parser: record}
-  - {id: appC,   file: [107, 108], printed: [95, 96],   title: "Appendix C: Selected Film Preservation Laboratories", parser: record}
-  - {id: appD,   file: [109, 110], printed: [97, 98],   title: "Appendix D: Selected Equipment and Supply Vendors", parser: record}
-  - {id: gloss,  file: [111, 120], printed: [99, 108],  title: "Glossary", parser: term_definition, status: extracted}
-  - {id: biblio, file: [121, 125], printed: [109, 113], title: "Selected Bibliography", parser: record}
-  - {id: index,  file: [126, 133], printed: [114, 121], title: "Index", parser: rebuild}
+  - {id: appA,   file: [105, 105], printed: [93, 93],   pages: 1, title: "Appendix A", parser: record}
+  - {id: appB,   file: [106, 106], printed: [94, 94],   pages: 1, title: "Appendix B", parser: record}
+  - {id: appC,   file: [107, 108], printed: [95, 96],   pages: 2, title: "Appendix C: Selected Film Preservation Laboratories", parser: record}
+  - {id: appD,   file: [109, 110], printed: [97, 98],   pages: 2, title: "Appendix D: Selected Equipment and Supply Vendors", parser: record}
+  - {id: gloss,  file: [111, 120], printed: [99, 108],  pages: 10, title: "Glossary", parser: term_definition, status: extracted}
+  - {id: biblio, file: [121, 125], printed: [109, 113], pages: 5, title: "Selected Bibliography", parser: record}
+  - {id: index,  file: [126, 133], printed: [114, 121], pages: 8, title: "Index", parser: rebuild}

@@ -1,7 +1,7 @@
 # 진행 상태
 
 원서: The Film Preservation Guide (NFPF, 2004) · 133쪽 · 영 → 한
-번역 시작 2026-09-05 · 1일째 · 진행율 1.8% (2/112 단계)
+번역 시작 2026-09-05 · 2일째 · 진행율 1.8% (2/112 단계)
 
 단계: 대기 → 정규화 → 1차 번역 → AI 감수 1 → AI 감수 2 → 사람 감수 → AI 보완 → 확정
 
@@ -16,13 +16,13 @@
 | ch07 | Cataloging | 70–76 | 7 | 대기 |
 | ch08 | Legal Context | 77–84 | 8 | 대기 |
 | ch09 | Access | 85–92 | 8 | 대기 |
-| appA | Appendix A | 93–93 |  | 대기 |
-| appB | Appendix B | 94–94 |  | 대기 |
-| appC | Appendix C: Selected Film Preservation Laboratories | 95–96 |  | 대기 |
-| appD | Appendix D: Selected Equipment and Supply Vendors | 97–98 |  | 대기 |
-| gloss | Glossary | 99–108 |  | 대기 |
-| biblio | Selected Bibliography | 109–113 |  | 대기 |
-| index | Index | 114–121 |  | 대기 |
+| appA | Appendix A | 93–93 | 1 | 대기 |
+| appB | Appendix B | 94–94 | 1 | 대기 |
+| appC | Appendix C: Selected Film Preservation Laboratories | 95–96 | 2 | 대기 |
+| appD | Appendix D: Selected Equipment and Supply Vendors | 97–98 | 2 | 대기 |
+| gloss | Glossary | 99–108 | 10 | 대기 |
+| biblio | Selected Bibliography | 109–113 | 5 | 대기 |
+| index | Index | 114–121 | 8 | 대기 |
 
 용어집: 전체 162항목 · 확정 38 · 결정 대기 2 · 미착수 122
 
