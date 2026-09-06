@@ -350,7 +350,19 @@ def md_to_html(md):
             out.append(_html.escape(raw)); continue
         m = re.match(r"^\s*<!--\s*(.*?)\s*-->\s*$", line)
         if m:
-            close(); out.append('<div class="marker">' + _html.escape(m.group(1)) + "</div>"); continue
+            close()
+            tag = m.group(1)
+            mb = re.match(r"^(사이드바|상자) 시작(?: · (.+))?$", tag)
+            if mb:
+                out.append('<aside class="box"><div class="boxhead">%s%s</div>'
+                           % (_html.escape(mb.group(1)),
+                              (' <span>%s</span>' % _html.escape(mb.group(2))) if mb.group(2) else ""))
+                continue
+            if re.match(r"^(사이드바|상자) 끝$", tag):
+                out.append("</aside>"); continue
+            cls = "marker vcheck" if tag.startswith("VISUAL-CHECK") else "marker"
+            out.append('<div class="%s">%s</div>' % (cls, _html.escape(tag)))
+            continue
         if not line.strip():
             close(); continue
         m = re.match(r"^(#{1,6})\s+(.*)$", line)
@@ -433,6 +445,14 @@ blockquote{margin:0 0 15px;padding-left:14px;border-left:3px solid var(--border)
 pre.code{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;
 overflow-x:auto;font-size:13px}
 hr{border:0;border-top:1px solid var(--border);margin:28px 0}
+.box{background:var(--surface);border:1px solid var(--border);border-radius:10px;
+padding:14px 18px 4px;margin:22px 0}
+.box .boxhead{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--faint);
+margin-bottom:8px}
+.box .boxhead span{text-transform:none;letter-spacing:0;opacity:.8}
+.box blockquote{margin:0 0 12px;padding:0;border:0;color:var(--ink)}
+.box p{margin:0 0 12px}
+.marker.vcheck{color:#fff;background:#B3261E}
 .tablewrap{overflow-x:auto;margin:16px 0;border:1px solid var(--border);border-radius:8px;
 background:var(--surface)}
 table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.55}
