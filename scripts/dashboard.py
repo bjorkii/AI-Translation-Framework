@@ -76,6 +76,30 @@ def source_quality(cid):
     paras = max(1, len([b for b in t.split("\n\n") if b.strip()]))
     return {"uncertain": unc, "paras": paras, "ratio": round(unc / paras * 100, 1)}
 
+VIS_PAT = re.compile(r"<!--\s*(VISUAL-CHECK[^>]*?)\s*-->")
+VIS_UNC = re.compile(r"<!--\s*(LINEBREAK-UNCERTAIN|LAYOUT-UNCERTAIN[^>]*?)\s*-->")
+
+def visual_open(cid):
+    """원본과 대조하지 않고 남아 있는 표·도판·불확실 구간의 수.
+
+    scripts/check_visual.py 와 같은 규약(reviews/<청크>-visual.json 의 ok:true 로 해소)을 쓴다.
+    그 검사는 명령줄에서만 볼 수 있어, 화면에서는 몇 건이 밀려 있는지 알 수가 없었다.
+    """
+    f = ROOT / "source" / (cid + ".md")
+    if not f.exists():
+        return None
+    t = f.read_text(encoding="utf-8")
+    its = [m.group(1) for m in VIS_PAT.finditer(t)] + [m.group(1) for m in VIS_UNC.finditer(t)]
+    if not its:
+        return None
+    rf = ROOT / "reviews" / ("%s-visual.json" % cid)
+    try:
+        done = json.loads(rf.read_text(encoding="utf-8")) if rf.exists() else {}
+    except Exception:
+        done = {}
+    openi = [x for x in its if not (done.get(x) or {}).get("ok")]
+    return {"open": len(openi), "total": len(its)}
+
 def chunk_stage(cid):
     src = (ROOT / "source" / (cid + ".md")).exists()
     tgt = ROOT / "chapters" / (cid + ".md")
@@ -117,9 +141,10 @@ def build_state():
         q = source_quality(c["id"])
         c.update(stage=stage, stage_label=STAGE_LABEL.get(stage, stage),
                  stage_index=idx, has_source=has_src, has_target=has_tgt,
-                 src_quality=q,
+                 src_quality=q, visual=visual_open(c["id"]),
                  src_needs_parser=bool(q and q["ratio"] >= 15))
         chunks.append(c)
+    visual_open_total = sum((c.get("visual") or {}).get("open", 0) for c in chunks)
     per_chunk = len(STAGES) - 1
     total_steps = len(chunks) * per_chunk
     percent = round(steps_done / total_steps * 100, 1) if total_steps else 0.0
@@ -150,6 +175,7 @@ def build_state():
                   "items": unacked[-30:]},
         "info": info, "chunks": chunks, "status_md": read("status.md"),
         "commits": git_log(),
+        "visual": {"open": visual_open_total},
         "progress": {"started": start, "elapsed_days": elapsed, "percent": percent,
                      "steps_done": steps_done, "steps_total": total_steps,
                      "per_chunk": per_chunk, "stages": STAGES,
@@ -268,6 +294,27 @@ def rename_term(term, new_term, actor="user"):
 
 # ------------------------------------------------------- 마크다운 렌더링
 
+# 강조(*, **, ***) — 여는 표시와 닫는 표시가 실제로 짝을 이룰 때만 서식으로 본다.
+#
+# 별표를 앞에서부터 순서대로 치환하면 두 가지가 함께 깨진다.
+#   · ***작품명*** 이 '여는 ** + 남는 *' 로 쪼개져 <strong><em>…</strong></em> 라는
+#     서로 침범한 태그가 나온다 (원문 12건).
+#   · 원서가 각주 기호로 쓰는 *, **, ***, **** 가 (원서 p.47 표 아래처럼 짝이 없는데도)
+#     강조로 잡혀 그 뒤 문장 전체의 서식이 뒤집힌다.
+#
+# CommonMark 의 좌/우 인접 규칙을 그대로 쓴다.
+#   여는 표시: 바로 뒤가 공백이 아니어야 한다
+#   닫는 표시: 바로 앞이 공백이 아니어야 한다
+# 각주 기호는 모두 '공백 + 별표 + 글자' 꼴이라 여는 쪽 조건만 만족하고 닫는 쪽이 없다.
+# 따라서 짝을 찾지 못해 글자 그대로 남는다 — 이것이 올바른 결과다.
+_EM = re.compile(r"(?<!\*)(\*{1,3})(?!\*)(?!\s)(.+?)(?<![\s*])\1(?!\*)", re.S)
+
+def _em_sub(m):
+    d, body = m.group(1), _EM.sub(_em_sub, m.group(2))   # 안쪽 강조를 먼저 푼다
+    if len(d) == 3: return "<strong><em>%s</em></strong>" % body
+    if len(d) == 2: return "<strong>%s</strong>" % body
+    return "<em>%s</em>" % body
+
 def md_inline(s):
     s = _html.escape(s, quote=False)
     s = re.sub(r"&lt;(/?(?:a|b|i|em|strong|br|span|sup|sub)\b[^&]*?)&gt;", r"<\1>", s)  # 앵커 등 통과
@@ -285,10 +332,23 @@ def md_inline(s):
         return '<figure><img src="%s" alt="%s" loading="lazy">%s</figure>' % (src, alt, cap)
     s = re.sub(r"!\[([^\]\[]*)\]\(([^()\s]*)\)", _img, s)
     s = re.sub(r"\[([^\]\[]*)\]\(([^()\s]*)\)", r'<a href="\2">\1</a>', s)
-    s = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", s)
-    s = re.sub(r"(?<!\*)\*([^*]+)\*(?!\*)", r"<em>\1</em>", s)
+    s = _EM.sub(_em_sub, s)
     s = re.sub(r"`([^`]+)`", r"<code>\1</code>", s)
     return s
+
+def _marker_style(tag):
+    """정규화기가 남긴 표시를 종류별로 갈라 색과 문구를 준다.
+
+    셋은 사람이 해야 할 일이 서로 다르다. 같은 옅은 배지로 뭉뚱그리면
+    '원본을 열어봐야 하는 것'과 '규칙이 판단을 못 한 것'이 구분되지 않는다.
+    """
+    if tag.startswith("VISUAL-CHECK"):
+        return "marker vcheck", tag.replace("VISUAL-CHECK", "원본 대조 필요 ·", 1)
+    if tag.startswith("LINEBREAK-UNCERTAIN"):
+        return "marker unc-line", "문단 경계 불확실 — 이어지는 문장인지 원본 확인 필요"
+    if tag.startswith("LAYOUT-UNCERTAIN"):
+        return "marker unc-layout", tag.replace("LAYOUT-UNCERTAIN:", "읽기 순서 불확실 ·", 1)
+    return "marker", tag
 
 FN_DEF = re.compile(r'^\s*<a id="(fn-[\w.-]+?-(\d+))"></a>\s*(?:\*\*)?\[각주\](?:\*\*)?\s*(.*)$')
 
@@ -328,6 +388,7 @@ def md_table_html(rows):
 
 def md_to_html(md):
     out, in_code, in_ul, in_ol = [], False, False, False
+    in_box = 0          # 열려 있는 상자 수 — 짝이 어긋나도 문서가 상자에 갇히지 않게 한다
     def close():
         nonlocal in_ul, in_ol
         if in_ul: out.append("</ul>"); in_ul = False
@@ -357,11 +418,15 @@ def md_to_html(md):
                 out.append('<aside class="box"><div class="boxhead">%s%s</div>'
                            % (_html.escape(mb.group(1)),
                               (' <span>%s</span>' % _html.escape(mb.group(2))) if mb.group(2) else ""))
+                in_box += 1
                 continue
             if re.match(r"^(사이드바|상자) 끝$", tag):
-                out.append("</aside>"); continue
-            cls = "marker vcheck" if tag.startswith("VISUAL-CHECK") else "marker"
-            out.append('<div class="%s">%s</div>' % (cls, _html.escape(tag)))
+                # 여는 표시 없이 닫는 표시만 온 경우 </aside> 를 내보내면 바깥 구조가 깨진다
+                if in_box:
+                    out.append("</aside>"); in_box -= 1
+                continue
+            cls, label = _marker_style(tag)
+            out.append('<div class="%s">%s</div>' % (cls, _html.escape(label)))
             continue
         if not line.strip():
             close(); continue
@@ -407,6 +472,8 @@ def md_to_html(md):
         close(); out.append("<p>%s</p>" % md_inline(line))
     if in_code: out.append("</pre>")
     close()
+    while in_box:       # 청크 경계에서 상자가 잘려도 뒤 문서가 상자 안에 갇히지 않게 닫는다
+        out.append("</aside>"); in_box -= 1
     return "\n".join(out)
 
 VIEW_CSS = """
@@ -453,6 +520,8 @@ margin-bottom:8px}
 .box blockquote{margin:0 0 12px;padding:0;border:0;color:var(--ink)}
 .box p{margin:0 0 12px}
 .marker.vcheck{color:#fff;background:#B3261E}
+.marker.unc-line{color:#fff;background:#8A5A00}
+.marker.unc-layout{color:#fff;background:#5B4B8A}
 .tablewrap{overflow-x:auto;margin:16px 0;border:1px solid var(--border);border-radius:8px;
 background:var(--surface)}
 table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.55}
