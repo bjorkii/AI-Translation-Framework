@@ -21,3 +21,4 @@
 {"ts": "2026-09-06T23:06:36", "actor": "user", "type": "decide", "term": "Color correction", "choice": "색보정", "note": "", "ack": false}
 {"ts": "2026-09-06T23:08:10", "actor": "user", "type": "decide", "term": "Contact printing", "choice": "밀착인화기", "note": "", "ack": false}
 {"ts": "2026-09-06T23:08:31", "actor": "user", "type": "decide", "term": "Lenticular film", "choice": "렌티큘러 필름", "note": "", "ack": false}
+{"ts": "2026-09-06T23:09:18", "actor": "user", "type": "decide", "term": "Lenticular film", "choice": "렌티큘러 필름", "note": "최초 등장시 원문 괄호 병기", "ack": false}

@@ -445,13 +445,24 @@ async function tick(){
   }catch(e){ el("live").textContent="서버 연결 끊김"; }
 }
 
-document.addEventListener("focusout", ()=>{
-  setTimeout(()=>{
-    const a=document.activeElement;
-    const still=a && a.tagName==="INPUT" && el("glossary").contains(a);
-    if(glossaryStale && !still){ glossaryStale=false; renderGlossary(); }
-  },60);
-});
+// 입력칸에 커서가 있을 때 버튼을 누르면 focusout이 먼저 일어난다.
+// 그 자리에서 다시 그리면 누르던 버튼이 사라져 클릭이 삼켜지므로,
+// 마우스를 누르고 있는 동안에는 다시 그리기를 미룬다.
+let pressing=false;
+document.addEventListener("pointerdown", e=>{
+  const g=el("glossary");
+  if(g && g.contains(e.target)) pressing=true;
+}, true);
+document.addEventListener("pointerup", ()=>{ setTimeout(()=>{ pressing=false; }, 0); }, true);
+document.addEventListener("pointercancel", ()=>{ pressing=false; }, true);
+
+function flushGlossary(){
+  if(pressing){ setTimeout(flushGlossary,120); return; }   // 클릭이 끝날 때까지 대기
+  const a=document.activeElement;
+  const still=a && (a.tagName==="INPUT"||a.tagName==="TEXTAREA") && el("glossary").contains(a);
+  if(glossaryStale && !still){ glossaryStale=false; renderGlossary(); }
+}
+document.addEventListener("focusout", ()=>setTimeout(flushGlossary,60));
 
 tick(); setInterval(tick,2000);
 </script></body></html>

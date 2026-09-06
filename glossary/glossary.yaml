@@ -808,7 +808,7 @@ entries:
     basis: null
     first_chapter: glossary
     locked: false
-    full: "최초 등장시 원문 괄호 병기"
+    notation: "최초 등장시 원문 괄호 병기"
 
   - term: "Licensing"
     translation: null
