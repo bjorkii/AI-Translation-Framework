@@ -1,0 +1,188 @@
+{
+ "chunk": "ch01",
+ "stage": "ai_review_2",
+ "verdict": "수정 후 통과",
+ "summary": {
+  "중요": 5,
+  "경미": 12,
+  "반영": 16,
+  "미반영": 1
+ },
+ "machine": {
+  "통과": 5,
+  "확인": 0,
+  "메모": "진행 중 발견한 영문 서명 겹낫표 1건은 즉시 수정"
+ },
+ "comments": [
+  {
+   "block": 10,
+   "severity": "중요",
+   "type": "용어 일관성",
+   "source": "National Film Preservation Foundation",
+   "before": "국립영화보존재단",
+   "after": "국립필름보존재단",
+   "comment": "지침이 '국립필름보존재단'으로 명기하고 본문이 film preservation을 '필름 보존'으로 일관되게 옮기고 있다.",
+   "applied": true
+  },
+  {
+   "block": 28,
+   "severity": "중요",
+   "type": "용어 일관성",
+   "source": "viewing copies",
+   "before": "관람용 복사본",
+   "after": "관람용 복제본",
+   "comment": "용어를 정의하는 절에서 copy를 복사본·복제본으로 갈라 쓰면 다른 물건으로 오해된다. 용어집도 '복사'를 배제 대안으로 명시.",
+   "applied": true
+  },
+  {
+   "block": 28,
+   "severity": "중요",
+   "type": "번역투",
+   "source": "only when it is both viewable … and protected",
+   "before": "영화가 … 볼 수 있고 … 지켜질 때",
+   "after": "영화를 … 볼 수 있고 … 함께 남아 있을 때",
+   "comment": "한 주어에 성격이 다른 서술어가 걸려 호응이 깨지고 조건절 범위가 흐려진다.",
+   "applied": true
+  },
+  {
+   "block": 9,
+   "severity": "중요",
+   "type": "번역투",
+   "source": "professional framework",
+   "before": "전문가 틀을 제공하며",
+   "after": "전문가 조직을 마련해",
+   "comment": "직역이라 한국어로 뜻이 잡히지 않고 문장이 이 장에서 가장 길다.",
+   "applied": true
+  },
+  {
+   "block": 3,
+   "severity": "중요",
+   "type": "번역투",
+   "source": "A more inclusive picture … is emerging",
+   "before": "그림이 드러나면서 … 이해를 넓히고 있다",
+   "after": "전모가 더 뚜렷해지면서 … 이해도 넓어지고 있다",
+   "comment": "뒷절 주어가 사라져 '그림이 이해를 넓힌다'로 읽힌다.",
+   "applied": true
+  },
+  {
+   "block": 13,
+   "severity": "경미",
+   "type": "문체",
+   "source": "Today",
+   "before": "요즘은",
+   "after": "오늘날에는",
+   "comment": "같은 문단에서 '오늘날'과 구어체 '요즘'이 섞인다.",
+   "applied": true
+  },
+  {
+   "block": 2,
+   "severity": "경미",
+   "type": "문체",
+   "source": "—these works stand as",
+   "before": "…극영화. 이 작품들은",
+   "after": "…극영화 — 이 작품들은",
+   "comment": "~다체 본문에서 종결어미 없는 문장 조각이 이 한 곳뿐이었다.",
+   "applied": true
+  },
+  {
+   "block": 2,
+   "severity": "경미",
+   "type": "용어 일관성",
+   "source": "the moving image",
+   "before": "움직이는 이미지",
+   "after": "무빙이미지",
+   "comment": "다른 문단에서는 '무빙이미지'로 표기한다.",
+   "applied": true
+  },
+  {
+   "block": 29,
+   "severity": "경미",
+   "type": "용어 일관성",
+   "source": "surviving source materials",
+   "before": "잔존 소스 자료",
+   "after": "(수정하지 않음)",
+   "comment": "원문이 surviving original materials와 surviving source materials를 구분해 쓰므로 한국어에서도 구분을 유지하는 것이 맞다. 원문을 보지 않는 2차 감수의 한계로 판단해 반영하지 않았다.",
+   "applied": false
+  },
+  {
+   "block": 3,
+   "severity": "경미",
+   "type": "번역투",
+   "source": "lay untouched",
+   "before": "손대지 않은 채",
+   "after": "손길이 닿지 않은 채",
+   "comment": "주어와 서술어의 태가 어긋난다.",
+   "applied": true
+  },
+  {
+   "block": 13,
+   "severity": "경미",
+   "type": "번역투",
+   "source": "commercially owned",
+   "before": "상업적으로 소유된 … 소유한 주체와",
+   "after": "상업적 권리자가 있는 … 그 권리자와",
+   "comment": "수동형 직역이고 한 문장에서 '소유'가 반복된다.",
+   "applied": true
+  },
+  {
+   "block": 17,
+   "severity": "경미",
+   "type": "번역투",
+   "source": "preservation needs",
+   "before": "보존 수요",
+   "after": "보존해야 할 필요성",
+   "comment": "'수요'는 시장 수요를 가리켜 맞지 않는다.",
+   "applied": true
+  },
+  {
+   "block": 19,
+   "severity": "경미",
+   "type": "가독성",
+   "source": "integrates … into a broader plan",
+   "before": "한 문장에 목적어 뒤 긴 관형절",
+   "after": "두 문장으로 분할",
+   "comment": "무엇을 무엇에 통합하는지 두 번 읽어야 파악된다.",
+   "applied": true
+  },
+  {
+   "block": 25,
+   "severity": "경미",
+   "type": "번역투",
+   "source": "the full continuum of activities",
+   "before": "활동 전체의 연속",
+   "after": "활동 전반을 아우르는 연속적 과정",
+   "comment": "continuum 직역이라 뜻이 서지 않고 피동형이 이어진다.",
+   "applied": true
+  },
+  {
+   "block": 33,
+   "severity": "경미",
+   "type": "표기",
+   "source": "Oklahoma Historical Society",
+   "before": "병기 없음",
+   "after": "오클라호마 역사협회(Oklahoma Historical Society)",
+   "comment": "다른 기관은 모두 첫 등장 시 원문을 병기한다.",
+   "applied": true
+  },
+  {
+   "block": 7,
+   "severity": "경미",
+   "type": "표기",
+   "source": "Film Preservation 1993",
+   "before": "각주에서 정체",
+   "after": "이탤릭",
+   "comment": "같은 문헌명이 본문과 각주에서 서체가 달랐다.",
+   "applied": true
+  },
+  {
+   "block": 38,
+   "severity": "경미",
+   "type": "가독성",
+   "source": "Many historical accounts …",
+   "before": "주어 앞 40자 관형절",
+   "after": "두 문장으로 분할",
+   "comment": "문장의 뼈대가 늦게 드러난다.",
+   "applied": true
+  }
+ ]
+}
