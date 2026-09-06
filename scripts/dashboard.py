@@ -66,6 +66,16 @@ def parse_glossary():
         })
     return entries
 
+def source_quality(cid):
+    """원문 정규화 결과의 불확실 표시 비율. 높으면 전용 파서가 필요하다는 뜻."""
+    f = ROOT / "source" / (cid + ".md")
+    if not f.exists():
+        return None
+    t = f.read_text(encoding="utf-8")
+    unc = t.count("LINEBREAK-UNCERTAIN")
+    paras = max(1, len([b for b in t.split("\n\n") if b.strip()]))
+    return {"uncertain": unc, "paras": paras, "ratio": round(unc / paras * 100, 1)}
+
 def chunk_stage(cid):
     src = (ROOT / "source" / (cid + ".md")).exists()
     tgt = ROOT / "chapters" / (cid + ".md")
@@ -104,8 +114,11 @@ def build_state():
         stage, has_src, has_tgt = chunk_stage(c["id"])
         idx = STAGES.index(stage) if stage in STAGES else 0
         steps_done += idx
+        q = source_quality(c["id"])
         c.update(stage=stage, stage_label=STAGE_LABEL.get(stage, stage),
-                 stage_index=idx, has_source=has_src, has_target=has_tgt)
+                 stage_index=idx, has_source=has_src, has_target=has_tgt,
+                 src_quality=q,
+                 src_needs_parser=bool(q and q["ratio"] >= 15))
         chunks.append(c)
     per_chunk = len(STAGES) - 1
     total_steps = len(chunks) * per_chunk
@@ -387,8 +400,11 @@ border-left:3px solid var(--border);border-radius:0 8px 8px 0;background:var(--s
 padding:6px 14px;cursor:pointer;background:var(--surface);color:var(--ink)}
 .ok button.yes.on{background:#2f6b4f;border-color:#2f6b4f;color:#fff}
 .ok button.no.on{background:#a8443a;border-color:#a8443a;color:#fff}
-.ok input{flex:1 1 240px;font:inherit;font-size:13px;background:var(--ground);color:var(--ink);
-border:1px solid var(--border);border-radius:7px;padding:6px 10px}
+.ok textarea{flex:1 1 320px;font:inherit;font-size:13px;line-height:1.6;background:var(--ground);
+color:var(--ink);border:1px solid var(--border);border-radius:7px;padding:7px 10px;
+min-height:34px;min-width:220px;max-width:100%;resize:both;overflow:auto}
+.ok textarea:focus{outline:0;border-color:var(--accent)}
+.ok textarea:disabled{opacity:.75}
 .ok .state{font-size:12px;color:var(--faint)}
 .warn{background:var(--mark-soft);color:var(--mark);border-radius:8px;padding:10px 14px;
 margin-bottom:20px;font-size:13.5px}
@@ -405,6 +421,7 @@ background:transparent}
 .pair.st-approved::before{background:#2f6b4f}
 .pair.st-rejected::before{background:#a8443a}
 .pair.st-note::before{background:var(--border2)}
+.pair.st-none::before{background:repeating-linear-gradient(180deg,var(--border) 0 4px,transparent 4px 9px)}
 .phead{display:flex;align-items:center;gap:10px;margin-bottom:6px}
 .phead .no{font-size:11px;color:var(--faint);font-variant-numeric:tabular-nums}
 .hist{font:inherit;font-size:11.5px;border:1px solid var(--border);border-radius:99px;
@@ -414,7 +431,7 @@ padding:1px 9px;background:var(--surface);color:var(--muted);cursor:pointer}
 .pair.open .side.quiet,.pair.open .histlog{display:block}
 .histlog{margin:6px 0 0 16px;font-size:12px;color:var(--muted);border-left:2px dashed var(--border);
 padding:4px 12px}
-.histlog div{margin:2px 0;font-variant-numeric:tabular-nums}
+.histlog div{margin:2px 0;font-variant-numeric:tabular-nums;white-space:pre-wrap}
 .ok.folded .body{display:none}
 .ok{background:none;border:0;border-radius:0;padding:6px 0 0;display:block}
 .ok .toggle{font:inherit;font-size:12.5px;border:1px solid var(--border);border-radius:7px;
@@ -430,6 +447,9 @@ padding:10px 14px;grid-template-columns:22px minmax(0,1fr)}
 .mk span{border:1px solid var(--border);border-radius:5px;padding:1px 7px}
 .sx{border-radius:3px;transition:background .08s ease}
 .sx.hl{background:rgba(96,165,205,.22);box-shadow:0 0 0 2px rgba(96,165,205,.22)}
+.sx.hl.pin{background:rgba(96,165,205,.34);box-shadow:0 0 0 2px rgba(96,165,205,.45)}
+.pair .sx{cursor:pointer}
+.pair.pinned .phead .no::after{content:" · 문장 고정 (다시 클릭하면 해제)";color:var(--accent)}
 .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-bottom:22px}
 .legend span{display:inline-flex;align-items:center;gap:6px}
 .legend i{width:12px;height:12px;border-radius:3px;display:inline-block}
@@ -508,10 +528,12 @@ def render_compare(cid):
     approvals = load_json("reviews/%s-approvals.json" % cid, {})
 
     body = ('<div class="bar">'
-            '<span class="cnt">확정 <b id="done">0</b> / <b id="total">0</b></span>'
-            '<button id="onlyOpen">미확정만 보기</button>'
-            '<span class="cnt" style="margin-left:auto">단계 변경이 있는 문단만 감수 단락이 표시됩니다</span>'
-            '</div>')
+            '<span class="cnt">확정 <b id="done">0</b> · 확인 유보 <b id="held">0</b>'
+            ' / 전체 <b id="total">0</b></span>'
+            '<button id="onlyOpen">확인 유보만 보기</button>'
+            '<span class="cnt" style="margin-left:auto">'
+            '손대지 않은 문단은 <b>확인 유보</b>로 남습니다 — 의견이 있는 문단만 확정하고 다음 단계로 넘어가도 됩니다'
+            '</span></div>')
     body += ('<div class="legend">'
              '<span><i style="background:var(--faint)"></i>원문</span>'
              '<span><i style="background:var(--accent)"></i>AI 번역</span>'
@@ -597,7 +619,7 @@ def render_compare(cid):
                  '<div class="body">'
                  '<button class="yes%s"%s>승인</button>'
                  '<button class="no%s"%s>반려</button>'
-                 '<input placeholder="의견 메모 (선택)" value="%s"%s>'
+                 '<textarea rows="2"%s placeholder="의견 메모 (선택) — 모서리를 끌어 크기를 바꿀 수 있습니다">%s</textarea>'
                  '<button class="commit">%s</button>'
                  '<span class="state">%s</span>'
                  '</div></div>'
@@ -605,19 +627,22 @@ def render_compare(cid):
                     "사용자 확인" if not cur else ("사용자 확인 · " + STATUS_KO.get((cur or {}).get("status",""), "확정")),
                     " on" if sel == "approved" else "", " disabled" if cur else "",
                     " on" if sel == "rejected" else "", " disabled" if cur else "",
-                    _html.escape((cur or {}).get("note", "")), " disabled" if cur else "",
+                    " disabled" if cur else "",
+                    _html.escape((cur or {}).get("note", "")),
                     "철회" if cur else "확정",
                     _html.escape(("확정 · %s · %s" % (STATUS_KO.get(cur.get("status",""), ""),
                                                         cur["ts"][:16].replace("T", " ")))
-                                 if cur else "미확정")))
+                                 if cur else "확인 유보")))
         body += "</div>"
     return _wrap_compare(cid, body)
 
 COMPARE_JS = """
 function refreshCount(){
-  document.getElementById('total').textContent=document.querySelectorAll('.pair').length;
-  document.getElementById('done').textContent=
-    document.querySelectorAll('.pair[data-confirmed="1"]').length;
+  var all=document.querySelectorAll('.pair').length;
+  var done=document.querySelectorAll('.pair[data-confirmed="1"]').length;
+  document.getElementById('total').textContent=all;
+  document.getElementById('done').textContent=done;
+  document.getElementById('held').textContent=all-done;
 }
 document.querySelectorAll('.hist').forEach(function(b){
   b.onclick=function(){ b.closest('.pair').classList.toggle('open'); };
@@ -626,7 +651,7 @@ document.querySelectorAll('.ok .toggle').forEach(function(b){
   b.onclick=function(){ b.closest('.ok').classList.toggle('folded'); };
 });
 document.querySelectorAll('.ok').forEach(function(row){
-  var blk=row.dataset.block, inp=row.querySelector('input');
+  var blk=row.dataset.block, inp=row.querySelector('textarea');
   var yes=row.querySelector('.yes'), no=row.querySelector('.no');
   var commit=row.querySelector('.commit'), state=row.querySelector('.state');
   var pair=document.querySelector('.pair[data-block="'+blk+'"]');
@@ -655,7 +680,7 @@ document.querySelectorAll('.ok').forEach(function(row){
       if(status==='withdrawn'){
         row.dataset.confirmed='0'; pair.dataset.confirmed='0';
         pair.className=pair.className.replace(/ st-\\w+/,'')+' st-none';
-        state.textContent='미확정'; locked(false);
+        state.textContent='확인 유보'; locked(false);
       }else{
         row.dataset.confirmed='1'; pair.dataset.confirmed='1';
         pair.className=pair.className.replace(/ st-\\w+/,'')+' st-'+
@@ -669,17 +694,35 @@ document.querySelectorAll('.ok').forEach(function(row){
   };
 });
 // 같은 문장을 단계별로 함께 짚어준다 (문장 순서가 어긋난 문단에서는 짚이지 않을 수 있음)
+// 마우스를 올리면 따라다니고, 클릭하면 그 문장에 고정된다. 다시 클릭하면 풀린다.
 document.querySelectorAll('.pair').forEach(function(pair){
-  pair.addEventListener('mouseover', function(e){
-    var sp = e.target.closest ? e.target.closest('.sx') : null;
-    if(!sp || !pair.contains(sp)) return;
-    var si = sp.dataset.si;
+  var pinned=null;
+  function paint(si){
     pair.querySelectorAll('.sx').forEach(function(x){
-      x.classList.toggle('hl', x.dataset.si === si);
+      var on = (si!==null && x.dataset.si===si);
+      x.classList.toggle('hl', on);
+      x.classList.toggle('pin', on && pinned!==null);
     });
+  }
+  function hit(e){
+    var sp = e.target.closest ? e.target.closest('.sx') : null;
+    return (sp && pair.contains(sp)) ? sp : null;
+  }
+  pair.addEventListener('mouseover', function(e){
+    if(pinned!==null) return;
+    var sp=hit(e); if(!sp) return;
+    paint(sp.dataset.si);
   });
   pair.addEventListener('mouseleave', function(){
-    pair.querySelectorAll('.sx.hl').forEach(function(x){ x.classList.remove('hl'); });
+    if(pinned!==null) return;
+    paint(null);
+  });
+  pair.addEventListener('click', function(e){
+    var sp=hit(e); if(!sp) return;
+    var si=sp.dataset.si;
+    if(pinned===si){ pinned=null; paint(si); }   // 같은 문장 재클릭 → 고정 해제, hover 모드 복귀
+    else { pinned=si; paint(si); }
+    pair.classList.toggle('pinned', pinned!==null);
   });
 });
 var onlyBtn=document.getElementById('onlyOpen');

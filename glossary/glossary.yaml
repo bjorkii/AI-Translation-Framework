@@ -1701,3 +1701,14 @@ entries:
     basis: null
     first_chapter: ch01
     locked: false
+  - term: "Storage"
+    translation: "보존고"
+    notation: "맥락 분기 — 필름·물리 매체의 보관 장소·조건: '보존고'(6장 챕터명 포함). 디지털 저장장치·저장공간 맥락: '스토리지'. 사용자 결정(ch01 사람 감수)"
+    definition_en: null
+    definition_ko: null
+    source: "사람 감수 ch01"
+    principle_form: null
+    adopted_form: null
+    basis: null
+    first_chapter: ch01
+    locked: true
