@@ -22,6 +22,7 @@ STAGE_LABEL = {"pending": "대기", "normalized": "정규화", "draft": "AI 1차
                "ai_review_1": "AI 1차 감수", "ai_review_2": "AI 2차 감수",
                "human_review": "사람 감수", "ai_revise": "AI 보완", "final": "확정"}
 TRACK_STAGES = ["draft", "ai_review_1", "ai_review_2", "ai_revise", "final"]
+STATUS_KO = {"approved": "승인", "rejected": "반려", "note": "메모", "withdrawn": "철회"}
 
 # ---------------------------------------------------------------- 파일 읽기
 
@@ -427,6 +428,8 @@ padding:10px 14px;grid-template-columns:22px minmax(0,1fr)}
 .side .pagemark{background:var(--ground)}
 .mk{margin:4px 0 0 16px;font-size:11.5px;color:var(--faint)}
 .mk span{border:1px solid var(--border);border-radius:5px;padding:1px 7px}
+.sx{border-radius:3px;transition:background .08s ease}
+.sx.hl{background:rgba(96,165,205,.22);box-shadow:0 0 0 2px rgba(96,165,205,.22)}
 .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-bottom:22px}
 .legend span{display:inline-flex;align-items:center;gap:6px}
 .legend i{width:12px;height:12px;border-radius:3px;display:inline-block}
@@ -437,6 +440,14 @@ def split_blocks(md):
     return [b.strip() for b in md.split("\n\n") if b.strip()]
 
 INS_O, INS_C, DEL_O, DEL_C = "\x01i\x02", "\x01/i\x02", "\x01d\x02", "\x01/d\x02"
+SENT_SPLIT = re.compile(r"(?<=[.!?])\s+")
+
+def mark_sentences(text):
+    """문장마다 번호를 심어 단계 간 같은 문장을 짚을 수 있게 한다."""
+    parts = SENT_SPLIT.split(text)
+    if len(parts) < 2:
+        return text
+    return " ".join("\x03%d\x02%s\x03e\x02" % (i, p) for i, p in enumerate(parts) if p)
 
 def diff_marked(prev, cur):
     """이전 단계 대비 바뀐 부분에 표시를 심는다(마크다운 변환 뒤 태그로 치환)."""
@@ -455,10 +466,12 @@ def diff_marked(prev, cur):
             out.append(DEL_O + " ".join(a[i1:i2]) + DEL_C + " " + INS_O + " ".join(b[j1:j2]) + INS_C)
     return " ".join(x for x in out if x)
 
-def to_html(md_text):
-    h = md_to_html(md_text)
-    return (h.replace(INS_O, "<ins>").replace(INS_C, "</ins>")
-             .replace(DEL_O, "<del>").replace(DEL_C, "</del>"))
+def to_html(md_text, sentences=False):
+    h = md_to_html(mark_sentences(md_text) if sentences else md_text)
+    h = (h.replace(INS_O, "<ins>").replace(INS_C, "</ins>")
+          .replace(DEL_O, "<del>").replace(DEL_C, "</del>"))
+    h = re.sub(r"\x03(\d+)\x02", r'<span class="sx" data-si="\1">', h)
+    return h.replace("\x03e\x02", "</span>")
 
 def load_json(path, default):
     f = ROOT / path
@@ -520,7 +533,7 @@ def render_compare(cid):
         if groups and marker_only.match(src_b.strip()):
             groups[-1]["markers"].append(src_b.strip())
         else:
-            groups.append({"idx": i, "markers": []})
+            groups.append({"idx": i, "markers": [], "no": len(groups) + 1})
 
     for g in groups:
         i = g["idx"]
@@ -551,7 +564,7 @@ def render_compare(cid):
                                  _html.escape(c.get("comment", "")), _html.escape(c.get("source", "")),
                                  _html.escape(c.get("before", "")), _html.escape(c.get("after", ""))))
             rows.append('<div class="side %s%s"><span class="tag">%s</span>%s</div>%s'
-                        % (cls, quiet, _html.escape(tag), to_html(shown), note_html))
+                        % (cls, quiet, _html.escape(tag), to_html(shown, True), note_html))
             prev = cur_txt
 
         badge = ""
@@ -560,11 +573,11 @@ def render_compare(cid):
                      % (changed_stages + max(0, len(hist) - 1)))
         folded = "" if (changed_stages or cur) else " folded"
 
-        body += ('<div class="pair%s" data-block="%d" data-confirmed="%d">'
-                 % (st_cls, i, 1 if cur else 0))
-        body += ('<div class="phead"><span class="no">문단 %d</span>%s</div>' % (i + 1, badge))
+        body += ('<div class="pair%s" data-block="%d" data-no="%d" data-confirmed="%d">'
+                 % (st_cls, i, g["no"], 1 if cur else 0))
+        body += ('<div class="phead"><span class="no">문단 %d</span>%s</div>' % (g["no"], badge))
         body += ('<div class="side src"><span class="tag">원문</span>%s</div>'
-                 % (to_html(A[i]) if i < len(A) else "<p>(없음)</p>"))
+                 % (to_html(A[i], True) if i < len(A) else "<p>(없음)</p>"))
         body += "".join(rows)
         for mk in g["markers"]:
             body += ('<div class="mk"><span>%s 여기까지 ⇥</span></div>'
@@ -579,7 +592,7 @@ def render_compare(cid):
             body += '<div class="histlog"><b>확인 이력</b>%s</div>' % log
 
         sel = (cur or {}).get("status", "")
-        body += ('<div class="ok%s" data-block="%d" data-confirmed="%d">'
+        body += ('<div class="ok%s" data-block="%d" data-no="%d" data-confirmed="%d">'
                  '<button class="toggle">%s</button>'
                  '<div class="body">'
                  '<button class="yes%s"%s>승인</button>'
@@ -588,13 +601,15 @@ def render_compare(cid):
                  '<button class="commit">%s</button>'
                  '<span class="state">%s</span>'
                  '</div></div>'
-                 % (folded, i, 1 if cur else 0,
-                    "사용자 확인" if not cur else "사용자 확인 · 확정됨",
+                 % (folded, i, g["no"], 1 if cur else 0,
+                    "사용자 확인" if not cur else ("사용자 확인 · " + STATUS_KO.get((cur or {}).get("status",""), "확정")),
                     " on" if sel == "approved" else "", " disabled" if cur else "",
                     " on" if sel == "rejected" else "", " disabled" if cur else "",
                     _html.escape((cur or {}).get("note", "")), " disabled" if cur else "",
                     "철회" if cur else "확정",
-                    _html.escape(("확정 " + cur["ts"][:16].replace("T", " ")) if cur else "미확정")))
+                    _html.escape(("확정 · %s · %s" % (STATUS_KO.get(cur.get("status",""), ""),
+                                                        cur["ts"][:16].replace("T", " ")))
+                                 if cur else "미확정")))
         body += "</div>"
     return _wrap_compare(cid, body)
 
@@ -634,7 +649,7 @@ document.querySelectorAll('.ok').forEach(function(row){
     else if(inp.value.trim()) status='note';
     else { alert('승인 또는 반려를 고르거나 메모를 남긴 뒤 확정해 주세요.'); return; }
     fetch('/api/approve',{method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({chunk:CID,block:blk,status:status,note:inp.value})})
+      body:JSON.stringify({chunk:CID,block:blk,label:row.dataset.no,status:status,note:inp.value})})
     .then(function(r){return r.json();}).then(function(j){
       if(!j.ok){ alert(j.message||'저장하지 못했습니다.'); return; }
       if(status==='withdrawn'){
@@ -645,12 +660,27 @@ document.querySelectorAll('.ok').forEach(function(row){
         row.dataset.confirmed='1'; pair.dataset.confirmed='1';
         pair.className=pair.className.replace(/ st-\\w+/,'')+' st-'+
           (status==='approved'?'approved':status==='rejected'?'rejected':'note');
-        state.textContent='확정 '+new Date().toLocaleString('ko-KR');
+        state.textContent='확정 · '+({approved:'승인',rejected:'반려',note:'메모'}[status]||'')
+          +' · '+new Date().toLocaleString('ko-KR');
         locked(true);
       }
       refreshCount();
     });
   };
+});
+// 같은 문장을 단계별로 함께 짚어준다 (문장 순서가 어긋난 문단에서는 짚이지 않을 수 있음)
+document.querySelectorAll('.pair').forEach(function(pair){
+  pair.addEventListener('mouseover', function(e){
+    var sp = e.target.closest ? e.target.closest('.sx') : null;
+    if(!sp || !pair.contains(sp)) return;
+    var si = sp.dataset.si;
+    pair.querySelectorAll('.sx').forEach(function(x){
+      x.classList.toggle('hl', x.dataset.si === si);
+    });
+  });
+  pair.addEventListener('mouseleave', function(){
+    pair.querySelectorAll('.sx.hl').forEach(function(x){ x.classList.remove('hl'); });
+  });
 });
 var onlyBtn=document.getElementById('onlyOpen');
 onlyBtn.onclick=function(){
@@ -685,7 +715,7 @@ def render_view(kind, cid):
             "<div class='crumb'>%s · %s</div>%s</div></body></html>"
             % (cid, label, VIEW_CSS, _html.escape(cid), _html.escape(label), body))
 
-def set_approval(cid, block, status, note):
+def set_approval(cid, block, status, note, label=None):
     """문단 확인 상태를 기록한다. 현재 상태와 이력을 함께 남긴다.
 
     status: approved(승인) / rejected(반려) / note(메모만) / withdrawn(철회)
@@ -710,9 +740,9 @@ def set_approval(cid, block, status, note):
     rec["current"] = None if status == "withdrawn" else entry
     data[key] = rec
     path.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
-    label = {"approved": "approve", "rejected": "reject",
-             "note": "note", "withdrawn": "withdraw"}[status]
-    log_decision(label, "%s 문단 %s" % (cid, block), status, note or "")
+    kind = {"approved": "approve", "rejected": "reject",
+            "note": "note", "withdrawn": "withdraw"}[status]
+    log_decision(kind, "%s 문단 %s" % (cid, label or block), status, note or "")
     return True, "저장했습니다."
 
 
@@ -757,7 +787,8 @@ class Handler(BaseHTTPRequestHandler):
             actor = "ai" if req.get("actor") == "ai" else "user"
             if self.path.startswith("/api/approve"):
                 ok, msg = set_approval(req.get("chunk", ""), req.get("block", ""),
-                                       req.get("status", ""), req.get("note", ""))
+                                       req.get("status", ""), req.get("note", ""),
+                                       req.get("label", ""))
             elif self.path.startswith("/api/add"):
                 ok, msg = add_term(req.get("term", "").strip(), req.get("choice", "").strip(),
                                    req.get("note", ""), actor)

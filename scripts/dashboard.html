@@ -209,7 +209,7 @@ function renderOverview(){
 
 /* ---------------- 청크 ---------------- */
 function renderChunks(){
-  let h='<div class="sect"><h2>청크 목록 <span class="tip">— 오른쪽 링크로 새 탭에서 열기</span></h2>'
+  let h='<div class="sect"><h2>청크 목록</h2>'
     +"<table><thead><tr><th>청크</th><th>제목</th><th>원서 쪽</th><th>분량</th><th>단계</th><th>보기</th></tr></thead><tbody>";
   for(const c of S.chunks){
     const on=c.stage!=="pending";

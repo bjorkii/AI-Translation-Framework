@@ -25,5 +25,18 @@ def main(cid, stage):
     shutil.copy2(src, dst)
     print("스냅샷 저장: stages/%s/%s.md (%d바이트)" % (cid, stage, dst.stat().st_size))
 
+def _inbox_gate():
+    """미확인 사용자 결정이 있으면 진행을 멈춘다 (--force로 우회)."""
+    import subprocess, sys
+    if "--force" in sys.argv:
+        return
+    r = subprocess.run([sys.executable, str(ROOT / "scripts" / "check_inbox.py"), "--gate"],
+                       capture_output=True, text=True)
+    if r.returncode != 0:
+        print(r.stdout)
+        print("중단했습니다. 반영 후 다시 실행하거나 --force로 건너뛸 수 있습니다.")
+        sys.exit(1)
+
 if __name__ == "__main__":
+    _inbox_gate()
     main(sys.argv[1], sys.argv[2])
