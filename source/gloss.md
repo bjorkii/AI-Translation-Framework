@@ -29,7 +29,7 @@ Base In motion picture film, transparent layer that supports the photographic em
 
 Betacam SP A format of analog videotape that measures one-half inch in width and is packaged in a cassette.
 
-Binder In motion picture film, the material in the emulsion that holds the imageforming particles or dyes.
+Binder In motion picture film, the material in the emulsion that holds the image-forming particles or dyes.
 
 Blowup Film made in a larger format than the original, such as a 16mm print made from an 8mm original. Also called enlargement.
 
@@ -175,7 +175,7 @@ Licensing Transfer of rights from the rights holder to another party generally f
 
 Light box Illuminated box with glass or plastic surface used for examining film.
 
-Liquid-gate printing Printing process during which motion picture film is briefly immersed in a chemical bath that helps to fill in scratches. Also known as wetgate printing.
+Liquid-gate printing Printing process during which motion picture film is briefly immersed in a chemical bath that helps to fill in scratches. Also known as wet-gate printing.
 
 Loupe Magnifying eyepiece used in film identification.
 
