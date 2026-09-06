@@ -1,14 +1,21 @@
 @echo off
 chcp 65001 >nul
+title 번역 프로젝트 대시보드
 cd /d "%~dp0"
-where python >nul 2>&1
-if errorlevel 1 (
-  echo 이 대시보드를 실행하려면 Python 3가 필요합니다.
-  echo https://www.python.org/downloads/ 에서 설치한 뒤 다시 실행해 주세요.
+
+set "PY="
+where py >nul 2>&1 && set "PY=py -3"
+if not defined PY where python >nul 2>&1 && set "PY=python"
+
+if not defined PY (
+  echo.
+  echo   이 대시보드를 실행하려면 Python 3가 필요합니다.
+  echo.
+  echo   https://www.python.org/downloads/ 에서 내려받아 설치해 주세요.
+  echo   설치 화면 첫 페이지의 "Add python.exe to PATH" 를 꼭 체크하셔야 합니다.
+  echo.
   pause
   exit /b 1
 )
-start "" http://127.0.0.1:8765/
-echo 브라우저가 열립니다. 이 창을 닫으면 대시보드가 종료됩니다.
-python scripts\dashboard.py
-pause
+
+%PY% scripts\launch.py

@@ -56,7 +56,7 @@ entries:
     first_chapter: glossary
     locked: false
   - term: "A-D Strips"
-    translation: null
+    translation: "A-D 스트립"
     definition_en: "Diagnostic tool developed by the Image Permanence Institute to test the level of acetate decay in cellulose acetate base film."
     definition_ko: null
     source: "원서 Glossary p.111"
@@ -65,6 +65,8 @@ entries:
     basis: null
     first_chapter: glossary
     locked: false
+    notation: "최초 등장시 괄호로 원어 병기"
+
   - term: "AMIA"
     translation: "AMIA"
     definition_en: "Association of Moving Image Archivists (www.amianet.org). Professional organization for film, video, and television archivists and preservationists."
