@@ -415,10 +415,18 @@ padding:1px 9px;background:var(--surface);color:var(--muted);cursor:pointer}
 padding:4px 12px}
 .histlog div{margin:2px 0;font-variant-numeric:tabular-nums}
 .ok.folded .body{display:none}
-.ok .toggle{font:inherit;font-size:12.5px;border:0;background:none;color:var(--muted);
-cursor:pointer;padding:0}
-.ok .toggle:hover{color:var(--ink)}
+.ok{background:none;border:0;border-radius:0;padding:6px 0 0;display:block}
+.ok .toggle{font:inherit;font-size:12.5px;border:1px solid var(--border);border-radius:7px;
+background:var(--ground);color:var(--muted);cursor:pointer;padding:4px 12px}
+.ok .toggle:hover{border-color:var(--accent);color:var(--ink)}
 .ok .body{display:flex;gap:8px;align-items:center;flex-wrap:wrap;width:100%;margin-top:8px}
+/* 대조 화면에서는 각주의 세로 막대를 없앤다 — 단계 막대 안에 또 막대가 생겨 중첩돼 보임 */
+.side .fn{border-left:0;border-radius:8px;background:var(--ground);margin:10px 0 10px 6px;
+padding:10px 14px;grid-template-columns:22px minmax(0,1fr)}
+.side .fnno{width:20px;height:20px;font-size:11px}
+.side .pagemark{background:var(--ground)}
+.mk{margin:4px 0 0 16px;font-size:11.5px;color:var(--faint)}
+.mk span{border:1px solid var(--border);border-radius:5px;padding:1px 7px}
 .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-bottom:22px}
 .legend span{display:inline-flex;align-items:center;gap:6px}
 .legend i{width:12px;height:12px;border-radius:3px;display:inline-block}
@@ -487,10 +495,10 @@ def render_compare(cid):
     approvals = load_json("reviews/%s-approvals.json" % cid, {})
 
     body = ('<div class="bar">'
-            '<span class="cnt">확정 <b id="done">0</b> / %d</span>'
+            '<span class="cnt">확정 <b id="done">0</b> / <b id="total">0</b></span>'
             '<button id="onlyOpen">미확정만 보기</button>'
             '<span class="cnt" style="margin-left:auto">단계 변경이 있는 문단만 감수 단락이 표시됩니다</span>'
-            '</div>' % max(len(A), *[len(t[3]) for t in tracks]))
+            '</div>')
     body += ('<div class="legend">'
              '<span><i style="background:var(--faint)"></i>원문</span>'
              '<span><i style="background:var(--accent)"></i>AI 번역</span>'
@@ -503,7 +511,19 @@ def render_compare(cid):
                  % (len(A), ", ".join("%s %d개" % (t[1], len(t[3])) for t in tracks)))
 
     n_blocks = max([len(A)] + [len(t[3]) for t in tracks])
+
+    # 페이지 마커만 있는 블록은 독립 문단으로 세우지 않고 앞 문단에 붙인다
+    marker_only = re.compile(r"^\[원서 p\.[^\]]+\]$")
+    groups = []
     for i in range(n_blocks):
+        src_b = A[i] if i < len(A) else ""
+        if groups and marker_only.match(src_b.strip()):
+            groups[-1]["markers"].append(src_b.strip())
+        else:
+            groups.append({"idx": i, "markers": []})
+
+    for g in groups:
+        i = g["idx"]
         rec = approvals.get(str(i)) or {}
         cur = rec.get("current") or (rec if rec.get("status") else None)
         hist = rec.get("history", [])
@@ -546,6 +566,9 @@ def render_compare(cid):
         body += ('<div class="side src"><span class="tag">원문</span>%s</div>'
                  % (to_html(A[i]) if i < len(A) else "<p>(없음)</p>"))
         body += "".join(rows)
+        for mk in g["markers"]:
+            body += ('<div class="mk"><span>%s 여기까지 ⇥</span></div>'
+                     % _html.escape(mk.strip("[]")))
         if len(hist) > 1:
             log = "".join('<div>%s · %s%s</div>'
                           % (_html.escape(h.get("ts", "")[:16].replace("T", " ")),
@@ -577,9 +600,9 @@ def render_compare(cid):
 
 COMPARE_JS = """
 function refreshCount(){
-  var all=document.querySelectorAll('.pair').length;
-  var done=document.querySelectorAll('.pair[data-confirmed="1"]').length;
-  document.getElementById('done').textContent=done;
+  document.getElementById('total').textContent=document.querySelectorAll('.pair').length;
+  document.getElementById('done').textContent=
+    document.querySelectorAll('.pair[data-confirmed="1"]').length;
 }
 document.querySelectorAll('.hist').forEach(function(b){
   b.onclick=function(){ b.closest('.pair').classList.toggle('open'); };
