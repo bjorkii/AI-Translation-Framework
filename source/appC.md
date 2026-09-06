@@ -1,5 +1,5 @@
 
-<!-- LAYOUT-UNCERTAIN: p.95 좌8/우6 블록 — 2단 본문/사이드바 시각 확인 필요 -->
+<!-- LAYOUT-UNCERTAIN: p.95 좌8/우6 블록 — 읽기 순서 시각 확인 필요 -->
 
 ## APPENDIX C: SELECTED FILM PRESERVATION LABORATORIES
 
@@ -40,7 +40,7 @@ Crest National 6721 Romaine St. Los Angeles, CA 90038 Phone: 323-860-1300 Web si
 <!-- LINEBREAK-UNCERTAIN -->
 DJ Audio (*sound track*) 10806 Ventura Blvd., Ste. 2 Studio City, CA 91604 Phone: 818-760-1673 E-mail: djaudio@aol.com
 
-<!-- LAYOUT-UNCERTAIN: p.96 좌5/우6 블록 — 2단 본문/사이드바 시각 확인 필요 -->
+<!-- LAYOUT-UNCERTAIN: p.96 좌5/우6 블록 — 읽기 순서 시각 확인 필요 -->
 
 [원서 p.95]
 

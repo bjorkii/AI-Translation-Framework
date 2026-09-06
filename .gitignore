@@ -5,3 +5,6 @@ backup/
 
 # Claude 데스크톱 앱이 전달 파일을 놓는 폴더 (프로젝트 산출물 아님)
 Claude outputs/
+
+# AI가 원본 페이지를 눈으로 확인할 때 쓰는 임시 렌더 이미지
+intermediate/pagescan/

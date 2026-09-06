@@ -14,7 +14,10 @@ import pymupdf
 ABBR = re.compile(r"\b(Mr|Mrs|Ms|Dr|Prof|St|Jr|Sr|vs|etc|cf|approx|ca|No|Vol|pp|Fig|ed|eds|Inc|Co)\.$", re.I)
 END  = re.compile(r"[.!?:;”\"’')\]]\s*$")
 # 문장부호 뒤에 붙은 1~2자리 각주 참조번호
-FN_REF = re.compile(r"(?<![0-9])(?<=[.,;:!?”’\)])(\d{1,2})(?=\s|$)")
+# (?<![0-9]\.) : "6.5절", "2.6" 같은 절 번호 상호참조를 각주로 오인하지 않도록 막는다.
+#                이 예외가 없으면 "(See 6.5 on ...)"의 5가 각주 참조로 잡혀
+#                같은 번호의 각주가 본문에 두 번 생긴다.
+FN_REF = re.compile(r"(?<![0-9])(?<![0-9]\.)(?<=[.,;:!?”’\)])(\d{1,2})(?=\s|$)")
 # 각주 정의 블록 시작 패턴 (예: "1.본문..." / "2. AMIA grew...")
 FN_DEF_HEAD = re.compile(r"^\s*(\d{1,2})\s*\.\s*(?=[A-Z“\"])")
 SUP = "⁰¹²³⁴⁵⁶⁷⁸⁹"
@@ -28,6 +31,45 @@ def is_caps_label(t):
     return sum(1 for c in al if c.isupper()) / len(al) >= 0.85
 
 def sup(n): return "".join(SUP[int(d)] for d in str(n))
+
+def inside(bbox, rect, pad=2):
+    """블록 bbox가 사각형 rect 안에 들어가는가 (약간의 여유 허용)"""
+    x0, y0, x1, y1 = bbox
+    return (x0 >= rect[0]-pad and y0 >= rect[1]-pad
+            and x1 <= rect[2]+pad and y1 <= rect[3]+pad)
+
+def sidebar_rects(page):
+    """회색으로 채운 상자 = 사이드바(측주). 이미지 테두리(흰 채움)와 구분한다."""
+    out = []
+    for d in page.get_drawings():
+        f = d.get("fill")
+        r = d["rect"]
+        if not f or d["type"] != "f":
+            continue
+        if r.width < 90 or r.height < 60:
+            continue
+        if abs(f[0]-f[1]) < .02 and abs(f[1]-f[2]) < .02 and 0.7 < f[0] < 0.97:
+            out.append((r.x0, r.y0, r.x1, r.y1))
+    return out
+
+def md_table(rows):
+    """추출한 표를 마크다운 표로. 셀 안의 줄바꿈은 <br>로 살린다."""
+    def cell(c):
+        c = (c or "").strip()
+        c = re.sub(r"\s*\n\s*", " ", c)
+        c = re.sub(r"\s+", " ", c)
+        return c.replace("|", "\\|")
+    rows = [[cell(c) for c in r] for r in rows if any((c or "").strip() for c in r)]
+    if not rows:
+        return ""
+    ncol = max(len(r) for r in rows)
+    rows = [r + [""] * (ncol - len(r)) for r in rows]
+    head, body = rows[0], rows[1:]
+    out = ["| " + " | ".join(head) + " |",
+           "|" + "|".join(["---"] * ncol) + "|"]
+    for r in body:
+        out.append("| " + " | ".join(r) + " |")
+    return "\n".join(out)
 
 def page_labels(doc):
     labels = {}
@@ -111,7 +153,8 @@ def main(pdf, p0, p1, chap, outpath=None):
     BODY = detect_body_size(doc, p0, p1)
     print(f"  (본문 폰트 자동 추정: {BODY}pt)")
     stats = dict(pages=0, blocks=0, paras=0, dehyphen=0, uncertain=0, headers_removed=0,
-                 layout_uncertain=0, headings=0, captions=0, fn_refs=0, fn_defs=0, labels=0)
+                 layout_uncertain=0, headings=0, captions=0, fn_refs=0, fn_defs=0, labels=0,
+                 tables=0, table_cells=0, sidebars=0)
     out, notes = [], []
     carry_idx = None      # out 리스트에서 직전 본문 문단의 위치
     pending = {"mark": None}   # 아직 배치하지 않은 페이지 마커
@@ -125,7 +168,28 @@ def main(pdf, p0, p1, chap, outpath=None):
     for i in range(p0-1, p1):
         page = doc[i]; stats["pages"] += 1
         w, h = page.rect.width, page.rect.height
-        body, fndefs = [], []
+        # (1) 괘선 표: 표 영역 안의 텍스트 블록은 본문 흐름에서 제외하고 마크다운 표로 재구성
+        tables = []
+        try:
+            for t in page.find_tables().tables:
+                data = t.extract()
+                if not data or len(data) < 2:
+                    continue
+                # 도판 캡션에 테두리가 있으면 표로 잡히기도 한다.
+                # 빈 칸이 대부분이거나 실질적으로 1열뿐이면 표가 아니다.
+                ncol = max(len(r) for r in data)
+                filled = sum(1 for r in data for c in r if (c or "").strip())
+                usedcol = sum(1 for j in range(ncol)
+                              if any((r[j] if j < len(r) else "" or "").strip() for r in data))
+                if usedcol < 2 or filled < len(data) * ncol * 0.35:
+                    continue
+                tables.append({"bbox": tuple(t.bbox), "md": md_table(data),
+                               "rows": len(data), "cols": ncol})
+        except Exception:
+            pass
+        # (2) 회색 상자 사이드바
+        sboxes = sidebar_rects(page)
+        body, fndefs, sides = [], [], {i: [] for i in range(len(sboxes))}
         for b in page.get_text("dict")["blocks"]:
             if b.get("type") != 0: continue
             lines = ["".join(s["text"] for s in l["spans"]).strip() for l in b["lines"]]
@@ -135,7 +199,14 @@ def main(pdf, p0, p1, chap, outpath=None):
             if (y0 < h*0.09 or y0 > h*0.88) and len(txt) < 60:
                 stats["headers_removed"] += 1; continue
             size = max(s["size"] for l in b["lines"] for s in l["spans"])
-            rec = dict(x0=x0, y0=y0, size=size, lines=lines, txt=txt, raw=b)
+            rec = dict(x0=x0, y0=y0, size=size, lines=lines, txt=txt, raw=b, bbox=b["bbox"])
+            # 표 안의 텍스트는 본문에서 뺀다 (표는 통째로 다시 만든다)
+            if any(inside(b["bbox"], t["bbox"]) for t in tables):
+                stats["table_cells"] += 1; continue
+            # 사이드바 상자 안의 텍스트는 따로 모은다
+            si = next((i for i, r in enumerate(sboxes) if inside(b["bbox"], r)), None)
+            if si is not None:
+                sides[si].append(rec); continue
             # (b) 각주 정의 블록: 작은 폰트 + 페이지 하단부 + 번호로 시작
             if size < BODY - 0.4 and y0 > h*0.45 and FN_DEF_HEAD.match(txt):
                 fndefs.append(rec)
@@ -149,7 +220,7 @@ def main(pdf, p0, p1, chap, outpath=None):
         label = labels.get(i, f"?{i+1}")
         if multi:
             stats["layout_uncertain"] += 1
-            out.append(f"\n<!-- LAYOUT-UNCERTAIN: p.{label} 좌{len(lefts)}/우{len(rights)} 블록 — 2단 본문/사이드바 시각 확인 필요 -->\n")
+            out.append(f"\n<!-- LAYOUT-UNCERTAIN: p.{label} 좌{len(lefts)}/우{len(rights)} 블록 — 읽기 순서 시각 확인 필요 -->\n")
 
         for b in body:
             stats["blocks"] += 1
@@ -195,6 +266,26 @@ def main(pdf, p0, p1, chap, outpath=None):
             flush_mark()
             out.append(f"\n{txt2}\n"); carry_idx = len(out)-1; stats["paras"] += 1
 
+        # 표: 본문 뒤, 각주 앞에 놓는다
+        for t in sorted(tables, key=lambda t: t["bbox"][1]):
+            if not t["md"]:
+                continue
+            flush_mark()
+            stats["tables"] += 1
+            out.append("\n<!-- 표: %d행 %d열 · 원서 p.%s -->\n%s\n"
+                       % (t["rows"], t["cols"], label, t["md"]))
+        # 사이드바(측주 상자)
+        for i, blocks_ in sides.items():
+            if not blocks_:
+                continue
+            blocks_.sort(key=lambda b: b["y0"])
+            stats["sidebars"] += 1
+            flush_mark()
+            body_md = "\n>\n".join("> " + styled_text(b["raw"], stats).replace("\n", " ")
+                                   for b in blocks_)
+            out.append("\n<!-- 사이드바 시작 · 원서 p.%s -->\n%s\n<!-- 사이드바 끝 -->\n"
+                       % (label, body_md))
+
         # 각주 정의 -> 페이지 텍스트 말미 (페이지 마커 직전)
         for b in fndefs:
             for num, body_txt in split_fn_defs(styled_text(b["raw"], stats)):
@@ -206,7 +297,7 @@ def main(pdf, p0, p1, chap, outpath=None):
     flush_mark()
     text = re.sub(r"\n{3,}", "\n\n", "".join(out))
     if outpath: open(outpath, "w").write(text)
-    print("=== 정규화 통계 (v2) ===")
+    print("=== 정규화 통계 (v3) ===")
     for k, v in stats.items(): print(f"  {k}: {v}")
     tot = stats["paras"] + stats["uncertain"]
     print(f"  >>> 불확실 판정 비율: {stats['uncertain']}/{tot} = {stats['uncertain']/max(tot,1)*100:.1f}%")

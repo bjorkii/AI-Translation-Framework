@@ -53,7 +53,7 @@
     "text": "Nitrate and acetate base film should be frozen if there are signs of decay."
    }
   ],
-  "hits": 35,
+  "hits": 33,
   "chunks": [
    "ch02",
    "ch05",
@@ -64,9 +64,9 @@
  "Acetate decay": {
   "quotes": [
    {
-    "page": "14",
+    "page": "15",
     "chunk": "ch02",
-    "text": "MEASURING ACETATE DECAY WITH A-D STRIPS IPI's A-D Strips are an easy way to check for acetate decay."
+    "text": "Although shrinkage is a major symptom of acetate decay, it also affects nitrate and can be aggravated by overly dry storage conditions."
    },
    {
     "page": "99",
@@ -104,7 +104,7 @@
    {
     "page": "14",
     "chunk": "ch02",
-    "text": "A-D Strips are not designed for use with nitrate or polyester film."
+    "text": "Instructions are found in IPI’s User's Guide for A-D Strips, which can be downloaded from www.rit.edu/ipi. > > A-D Strips are not designed for use with nitrate or polyester film."
    },
    {
     "page": "99",
@@ -112,7 +112,7 @@
     "text": "A-D Strips Diagnostic tool developed by the Image Permanence Institute to test the level of acetate decay in cellulose acetate base film."
    }
   ],
-  "hits": 4,
+  "hits": 3,
   "chunks": [
    "ch02",
    "gloss"
@@ -126,15 +126,14 @@
     "text": "Sources like AMIM2 and the AMIA Compendiumdefine how these data elements are applied."
    },
    {
-    "page": "15",
-    "chunk": "ch02",
-    "text": "Illustrated instructions are provided on the Association of Moving Image Archivists (AMIA) Web site, www.amianet.org."
+    "page": "50",
+    "chunk": "ch05",
+    "text": "Zimmermann, Reel Families: A Social History of Amateur Film (Bloomington, IN: Indiana University Press, 1995).The AMIA compiled a small gauge brochure issued for its 2001 conference; it is available at www.amianet.org/ publication/resources/reports/smallguage.pdf."
    }
   ],
-  "hits": 15,
+  "hits": 13,
   "chunks": [
    "ch01",
-   "ch02",
    "ch04",
    "ch05",
    "ch07",
@@ -244,7 +243,7 @@
     "text": "For more than a decade the video format of choice was BetaCam SP, the half-inch analog tape that gained acceptance in the television industry in the 1980s."
    }
   ],
-  "hits": 3,
+  "hits": 2,
   "chunks": [
    "ch05",
    "gloss"
@@ -350,7 +349,7 @@
    {
     "page": "9",
     "chunk": "ch02",
-    "text": "FILM GAUGES AND THEIR SUPPORT MATERIAL Support Dates of Use Nitrate 1893–early 1950s Acetate 1909–present Polyester Mid 1950s–present Cellulose diacetate motion picture film is thought to have been introduced in 1909.The first extant example dates from 1912."
+    "text": "FILM GAUGES AND THEIR SUPPORT MATERIAL Cellulose diacetate motion picture film is thought to have been introduced in 1909.The first extant example dates from 1912."
    },
    {
     "page": "101",
@@ -593,7 +592,7 @@
    {
     "page": "9",
     "chunk": "ch02",
-    "text": "FILM GAUGES AND THEIR SUPPORT MATERIAL Support Dates of Use Nitrate 1893–early 1950s Acetate 1909–present Polyester Mid 1950s–present Cellulose diacetate motion picture film is thought to have been introduced in 1909.The first extant example dates from 1912."
+    "text": "FILM GAUGES AND THEIR SUPPORT MATERIAL Cellulose diacetate motion picture film is thought to have been introduced in 1909.The first extant example dates from 1912."
    },
    {
     "page": "101",
@@ -601,7 +600,7 @@
     "text": "Diacetate Short for cellulose diacetate."
    }
   ],
-  "hits": 7,
+  "hits": 6,
   "chunks": [
    "ch02",
    "gloss"
@@ -674,7 +673,7 @@
    {
     "page": "39",
     "chunk": "ch04",
-    "text": "An interpositive is a color production or preservation element made from a negative original and then used to create a duplicate negative from which many prints can be generated."
+    "text": "ASSESSING THE UNIQUENESS OF FILM MATERIALS: SUMMARY An interpositive is a color production or preservation element made from a negative original and then used to create a duplicate negative from which many prints can be generated."
    }
   ],
   "hits": 4,
@@ -686,19 +685,13 @@
  "Duplicating positive": {
   "quotes": [
    {
-    "page": "47",
-    "chunk": "ch05",
-    "text": "This answer print is used to determine the timing for the duplicating positive."
-   },
-   {
     "page": "101",
     "chunk": "gloss",
     "text": "For black-and-white film the duplicating positive is called a finegrain master; for color film, it is called an interpositive."
    }
   ],
-  "hits": 7,
+  "hits": 6,
   "chunks": [
-   "ch05",
    "gloss"
   ]
  },
@@ -735,7 +728,7 @@
    {
     "page": "45",
     "chunk": "ch05",
-    "text": "DUPLICATING YOUR FILM: OPTIONS AND TRADE-OFFS Duplication Approach Benefits Film, along with film print and VHS tape or DVD access copy • Long-term protection of original."
+    "text": "DUPLICATING YOUR FILM: OPTIONS AND TRADE-OFFS | Duplication Approach | Benefits | Limitations | |---|---|---| | Film, along with film print and VHS tape or DVD access copy | • Long-term protection of original."
    }
   ],
   "hits": 14,
@@ -754,7 +747,7 @@
    {
     "page": "26",
     "chunk": "ch03",
-    "text": "Are there edge codes that might help with identification and dating? 5."
+    "text": "Are there edge codes that might help with identification and dating? > > 5."
    },
    {
     "page": "93",
@@ -784,7 +777,7 @@
     "text": "Regular 8mm Term applied to 8mm film to distinguish it from Super 8mm."
    }
   ],
-  "hits": 40,
+  "hits": 39,
   "chunks": [
    "appA",
    "ch02",
@@ -908,7 +901,7 @@
    {
     "page": "30",
     "chunk": "ch03",
-    "text": "When using film cement, always work in a well-ventilated area."
+    "text": "When using film cement, always work in a well-ventilated area. > ULTRASONIC SPLICERS > > High-end ultrasonic splicers fuse film together without using splicing tape or cement and are used for splicing polyester film."
    }
   ],
   "hits": 5,
@@ -1033,15 +1026,14 @@
     "text": "Formats are standardized for film gauges now in commercial use."
    },
    {
-    "page": "39",
-    "chunk": "ch04",
-    "text": "A reduction print is a positive made in a smaller format than the original."
+    "page": "71",
+    "chunk": "ch07",
+    "text": "The MARC format is designed to be used in conjunction with cataloging rules."
    }
   ],
-  "hits": 26,
+  "hits": 25,
   "chunks": [
    "ch02",
-   "ch04",
    "ch05",
    "ch06",
    "ch07",
@@ -1062,7 +1054,7 @@
     "text": "Optical printing Laboratory process in which the image is projected through a lens and copied onto raw stock, frame by frame."
    }
   ],
-  "hits": 26,
+  "hits": 25,
   "chunks": [
    "ch02",
    "ch03",
@@ -1145,7 +1137,7 @@
     "text": "The film gauge most frequently found in American archives, libraries, and museums is 16mm."
    }
   ],
-  "hits": 47,
+  "hits": 44,
   "chunks": [
    "ch02",
    "ch03",
@@ -1336,7 +1328,7 @@
     "text": "For black-and-white film the duplicating positive is called a finegrain master; for color film, it is called an interpositive."
    }
   ],
-  "hits": 12,
+  "hits": 11,
   "chunks": [
    "ch04",
    "ch05",
@@ -1384,17 +1376,17 @@
  "IPI": {
   "quotes": [
    {
-    "page": "14",
-    "chunk": "ch02",
-    "text": "MEASURING ACETATE DECAY WITH A-D STRIPS IPI's A-D Strips are an easy way to check for acetate decay."
+    "page": "60",
+    "chunk": "ch06",
+    "text": "HOW TEMPERATURES AFFECT FILM MATERIALS (when RH is between 30% and 50%) Source: IPI Media Storage Quick Reference."
    },
    {
-    "page": "61",
-    "chunk": "ch06",
-    "text": "For most film materials IPI finds that frozen temperatures, if RH is held between 30% and 50%, extend useful life."
+    "page": "14",
+    "chunk": "ch02",
+    "text": "Instructions are found in IPI’s User's Guide for A-D Strips, which can be downloaded from www.rit.edu/ipi. > > A-D Strips are not designed for use with nitrate or polyester film."
    }
   ],
-  "hits": 24,
+  "hits": 25,
   "chunks": [
    "ch02",
    "ch06",
@@ -1438,7 +1430,7 @@
    {
     "page": "11",
     "chunk": "ch02",
-    "text": "For amateurs, Kodak introduced the celebrated Kodachrome reversal film in 1935."
+    "text": "Manufacturers have significantly improved the stability of photographic dyes, but fading is still a major preservation problem with older color films. > LENTICULAR FILM: BLACK AND > > WHITE OR “COLOR”? > > Before introducing Kodachrome, Kodak sold an unusual type of 16mm black-and-white film that projects as a color image when shown through a customized projector with a three-color lens."
    },
    {
     "page": "104",
@@ -1463,7 +1455,7 @@
    {
     "page": "11",
     "chunk": "ch02",
-    "text": "For identification, first check for the word KODACOLOR printed on the film edge (see 3. on edge codes)."
+    "text": "For identification, first check for the word KODACOLOR printed on the film edge (see 3.3 on edge codes)."
    }
   ],
   "hits": 2,
@@ -1505,7 +1497,7 @@
    {
     "page": "11",
     "chunk": "ch02",
-    "text": "LENTICULAR FILM: BLACK AND WHITE OR “COLOR”?"
+    "text": "Manufacturers have significantly improved the stability of photographic dyes, but fading is still a major preservation problem with older color films. > LENTICULAR FILM: BLACK AND > > WHITE OR “COLOR”? > > Before introducing Kodachrome, Kodak sold an unusual type of 16mm black-and-white film that projects as a color image when shown through a customized projector with a three-color lens."
    }
   ],
   "hits": 3,
@@ -1604,11 +1596,12 @@
     "text": "Magnetic sound track Motion picture sound track in which the sound information is carried by magnetic oxide."
    }
   ],
-  "hits": 13,
+  "hits": 14,
   "chunks": [
    "ch02",
    "ch03",
    "ch04",
+   "ch05",
    "ch06",
    "gloss"
   ]
@@ -1775,7 +1768,7 @@
     "text": "Nitrate and acetate base film should be frozen if there are signs of decay."
    }
   ],
-  "hits": 70,
+  "hits": 68,
   "chunks": [
    "ch01",
    "ch02",
@@ -1890,12 +1883,12 @@
     "text": "Conservation is the protection of the original film artifact."
    },
    {
-    "page": "39",
+    "page": "37",
     "chunk": "ch04",
-    "text": "Amateur film or home movie Probably yes, if material is reversal original."
+    "text": "Another fairly straightforward case is the 8mm, Super 8mm, and 16mm reversal original."
    }
   ],
-  "hits": 99,
+  "hits": 95,
   "chunks": [
    "ch01",
    "ch02",
@@ -1970,17 +1963,17 @@
   ],
   "quotes": [
    {
-    "page": "14",
+    "page": "9",
     "chunk": "ch02",
-    "text": "A-D Strips are not designed for use with nitrate or polyester film."
+    "text": "Polyester is the toughest and most chemically stable film base used today."
    },
    {
     "page": "30",
     "chunk": "ch03",
-    "text": "ULTRASONIC SPLICERS High-end ultrasonic splicers fuse film together without using splicing tape or cement and are used for splicing polyester film."
+    "text": "When using film cement, always work in a well-ventilated area. > ULTRASONIC SPLICERS > > High-end ultrasonic splicers fuse film together without using splicing tape or cement and are used for splicing polyester film."
    }
   ],
-  "hits": 18,
+  "hits": 17,
   "chunks": [
    "ch02",
    "ch03",
@@ -2002,11 +1995,10 @@
     "text": "A viewing positive with a sound track is called a composite print."
    }
   ],
-  "hits": 37,
+  "hits": 36,
   "chunks": [
    "ch02",
    "ch03",
-   "ch04",
    "ch05",
    "gloss"
   ]
@@ -2024,7 +2016,7 @@
     "text": "Film preservation is not a onetime operation but an ongoing process."
    }
   ],
-  "hits": 160,
+  "hits": 161,
   "chunks": [
    "appB",
    "ch01",
@@ -2052,7 +2044,7 @@
     "text": "Preservation master Sound and picture elements that are sufficient for printing new film copies without reuse of the original source."
    }
   ],
-  "hits": 11,
+  "hits": 12,
   "chunks": [
    "ch01",
    "ch05",
@@ -2201,17 +2193,17 @@
  "Reduction print": {
   "quotes": [
    {
-    "page": "39",
-    "chunk": "ch04",
-    "text": "A reduction print is a positive made in a smaller format than the original."
-   },
-   {
     "page": "106",
     "chunk": "gloss",
     "text": "Reduction print Positive made in a smaller format than the original, such as a 16mm print made from a 35mm original."
+   },
+   {
+    "page": "37",
+    "chunk": "ch04",
+    "text": "With some 75% of American silent feature production thought to be lost, a vintage reduction print could be a valuable source."
    }
   ],
-  "hits": 4,
+  "hits": 3,
   "chunks": [
    "ch04",
    "gloss"
@@ -2246,7 +2238,7 @@
    {
     "page": "62",
     "chunk": "ch06",
-    "text": "Frozen storage is not advised for reference prints or frequently consulted materials."
+    "text": "Frozen storage is not advised for reference prints or frequently consulted materials. > FREEZING TO SLOW ADVANCED > > VINEGAR SYNDROME > > Acetate films at the A-D Strip level of 2 (see 2.6) are at a critical threshold in the decay process."
    },
    {
     "page": "106",
@@ -2273,7 +2265,7 @@
     "text": "Another common gauge in repositories is 8mm, often called Regular 8mm, which was introduced by Kodak in 1932 for home moviemakers."
    }
   ],
-  "hits": 7,
+  "hits": 6,
   "chunks": [
    "ch02",
    "ch05",
@@ -2293,7 +2285,7 @@
     "text": "Heat and high relative humidity are the main culprits in color fading."
    }
   ],
-  "hits": 33,
+  "hits": 32,
   "chunks": [
    "ch02",
    "ch03",
@@ -2347,9 +2339,9 @@
  "Reversal original": {
   "quotes": [
    {
-    "page": "39",
+    "page": "37",
     "chunk": "ch04",
-    "text": "Amateur film or home movie Probably yes, if material is reversal original."
+    "text": "Another fairly straightforward case is the 8mm, Super 8mm, and 16mm reversal original."
    },
    {
     "page": "106",
@@ -2357,7 +2349,7 @@
     "text": "Reversal original Film that is run through the camera and processed to produce a positive image."
    }
   ],
-  "hits": 8,
+  "hits": 6,
   "chunks": [
    "ch02",
    "ch04",
@@ -2401,7 +2393,7 @@
     "text": "If you let the film acclimate under more moderate relative humidity conditions (40% to 60% RH), it will usually flatten out."
    }
   ],
-  "hits": 8,
+  "hits": 9,
   "chunks": [
    "ch03",
    "ch06",
@@ -2493,7 +2485,7 @@
    {
     "page": "26",
     "chunk": "ch03",
-    "text": "What is the degree of shrinkage as measured by a shrinkage gauge or by comparing to fresh film stock (see 2.6)?"
+    "text": "What is the degree of shrinkage as measured by a shrinkage gauge or by comparing to fresh film stock (see 2.6)? > > 12."
    },
    {
     "page": "15",
@@ -2501,7 +2493,7 @@
     "text": "Although shrinkage is a major symptom of acetate decay, it also affects nitrate and can be aggravated by overly dry storage conditions."
    }
   ],
-  "hits": 21,
+  "hits": 17,
   "chunks": [
    "ch02",
    "ch03",
@@ -2516,15 +2508,15 @@
    {
     "page": "26",
     "chunk": "ch03",
-    "text": "What is the degree of shrinkage as measured by a shrinkage gauge or by comparing to fresh film stock (see 2.6)?"
+    "text": "What is the degree of shrinkage as measured by a shrinkage gauge or by comparing to fresh film stock (see 2.6)? > > 12."
    },
    {
-    "page": "15",
+    "page": "16",
     "chunk": "ch02",
-    "text": "Contrast is lost, and the film begins USING A SHRINKAGE GAUGE A shrinkage gauge is a tool for measuring the degree of shrinkage in motion picture film."
+    "text": "Prints and negatives can experience fading at different rates. > USING A SHRINKAGE GAUGE > > A shrinkage gauge is a tool for measuring the degree of shrinkage in motion picture film."
    }
   ],
-  "hits": 6,
+  "hits": 5,
   "chunks": [
    "ch02",
    "ch03",
@@ -2695,9 +2687,9 @@
  "Splicing tape": {
   "quotes": [
    {
-    "page": "30",
+    "page": "31",
     "chunk": "ch03",
-    "text": "ULTRASONIC SPLICERS High-end ultrasonic splicers fuse film together without using splicing tape or cement and are used for splicing polyester film."
+    "text": "Splicing tape or cement can be used to affix the replacement edges to the damaged film.This is a difficult task and should be performed only by experienced technicians."
    },
    {
     "page": "105",
@@ -2825,7 +2817,7 @@
     "text": "The answer print is also based on the per-foot charge for new film stock."
    }
   ],
-  "hits": 45,
+  "hits": 44,
   "chunks": [
    "ch01",
    "ch02",
@@ -2848,7 +2840,7 @@
     "text": "Because of the small scale, 8mm and Super 8mm films are difficult to repair."
    }
   ],
-  "hits": 16,
+  "hits": 15,
   "chunks": [
    "ch02",
    "ch03",
@@ -2977,19 +2969,18 @@
  "Timing": {
   "quotes": [
    {
-    "page": "47",
-    "chunk": "ch05",
-    "text": "This answer print is used to determine the timing for the duplicating positive."
-   },
-   {
     "page": "108",
     "chunk": "gloss",
     "text": "Timing Process through which the laboratory technician determines the correct brightness and color of a film element scene by scene."
+   },
+   {
+    "page": "103",
+    "chunk": "gloss",
+    "text": "Also known as timing."
    }
   ],
-  "hits": 3,
+  "hits": 2,
   "chunks": [
-   "ch05",
    "gloss"
   ]
  },
@@ -3017,7 +3008,7 @@
    {
     "page": "46",
     "chunk": "ch05",
-    "text": "Complex restorations may require successive answer prints to obtain the correct LABSPEAK What is the difference between a first trial print and an answer print?"
+    "text": "Complex restorations may require successive answer prints to obtain the correct > LABSPEAK > > What is the difference between a first trial print and an answer print?"
    },
    {
     "page": "99",
@@ -3055,7 +3046,7 @@
    {
     "page": "30",
     "chunk": "ch03",
-    "text": "ULTRASONIC SPLICERS High-end ultrasonic splicers fuse film together without using splicing tape or cement and are used for splicing polyester film."
+    "text": "When using film cement, always work in a well-ventilated area. > ULTRASONIC SPLICERS > > High-end ultrasonic splicers fuse film together without using splicing tape or cement and are used for splicing polyester film."
    },
    {
     "page": "9",
@@ -3207,7 +3198,7 @@
     "text": "Abstract: Not all materials are available for immediate access."
    }
   ],
-  "hits": 69,
+  "hits": 68,
   "chunks": [
    "ch01",
    "ch03",
@@ -3246,10 +3237,9 @@
     "text": "In this structure, which opened in 2003, the moving image collection is maintained at 45°F and 25% RH."
    }
   ],
-  "hits": 38,
+  "hits": 37,
   "chunks": [
    "ch01",
-   "ch02",
    "ch03",
    "ch04",
    "ch05",
@@ -3272,7 +3262,7 @@
     "text": "Reels are designed to hold films for projection, not long-term storage."
    }
   ],
-  "hits": 92,
+  "hits": 91,
   "chunks": [
    "ch01",
    "ch02",

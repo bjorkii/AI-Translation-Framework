@@ -340,7 +340,7 @@ entries:
     first_chapter: glossary
     locked: false
   - term: "Digital Betacam"
-    translation: null
+    translation: "디지베타"
     definition_en: "A format of one-half-inch digital videotape that is packaged in a cassette. Also known as DBC, Digi Beta, and Digibeta."
     definition_ko: null
     source: "원서 Glossary p.113"
@@ -349,6 +349,8 @@ entries:
     basis: null
     first_chapter: glossary
     locked: false
+    notation: "첫 등장시 원문 병기"
+
   - term: "Digital videotape"
     translation: null
     definition_en: "Videotape that stores picture and sound as numeric values. Analog videotape, in contrast, records picture and sound information using frequency modulated signals."
@@ -713,7 +715,7 @@ entries:
     first_chapter: glossary
     locked: false
   - term: "Intertitles"
-    translation: null
+    translation: "간자막"
     definition_en: "In silent films, the screens of text containing dialogue and other information about the narrative or action."
     definition_ko: null
     source: "원서 Glossary p.115"
@@ -722,6 +724,8 @@ entries:
     basis: null
     first_chapter: glossary
     locked: false
+    notation: "최초 등장시 원문 병기"
+
   - term: "IP"
     translation: null
     definition_en: "Abbreviation for interpositive, the duplicating positive created during the preservation copying of color film."

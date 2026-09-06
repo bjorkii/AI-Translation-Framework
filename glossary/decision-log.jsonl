@@ -22,3 +22,5 @@
 {"ts": "2026-09-06T23:08:10", "actor": "user", "type": "decide", "term": "Contact printing", "choice": "밀착인화기", "note": "", "ack": true, "ack_at": "2026-09-06T14:13:43", "ack_note": "용어집 등재 확인. 네 용어 모두 ch01 원문에 등장하지 않아 소급 반영 대상 없음. ch02부터 적용."}
 {"ts": "2026-09-06T23:08:31", "actor": "user", "type": "decide", "term": "Lenticular film", "choice": "렌티큘러 필름", "note": "", "ack": true, "ack_at": "2026-09-06T14:13:43", "ack_note": "용어집 등재 확인. 네 용어 모두 ch01 원문에 등장하지 않아 소급 반영 대상 없음. ch02부터 적용."}
 {"ts": "2026-09-06T23:09:18", "actor": "user", "type": "decide", "term": "Lenticular film", "choice": "렌티큘러 필름", "note": "최초 등장시 원문 괄호 병기", "ack": true, "ack_at": "2026-09-06T14:13:43", "ack_note": "용어집 등재 확인. 네 용어 모두 ch01 원문에 등장하지 않아 소급 반영 대상 없음. ch02부터 적용."}
+{"ts": "2026-09-06T23:14:30", "actor": "user", "type": "decide", "term": "Digital Betacam", "choice": "디지베타", "note": "첫 등장시 원문 병기", "ack": false}
+{"ts": "2026-09-06T23:14:54", "actor": "user", "type": "decide", "term": "Intertitles", "choice": "간자막", "note": "최초 등장시 원문 병기", "ack": false}

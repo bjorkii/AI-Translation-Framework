@@ -1,5 +1,5 @@
 
-<!-- LAYOUT-UNCERTAIN: p.97 좌7/우6 블록 — 2단 본문/사이드바 시각 확인 필요 -->
+<!-- LAYOUT-UNCERTAIN: p.97 좌7/우6 블록 — 읽기 순서 시각 확인 필요 -->
 
 ## APPENDIX D: SELECTED EQUIPMENT AND SUPPLY VENDORS
 
@@ -36,7 +36,7 @@ Light Impressions P.O. Box 787 Brea, CA 92822 Phone: 800-828-6216 Web site: www.
 <!-- LINEBREAK-UNCERTAIN -->
 National Film Preservation Products Inc. 3236 Union St. North Chili, NY 14541 Phone: 585-594-1026 Web site: www.nfppi.com
 
-<!-- LAYOUT-UNCERTAIN: p.98 좌4/우3 블록 — 2단 본문/사이드바 시각 확인 필요 -->
+<!-- LAYOUT-UNCERTAIN: p.98 좌4/우3 블록 — 읽기 순서 시각 확인 필요 -->
 
 [원서 p.97]
 

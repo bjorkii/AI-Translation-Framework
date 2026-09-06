@@ -1,5 +1,5 @@
 
-<!-- LAYOUT-UNCERTAIN: p.93 좌6/우2 블록 — 2단 본문/사이드바 시각 확인 필요 -->
+<!-- LAYOUT-UNCERTAIN: p.93 좌6/우2 블록 — 읽기 순서 시각 확인 필요 -->
 
 ## APPENDIX A: EDGE CODE CHART
 

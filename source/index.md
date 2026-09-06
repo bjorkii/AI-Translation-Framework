@@ -1,5 +1,5 @@
 
-<!-- LAYOUT-UNCERTAIN: p.114 좌8/우8 블록 — 2단 본문/사이드바 시각 확인 필요 -->
+<!-- LAYOUT-UNCERTAIN: p.114 좌8/우8 블록 — 읽기 순서 시각 확인 필요 -->
 
 ## INDEX
 
@@ -29,7 +29,7 @@ IPI storage recommendations, 60 spliced with color, 50 *Business Screen Magazine
 <!-- LINEBREAK-UNCERTAIN -->
 California Pacific Medical Center, 57 camera original, 10, 37 catalog record components, 72–73 for multimedia collections, 73 subject access, 73–74 templates, 75 cataloging, 70–76 [원서 p.114] cellulose acetate base film. *See* acetate film cellulose nitrate base film. *See* nitrate film cement splicers, 29, 30–31 cine clubs, 7 *Clash of the Wolves*, 80 cleaning film by laboratory, 51, 52 in-house, 22, 25, 31–32 precautions for mag track, 25, 31 color correction, 51 color film, 10, 11 fading, 11, 15–16, 18 IPI storage recommendations, 60 spliced with black and white, 50 community outreach, 86–87, 89, 90–92 compilation films, 50, 57 composite prints, 12–13 as source material, 46–48 IPI storage recommendations,
 
-<!-- LAYOUT-UNCERTAIN: p.115 좌10/우7 블록 — 2단 본문/사이드바 시각 확인 필요 -->
+<!-- LAYOUT-UNCERTAIN: p.115 좌10/우7 블록 — 읽기 순서 시각 확인 필요 -->
 
 <!-- LINEBREAK-UNCERTAIN -->
 60–61 precautions in handling, 12, 24 condensation, 62–63 conservation, 3–4, 42–44, 68 ethics, 41–42 *See also* access copies; artifact;
@@ -56,7 +56,7 @@ East Tennessee State University, 56 Eastman Kodak Company film stocks, 6, 7, 8, 
 <!-- LINEBREAK-UNCERTAIN -->
 38–39 8mm as source material, 37 dating, 25n6, 93 duplication, 49–50 history, 7–8, 11 plastic support, 9 repairing, 31 reversal film, 10–11, 37 shrinkage, 15
 
-<!-- LAYOUT-UNCERTAIN: p.116 좌8/우9 블록 — 2단 본문/사이드바 시각 확인 필요 -->
+<!-- LAYOUT-UNCERTAIN: p.116 좌8/우9 블록 — 읽기 순서 시각 확인 필요 -->
 
 [원서 p.115]
 
@@ -93,7 +93,7 @@ Image Permanence Institute (IPI), 14,
 <!-- LINEBREAK-UNCERTAIN -->
 75 industrial films, assessing uniqueness, [원서 p.116] inspection and lab estimate, 50–52 equipment needed, 33 how to do, 21–26 types of damage and decay, 13–18,
 
-<!-- LAYOUT-UNCERTAIN: p.117 좌9/우10 블록 — 2단 본문/사이드바 시각 확인 필요 -->
+<!-- LAYOUT-UNCERTAIN: p.117 좌9/우10 블록 — 읽기 순서 시각 확인 필요 -->
 
 <!-- LINEBREAK-UNCERTAIN -->
 21 written reports, 24, 28, 51, 94 Institute of Museum and Library
@@ -146,7 +146,7 @@ technical language, 46 vendor list, 95–96 working with, 41, 50–53, 55 labspe
 <!-- LINEBREAK-UNCERTAIN -->
 video masters measuring film length, 24–25 metadata standards, 75 Minnesota Historical Society, 67, 92 MIT Museum, 38 mold, mildew, and fungus conditions for growth, 60n, 61 identifying, 13–14, 18 removing, 21–22, 31–32 molecular sieves, 66, 67
 
-<!-- LAYOUT-UNCERTAIN: p.118 좌9/우9 블록 — 2단 본문/사이드바 시각 확인 필요 -->
+<!-- LAYOUT-UNCERTAIN: p.118 좌9/우9 블록 — 읽기 순서 시각 확인 필요 -->
 
 [원서 p.117]
 
@@ -183,7 +183,7 @@ OCLC, 38, 75 *Ojibwe Work*, 92 Oklahoma Historical Society, 5 one-light transfer
 <!-- LINEBREAK-UNCERTAIN -->
 68 Preservation Calculator, 61 preservation copying. *See* duplication preservation masters and fair use, 81 geographic separation of, 63–64 in lab estimate, 51 inspecting, 55 role of, 4, 41, 42–45 storing, 68 types, 42, 46–48 presstape, 30, 31 production elements as acquisitions, 10, 21, 25n5 as source material, 37, 39 projectors, 6, 7, 11, 12 damage by, 13, 15, 20, 48 for archival screenings, 90 tolerance for shrunken film, 15 use in quality control, 55 provenance clues, 27, 34–35 record keeping, 34 public domain, 78, 87, 88 [원서 p.118] quality control, 55, 58 redimensioning, 49 reduction prints, 37, 39 reels use on rewind, 23, 26–27 v. cores, 21, 26 refrigerators. *See* freezers and refrigerators Regular 8mm. *See* 8mm relative humidity. *See* humidity release prints, 9, 46 remote storage, 63–64 repairing film, 28–31, 33 restoration defined, 3–4, 56 digital techniques, 49, 58 ethics, 41–42 of Hollywood films, 2, 3, 16, 81 reversal film, 10–11 as source material, 37, 39, 40, 48 rewinds, 21, 26, 33 how to use, 23–24 rights holders. *See* copyright; donor agreements; licensing RLIN, 38, 75 Rogers, Will, 40 safety film, 9, 53–54, 66 scanning, 44, 88 scratches, 13, 37, 48–49 selection for acquisition, 3, 24n, 36 for cold storage, 68 for duplication, 36–39, 44 70mm, 6 shipping, 53–55 shot list, 74 shrinkage, 14, 15, 18, 20 as factor in duplication, 15, 49 measuring, 15, 40 shrinkage gauge, 15, 19 silent-era film, 1, 11, 42, 80
 
-<!-- LAYOUT-UNCERTAIN: p.119 좌9/우10 블록 — 2단 본문/사이드바 시각 확인 필요 -->
+<!-- LAYOUT-UNCERTAIN: p.119 좌9/우10 블록 — 읽기 순서 시각 확인 필요 -->
 
 <!-- LINEBREAK-UNCERTAIN -->
 16mm A and B rolls, 10 as source material, 37–39 case studies, 40, 57, 58, 76, 84,
@@ -205,7 +205,7 @@ optical sound tracks South Dakota Art Museum, 87 splicers, 28–31 splices, 10, 
 <!-- LINEBREAK-UNCERTAIN -->
 *also* specific types of equipment staging, 64–65 Steenbeck, 21n storage, 59–69 as cornerstone of preservation planning, 3–4, 42–44, 68 effect on film decay, 13–17, 69 for nitrate, 65–66 improving, 61–64 IPI recommendations, 59–61 monitoring, 64 removing films from, 64–65 vendors, 63–64
 
-<!-- LAYOUT-UNCERTAIN: p.120 좌3/우5 블록 — 2단 본문/사이드바 시각 확인 필요 -->
+<!-- LAYOUT-UNCERTAIN: p.120 좌3/우5 블록 — 읽기 순서 시각 확인 필요 -->
 
 [원서 p.119]
 
