@@ -1,0 +1,39 @@
+{
+ "chunk": "ch01",
+ "stage": "ai_review_1",
+ "verdict": "통과",
+ "summary": {
+  "누락": 0,
+  "오역": 0,
+  "숫자·고유명사": 0,
+  "덧붙임": 0,
+  "경미": 2
+ },
+ "machine": {
+  "통과": 7,
+  "확인": 1,
+  "확인내용": "원문 36 → 3,600만 달러 단위 환산 확인"
+ },
+ "comments": [
+  {
+   "block": 1,
+   "severity": "경미",
+   "type": "뉘앙스",
+   "source": "recording events of the day",
+   "before": "그날의 사건",
+   "after": "그날그날의 사건",
+   "comment": "'그날의 사건'은 특정한 하루로 읽힐 여지가 있어 원문의 '당대의 시사' 뜻이 흐려진다.",
+   "applied": true
+  },
+  {
+   "block": 13,
+   "severity": "경미",
+   "type": "뉘앙스",
+   "source": "an informal division of labor",
+   "before": "암묵적인 역할 분담",
+   "after": "비공식적인 역할 분담",
+   "comment": "informal은 '비공식적'에 가깝다. '암묵적'은 합의의 명시 여부까지 함의한다.",
+   "applied": true
+  }
+ ]
+}

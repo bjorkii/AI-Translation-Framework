@@ -18,9 +18,10 @@ PORT = int(os.environ.get("PORT", "8765"))
 # 청크가 거쳐야 하는 단계(진행율 계산 기준)
 STAGES = ["pending", "normalized", "draft", "ai_review_1", "ai_review_2",
           "human_review", "ai_revise", "final"]
-STAGE_LABEL = {"pending": "대기", "normalized": "정규화", "draft": "1차 번역",
-               "ai_review_1": "AI 감수 1", "ai_review_2": "AI 감수 2",
+STAGE_LABEL = {"pending": "대기", "normalized": "정규화", "draft": "AI 1차 번역",
+               "ai_review_1": "AI 1차 감수", "ai_review_2": "AI 2차 감수",
                "human_review": "사람 감수", "ai_revise": "AI 보완", "final": "확정"}
+TRACK_STAGES = ["draft", "ai_review_1", "ai_review_2", "ai_revise", "final"]
 
 # ---------------------------------------------------------------- 파일 읽기
 
@@ -362,46 +363,173 @@ hr{border:0;border-top:1px solid var(--border);margin:28px 0}
 """
 
 COMPARE_CSS = """
-.pair{margin:0 0 26px}
-.side{border-radius:0 8px 8px 0;padding:10px 16px;margin-bottom:6px}
-.side.src{border-left:3px solid var(--faint);background:transparent}
-.side.tgt{border-left:3px solid var(--accent);background:var(--surface)}
+.pair{margin:0 0 30px;border-bottom:1px solid var(--border);padding-bottom:22px}
+.pair:last-child{border-bottom:0}
+.side{border-radius:0 8px 8px 0;padding:10px 16px;margin-bottom:8px}
 .side .tag{display:block;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
 color:var(--faint);margin-bottom:4px}
+.side.src{border-left:3px solid var(--faint)}
 .side.src p,.side.src li{font-family:Georgia,"Times New Roman",serif;color:var(--muted)}
+.side.draft{border-left:3px solid var(--accent);background:var(--surface)}
+.side.review{border-left:3px solid #7a9e3a;background:var(--surface)}
+.side.revise{border-left:3px solid #9a7ac0;background:var(--surface)}
 .side p:last-child{margin-bottom:0}
 .side h1,.side h2,.side h3{margin:2px 0 6px}
+ins{background:rgba(90,170,100,.22);text-decoration:none;border-radius:3px;padding:0 2px}
+del{background:rgba(200,90,80,.20);border-radius:3px;padding:0 2px}
+.note{margin:6px 0 0 16px;font-size:13px;color:var(--muted);border-left:2px solid var(--border);
+padding:4px 12px}
+.note b{color:var(--ink);font-weight:600}
+.ok{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px;padding:10px 16px;
+border-left:3px solid var(--border);border-radius:0 8px 8px 0;background:var(--surface)}
+.ok button{font:inherit;font-size:13px;border:1px solid var(--border);border-radius:7px;
+padding:6px 14px;cursor:pointer;background:var(--surface);color:var(--ink)}
+.ok button.yes.on{background:#2f6b4f;border-color:#2f6b4f;color:#fff}
+.ok button.no.on{background:#a8443a;border-color:#a8443a;color:#fff}
+.ok input{flex:1 1 240px;font:inherit;font-size:13px;background:var(--ground);color:var(--ink);
+border:1px solid var(--border);border-radius:7px;padding:6px 10px}
+.ok .state{font-size:12px;color:var(--faint)}
 .warn{background:var(--mark-soft);color:var(--mark);border-radius:8px;padding:10px 14px;
 margin-bottom:20px;font-size:13.5px}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-bottom:22px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:12px;height:12px;border-radius:3px;display:inline-block}
 """
 
 def split_blocks(md):
     md = re.sub(r"^---\n.*?\n---\n", "", md, flags=re.S)
     return [b.strip() for b in md.split("\n\n") if b.strip()]
 
+INS_O, INS_C, DEL_O, DEL_C = "\x01i\x02", "\x01/i\x02", "\x01d\x02", "\x01/d\x02"
+
+def diff_marked(prev, cur):
+    """이전 단계 대비 바뀐 부분에 표시를 심는다(마크다운 변환 뒤 태그로 치환)."""
+    import difflib
+    a, b = prev.split(), cur.split()
+    sm = difflib.SequenceMatcher(None, a, b, autojunk=False)
+    out = []
+    for op, i1, i2, j1, j2 in sm.get_opcodes():
+        if op == "equal":
+            out.append(" ".join(b[j1:j2]))
+        elif op == "insert":
+            out.append(INS_O + " ".join(b[j1:j2]) + INS_C)
+        elif op == "delete":
+            out.append(DEL_O + " ".join(a[i1:i2]) + DEL_C)
+        else:
+            out.append(DEL_O + " ".join(a[i1:i2]) + DEL_C + " " + INS_O + " ".join(b[j1:j2]) + INS_C)
+    return " ".join(x for x in out if x)
+
+def to_html(md_text):
+    h = md_to_html(md_text)
+    return (h.replace(INS_O, "<ins>").replace(INS_C, "</ins>")
+             .replace(DEL_O, "<del>").replace(DEL_C, "</del>"))
+
+def load_json(path, default):
+    f = ROOT / path
+    if not f.exists():
+        return default
+    try:
+        return json.loads(f.read_text(encoding="utf-8"))
+    except Exception:
+        return default
+
 def render_compare(cid):
-    a = ROOT / "source" / (cid + ".md")
-    b = ROOT / "chapters" / (cid + ".md")
-    if not (a.exists() and b.exists()):
-        body = "<p>대조하려면 원문과 번역본이 모두 있어야 합니다.</p>"
-    else:
-        A, B = split_blocks(a.read_text(encoding="utf-8")), split_blocks(b.read_text(encoding="utf-8"))
-        body = ""
-        if len(A) != len(B):
-            body += ('<div class="warn">문단 수가 다릅니다 — 원문 %d개, 번역본 %d개. '
-                     '문단 1:1 대응이 깨졌을 수 있으니 확인이 필요합니다.</div>' % (len(A), len(B)))
-        for i in range(max(len(A), len(B))):
-            body += '<div class="pair">'
-            body += ('<div class="side src"><span class="tag">원문</span>%s</div>'
-                     % (md_to_html(A[i]) if i < len(A) else "<p>(없음)</p>"))
-            body += ('<div class="side tgt"><span class="tag">번역</span>%s</div>'
-                     % (md_to_html(B[i]) if i < len(B) else "<p>(없음)</p>"))
-            body += "</div>"
+    src_f = ROOT / "source" / (cid + ".md")
+    if not src_f.exists():
+        return _wrap_compare(cid, "<p>정규화된 원문이 없습니다.</p>")
+    A = split_blocks(src_f.read_text(encoding="utf-8"))
+
+    tracks = []          # [(단계키, 라벨, css클래스, 블록목록)]
+    for st in TRACK_STAGES:
+        f = ROOT / "stages" / cid / (st + ".md")
+        if f.exists():
+            cls = "draft" if st == "draft" else ("revise" if st in ("ai_revise",) else "review")
+            tracks.append((st, STAGE_LABEL.get(st, st), cls, split_blocks(f.read_text(encoding="utf-8"))))
+    if not tracks:
+        return _wrap_compare(cid, "<p>아직 번역 단계 스냅샷이 없습니다.</p>")
+
+    reviews = {}         # 단계 -> {블록번호: [의견]}
+    for n, st in ((1, "ai_review_1"), (2, "ai_review_2")):
+        d = load_json("reviews/%s-review%d.json" % (cid, n), None)
+        if d:
+            m = {}
+            for c in d.get("comments", []):
+                m.setdefault(c.get("block", -1), []).append(c)
+            reviews[st] = m
+    approvals = load_json("reviews/%s-approvals.json" % cid, {})
+
+    body = ('<div class="legend">'
+            '<span><i style="background:var(--faint)"></i>원문</span>'
+            '<span><i style="background:var(--accent)"></i>AI 번역</span>'
+            '<span><i style="background:#7a9e3a"></i>AI 감수</span>'
+            '<span><ins>추가</ins></span><span><del>삭제</del></span></div>')
+    lens = {len(t[3]) for t in tracks} | {len(A)}
+    if len(lens) > 1:
+        body += ('<div class="warn">단계별 문단 수가 다릅니다 — 원문 %d개, %s. '
+                 '문단 1:1 대응이 깨졌을 수 있습니다.</div>'
+                 % (len(A), ", ".join("%s %d개" % (t[1], len(t[3])) for t in tracks)))
+
+    n_blocks = max([len(A)] + [len(t[3]) for t in tracks])
+    for i in range(n_blocks):
+        body += '<div class="pair">'
+        body += ('<div class="side src"><span class="tag">원문</span>%s</div>'
+                 % (to_html(A[i]) if i < len(A) else "<p>(없음)</p>"))
+        prev = None
+        for st, label, cls, blocks_ in tracks:
+            cur = blocks_[i] if i < len(blocks_) else ""
+            if not cur:
+                continue
+            shown = cur if prev is None else diff_marked(prev, cur)
+            changed = (prev is not None and prev != cur)
+            tag = label + ("" if prev is None else (" · 전 단계에서 수정" if changed else " · 변경 없음"))
+            body += ('<div class="side %s"><span class="tag">%s</span>%s</div>'
+                     % (cls, _html.escape(tag), to_html(shown)))
+            for c in reviews.get(st, {}).get(i, []):
+                body += ('<div class="note"><b>%s · %s</b> — %s<br>원문: %s / %s → %s</div>'
+                         % (_html.escape(c.get("severity", "")), _html.escape(c.get("type", "")),
+                            _html.escape(c.get("comment", "")), _html.escape(c.get("source", "")),
+                            _html.escape(c.get("before", "")), _html.escape(c.get("after", ""))))
+            prev = cur
+        st_ = approvals.get(str(i), {})
+        body += ('<div class="ok" data-block="%d">'
+                 '<button class="yes%s">승인</button><button class="no%s">반려</button>'
+                 '<input placeholder="의견 메모 (선택)" value="%s">'
+                 '<span class="state">%s</span></div>'
+                 % (i, " on" if st_.get("status") == "approved" else "",
+                    " on" if st_.get("status") == "rejected" else "",
+                    _html.escape(st_.get("note", "")),
+                    _html.escape(("확인 " + st_.get("ts", "")[:16].replace("T", " ")) if st_.get("status") else "미확인")))
+        body += "</div>"
+    return _wrap_compare(cid, body)
+
+COMPARE_JS = """
+document.querySelectorAll('.ok').forEach(function(row){
+  var blk=row.dataset.block, inp=row.querySelector('input');
+  function send(status){
+    fetch('/api/approve',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({chunk:CID,block:blk,status:status,note:inp.value})})
+      .then(function(r){return r.json();})
+      .then(function(j){
+        if(!j.ok){ alert(j.message||'저장하지 못했습니다.'); return; }
+        row.querySelector('.yes').classList.toggle('on',status==='approved');
+        row.querySelector('.no').classList.toggle('on',status==='rejected');
+        row.querySelector('.state').textContent='확인 '+new Date().toLocaleString('ko-KR');
+      });
+  }
+  row.querySelector('.yes').onclick=function(){send('approved');};
+  row.querySelector('.no').onclick=function(){send('rejected');};
+  inp.onkeydown=function(e){ if(e.key==='Enter'){ send(row.querySelector('.no').classList.contains('on')?'rejected':'approved'); } };
+});
+"""
+
+def _wrap_compare(cid, body):
     return ("<!doctype html><html lang='ko'><head><meta charset='utf-8'>"
             "<meta name='viewport' content='width=device-width,initial-scale=1'>"
-            "<title>%s · 원문/번역 대조</title><style>%s%s</style></head><body><div class='page'>"
-            "<div class='crumb'>%s · 원문/번역 대조</div>%s</div></body></html>"
-            % (cid, VIEW_CSS, COMPARE_CSS, _html.escape(cid), body))
+            "<title>%s · 단계별 대조</title><style>%s%s</style></head><body><div class='page'>"
+            "<div class='crumb'>%s · 원문과 단계별 번역 대조</div>%s</div>"
+            "<script>var CID=%s;%s</script></body></html>"
+            % (cid, VIEW_CSS, COMPARE_CSS, _html.escape(cid), body,
+               json.dumps(cid), COMPARE_JS))
 
 def render_view(kind, cid):
     folder = "source" if kind == "source" else "chapters"
@@ -416,6 +544,25 @@ def render_view(kind, cid):
             "<title>%s · %s</title><style>%s</style></head><body><div class='page'>"
             "<div class='crumb'>%s · %s</div>%s</div></body></html>"
             % (cid, label, VIEW_CSS, _html.escape(cid), _html.escape(label), body))
+
+def set_approval(cid, block, status, note):
+    if status not in ("approved", "rejected"):
+        return False, "알 수 없는 상태입니다."
+    path = ROOT / "reviews" / ("%s-approvals.json" % cid)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    data = {}
+    if path.exists():
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except Exception:
+            data = {}
+    data[str(block)] = {"status": status, "note": note or "",
+                        "ts": datetime.now().isoformat(timespec="seconds")}
+    path.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
+    log_decision("approve" if status == "approved" else "reject",
+                 "%s 문단 %s" % (cid, block), status, note or "")
+    return True, "저장했습니다."
+
 
 # ---------------------------------------------------------------- HTTP
 
@@ -450,13 +597,16 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_POST(self):
         if not any(self.path.startswith(x) for x in
-                   ("/api/decide", "/api/add", "/api/delete", "/api/rename")):
+                   ("/api/decide", "/api/add", "/api/delete", "/api/rename", "/api/approve")):
             return self._send(404, json.dumps({"error": "not found"}))
         n = int(self.headers.get("Content-Length", "0"))
         try:
             req = json.loads(self.rfile.read(n) or b"{}")
             actor = "ai" if req.get("actor") == "ai" else "user"
-            if self.path.startswith("/api/add"):
+            if self.path.startswith("/api/approve"):
+                ok, msg = set_approval(req.get("chunk", ""), req.get("block", ""),
+                                       req.get("status", ""), req.get("note", ""))
+            elif self.path.startswith("/api/add"):
                 ok, msg = add_term(req.get("term", "").strip(), req.get("choice", "").strip(),
                                    req.get("note", ""), actor)
             elif self.path.startswith("/api/delete"):
