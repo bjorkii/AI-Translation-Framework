@@ -619,7 +619,7 @@ def render_compare(cid):
                  '<div class="body">'
                  '<button class="yes%s"%s>승인</button>'
                  '<button class="no%s"%s>반려</button>'
-                 '<textarea rows="2"%s placeholder="의견 메모 (선택) — 모서리를 끌어 크기를 바꿀 수 있습니다">%s</textarea>'
+                 '<textarea rows="2"%s placeholder="의견 메모 (선택) — 모서리를 끌어 크기를 바꿀 수 있습니다">\n%s</textarea>'
                  '<button class="commit">%s</button>'
                  '<span class="state">%s</span>'
                  '</div></div>'
