@@ -40,6 +40,41 @@ def page_labels(doc):
                 labels[i] = t
     return labels
 
+def styled_text(block, stats):
+    """스팬의 이탤릭 여부를 살려 마크다운으로 옮긴다.
+
+    원서는 작품명·서명만 이탤릭으로 조판한다. 블록 전체를 이탤릭으로 감싸면
+    그 구분이 사라지므로, 이탤릭 구간만 *...* 로 표시한다.
+    """
+    frags = []          # (텍스트, 이탤릭여부)
+    for li, line in enumerate(block["lines"]):
+        parts = []
+        for sp in line["spans"]:
+            t = sp["text"]
+            if not t.strip() and not parts:
+                continue
+            parts.append((t, bool(sp["flags"] & 2)))
+        if not parts:
+            continue
+        if frags:
+            prev = frags[-1][0]
+            if re.search(r"[A-Za-z]-$", prev):
+                frags[-1] = (prev[:-1], frags[-1][1]); stats["dehyphen"] += 1
+            else:
+                frags.append((" ", frags[-1][1]))
+        frags.extend(parts)
+    # 이탤릭 구간을 묶어 표시
+    out, buf, cur = "", "", None
+    for t, it in frags:
+        if cur is None:
+            cur = it
+        if it != cur:
+            out += ("*%s*" % buf.strip()) if (cur and buf.strip()) else buf
+            buf, cur = "", it
+        buf += t
+    out += ("*%s*" % buf.strip()) if (cur and buf.strip()) else buf
+    return re.sub(r"\s{2,}", " ", out).strip()
+
 def join_lines(lines, stats):
     out = ""
     for ln in lines:
@@ -100,7 +135,7 @@ def main(pdf, p0, p1, chap, outpath=None):
             if (y0 < h*0.09 or y0 > h*0.88) and len(txt) < 60:
                 stats["headers_removed"] += 1; continue
             size = max(s["size"] for l in b["lines"] for s in l["spans"])
-            rec = dict(x0=x0, y0=y0, size=size, lines=lines, txt=txt)
+            rec = dict(x0=x0, y0=y0, size=size, lines=lines, txt=txt, raw=b)
             # (b) 각주 정의 블록: 작은 폰트 + 페이지 하단부 + 번호로 시작
             if size < BODY - 0.4 and y0 > h*0.45 and FN_DEF_HEAD.match(txt):
                 fndefs.append(rec)
@@ -118,7 +153,7 @@ def main(pdf, p0, p1, chap, outpath=None):
 
         for b in body:
             stats["blocks"] += 1
-            txt = join_lines(b["lines"], stats)
+            txt = styled_text(b["raw"], stats)
             # (a) 각주 참조번호 -> 앵커 링크
             def _ref(m):
                 n = m.group(1)
@@ -137,7 +172,7 @@ def main(pdf, p0, p1, chap, outpath=None):
             if b["size"] < BODY - 0.4:
                 # 본문보다 작은 폰트 = 캡션/표/사이드바 등 구조 요소.
                 # 본문 문단 흐름을 끊지 않도록 carry_idx를 유지한 채 통과시킨다.
-                flush_mark(); out.append(f"\n*{txt2}*\n"); stats["captions"] += 1; continue
+                flush_mark(); out.append(f"\n{txt2}\n"); stats["captions"] += 1; continue
 
             if carry_idx is not None:
                 prev = out[carry_idx].strip()
@@ -162,7 +197,7 @@ def main(pdf, p0, p1, chap, outpath=None):
 
         # 각주 정의 -> 페이지 텍스트 말미 (페이지 마커 직전)
         for b in fndefs:
-            for num, body_txt in split_fn_defs(join_lines(b["lines"], stats)):
+            for num, body_txt in split_fn_defs(styled_text(b["raw"], stats)):
                 if num is None: continue
                 stats["fn_defs"] += 1
                 out.append(f'\n<a id="fn-{chap}-{num:03d}"></a> **[각주]** {body_txt}  [↩](#back-{chap}-{num:03d})\n')

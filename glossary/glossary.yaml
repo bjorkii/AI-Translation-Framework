@@ -388,6 +388,8 @@ entries:
     basis: null
     first_chapter: glossary
     locked: false
+    notation: "사람 감수 ch01: 복사/복제 통용 가능"
+
   - term: "DVD"
     translation: "DVD"
     definition_en: "Optical disc used for storing digital information, including moving images."
@@ -1688,3 +1690,14 @@ entries:
     first_chapter: null
     locked: false
     tbd: "리와인더 | 되감기대 | (Rewind 항목으로 통합)"
+  - term: "Moving image"
+    translation: "영상"
+    notation: "사용자 결정(ch01 사람 감수). 기관명에도 적용 — Association of Moving Image Archivists = 영상아키비스트협회"
+    definition_en: null
+    definition_ko: null
+    source: "사람 감수 ch01"
+    principle_form: null
+    adopted_form: null
+    basis: null
+    first_chapter: ch01
+    locked: false

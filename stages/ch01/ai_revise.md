@@ -1,7 +1,7 @@
 ---
 chapter: 01
 version: 1
-stage: ai_revise
+stage: ai_review_2
 source_range: "원서 p.1-5 (파일 13-17)"
 overlap_prev: false
 glossary_snapshot: "2026-09-06"
