@@ -226,7 +226,7 @@ entries:
     first_chapter: glossary
     locked: false
   - term: "Color correction"
-    translation: null
+    translation: "색보정"
     definition_en: "In the transfer of film to video, the process of adjusting the color and brightness from scene to scene. The term is used to describe adjustments made during transfer of either black-and-white or color film."
     definition_ko: null
     source: "원서 Glossary p.112"
@@ -279,7 +279,7 @@ entries:
     notation: "5.1절처럼 문화재 보존 담론을 인용하는 맥락에서는 '보존과 복원'으로 푼다"
 
   - term: "Contact printing"
-    translation: null
+    translation: "밀착인화기"
     definition_en: "Laboratory process in which a film copy is made through direct physical contact between the source material and raw film stock."
     definition_ko: null
     source: "원서 Glossary p.113"
@@ -799,7 +799,7 @@ entries:
     nomatch: "leader | leaders"
 
   - term: "Lenticular film"
-    translation: null
+    translation: "렌티큘러 필름"
     definition_en: "Black-and-white film in which the base is embossed lengthwise with ridges that act as semicylindrical lenses. When lenticular film is shown through a three-color projector lens, it appears in color on the screen. See also Kodacolor."
     definition_ko: null
     source: "원서 Glossary p.116"
@@ -808,6 +808,8 @@ entries:
     basis: null
     first_chapter: glossary
     locked: false
+    full: "최초 등장시 원문 괄호 병기"
+
   - term: "Licensing"
     translation: null
     definition_en: "Transfer of rights from the rights holder to another party generally for a specific use, duration, and territory."

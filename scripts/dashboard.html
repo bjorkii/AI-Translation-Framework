@@ -62,6 +62,8 @@ td.num{font-variant-numeric:tabular-nums;color:var(--muted);white-space:nowrap}
 background:var(--surface2);color:var(--muted);border:1px solid var(--border)}
 .badge.on{background:var(--accent-soft);color:var(--accent);border-color:transparent}
 .badge.wait{background:var(--warn-soft);color:var(--warn);border-color:transparent}
+.why.hits{font-size:11.5px;color:var(--faint);margin:2px 0 6px}
+.q .p em{font-style:normal;opacity:.7}
 .badge.warnb{background:#B3261E;color:#fff;border-color:transparent;cursor:help}
 .link{color:var(--accent);font-size:13px;text-decoration:none;margin-right:10px}
 .link.off{color:var(--faint);opacity:.45;cursor:default;text-decoration:none;margin-right:10px}
@@ -318,8 +320,11 @@ function termCard(t,isEdit){
     +(t.full?' <span class="tip" style="font-size:14px;font-weight:400">— '+esc(t.full)+"</span>":"")+"</h3>";
   if(t.context) h+='<p class="why">'+esc(t.context)+"</p>";
   else if(t.definition_en) h+='<p class="why">'+esc(t.definition_en)+"</p>";
+  if(t.hits)
+    h+='<p class="why hits">본문 등장 '+t.hits+'회 · '+esc((t.in_chunks||[]).join(", "))+"</p>";
   for(const q of (t.quotes||[]))
-    h+='<div class="q"><span class="p">원서 p.'+esc(q.page)+'</span><span class="t">'+esc(q.text)+"</span></div>";
+    h+='<div class="q"><span class="p">원서 p.'+esc(q.page)
+      +(q.chunk?' <em>'+esc(q.chunk)+"</em>":"")+'</span><span class="t">'+esc(q.text)+"</span></div>";
   if((t.options||[]).length){
     h+='<div class="opts">';
     for(const o of t.options)

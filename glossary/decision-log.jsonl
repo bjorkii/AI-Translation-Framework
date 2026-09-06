@@ -18,3 +18,6 @@
 {"ts": "2026-09-06T16:35:53", "actor": "user", "type": "note", "term": "ch01 문단 38", "choice": "note", "note": "많은 역사적 증거, 신문 기사, 팸플릿 및 상공회의소 문서들이 살아남아 선거 캠페인, 그리고 오클라호마시의 발전에 이 캠페인이 중요했음을 들려주고 있다. (이 정도 분량을 굳이 두 문장으로 나눌 필요는 없어 보임) / city는 예외적인 경우(멕시코시티)를 제외하면 그냥 '시'로 번역하는 것이 자연스러움", "ack": true, "ack_at": "2026-09-06T08:00:45", "ack_note": "ch01 AI 보완(ai_revise)에 반영. 단, 문단19의 storage/conservation/duplication/access 대역어는 용어집 확정어를 유지하고 사용자에게 재확인 요청 중."}
 {"ts": "2026-09-06T08:10:19", "kind": "term", "term": "Storage", "choice": "보존고 (필름 맥락) / 스토리지 (디지털 맥락)", "note": "사용자 결정. 6장 챕터명도 '보존고'. ch01 문단19 반영 완료.", "actor": "user", "ack": true, "ack_at": "2026-09-06T08:10:19", "ack_note": "용어집 등록 및 ch01 문단19 반영"}
 {"ts": "2026-09-06T23:04:00", "actor": "user", "type": "decide", "term": "A-D Strips", "choice": "A-D 스트립", "note": "최초 등장시 괄호로 원어 병기", "ack": false}
+{"ts": "2026-09-06T23:06:36", "actor": "user", "type": "decide", "term": "Color correction", "choice": "색보정", "note": "", "ack": false}
+{"ts": "2026-09-06T23:08:10", "actor": "user", "type": "decide", "term": "Contact printing", "choice": "밀착인화기", "note": "", "ack": false}
+{"ts": "2026-09-06T23:08:31", "actor": "user", "type": "decide", "term": "Lenticular film", "choice": "렌티큘러 필름", "note": "", "ack": false}

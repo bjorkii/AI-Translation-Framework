@@ -137,6 +137,7 @@ def build_state():
                 "notation": e["notation"], "context": e["context"], "full": e["full"],
                 "definition_en": e["definition_en"],
                 "quotes": c.get("quotes", []),
+                "hits": c.get("hits"), "in_chunks": c.get("chunks", []),
                 "options": c.get("options", []) or ([o.strip() for o in e["tbd"].split("|")] if e["tbd"] else [])}
     all_items = [enrich(e) for e in gl]
     pending = [dict(x, current=x["translation"]) for x in all_items if x["tbd"]]
