@@ -67,6 +67,11 @@ python3 scripts/bootstrap.py          # 환경 준비 (처음 한 번, 맥·윈�
 
 ## 작업 규율
 
+- **도판은 미리보기로 열리는 모든 md에 같은 자리에 들어가야 한다.** `source/`뿐 아니라
+  `chapters/`와 `stages/<청크>/*.md`까지 전부다. 그림은 AI 번역에만이 아니라 **사람이
+  감수할 때도 판단 재료**다 — 사진이 빠진 화면만 보고 캡션의 옳고 그름을 판단할 수 없다.
+  `scripts/check_manifest.py`가 이를 검사하며 `scripts/gate.py`가 물고 있다.
+  경로는 `chapters/` 기준 `../assets/figures/…`로 적는다.
 - **`source/`는 언제든 재생성해도 된다**(원문 산출물). 반면 `chapters/`와 `stages/`는
   번역 결과이므로 이런 식으로 덮어쓰지 않는다.
 - 원문을 재생성한 뒤에는 이미 번역이 진행된 청크의 변경분을 `git diff source/`로 확인한다.

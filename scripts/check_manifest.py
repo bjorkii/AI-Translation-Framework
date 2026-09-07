@@ -45,6 +45,18 @@ def page_blocks(text):
     return pages
 
 
+def preview_files(cid):
+    """사람이 미리보기로 여는 md 전부.
+
+    번역본 하나만 보면 안 된다. 대조 화면은 단계 스냅샷을 나란히 펼쳐 보여주므로,
+    그 파일들에도 도판이 있어야 한다. 그림은 AI 번역에만이 아니라 **사람이 감수할 때도
+    판단 재료**다 — 사진이 빠진 화면만 보고 캡션의 옳고 그름을 판단할 수는 없다.
+    """
+    out = [os.path.join(ROOT, "chapters", cid + ".md")]
+    out += sorted(glob.glob(os.path.join(ROOT, "stages", cid, "*.md")))
+    return [p for p in out if os.path.exists(p)]
+
+
 def check(cid):
     f = os.path.join(MAN, cid + ".json")
     tgt = os.path.join(ROOT, "chapters", cid + ".md")
@@ -53,6 +65,14 @@ def check(cid):
     d = json.load(open(f, encoding="utf-8"))
     text = open(tgt, encoding="utf-8").read()
     miss = []
+
+    # 도판은 미리보기로 열리는 모든 md 에 들어 있어야 한다
+    for p in preview_files(cid)[1:]:
+        st = open(p, encoding="utf-8").read()
+        for r in d["records"]:
+            if r["type"] == "image" and os.path.basename(r["asset"]) not in st:
+                miss.append(("이미지", r["id"],
+                             "%s 에 없음" % os.path.relpath(p, ROOT)))
 
     for r in d["records"]:
         if r["type"] == "image":
