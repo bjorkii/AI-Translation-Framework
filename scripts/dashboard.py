@@ -24,6 +24,11 @@ STAGE_LABEL = {"pending": "대기", "normalized": "정규화", "draft": "AI 1차
 TRACK_STAGES = ["draft", "ai_review_1", "ai_review_2", "ai_revise", "final"]
 STATUS_KO = {"approved": "승인", "rejected": "반려", "note": "메모", "withdrawn": "철회"}
 
+# 서버 재실행 요청 깃발.
+# 이 파일은 자기를 어떻게 띄웠는지 모른다(직접 실행일 수도, launch.py 를 거쳤을 수도).
+# 그래서 여기서는 깃발만 세우고, 실제로 다시 띄우는 일은 launch.py 의 감시 스레드가 한다.
+RESTART = {"want": False, "quit": False}
+
 # ---------------------------------------------------------------- 파일 읽기
 
 def read(p, default=""):
@@ -1009,13 +1014,21 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_POST(self):
         if not any(self.path.startswith(x) for x in
-                   ("/api/decide", "/api/add", "/api/delete", "/api/rename", "/api/approve")):
+                   ("/api/decide", "/api/add", "/api/delete", "/api/rename", "/api/approve",
+                    "/api/restart", "/api/quit")):
             return self._send(404, json.dumps({"error": "not found"}))
         n = int(self.headers.get("Content-Length", "0"))
         try:
             req = json.loads(self.rfile.read(n) or b"{}")
             actor = "ai" if req.get("actor") == "ai" else "user"
-            if self.path.startswith("/api/approve"):
+            if self.path.startswith("/api/restart"):
+                RESTART["want"] = True
+                ok, msg = True, "서버를 다시 띄웁니다."
+            elif self.path.startswith("/api/quit"):
+                # 새 실행기가 이 서버를 넘겨받으려고 부른다
+                RESTART["quit"] = True
+                ok, msg = True, "서버를 종료합니다."
+            elif self.path.startswith("/api/approve"):
                 ok, msg = set_approval(req.get("chunk", ""), req.get("block", ""),
                                        req.get("status", ""), req.get("note", ""),
                                        req.get("label", ""))

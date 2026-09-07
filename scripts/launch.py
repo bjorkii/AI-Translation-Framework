@@ -54,6 +54,17 @@ def watch_and_reload(paths, interval=1.0):
     stamps = {p: p.stat().st_mtime for p in paths if p.exists()}
     while True:
         time.sleep(interval)
+        try:
+            import dashboard
+            if dashboard.RESTART.get("quit"):
+                say(""); say("새 실행기가 넘겨받습니다. 이 서버를 종료합니다.")
+                os._exit(0)
+            if dashboard.RESTART.get("want"):
+                say(""); say("화면에서 재실행을 요청했습니다. 대시보드를 다시 띄웁니다.")
+                os.environ["DASH_RELOADED"] = "1"
+                os.execv(sys.executable, [sys.executable] + sys.argv)
+        except Exception:
+            pass
         for p, was in list(stamps.items()):
             try:
                 now = p.stat().st_mtime
@@ -79,13 +90,22 @@ def main():
         say("실행 파일이 번역 프로젝트 폴더 안에 있는지 확인해 주세요.")
         say("현재 폴더: %s" % ROOT); hold(1)
 
-    # 1) 이미 떠 있는 대시보드가 있으면 그쪽을 연다
+    # 1) 이미 떠 있는 대시보드가 있으면 넘겨받는다.
+    #    예전에는 브라우저만 열고 이 창을 붙잡아 두었는데, 다시 실행할 때마다
+    #    창이 하나씩 쌓였다. 옛 서버를 내리고 이 창에서 새로 띄운다.
     for p in PORTS:
         if alive(p):
-            url = "http://127.0.0.1:%d/" % p
-            say("대시보드가 이미 실행 중입니다 (포트 %d). 브라우저를 엽니다." % p)
-            say("→ %s" % url); webbrowser.open(url)
-            say(""); say("이 창은 닫으셔도 됩니다."); hold(0)
+            say("이미 떠 있는 대시보드(포트 %d)를 종료하고 이 창에서 다시 띄웁니다." % p)
+            try:
+                urllib.request.urlopen(
+                    urllib.request.Request("http://127.0.0.1:%d/api/quit" % p,
+                                           data=b"{}", method="POST"), timeout=2).read()
+            except Exception:
+                pass
+            for _ in range(30):                 # 포트가 풀릴 때까지 최대 6초
+                if not busy(p): break
+                time.sleep(0.2)
+            break
 
     # 2) 비어 있는 포트를 고른다
     port = next((p for p in PORTS if not busy(p)), None)
