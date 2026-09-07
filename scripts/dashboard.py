@@ -353,6 +353,41 @@ def resolve_visual(cid, marker, ok, note):
                  note, "user")
     return True, "확인 결과를 기록했습니다."
 
+def save_note(cid, page, anchor, quote, text):
+    """원문·번역본 화면에서 남긴 사용자 지시를 쌓는다.
+
+    마커는 정해진 자리에만 붙지만 지시는 아무 데나 붙는다. 그래서 자리를 글로
+    기억해 둔다 — 쪽번호와 그 블록의 첫머리, 그리고 짚은 문구. 원문을 다시 만들어
+    문단 번호가 밀려도 이 셋으로 찾아갈 수 있다.
+
+    reviews/<청크>-notes.jsonl 에 append-only 로 쌓고 수신함에도 남긴다.
+    """
+    text = (text or "").strip()
+    if not cid or not text:
+        return False, "지시 내용이 비어 있습니다."
+    d = ROOT / "reviews"; d.mkdir(exist_ok=True)
+    rec = {"ts": datetime.now().isoformat(timespec="seconds"), "chunk": cid,
+           "page": page or "", "anchor": (anchor or "")[:80], "quote": (quote or "")[:200],
+           "text": text, "by": "user", "status": "open"}
+    with open(d / ("%s-notes.jsonl" % cid), "a", encoding="utf-8") as f:
+        f.write(json.dumps(rec, ensure_ascii=False) + "\n")
+    log_decision("note", "%s p.%s" % (cid, page or "?"), text[:40], (quote or "")[:60], "user")
+    return True, "지시를 남겼습니다. AI가 다음 작업 때 확인합니다."
+
+def read_notes(cid):
+    f = ROOT / "reviews" / ("%s-notes.jsonl" % cid)
+    if not f.exists():
+        return []
+    out = []
+    for line in f.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if line:
+            try:
+                out.append(json.loads(line))
+            except Exception:
+                pass
+    return out
+
 # ------------------------------------------------------- 마크다운 렌더링
 
 # 강조(*, **, ***) — 여는 표시와 닫는 표시가 실제로 짝을 이룰 때만 서식으로 본다.
@@ -653,6 +688,28 @@ box-shadow:0 10px 26px -12px rgba(0,0,0,.5);font-size:13.5px;line-height:1.5}
 .tip .sense{font-size:12.5px;line-height:1.5;color:var(--muted);margin-top:6px;
 padding-left:9px;border-left:2px solid var(--accent-soft)}
 .tip .sense b{color:var(--ink);font-weight:600}
+/* 사용자 지시 */
+.asknote{position:absolute;z-index:45;font:inherit;font-size:12px;background:var(--accent);
+color:var(--ground);border:0;border-radius:7px;padding:4px 11px;cursor:pointer;
+box-shadow:0 6px 16px -8px rgba(0,0,0,.6)}
+.notebox{position:absolute;z-index:46;width:min(420px,92vw);background:var(--surface);
+border:1px solid var(--border2);border-radius:10px;padding:12px 14px;
+box-shadow:0 14px 30px -14px rgba(0,0,0,.6)}
+.notebox .h{font-size:13px;font-weight:600;margin-bottom:6px}
+.notebox .h span{font-weight:400;color:var(--muted);font-size:12px;margin-left:6px}
+.notebox .q{font-size:12.5px;color:var(--muted);margin-bottom:8px;line-height:1.5}
+.notebox textarea{width:100%;min-height:76px;font:inherit;font-size:13.5px;resize:vertical;
+background:var(--ground);color:var(--ink);border:1px solid var(--border);border-radius:7px;
+padding:7px 9px}
+.notebox .row{display:flex;gap:6px;justify-content:flex-end;margin-top:8px}
+.notebox button{font:inherit;font-size:12.5px;border-radius:6px;padding:5px 12px;cursor:pointer;
+border:1px solid var(--border2);background:var(--ground);color:var(--ink)}
+.notebox button.ok{background:var(--accent);color:var(--ground);border-color:var(--accent)}
+.usernote{font-size:13px;background:var(--accent-soft,var(--mark-soft));border-left:3px solid var(--accent);
+border-radius:0 8px 8px 0;padding:8px 12px;margin:8px 0}
+.usernote b{color:var(--accent);margin-right:6px}
+.usernote.done{opacity:.55}
+.usernote .q{display:block;color:var(--muted);font-size:12px;margin-top:4px}
 .tip .meta{color:var(--muted);font-size:12.5px;margin-top:5px}
 .tip .row{display:flex;gap:6px;margin-top:9px}
 .tip input{font:inherit;font-size:13px;flex:1;background:var(--ground);color:var(--ink);
@@ -691,6 +748,87 @@ color:var(--ink);border:1px solid var(--border);border-radius:6px;padding:4px 8p
 """
 
 VIEW_JS = r"""
+// 사용자 지시 — 본문 아무 데나 짚어 지시를 남긴다.
+// 마커는 정해진 자리에만 붙지만 지시는 어디에나 붙어야 하므로, 고른 글을 앵커로 삼는다.
+(function(){
+  var page=document.getElementById("page") || document.querySelector(".page");
+  if(!page) return;
+  var marks=[].slice.call(document.querySelectorAll(".pagemark"));
+  function pageOf(node){
+    var el = node.nodeType===1 ? node : node.parentElement;
+    for(var i=0;i<marks.length;i++){
+      if(el && (el.compareDocumentPosition(marks[i]) & Node.DOCUMENT_POSITION_FOLLOWING)){
+        var m=/p\.([^\s]+)/.exec(marks[i].textContent||""); return m?m[1]:"";
+      }
+    }
+    return "";
+  }
+  function blockOf(node){
+    var el = node.nodeType===1 ? node : node.parentElement;
+    while(el && el.parentElement!==page) el=el.parentElement;
+    return el;
+  }
+
+  // 이미 남긴 지시를 그 자리에 보인다
+  (NOTES||[]).forEach(function(n){
+    var blocks=[].slice.call(page.children);
+    var hit=blocks.filter(function(b){
+      return n.anchor && b.textContent.trim().slice(0,80).indexOf(n.anchor.slice(0,40))===0; })[0];
+    if(!hit) return;
+    var tag=document.createElement("div");
+    tag.className="usernote"+(n.status==="done"?" done":"");
+    tag.innerHTML='<b>사용자 지시</b> '+TermTools.escHTML(n.text)
+      +(n.quote?'<span class="q">“'+TermTools.escHTML(n.quote.slice(0,60))+'”</span>':'');
+    hit.insertAdjacentElement("afterend", tag);
+  });
+
+  var btn=document.createElement("button");
+  btn.className="asknote"; btn.textContent="사용자 지시"; btn.style.display="none";
+  document.body.appendChild(btn);
+  var box=null;
+
+  function hide(){ btn.style.display="none"; }
+  document.addEventListener("selectionchange", function(){
+    if(box) return;
+    var sel=document.getSelection();
+    if(!sel || sel.isCollapsed || !sel.rangeCount) return hide();
+    var r=sel.getRangeAt(0);
+    if(!page.contains(r.commonAncestorContainer)) return hide();
+    var rect=r.getBoundingClientRect();
+    btn.style.display="block";
+    btn.style.left=(window.scrollX+rect.left)+"px";
+    btn.style.top=(window.scrollY+rect.bottom+6)+"px";
+  });
+
+  btn.onclick=function(){
+    var sel=document.getSelection(); if(!sel.rangeCount) return;
+    var r=sel.getRangeAt(0), quote=sel.toString().trim();
+    var blk=blockOf(r.startContainer);
+    var anchor=blk?blk.textContent.trim().slice(0,80):"";
+    var pg=pageOf(r.startContainer);
+    hide();
+    box=document.createElement("div"); box.className="notebox";
+    box.innerHTML='<div class="h">사용자 지시 <span>원서 p.'+TermTools.escHTML(pg)+'</span></div>'
+      +'<div class="q">“'+TermTools.escHTML(quote.slice(0,120))+'”</div>'
+      +'<textarea placeholder="이 자리에 대한 지시나 의견을 적어 주세요. 다음 작업 때 AI가 확인합니다."></textarea>'
+      +'<div class="row"><button class="ok">남기기</button><button class="no">취소</button></div>';
+    document.body.appendChild(box);
+    var rect=r.getBoundingClientRect();
+    box.style.left=Math.max(8, Math.min(window.innerWidth-box.offsetWidth-12, rect.left))+"px";
+    box.style.top=(window.scrollY+rect.bottom+8)+"px";
+    var ta=box.querySelector("textarea"); ta.focus();
+    function close(){ if(box){ box.remove(); box=null; } }
+    box.querySelector(".no").onclick=close;
+    box.querySelector(".ok").onclick=function(){
+      var t=ta.value.trim(); if(!t) return ta.focus();
+      fetch("/api/note",{method:"POST",headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({chunk:CHUNK, page:pg, anchor:anchor, quote:quote, text:t})})
+        .then(function(r){return r.json();})
+        .then(function(){ close(); location.reload(); });
+    };
+  };
+})();
+
 // 마커에 사용자가 직접 답한다. 원본을 열어 보는 사람이 가장 잘 아는 판단이고,
 // 메모만으로 시각 확인이 불필요해지는 경우도 많다.
 (function(){
@@ -1286,11 +1424,13 @@ def _wrap_compare(cid, body):
             "<meta name='viewport' content='width=device-width,initial-scale=1'>"
             "<title>%s · 단계별 대조</title><style>%s%s</style></head><body><div class='page'>"
             "<div class='crumb'>%s · 원문과 단계별 번역 대조</div>%s</div>"
-            "<script>var CID=%s;const CHUNK=%s;const TERMS=%s;const KIND='compare';%s</script>"
+            "<script>var CID=%s;const CHUNK=%s;const TERMS=%s;const KIND='compare';"
+            "const NOTES=%s;%s</script>"
             "<script src='/terms.js'></script><script>%s</script></body></html>"
             % (cid, VIEW_CSS, COMPARE_CSS, _html.escape(cid), body,
                json.dumps(cid), json.dumps(cid),
                json.dumps(glossary_payload(), ensure_ascii=False),
+               json.dumps(read_notes(cid), ensure_ascii=False),
                COMPARE_JS, VIEW_JS))
 
 def glossary_payload():
@@ -1345,11 +1485,12 @@ def render_view(kind, cid):
             "<button id='termsBtn' class='tbtn' title='본문에서 용어집 용어를 짚어 줍니다'>"
             "용어보기</button></div>"
             "<div class='page' id='page'>%s</div>"
-            "<script>const TERMS=%s;const KIND=%s;const CHUNK=%s;</script>"
+            "<script>const TERMS=%s;const KIND=%s;const CHUNK=%s;const NOTES=%s;</script>"
             "<script src='/terms.js'></script><script>%s</script></body></html>"
             % (cid, label, VIEW_CSS, _html.escape(cid), _html.escape(label), body,
                json.dumps(glossary_payload(), ensure_ascii=False),
-               json.dumps(kind), json.dumps(cid), VIEW_JS))
+               json.dumps(kind), json.dumps(cid),
+               json.dumps(read_notes(cid), ensure_ascii=False), VIEW_JS))
 
 def set_approval(cid, block, status, note, label=None):
     """문단 확인 상태를 기록한다. 현재 상태와 이력을 함께 남긴다.
@@ -1432,7 +1573,8 @@ class Handler(BaseHTTPRequestHandler):
     def do_POST(self):
         if not any(self.path.startswith(x) for x in
                    ("/api/decide", "/api/add", "/api/delete", "/api/rename", "/api/approve",
-                    "/api/restart", "/api/quit", "/api/marker", "/api/visual")):
+                    "/api/restart", "/api/quit", "/api/marker", "/api/visual",
+                    "/api/note")):
             return self._send(404, json.dumps({"error": "not found"}))
         n = int(self.headers.get("Content-Length", "0"))
         try:
@@ -1445,6 +1587,10 @@ class Handler(BaseHTTPRequestHandler):
                 # 새 실행기가 이 서버를 넘겨받으려고 부른다
                 RESTART["quit"] = True
                 ok, msg = True, "서버를 종료합니다."
+            elif self.path.startswith("/api/note"):
+                ok, msg = save_note(req.get("chunk", ""), req.get("page", ""),
+                                    req.get("anchor", ""), req.get("quote", ""),
+                                    req.get("text", ""))
             elif self.path.startswith("/api/marker"):
                 ok, msg = resolve_marker(req.get("chunk", ""), req.get("page", ""),
                                          req.get("marker", ""), req.get("verdict", ""),
