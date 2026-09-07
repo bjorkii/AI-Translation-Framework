@@ -65,6 +65,25 @@ background:var(--surface2);color:var(--muted);border:1px solid var(--border)}
 .why.hits{font-size:11.5px;color:var(--faint);margin:2px 0 6px}
 .q .p em{font-style:normal;opacity:.7}
 .badge.warnb{background:#B3261E;color:#fff;border-color:transparent;cursor:help}
+
+/* 단계 배지 — 무지개색 대신 한 색의 농담으로. 단계는 순서가 있는 값이라
+   연한 색에서 진한 색으로 가면 색 자체가 진행도를 나타낸다. 색만으로 구분하지
+   않도록 글자 라벨은 그대로 둔다. */
+.badge.st{border-color:transparent;background:rgba(15,110,115,var(--a));color:var(--ink)}
+.st0{--a:.08}.st1{--a:.16}.st2{--a:.25}.st3{--a:.36}
+.st4{--a:.48}.st5{--a:.63}.st6{--a:.80}.st7{--a:1}
+.badge.st5,.badge.st6,.badge.st7{color:#fff}
+@media(prefers-color-scheme:dark){
+  .badge.st{background:rgba(87,195,199,var(--a));color:var(--ink)}
+  .badge.st5,.badge.st6,.badge.st7{color:#0B1414}
+}
+.legend{display:inline-flex;flex-wrap:wrap;gap:5px;margin-left:12px;vertical-align:middle}
+.legend .badge{cursor:pointer;user-select:none;font-weight:500}
+.legend .badge.dim{opacity:.32}
+.legend .badge b{font-weight:700;margin-left:5px;font-variant-numeric:tabular-nums}
+.legend .clear{font-size:12px;color:var(--muted);cursor:pointer;align-self:center;
+margin-left:4px;text-decoration:underline}
+tbody tr.faded{opacity:.28}
 .link{color:var(--accent);font-size:13px;text-decoration:none;margin-right:10px}
 .link.off{color:var(--faint);opacity:.45;cursor:default;text-decoration:none;margin-right:10px}
 
@@ -139,6 +158,7 @@ font-variant-numeric:tabular-nums}
 </div>
 <script>
 let S=null, tab="overview", lastJSON="", editing=null, query="", flashPending=false;
+let stageFilter=null;      // 청크 목록에서 추려 볼 단계 (null이면 전체)
 const acc={decided:false,untouched:false};
 const filter={decided:"전체",untouched:"전체"};
 const el=id=>document.getElementById(id);
@@ -213,17 +233,31 @@ function renderOverview(){
 
 /* ---------------- 청크 ---------------- */
 function renderChunks(){
-  let h='<div class="sect"><h2>청크 목록</h2>'
+  // 범례 겸 필터. 숫자는 '지금 그 단계에 머물러 있는 청크 수'이므로 다 더하면 전체가 된다.
+  const p=S.progress, labels=p.stage_labels||[], stages=p.stages||[];
+  const cnt={};
+  for(const c of S.chunks) cnt[c.stage]=(cnt[c.stage]||0)+1;
+  let leg='<span class="legend">';
+  stages.forEach((s,i)=>{
+    const n=cnt[s]||0;
+    leg+='<span class="badge st st'+i+(stageFilter&&stageFilter!==s?" dim":"")+'"'
+       +' data-stage="'+esc(s)+'" title="이 단계에 머물러 있는 청크 '+n+'개 — 눌러서 추리기">'
+       +esc(labels[i]||s)+'<b>'+n+"</b></span>";
+  });
+  if(stageFilter) leg+='<span class="clear" id="clearStage">전체 보기</span>';
+  leg+="</span>";
+
+  let h='<div class="sect"><h2>청크 목록'+leg+"</h2>"
     +"<table><thead><tr><th>청크</th><th>제목</th><th>원서 쪽</th><th>분량</th><th>단계</th><th>보기</th></tr></thead><tbody>";
   for(const c of S.chunks){
-    const on=c.stage!=="pending";
-    h+='<tr data-id="'+esc(c.id)+'" data-src="'+(c.has_source?1:0)+'" data-tgt="'+(c.has_target?1:0)+'">'
+    const si=Math.max(0, stages.indexOf(c.stage));
+    const faded=stageFilter && c.stage!==stageFilter;
+    h+='<tr class="'+(faded?"faded":"")+'" data-id="'+esc(c.id)+'" data-src="'+(c.has_source?1:0)+'" data-tgt="'+(c.has_target?1:0)+'">'
       +"<td>"+esc(c.id)+"</td><td>"+esc(c.title)+"</td>"
       +'<td class="num">'+esc((c.printed||[]).join("–"))+"</td>"
       +'<td class="num">'+esc(c.pages||"")+"</td>"
-      +'<td><span class="badge '+(on?"on":"wait")+'">'+esc(c.stage_label||c.stage)+"</span>"
+      +'<td><span class="badge st st'+si+'">'+esc(c.stage_label||c.stage)+"</span>"
       +(c.split?' <span class="badge">절 분할</span>':"")
-      +(c.parser?' <span class="badge">'+esc(c.parser)+"</span>":"")
       +(c.src_needs_parser?' <span class="badge warnb" title="줄바꿈 판정 불확실 '
          +c.src_quality.ratio+'% — 산문용 정규화로는 부족합니다. 전용 파서로 다시 만들어야 합니다.">'
          +'정규화 재작업 필요</span>':"")
@@ -241,6 +275,12 @@ function renderChunks(){
   }
   h+='</tbody></table></div><div class="sect"><h2>status.md</h2><pre>'+esc(S.status_md||"(비어 있음)")+"</pre></div>";
   el("chunks").innerHTML=h;
+  el("chunks").querySelectorAll(".legend .badge").forEach(b=>{
+    b.onclick=()=>{ const s=b.dataset.stage;
+      stageFilter = (stageFilter===s) ? null : s;   // 같은 것을 다시 누르면 전체로
+      renderChunks(); };
+  });
+  const cl=el("clearStage"); if(cl) cl.onclick=()=>{ stageFilter=null; renderChunks(); };
 }
 
 /* ---------------- 용어집 ---------------- */

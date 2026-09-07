@@ -20,7 +20,7 @@ STAGES = ["pending", "normalized", "draft", "ai_review_1", "ai_review_2",
           "human_review", "ai_revise", "final"]
 STAGE_LABEL = {"pending": "대기", "normalized": "정규화", "draft": "AI 1차 번역",
                "ai_review_1": "AI 1차 감수", "ai_review_2": "AI 2차 감수",
-               "human_review": "사람 감수", "ai_revise": "AI 보완", "final": "확정"}
+               "human_review": "사람 감수", "ai_revise": "AI 보완", "final": "완료"}
 TRACK_STAGES = ["draft", "ai_review_1", "ai_review_2", "ai_revise", "final"]
 STATUS_KO = {"approved": "승인", "rejected": "반려", "note": "메모", "withdrawn": "철회"}
 
