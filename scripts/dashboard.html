@@ -281,8 +281,8 @@ function renderGlossary(){
   h+= g.pending ? g.pending_items.map(t=>termCard(t,false)).join("") : '<p class="sub">모두 확정</p>';
   h+="</div>";
 
-  h+=listSection("decided","확정된 용어",g.decided_items,"— 누르면 수정");
-  h+=listSection("untouched","미검토 용어",untouched,"— 누르면 번역어 입력");
+  h+=listSection("decided","확정된 용어",g.decided_items);
+  h+=listSection("untouched","미검토 용어",untouched);
 
   h+='<div class="sect"><h2>용어 추가</h2><div class="row">'
     +'<input id="newTerm" placeholder="원어 (예: Work print)">'
