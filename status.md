@@ -1,12 +1,17 @@
 # 진행 상태
 
 원서: The Film Preservation Guide (NFPF, 2004) · 133쪽 · 영 → 한
-번역 시작 2026-09-05 · 3일째 · 진행율 18.8% (21/112 단계)
+번역 시작 2026-09-05 · 3일째 · 진행율 17.7% (26/147 단계)
 
 단계: 대기 → 정규화 → AI 1차 번역 → AI 1차 감수 → AI 2차 감수 → 사람 감수 → AI 보완 → 확정
 
 | 청크 | 제목 | 원서 쪽 | 분량 | 단계 |
 |---|---|---|---|---|
+| title | 표제지·판권 | i–ii | 2 | 정규화 |
+| toc | Table of Contents | iii–vi | 4 | 정규화 |
+| preface | Preface | vii–viii | 2 | 정규화 |
+| ack | Acknowledgments | ix–x | 2 | 정규화 |
+| howto | How to Use This Guide | xi–xii | 2 | 정규화 |
 | ch01 | Why Preserve Film? | 1–5 | 5 | AI 보완 |
 | ch02 | Understanding Film and How It Decays | 6–18 | 13 | 정규화 |
 | ch03 | Film Handling and Inspection | 19–33 | 15 | 정규화 |

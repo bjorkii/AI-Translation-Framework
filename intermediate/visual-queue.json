@@ -1,6 +1,22 @@
 {
  "todo": [
   {
+   "chunk": "title",
+   "line": 56,
+   "marker": "VISUAL-CHECK",
+   "page": "ii",
+   "why": "표·상자 구조 대조 필요",
+   "context": "Printed in the USA by Great Impressions / <!-- VISUAL-CHECK 도판 · 원서 p.ii · 원본과 대조 필요 --> / ![](assets/figures/title-pii-1.png)"
+  },
+  {
+   "chunk": "ack",
+   "line": 14,
+   "marker": "LINEBREAK-UNCERTAIN",
+   "page": "x",
+   "why": "문단이 이어지는지 판단 필요",
+   "context": "[원서 p.ix] / <!-- LINEBREAK-UNCERTAIN --> / Ember Lundgren, Brianne Merkel, Robert Nanovic, Heather Olson, Brent Phillips, Magnus Rosborn, Alexandra Terziev, and Benjamin Tucker. Also assisting were Daniel Blazek, Brendan Burchill, Donna Ellithorpe, Eric Green, Annette Groschke, Laura Krasnow, Siusan Moffat, Nathan Moles, Christina Nobles, Ayuno Okamura, Loubna Regragui, David Rice, Norberto Rivero"
+  },
+  {
    "chunk": "ch01",
    "line": 70,
    "marker": "VISUAL-CHECK",

@@ -56,8 +56,15 @@ def main():
     gate = "--gate" in sys.argv
     M = yaml.safe_load(open(os.path.join(ROOT, "structure-map.yaml"), encoding="utf-8"))
     doc = pymupdf.open(os.path.join(ROOT, M["source"]))
-    off = M.get("page_label_offset", 0)
-    chunks = [c for k in ("chapters", "back_matter") for c in (M.get(k) or [])]
+    # 인쇄된 쪽번호는 PDF 페이지 라벨에서 가져온다. 산술(파일번호 - 오프셋)로 구하면
+    # 앞부분의 로마숫자(i~xii)에서 어긋난다.
+    def printed_of(i):
+        try:
+            return (doc[i].get_label() or "").strip() or str(i + 1)
+        except Exception:
+            return str(i + 1)
+    chunks = [c for k in ("front_matter", "chapters", "back_matter")
+              for c in (M.get(k) or [])]
     total = 0
     for c in chunks:
         cid = c["id"]
@@ -71,7 +78,7 @@ def main():
         a, b = c["file"]
         miss = []
         for i in range(a - 1, b):
-            printed = str(i + 1 - off)
+            printed = printed_of(i)
             if printed in skip:
                 continue
             for blk in doc[i].get_text("dict")["blocks"]:

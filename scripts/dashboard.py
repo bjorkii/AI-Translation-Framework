@@ -36,7 +36,7 @@ def parse_structure():
         if re.match(r"^(chapters|back_matter|front_matter):", line):
             section = line.split(":")[0]; continue
         m = re.match(r"^\s*-\s*\{(.+)\}\s*$", line)
-        if not m or section not in ("chapters", "back_matter"):
+        if not m or section not in ("front_matter", "chapters", "back_matter"):
             continue
         body = m.group(1)
         def g(key, pat=r'([^,}]+)'):

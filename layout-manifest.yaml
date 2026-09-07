@@ -10,6 +10,13 @@
 #   회귀 대조  스크립트를 고친 전후로 이 파일이 같은지 비교한다.
 
 elements:
+  - id: title-pii-1
+    type: image
+    chunk: title
+    source_page: "ii"
+    bbox: [54.2, 291.0, 413.8, 340.0]
+    asset: assets/figures/title-pii-1.png
+    status: pending
   - id: fn-ch01-001
     type: footnote
     chunk: ch01
@@ -1015,6 +1022,46 @@ elements:
     status: pending
 
 pages:
+  - chunk: title
+    source_page: "i"
+    paragraph_count: 1
+    first_line: "National Film Preservation Foundation San Francisco, Califor"
+  - chunk: title
+    source_page: "ii"
+    paragraph_count: 24
+    first_line: "National Film Preservation Foundation"
+  - chunk: toc
+    source_page: "iii"
+    paragraph_count: 2
+    first_line: "## TABLE OF CONTENTS"
+  - chunk: toc
+    source_page: "iv"
+    paragraph_count: 1
+    first_line: "- **3. FILM HANDLING AND INSPECTION** - 3.1 Before You Start"
+  - chunk: toc
+    source_page: "v"
+    paragraph_count: 1
+    first_line: "- 5.6 Regular 8mm and Super 8mm — 49 - 5.7 Understanding Lab"
+  - chunk: toc
+    source_page: "vi"
+    paragraph_count: 1
+    first_line: "- 8.5 Archival Rights and Responsibilities — 81 - 8.6 Obtain"
+  - chunk: preface
+    source_page: "viii"
+    paragraph_count: 11
+    first_line: "## PREFACE"
+  - chunk: ack
+    source_page: "ix"
+    paragraph_count: 5
+    first_line: "## ACKNOWLEDGMENTS"
+  - chunk: ack
+    source_page: "x"
+    paragraph_count: 2
+    first_line: "Many others reviewed the manuscript or provided information."
+  - chunk: howto
+    source_page: "xii"
+    paragraph_count: 6
+    first_line: "## HOW TO USE THIS GUIDE"
   - chunk: ch01
     source_page: "1"
     paragraph_count: 8

@@ -13,11 +13,13 @@ total_file_pages: 133
 page_label_offset: 12        # 본문: printed = file - 12
 
 front_matter:
-  - {id: title,    file: [1, 2],   printed: ["i", "ii"],    title: "표제지·판권"}
-  - {id: toc,      file: [3, 6],   printed: ["iii", "vi"],  title: "Table of Contents"}
-  - {id: preface,  file: [7, 8],   printed: ["vii", "viii"],title: "Preface"}
-  - {id: ack,      file: [9, 10],  printed: ["ix", "x"],    title: "Acknowledgments"}
-  - {id: howto,    file: [11, 12], printed: ["xi", "xii"],  title: "How to Use This Guide"}
+  # 앞부분도 번역 범위에 포함한다. 차례는 쪽번호가 원서 기준이라 색인과 마찬가지로
+  # 번역본 기준으로 다시 매겨야 하므로, 여기서는 항목을 온전히 뽑아 두는 것이 목적이다.
+  - {id: title,    file: [1, 2],   printed: ["i", "ii"],    title: "표제지·판권", pages: 2, parser: record}
+  - {id: toc,      file: [3, 6],   printed: ["iii", "vi"],  title: "Table of Contents", pages: 4, parser: toc}
+  - {id: preface,  file: [7, 8],   printed: ["vii", "viii"],title: "Preface", pages: 2, parser: prose}
+  - {id: ack,      file: [9, 10],  printed: ["ix", "x"],    title: "Acknowledgments", pages: 2, parser: prose}
+  - {id: howto,    file: [11, 12], printed: ["xi", "xii"],  title: "How to Use This Guide", pages: 2, parser: prose}
 
 chapters:
   - {id: ch01, file: [13, 17],  printed: [1, 5],   pages: 5,  title: "Why Preserve Film?"}

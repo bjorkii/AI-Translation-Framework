@@ -1,0 +1,161 @@
+
+## TABLE OF CONTENTS
+
+- Preface — vii
+- Acknowledgments — ix
+- How to Use This Guide — xi
+- **1. WHY PRESERVE FILM?**
+  - 1.1 The Community of Film Archives — 1
+  - 1.2 Orphan Films — 2
+  - 1.3 The Language of Film Preservation — 3
+    - Preservation — 3
+    - Conservation — 4
+    - Duplication — 4
+    - Restoration — 4
+    - Access — 4
+  - Case Study: Oklahoma Historical Society — 5
+- **2. UNDERSTANDING FILM AND HOW IT DECAYS**
+  - 2.1 Film Gauges — 6
+    - 35mm — 6
+    - 16mm — 7
+    - Regular 8mm and Super 8mm — 7
+    - Other gauges — 8
+  - 2.2 Inside the Film Stock — 8
+    - Film bases — 8
+    - Nitrate — 8
+    - Acetate — 9
+    - Polyester — 9
+    - Emulsion — 9
+  - 2.3 Negative, Print, and Reversal Films — 10
+  - 2.4 Color in Film — 11
+  - 2.5 Sound Tracks — 12
+  - 2.6 Common Types of Decay and Damage — 13
+    - Mechanical damage — 13
+    - Mold, mildew, and fungus — 13
+    - Acetate decay (vinegar syndrome) — 14
+    - Shrinkage — 15
+    - Color fading — 15
+    - Nitrate decay — 16
+    - Magnetic track deterioration — 17
+
+[원서 p.iii]
+
+- **3. FILM HANDLING AND INSPECTION**
+  - 3.1 Before You Start — 19
+  - 3.2 Looking at Your Film — 21
+    - Step one: Opening the film can — 21
+    - Step two: Using rewinds — 23
+    - Step three: Viewing — 23
+  - 3.3 Learning Through the Inspection Process — 24
+    - Reading edge codes — 25
+  - 3.4 Replacing Old Film Reels and Containers — 26
+    - Split reels and cores — 26
+    - Labeling film — 27
+  - 3.5 Repairing Film — 28
+    - Making splices — 28
+    - Using splicing tape — 29
+    - Using film cement — 30
+    - Repairing perforations — 31
+  - 3.6 Cleaning Film — 31
+  - 3.7 Equipment for Every Budget — 32
+- **4. THE CURATORIAL ROLE**
+  - 4.1 The Paper Trail — 34
+    - Institutional records — 34
+    - Films in multimedia collections — 34
+    - Oral history — 35
+  - 4.2 Published Sources — 35
+  - 4.3 Recognizing Value in the Commonplace — 36
+  - 4.4 Does Your Institution Have the “Best” Surviving Source Material? — 36
+  - Case Study: University of Alaska Fairbanks — 40
+- **5. DUPLICATION**
+  - 5.1 Before You Start: First Do No Harm — 41
+  - 5.2 Protecting the Original — 42
+    - Long-term protection: Copying film on film — 42
+    - Access copies — 42
+    - Analog videotape — 43
+    - Digital videotape — 43
+    - Digital frontier — 43
+    - Developing a long-term preservation strategy — 44
+  - 5.3 Film Preservation Laboratories — 46
+  - 5.4 Products Created Through the Duplication Process — 46
+  - 5.5 Special Laboratory Processes — 48
+    - Wet-gate printing — 48
+    - Optical printing — 49
+    - Digital image restoration — 49
+    - Digital sound restoration — 49
+    - Redimensioning — 49
+
+[원서 p.iv]
+
+  - 5.6 Regular 8mm and Super 8mm — 49
+  - 5.7 Understanding Laboratory Estimates — 50
+  - 5.8 Shipping Your Film — 53
+  - 5.9 Managing Your Project — 55
+  - 5.10 Securing Resources for Film Duplication — 56
+  - Case Study:California Pacific Medical Center — 57
+  - Case Study: Visual Communications — 58
+- **6. STORAGE**
+  - 6.1 IPI Recommendations for Film Materials — 59
+  - 6.2 Improving Film Storage Conditions — 61
+    - Cold storage vaults — 62
+    - Refrigerators and freezers — 62
+    - Off-site storage — 63
+  - 6.3 Monitoring the Storage Environment — 64
+  - 6.4 Removing and Returning Films to Storage — 64
+  - 6.5 Storing Nitrate Film — 65
+  - 6.6 What Makes a Good Film Container? — 66
+  - 6.7 Emergency Preparedness — 67
+  - 6.8 Long-Range Preservation Planning — 68
+  - Case Study: Nebraska State Historical Society — 69
+- **7. CATALOGING** BY PAUL EISLOEFFEL
+  - 7.1 The International Framework — 70
+    - The MARC format — 70
+    - Cataloging manuals — 71
+    - Controlled vocabularies — 71
+  - 7.2 Practicing Film Cataloging at Your Institution — 71
+    - Data elements — 72
+    - Levels of control — 72
+    - Access points for content — 73
+    - More detailed description — 74
+    - Integrating film into your institution’s catalog — 74
+  - 7.3 Starting from Scratch — 74
+  - 7.4 Sharing Records — 75
+  - Case Study: Northeast Historic Film — 76
+- **8. LEGAL CONTEXT** BY ERIC J. SCHWARTZ
+  - 8.1 Copyright — 77
+    - Divisibility of copyright — 77
+    - Underlying rights — 78
+    - Term of copyright — 78
+    - Checking the copyright status of published works — 78
+  - 8.2 Copyright of Unpublished Works — 79
+  - 8.3 Physical Materials and Copyright — 79
+  - 8.4 Donor Agreements — 80
+
+[원서 p.v]
+
+  - 8.5 Archival Rights and Responsibilities — 81
+  - 8.6 Obtaining Permissions — 82
+  - 8.7 Fair Use — 82
+  - 8.8 Protecting Your Institution — 83
+  - Case Study: University of Texas at Austin — 84
+- **9. ACCESS**
+  - 9.1 On-Site Research Access — 85
+  - 9.2 On-Site Public Programs — 86
+  - 9.3 Internet Exhibition — 87
+  - 9.4 Licensing — 87
+    - Frame enlargements — 88
+    - Licensing footage — 88
+  - 9.5 Loan and Distribution — 89
+  - 9.6 Community Outreach — 90
+  - Case Study: Minnesota Historical Society — 92
+- **APPENDIXES**
+  - A. Edge Code Chart — 93
+  - B. Print Condition Report — 94
+  - C. Selected Film Preservation Laboratories — 95
+  - D. Selected Equipment and Supply Vendors — 97
+- Glossary — 99
+- Selected Bibliography — 109
+- Index — 114
+- About the NFPF — 121
+
+[원서 p.vi]

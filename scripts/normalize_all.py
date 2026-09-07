@@ -14,7 +14,7 @@ PDF = ROOT / MAP["source"]
 
 def chunks():
     out = []
-    for key in ("chapters", "back_matter"):
+    for key in ("front_matter", "chapters", "back_matter"):
         for c in MAP.get(key) or []:
             out.append(c)
     return out
@@ -42,7 +42,7 @@ def main():
             print("  !! 실패\n" + (r.stderr or "")[-800:]); continue
         for line in r.stdout.splitlines():
             # '!!' 는 경고다. 걸러 내면 오버라이드가 안 먹은 것 같은 일을 아무도 모른다.
-            if "!!" in line or ">>>" in line or "paras:" in line or "fn_defs:" in line:
+            if "!!" in line or "여백 실측" in line or ">>>" in line or "paras:" in line or "fn_defs:" in line:
                 print("  " + line.strip())
         print("  → %s (%d바이트)" % (dest.relative_to(ROOT), dest.stat().st_size))
 

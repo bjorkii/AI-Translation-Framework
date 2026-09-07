@@ -264,8 +264,25 @@ def md_table(rows):
     return "\n".join(out)
 
 def page_labels(doc):
+    """페이지마다 원서에 인쇄된 쪽번호.
+
+    PDF 가 페이지 라벨 메타데이터를 갖고 있으면 그것을 쓴다. 이 값이 곧 인쇄된
+    쪽번호이고(Preview 등 뷰어도 이 값을 보여준다), 쪽번호가 쪽 위에 있든 아래에
+    있든 옆에 있든 상관없이 맞다.
+
+    메타데이터가 없는 PDF 를 위해 예전 방식(쪽 아래에서 숫자꼴 블록을 줍는 것)을
+    남겨 둔다. 그 방식은 이 책의 앞부분처럼 쪽번호가 **위쪽**에 있는 조판에서는
+    아무것도 찾지 못한다.
+    """
     labels = {}
     for i, page in enumerate(doc):
+        try:
+            lab = (page.get_label() or "").strip()
+        except Exception:
+            lab = ""
+        if lab:
+            labels[i] = lab
+            continue
         h = page.rect.height
         for b in page.get_text("dict")["blocks"]:
             if b.get("type") != 0 or b["bbox"][1] < h*LP.get("foot_band"): continue
@@ -556,6 +573,35 @@ def bulletize(text):
         out.append("\n".join(lines))
     return "\n\n".join(out)
 
+def render_toc(lines, w):
+    """차례: 같은 높이에 놓인 '항목 + 쪽번호'를 한 줄로 짝지어 준다.
+
+    차례는 산문도 명단도 아니다. 한 줄이 왼쪽의 항목과 오른쪽 끝의 쪽번호로 나뉘어
+    있고, 둘은 같은 y에 있다. 들여쓰기 깊이가 곧 차례의 단계다(장 → 절 → 소절).
+
+    쪽번호는 원서 기준이라 번역본에서는 다시 매겨야 한다. 색인과 같은 이유로,
+    여기서는 항목을 온전히 뽑아 두는 것이 목적이다.
+    """
+    rows = {}
+    for ln in lines:
+        rows.setdefault(round(ln["y0"]), []).append(ln)
+    if not rows:
+        return ""
+    base = min(min(l["x0"] for l in g) for g in rows.values())
+    out = []
+    for y in sorted(rows):
+        g = sorted(rows[y], key=lambda l: l["x0"])
+        page = ""
+        if len(g) > 1 and g[-1]["x0"] > w * 0.5:
+            page = g[-1]["text"]; g = g[:-1]
+        text = " ".join(l["text"] for l in g).strip()
+        if not text:
+            continue
+        d = g[0]["x0"] - base
+        lvl = 2 if d > 20 else (1 if d > 6 else 0)
+        out.append("%s- %s%s" % ("  " * lvl, text, (" — %s" % page) if page else ""))
+    return "\n".join(out)
+
 def split_fn_defs(txt):
     """한 블록에 여러 각주가 뭉쳐 있는 경우 번호 기준으로 분리"""
     parts = re.split(r"(?<=[.\"”’])\s+(?=\d{1,2}\.\s*[A-Z“\"])", txt)
@@ -613,6 +659,72 @@ def write_manifest(chap, records, text):
     with open(os.path.join(d, chap + ".json"), "w", encoding="utf-8") as f:
         json.dump({"chunk": chap, "records": records, "pages": summary},
                   f, ensure_ascii=False, indent=1)
+
+def margin_profile(doc, p0, p1, labels):
+    """이 구간에서 쪽번호와 러닝헤드가 실제로 어디에 놓이는지 재어 둔다.
+
+    '쪽 위 9%, 아래 12%' 같은 고정 비율만으로 지우면 두 가지가 함께 틀린다.
+      · 본문이 쪽 끝까지 내려온 페이지에서 마지막 줄이 사라진다
+        (원서 p.105 용어집 표제어 'Printer' 가 그렇게 없어졌다)
+      · 쪽번호가 위나 옆에 있는 조판은 아예 걸리지 않는다
+        (이 책의 앞부분은 쪽번호가 위쪽에 있다)
+
+    그래서 비율을 정해 놓지 않고 **문서에서 재서** 쓴다. 쪽번호는 그 쪽의 라벨과
+    글자가 같으므로 확실하게 찾을 수 있고, 그 자리가 곧 쪽번호 구역이다.
+    러닝헤드는 그 구역을 뺀 나머지 여백에서 되풀이되는 짧은 줄이다.
+
+    돌려주는 값
+      pno    쪽번호가 놓이는 사각형(여유 포함). 없으면 None
+      slots  러닝헤드·러닝풋이 놓이는 자리 [(y, 글자크기), …]
+
+    러닝헤드는 쪽마다 **같은 자리에 같은 크기로** 되풀이된다. 그래서 '위쪽 몇 %'
+    같은 범위가 아니라 그 한 줄의 자리를 집어낸다. 이 책에서는 y≈29 · 10.0pt 이고,
+    같은 언저리의 다른 것들(절 제목 y≈72 · 14pt, 표 제목 y≈75 · 9pt)과 뚜렷이 갈린다.
+
+    범위로 잡으면 반드시 한쪽이 틀린다. 넓게 잡으면 쪽 위에 놓인 표 제목이 지워지고
+    (원서 p.52 'SAMPLE LABORATORY ESTIMATE'), 좁게 잡거나 '본문보다 작은 글자'로
+    거르면 본문이 러닝헤드와 같은 크기인 구간에서 러닝헤드가 살아남는다(색인의 'Index').
+
+    둘 다 **책 전체**에서 잰다. 구간별로 재면 두 쪽짜리 부록처럼 러닝헤드가 한 번만
+    나오는 구간에서 놓친다(실제로 부록 C·D의 러닝헤드가 본문으로 새어 나왔다).
+    쪽번호가 생략된 쪽이 섞여 있어도(이 책은 표제지·판권·차례 첫 쪽·빈 쪽이 그렇다)
+    나머지 쪽에서 잰 자리가 그대로 쓰인다.
+    """
+    import collections
+    slots = collections.Counter()
+    pno_boxes = []
+    for i, page in enumerate(doc):
+        h = page.rect.height
+        lab = str(labels.get(i, "")).strip()
+        for b in page.get_text("dict")["blocks"]:
+            if b.get("type") != 0:
+                continue
+            t = " ".join("".join(s["text"] for s in l["spans"]) for l in b["lines"]).strip()
+            if not t:
+                continue
+            if lab and t == lab:
+                pno_boxes.append(b["bbox"])          # 쪽번호는 라벨과 글자가 같다
+                continue
+            y0, y1 = b["bbox"][1], b["bbox"][3]
+            if len(t) < LP.get("head_maxlen") and (y0 < h*0.12 or y1 > h*0.92):
+                sz = max(s["size"] for l in b["lines"] for s in l["spans"])
+                slots[(round(y0), round(sz, 1))] += 1
+
+    prof = {"pno": None, "slots": []}
+    if pno_boxes:
+        pad = 5
+        prof["pno"] = (min(b[0] for b in pno_boxes) - pad,
+                       min(b[1] for b in pno_boxes) - pad,
+                       max(b[2] for b in pno_boxes) + pad,
+                       max(b[3] for b in pno_boxes) + pad)
+    # 몇 쪽에만 나오는 것은 러닝헤드가 아니다. 책 전체 쪽수의 10% 이상에 같은 자리로
+    # 되풀이된 것만 본다.
+    need = max(3, len(doc) * 0.1)
+    prof["slots"] = [s for s, n in slots.items() if n >= need]
+    return prof
+
+def in_margin_slot(y0, size, slots, ytol=3.0, stol=0.6):
+    return any(abs(y0 - sy) <= ytol and abs(size - ss) <= stol for sy, ss in slots)
 
 def load_overrides(chap):
     """source/overrides/<청크>.yaml 을 읽는다. 없으면 빈 사전."""
@@ -722,7 +834,8 @@ def apply_overrides(text, chap):
 #                    (전권 재생성해도 gloss 는 한 글자도 바뀌지 않는다.) 따라서 별도 조립기를
 #                    두지 않고 산문 경로를 쓰되, 값은 명시해 회귀 감시 대상으로 남긴다.
 #   rebuild          색인. 표제어·하위항목을 줄 단위로 뽑는다
-PARSERS = ("prose", "record", "term_definition", "rebuild")
+#   toc              차례. 같은 높이의 항목과 쪽번호를 짝지어 한 줄로
+PARSERS = ("prose", "record", "term_definition", "rebuild", "toc")
 
 def main(pdf, p0, p1, chap, outpath=None, parser="prose"):
     if parser not in PARSERS:
@@ -735,6 +848,10 @@ def main(pdf, p0, p1, chap, outpath=None, parser="prose"):
     os.makedirs(figdir, exist_ok=True)
     BODY = detect_body_size(doc, p0, p1)
     OVR = load_overrides(chap)          # 시각 판독 결과 (도해 영역 선언 등)
+    mprof = margin_profile(doc, p0, p1, labels)
+    print("  (여백 실측: 쪽번호 %s · 머리말/꼬리말 자리 %s)"
+          % ([round(v) for v in mprof["pno"]] if mprof["pno"] else "없음",
+             mprof["slots"] or "없음"))
     print(f"  (본문 폰트 자동 추정: {BODY}pt)")
     stats = dict(pages=0, blocks=0, paras=0, dehyphen=0, uncertain=0, headers_removed=0,
                  layout_uncertain=0, headings=0, captions=0, fn_refs=0, fn_defs=0, labels=0,
@@ -763,6 +880,7 @@ def main(pdf, p0, p1, chap, outpath=None, parser="prose"):
     ital = []
     for i in range(p0-1, p1):
         page = doc[i]; stats["pages"] += 1
+        label = labels.get(i, f"?{i+1}")
         ital.extend(italic_runs(page))
         w, h = page.rect.width, page.rect.height
         # (1) 괘선 표: 표 영역 안의 텍스트 블록은 본문 흐름에서 제외하고 마크다운 표로 재구성
@@ -818,17 +936,19 @@ def main(pdf, p0, p1, chap, outpath=None, parser="prose"):
             lines = [x for x in lines if x]
             if not lines: continue
             txt = " ".join(lines); y0, x0 = b["bbox"][1], b["bbox"][0]
-            # 머리말·쪽번호 제거.
+            # 머리말·쪽번호 제거. 자리는 margin_profile 이 문서에서 재어 둔 것을 쓴다.
             #
-            # 위와 아래를 다르게 다룬다. 이 책에서 쪽 위에는 러닝헤드만 오지만,
-            # 쪽 아래에는 쪽번호 말고 본문도 내려온다. 아래쪽까지 '짧으면 지운다'로
-            # 묶었더니 원서 p.20의 사진 캡션과 p.105의 용어집 표제어 'Printer' 가
-            # 통째로 사라졌다.
-            #   위: 짧은 글이면 러닝헤드로 본다
-            #   아래: 쪽번호만 지운다
-            if y0 < h*LP.get("head_band") and len(txt) < LP.get("head_maxlen"):
+            # 쪽번호: 그 쪽의 라벨과 글자가 같고, 쪽번호가 놓이는 자리에 있을 것.
+            #   위·아래·옆 어디에 있든 상관없다(이 책 앞부분은 위쪽에 있다).
+            # 러닝헤드: 한계선 위에 있고 + 본문보다 작은 글자일 것. 두 신호가 함께
+            #   맞아야 한다. 위치만 보면 본문 첫 줄이 걸리고, 반복만 보면 절이 바뀌는
+            #   쪽의 러닝헤드(한 쪽에만 나온다)를 놓친다.
+            if (mprof["pno"] and txt.strip() == str(label)
+                    and inside(b["bbox"], mprof["pno"], pad=2)):
                 stats["headers_removed"] += 1; continue
-            if y0 > h*LP.get("foot_band") and re.fullmatch(r"[\divxlcdm]{1,7}", txt.strip(), re.I):
+            _sz = max(s["size"] for l in b["lines"] for s in l["spans"])
+            if (len(txt) < LP.get("head_maxlen")
+                    and in_margin_slot(y0, _sz, mprof["slots"])):
                 stats["headers_removed"] += 1; continue
             size = max(s["size"] for l in b["lines"] for s in l["spans"])
             rec = dict(x0=x0, y0=y0, size=size, lines=lines, txt=txt, raw=b, bbox=b["bbox"])
@@ -901,29 +1021,40 @@ def main(pdf, p0, p1, chap, outpath=None, parser="prose"):
         elems += [("box", order(min(x["x0"] for x in bl), min(x["y0"] for x in bl)), (bi, bl))
                   for bi, bl in sides.items() if bl]
         elems.sort(key=lambda e: e[1])
-        label = labels.get(i, f"?{i+1}")
 
         # ── 명단·서지·색인: 줄 좌표로 항목을 나눈다 (파이프라인 2.0-1절 전용 파서) ──
         # 산문 경로는 블록을 한 문자열로 합쳐 버리므로 여기서 쓸 수 없다.
         recgroups, pagenotes, rec_cols = {}, [], set()
-        if parser in ("record", "rebuild"):
+        if parser in ("record", "rebuild", "toc"):
             colbody = {}
             for b in body:
-                if b["size"] >= LP.get("h3_pt") or is_caps_label(b["txt"].replace("**", "")):
-                    continue                      # 제목·대문자 라벨은 산문 경로가 처리한다
+                # 제목·대문자 라벨은 산문 경로가 처리한다. 다만 차례에서는 장 제목이
+                # 대문자라, 빼 놓으면 목록 끝으로 밀려 순서가 무너진다.
+                if b["size"] >= LP.get("h3_pt") or (
+                        parser != "toc" and is_caps_label(b["txt"].replace("**", ""))):
+                    continue
                 if b["size"] < BODY - 0.4 and b["y0"] > h * (LP.get("foot_band") - 0.08):
                     pagenotes.append(b)           # 쪽 아래 안내문 — 명단 사이에 끼면 안 된다
                     continue
                 c = 0 if (not multi or b["x0"] <= w*CS) else 1
                 colbody.setdefault(c, []).append(b)
-            for c, bs in colbody.items():
+            if parser == "toc":
+                # 차례는 좌우가 한 줄의 두 부분이므로 단으로 가르지 않는다
                 lns = []
-                for b in sorted(bs, key=lambda z: z["y0"]):
-                    lns.extend(styled_lines(b["raw"], stats))
-                lns.sort(key=lambda z: z["y0"])
-                recgroups[c] = split_records(lns)
+                for bs in colbody.values():
+                    for b in sorted(bs, key=lambda z: z["y0"]):
+                        lns.extend(styled_lines(b["raw"], stats))
+                lns.sort(key=lambda z: (round(z["y0"]), z["x0"]))
+                recgroups[0] = [lns] if lns else []
+            else:
+                for c, bs in colbody.items():
+                    lns = []
+                    for b in sorted(bs, key=lambda z: z["y0"]):
+                        lns.extend(styled_lines(b["raw"], stats))
+                    lns.sort(key=lambda z: z["y0"])
+                    recgroups[c] = split_records(lns)
 
-        if multi and parser not in ("record", "rebuild"):
+        if multi and parser not in ("record", "rebuild", "toc"):
             stats["layout_uncertain"] += 1
             # 경고는 바로 내보내지 않고 대기시킨다. 직전 페이지 마커가
             # 문장 한가운데에 들어가야 하는 경우가 있어, 마커 배치가 끝난 뒤에 놓는다.
@@ -1004,19 +1135,22 @@ def main(pdf, p0, p1, chap, outpath=None, parser="prose"):
                 continue
             b = item
             stats["blocks"] += 1
-            if parser in ("record", "rebuild") and b in pagenotes:
+            if parser in ("record", "rebuild", "toc") and b in pagenotes:
                 continue                       # 쪽 아래 안내문은 페이지 끝에 따로 내보낸다
-            if parser in ("record", "rebuild") and not (
-                    b["size"] >= LP.get("h3_pt") or is_caps_label(b["txt"].replace("**", ""))):
+            if parser in ("record", "rebuild", "toc") and not (
+                    b["size"] >= LP.get("h3_pt") or (
+                        parser != "toc" and is_caps_label(b["txt"].replace("**", "")))):
                 # 그 단(段)의 항목을 첫 본문 블록 자리에서 한 번에 내보낸다.
                 # 항목은 블록 경계를 넘나들므로 블록마다 따로 내면 다시 쪼개진다.
-                c = 0 if (not multi or b["x0"] <= w*CS) else 1
+                # 차례는 좌우가 한 줄의 두 부분이므로 단으로 가르지 않는다
+                c = 0 if parser == "toc" else (0 if (not multi or b["x0"] <= w*CS) else 1)
                 if c in rec_cols:
                     continue
                 rec_cols.add(c)
                 flush_mark()
                 for rec in recgroups.get(c, []):
-                    out.append(render_record(rec, parser, stats))
+                    md = render_toc(rec, w) if parser == "toc" else render_record(rec, parser, stats)
+                    out.append("\n%s\n" % md if parser == "toc" else md)
                     stats["paras"] += 1
                 flush_warn()
                 continue

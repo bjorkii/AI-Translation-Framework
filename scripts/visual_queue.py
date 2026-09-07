@@ -28,7 +28,7 @@ PAGE_IN_MARKER = re.compile(r"p\.([0-9ivxlcdm]+)")
 def structure():
     m = yaml.safe_load(io.open(ROOT / "structure-map.yaml", encoding="utf-8"))
     out = {}
-    for k in ("chapters", "back_matter"):
+    for k in ("front_matter", "chapters", "back_matter"):
         for c in m.get(k) or []:
             out[c["id"]] = c
     return m, out
