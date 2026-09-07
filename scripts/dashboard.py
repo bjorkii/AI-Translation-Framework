@@ -599,6 +599,7 @@ def md_to_html(md):
     return "\n".join(out)
 
 VIEW_CSS = """
+*{box-sizing:border-box}
 :root{--ground:#EDEFEE;--surface:#fff;--ink:#12171A;--muted:#5A6668;--faint:#8A9698;
 --accent:#0F6E73;--border:#D2D9D8;--mark:#A85F22;--mark-soft:#F6E8DA}
 @media(prefers-color-scheme:dark){:root{--ground:#0E1414;--surface:#161F1E;--ink:#E6EDEC;
@@ -1040,11 +1041,15 @@ VIEW_JS = r"""
 
   function apply(){
     if(on && !marked){ TermTools.markTextNodes(page, list, "gt"); marked=true;
+      // 꺼 두었을 때는 표시만 지우는 것이 아니라 툴팁도 뜨지 않아야 한다.
+      // 감싼 자리는 그대로 남아 있으므로 처리기 쪽에서 막는다.
       page.addEventListener("mouseover", function(e){
+        if(!on) return;
         var el=e.target.closest(".gt"); if(!el||pinned) return; showTip(el,false); });
       page.addEventListener("mouseout", function(e){
         if(!pinned && e.target.closest(".gt")) closeTip(); });
       page.addEventListener("click", function(e){
+        if(!on) return;
         var el=e.target.closest(".gt"); if(!el) return;
         e.preventDefault(); showTip(el,true); });
       document.addEventListener("click", function(e){
