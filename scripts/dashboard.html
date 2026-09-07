@@ -174,28 +174,15 @@ font-variant-numeric:tabular-nums}
 <section id="chunks" class="hidden"></section>
 <section id="glossary" class="hidden"></section>
 </div>
+<script src="/terms.js"></script>
 <script>
 let S=null, tab="overview", lastJSON="", editing=null, query="", flashPending=false;
 let stageFilter=null;      // 청크 목록에서 추려 볼 단계 (null이면 전체)
 const quotesOpen={};       // 용어별 '용례 모두 보기' 펼침 상태
 
-// 문장 안에서 용어를 짚어 준다. 원문(영문)과 번역본(한국어)은 규칙이 달라야 한다.
-//   영문   낱말 경계로 끊고 복수형(-s/-es)까지 본다
-//   한국어 낱말 경계가 없고 조사가 뒤에 붙으므로 앞부분 일치로 본다
-//   여러 낱말로 된 용어는 낱말 사이 공백을 유연하게 본다 (보존용 마스터 필름)
-function termRe(term){
-  const body=String(term).trim().replace(/[.*+?^${}()|[\]\\]/g,"\\$&").replace(/\s+/g,"\\s+");
-  const ko=/[\uac00-\ud7a3]/.test(term);
-  return ko ? new RegExp("("+body+")","g")
-            : new RegExp("(?<![A-Za-z0-9])("+body+"(?:e?s)?)(?![A-Za-z0-9])","gi");
-}
-function mark(text,term){
-  const out=esc(text);
-  // 용어도 본문과 같은 표기로 맞춰야 한다. 본문은 esc() 를 거쳐
-  // & 가 &amp; 로 바뀌어 있으므로, 날것의 용어로는 걸리지 않는다.
-  try{ return out.replace(termRe(esc(term)), '<mark>$1</mark>'); }
-  catch(e){ return out; }
-}
+// 용어 짚기는 /terms.js 에 모아 두었다. 원문/번역본 보기 화면도 같은 것을 쓴다.
+const mark=(text,term)=>TermTools.markHTML(esc(text), term);
+
 const acc={decided:false,untouched:false};
 const filter={decided:"전체",untouched:"전체"};
 const el=id=>document.getElementById(id);

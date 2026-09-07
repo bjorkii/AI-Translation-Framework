@@ -554,6 +554,111 @@ th{background:var(--ground);font-weight:600;font-size:13px;white-space:nowrap}
 tbody tr:last-child td{border-bottom:0}
 td{color:var(--muted)}
 td:first-child{color:var(--ink);font-weight:500}
+
+/* 고정 머리줄 + 용어보기 */
+.vbar{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:12px;
+background:var(--ground);border-bottom:1px solid var(--border);
+padding:10px 24px;margin:0 0 4px}
+.vbar .crumb{margin:0;font-size:13px}
+.tbtn{margin-left:auto;font:inherit;font-size:12.5px;background:var(--surface);color:var(--muted);
+border:1px solid var(--border);border-radius:7px;padding:4px 11px;cursor:pointer}
+.tbtn:hover{color:var(--ink);border-color:var(--accent)}
+.tbtn.on{background:var(--accent);color:var(--ground);border-color:var(--accent)}
+.page{padding-top:16px}
+/* 아직 정하지 않은 용어는 뚜렷하게, 확정된 용어는 은은하게 */
+.gt{cursor:help}
+/* 꺼 두었을 때는 표시를 지운다 (다시 훑지 않고 보이기만 바꾼다) */
+.terms-off .gt{background:none;box-shadow:none;border-bottom:0;cursor:auto;outline:0}
+.gt.todo{background:var(--mark-soft);box-shadow:inset 0 -2px 0 var(--mark)}
+.gt.done{border-bottom:1px dotted var(--faint)}
+.gt.pin{outline:2px solid var(--accent);outline-offset:1px;border-radius:2px}
+.tip{position:absolute;z-index:40;max-width:340px;background:var(--surface);
+border:1px solid var(--border2);border-radius:10px;padding:11px 13px;
+box-shadow:0 10px 26px -12px rgba(0,0,0,.5);font-size:13.5px;line-height:1.5}
+.tip h4{margin:0 0 4px;font-size:15px}
+.tip .tr{color:var(--accent);font-weight:600}
+.tip .meta{color:var(--muted);font-size:12.5px;margin-top:5px}
+.tip .row{display:flex;gap:6px;margin-top:9px}
+.tip input{font:inherit;font-size:13px;flex:1;background:var(--ground);color:var(--ink);
+border:1px solid var(--border);border-radius:6px;padding:5px 8px}
+.tip button{font:inherit;font-size:12.5px;background:var(--surface2,var(--ground));color:var(--ink);
+border:1px solid var(--border2);border-radius:6px;padding:5px 10px;cursor:pointer}
+.tip .hintline{color:var(--faint);font-size:12px;margin-top:7px}
+"""
+
+VIEW_JS = r"""
+// 용어보기 — 켜면 본문에서 용어집 용어를 짚어 준다.
+// hover 는 읽기 전용, 누르면 고정되고 그 상태에서 고친다. 툴팁 안에서 바로 고치게 하면
+// 마우스를 옮기는 사이 hover 가 풀려 닫히기 때문이다.
+(function(){
+  var btn=document.getElementById("termsBtn");
+  var page=document.getElementById("page") || document.querySelector(".page");
+  if(!btn || !page) return;
+  var on=localStorage.getItem("termsOn")==="1", marked=false, tip=null, pinned=null;
+
+  // 번역본에서는 한국어 번역어를, 원문에서는 원어를 짚는다
+  // 대조 화면에는 원문과 번역이 함께 있으므로 양쪽을 다 짚는다
+  var list = KIND==="compare" ? TERMS
+           : TERMS.filter(function(t){ return KIND==="chapters" ? t.ko : !t.ko; });
+
+  function closeTip(){ if(tip){ tip.remove(); tip=null; }
+    if(pinned){ pinned.classList.remove("pin"); pinned=null; } }
+
+  function showTip(el, pin){
+    closeTip();
+    var name=el.dataset.term;
+    var t=list.filter(function(x){ return x.term===name; })[0]; if(!t) return;
+    var en = t.ko ? t.translation : t.term;       // 용어집에 등록된 원어
+    var ko = t.ko ? t.term : t.translation;
+    tip=document.createElement("div"); tip.className="tip";
+    var h='<h4>'+TermTools.escHTML(en)+(t.full?' <span class="meta">'+TermTools.escHTML(t.full)+'</span>':'')+'</h4>';
+    h+= ko ? '<div class="tr">'+TermTools.escHTML(ko)+'</div>'
+           : '<div class="meta">아직 번역어가 정해지지 않았습니다.</div>';
+    if(t.context) h+='<div class="meta">'+TermTools.escHTML(t.context)+'</div>';
+    if(t.notation) h+='<div class="meta">표기: '+TermTools.escHTML(t.notation)+'</div>';
+    if(t.hits) h+='<div class="meta">본문 등장 '+t.hits+'회</div>';
+    if(pin){
+      h+='<div class="row"><input id="tipVal" value="'+TermTools.escHTML(ko||"")+'" placeholder="번역어">'
+       + '<button id="tipSave">저장</button></div>'
+       + '<div class="hintline">용어집 탭에서 더 자세히 고칠 수 있습니다.</div>';
+    } else {
+      h+='<div class="hintline">눌러서 고정하면 여기서 고칠 수 있습니다.</div>';
+    }
+    tip.innerHTML=h; document.body.appendChild(tip);
+    var r=el.getBoundingClientRect();
+    tip.style.left=Math.min(window.innerWidth-tip.offsetWidth-12, r.left)+"px";
+    tip.style.top=(window.scrollY+r.bottom+7)+"px";
+    if(pin){
+      pinned=el; el.classList.add("pin");
+      var inp=tip.querySelector("#tipVal"); inp.focus(); inp.select();
+      tip.querySelector("#tipSave").onclick=function(){
+        fetch("/api/decide",{method:"POST",headers:{"Content-Type":"application/json"},
+          body:JSON.stringify({term:en, choice:inp.value.trim(), actor:"user"})})
+          .then(function(r){return r.json();})
+          .then(function(){ location.reload(); });
+      };
+    }
+  }
+
+  function apply(){
+    if(on && !marked){ TermTools.markTextNodes(page, list, "gt"); marked=true;
+      page.addEventListener("mouseover", function(e){
+        var el=e.target.closest(".gt"); if(!el||pinned) return; showTip(el,false); });
+      page.addEventListener("mouseout", function(e){
+        if(!pinned && e.target.closest(".gt")) closeTip(); });
+      page.addEventListener("click", function(e){
+        var el=e.target.closest(".gt"); if(!el) return;
+        e.preventDefault(); showTip(el,true); });
+      document.addEventListener("click", function(e){
+        if(pinned && !e.target.closest(".tip") && !e.target.closest(".gt")) closeTip(); });
+    }
+    page.classList.toggle("terms-off", !on);
+    btn.classList.toggle("on", on);
+    if(!on) closeTip();
+  }
+  btn.onclick=function(){ on=!on; localStorage.setItem("termsOn", on?"1":"0"); apply(); };
+  apply();
+})();
 """
 
 COMPARE_CSS = """
@@ -711,6 +816,7 @@ def render_compare(cid):
             '<span class="cnt">확정 <b id="done">0</b> · 확인 유보 <b id="held">0</b>'
             ' / 전체 <b id="total">0</b></span>'
             '<button id="onlyOpen">확인 유보만 보기</button>'
+            '<button id="termsBtn" class="tbtn">용어보기</button>'
             '<span class="cnt" style="margin-left:auto">'
             '손대지 않은 문단은 <b>확인 유보</b>로 남습니다 — 의견이 있는 문단만 확정하고 다음 단계로 넘어가도 됩니다'
             '</span></div>')
@@ -920,9 +1026,35 @@ def _wrap_compare(cid, body):
             "<meta name='viewport' content='width=device-width,initial-scale=1'>"
             "<title>%s · 단계별 대조</title><style>%s%s</style></head><body><div class='page'>"
             "<div class='crumb'>%s · 원문과 단계별 번역 대조</div>%s</div>"
-            "<script>var CID=%s;%s</script></body></html>"
+            "<script>var CID=%s;const TERMS=%s;const KIND='compare';%s</script>"
+            "<script src='/terms.js'></script><script>%s</script></body></html>"
             % (cid, VIEW_CSS, COMPARE_CSS, _html.escape(cid), body,
-               json.dumps(cid), COMPARE_JS))
+               json.dumps(cid), json.dumps(glossary_payload(), ensure_ascii=False),
+               COMPARE_JS, VIEW_JS))
+
+def glossary_payload():
+    """보기 화면에 실어 보낼 용어 목록.
+
+    확정 여부를 함께 보낸다. 아직 정하지 않은 용어는 배경색으로 뚜렷하게,
+    확정된 용어는 점선 밑줄로 은은하게 짚는다 — 앞의 것은 할 일 목록이고
+    뒤의 것은 '이 용어가 어떻게 정의돼 있더라' 를 확인하는 용도다.
+    """
+    ctx = json.loads(read("glossary/term-context.json", "{}") or "{}")
+    out = []
+    for e in parse_glossary():
+        c = ctx.get(e["term"], {}) or {}
+        decided = bool(e["translation"]) and not e["tbd"]
+        out.append({"term": e["term"], "translation": e["translation"] or "",
+                    "full": e["full"] or "", "notation": e["notation"] or "",
+                    "context": e["context"] or e["definition_en"] or "",
+                    "hits": c.get("hits") or 0, "decided": decided})
+        # 확정된 번역어도 번역본에서 짚을 수 있게 함께 보낸다
+        if decided and e["translation"]:
+            out.append({"term": e["translation"], "translation": e["term"],
+                        "full": e["full"] or "", "notation": e["notation"] or "",
+                        "context": e["context"] or e["definition_en"] or "",
+                        "hits": c.get("hits") or 0, "decided": True, "ko": True})
+    return out
 
 def render_view(kind, cid):
     folder = "source" if kind == "source" else "chapters"
@@ -934,9 +1066,16 @@ def render_view(kind, cid):
         body = md_to_html(f.read_text(encoding="utf-8"))
     return ("<!doctype html><html lang='ko'><head><meta charset='utf-8'>"
             "<meta name='viewport' content='width=device-width,initial-scale=1'>"
-            "<title>%s · %s</title><style>%s</style></head><body><div class='page'>"
-            "<div class='crumb'>%s · %s</div>%s</div></body></html>"
-            % (cid, label, VIEW_CSS, _html.escape(cid), _html.escape(label), body))
+            "<title>%s · %s</title><style>%s</style></head><body>"
+            "<div class='vbar'><div class='crumb'>%s · %s</div>"
+            "<button id='termsBtn' class='tbtn' title='본문에서 용어집 용어를 짚어 줍니다'>"
+            "용어보기</button></div>"
+            "<div class='page' id='page'>%s</div>"
+            "<script>const TERMS=%s;const KIND=%s;</script>"
+            "<script src='/terms.js'></script><script>%s</script></body></html>"
+            % (cid, label, VIEW_CSS, _html.escape(cid), _html.escape(label), body,
+               json.dumps(glossary_payload(), ensure_ascii=False),
+               json.dumps(kind), VIEW_JS))
 
 def set_approval(cid, block, status, note, label=None):
     """문단 확인 상태를 기록한다. 현재 상태와 이력을 함께 남긴다.
@@ -1006,6 +1145,8 @@ class Handler(BaseHTTPRequestHandler):
                      ".gif": "image/gif", ".svg": "image/svg+xml",
                      ".webp": "image/webp"}.get(ext, "application/octet-stream")
             self._send(200, f.read_bytes(), ctype)
+        elif u.path == "/terms.js":
+            self._send(200, read("scripts/terms.js"), "application/javascript; charset=utf-8")
         elif u.path in ("/", "/index.html"):
             self._send(200, read("scripts/dashboard.html", "<h1>scripts/dashboard.html 파일이 없습니다.</h1>"),
                        "text/html; charset=utf-8")
