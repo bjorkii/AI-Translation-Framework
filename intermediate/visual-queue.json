@@ -1,14 +1,6 @@
 {
  "todo": [
   {
-   "chunk": "title",
-   "line": 56,
-   "marker": "VISUAL-CHECK",
-   "page": "ii",
-   "why": "표·상자 구조 대조 필요",
-   "context": "Printed in the USA by Great Impressions / <!-- VISUAL-CHECK 도판 · 원서 p.ii · 원본과 대조 필요 --> / ![](assets/figures/title-pii-1.png)"
-  },
-  {
    "chunk": "ack",
    "line": 14,
    "marker": "LINEBREAK-UNCERTAIN",
@@ -18,11 +10,11 @@
   },
   {
    "chunk": "ch01",
-   "line": 70,
+   "line": 72,
    "marker": "VISUAL-CHECK",
    "page": "5",
    "why": "표·상자 구조 대조 필요",
-   "context": "***This Is Our City*** **(1950, 600 ft., 35mm nitrate, black and white, sound), preserved by the Oklahoma Historical Society.** / <!-- VISUAL-CHECK 도판 · 원서 p.5 · 원본과 대조 필요 --> / ![](assets/figures/ch01-p5-1.png)"
+   "context": "With the passage of time, films can take on new meaning for the communities they depict. *This Is Our City*, a political ad preserved by the Oklahoma Historical Society, shows how a film can provide a window into history. / <!-- VISUAL-CHECK 도판 · 원서 p.5 · 원본과 대조 필요 --> / ![](assets/figures/ch01-p5-1.png)"
   },
   {
    "chunk": "ch02",
@@ -82,19 +74,19 @@
   },
   {
    "chunk": "ch02",
-   "line": 192,
+   "line": 194,
    "marker": "VISUAL-CHECK",
    "page": "14",
    "why": "표·상자 구조 대조 필요",
-   "context": "The growth initially appears in the form of matte-white spots and eventually grows into a lacy, weblike pattern. The invasion can be stopped by cleaning the film (see 3.6) and then moving it to a cold and dry environment. Once the organisms have eaten into the emulsion, however, the image loss is irreversible. / <!-- VISUAL-CHECK 도판 · 원서 p.14 · 원본과 대조 필요 --> / ![Mold growing on film.](assets/figur"
+   "context": "**ACETATE DECAY (VINEGAR SYNDROME).** Water, high humidity, and heat can destroy the plastic base of acetate film. In the early stage of decay the plastic releases acetic acid, which is chemically identical to vinegar, hence the name “vinegar syndrome.” As the decomposition advances, the chemical reaction accelerates. / <!-- VISUAL-CHECK 도판 · 원서 p.14 · 원본과 대조 필요 --> / ![Mold growing on film.](asse"
   },
   {
    "chunk": "ch02",
-   "line": 198,
+   "line": 202,
    "marker": "VISUAL-CHECK",
    "page": "14",
    "why": "표·상자 구조 대조 필요",
-   "context": "**ACETATE DECAY (VINEGAR SYNDROME).** Water, high humidity, and heat can destroy the plastic base of acetate film. In the early stage of decay the plastic releases acetic acid, which is chemically identical to vinegar, hence the name “vinegar syndrome.” As the decomposition advances, the chemical reaction accelerates. / <!-- VISUAL-CHECK 도판 · 원서 p.14 · 원본과 대조 필요 --> / ![As acetate film decays, it "
+   "context": "1. The film begins to smell like vinegar. 2. The film base begins to shrink. As the base shrinks irregularly, the film resists being laid flat. It curls and warps along both length and width. 3. The film loses flexibility. 4. The emulsion may crack and eventually flake off. 5. White powder may appear along the edges and surface of the film. / <!-- VISUAL-CHECK 도판 · 원서 p.14 · 원본과 대조 필요 --> / ![As a"
   },
   {
    "chunk": "ch02",
@@ -194,19 +186,19 @@
   },
   {
    "chunk": "ch03",
-   "line": 90,
-   "marker": "VISUAL-CHECK",
-   "page": "23",
-   "why": "표·상자 구조 대조 필요",
-   "context": "**STEP TWO: USING REWINDS.** The rewind is a tool that enables the preservationist to unwind and wind film slowly without stressing the perforations. Rewinds are used in pairs—one for the feed and the other for the take-up. They can be operated left-to-right or right-to-left, depending on preference.<a id=\"back-ch03-003\"></a>[³](#fn-ch03-003) Rewinds come in portable units or editing table models."
-  },
-  {
-   "chunk": "ch03",
-   "line": 96,
+   "line": 92,
    "marker": "VISUAL-CHECK",
    "page": "23",
    "why": "표·상자 구조 대조 필요",
    "context": "For examination on rewinds, films can be on either reels or cores. If your film is mounted on a core, you will need to use a split reel to put the film on the rewind. (A split reel consists of two flat discs that “split” apart to accommodate the core; see 3.4.) Let’s assume the film is on a reel and has not been examined before. Mount the reel on the rewind, gently unwind some film, and thread the"
+  },
+  {
+   "chunk": "ch03",
+   "line": 100,
+   "marker": "VISUAL-CHECK",
+   "page": "23",
+   "why": "표·상자 구조 대조 필요",
+   "context": "The most basic way to examine a film is on the illuminated surface of a light box. Place the light box between the rewinds and pull the film gently down to the illuminated surface. Use the loupe to examine the film image. Crank the rewind slowly, stopping to sample images with the loupe as you hold your gloved fingers along the film edges to keep the film frame flat on the box. Be particularly car"
   },
   {
    "chunk": "ch03",
@@ -226,15 +218,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 133,
-   "marker": "VISUAL-CHECK",
-   "page": "25",
-   "why": "표·상자 구조 대조 필요",
-   "context": "<a id=\"fn-ch03-004\"></a> **[각주]** Many archives routinely examine films offered as gifts and use visual assessment to determine if the materials should be acquired.  [↩](#back-ch03-004) / <!-- VISUAL-CHECK 도판 · 원서 p.25 · 원본과 대조 필요 --> / ![](assets/figures/ch03-p25-1.png)"
-  },
-  {
-   "chunk": "ch03",
-   "line": 142,
+   "line": 135,
    "marker": "VISUAL-CHECK",
    "page": "25",
    "why": "표·상자 구조 대조 필요",
@@ -242,19 +226,27 @@
   },
   {
    "chunk": "ch03",
-   "line": 146,
+   "line": 142,
    "marker": "VISUAL-CHECK",
    "page": "25",
    "why": "표·상자 구조 대조 필요",
-   "context": "![Footage counter for 16mm film and loupe.](assets/figures/ch03-p25-2.png) / <!-- VISUAL-CHECK 도판 · 원서 p.25 · 원본과 대조 필요 --> / ![The Kodak edge code ✚■helps date this film as being from 1935 or soon after.](assets/figures/ch03-p25-3.png)"
+   "context": "Using a film ruler. / <!-- VISUAL-CHECK 도판 · 원서 p.25 · 원본과 대조 필요 --> / ![Footage counter for 16mm film and loupe.](assets/figures/ch03-p25-2.png)"
   },
   {
    "chunk": "ch03",
-   "line": 206,
+   "line": 150,
+   "marker": "VISUAL-CHECK",
+   "page": "25",
+   "why": "표·상자 구조 대조 필요",
+   "context": "The same codes were used for 16mm and 35mm film. / <!-- VISUAL-CHECK 도판 · 원서 p.25 · 원본과 대조 필요 --> / ![The Kodak edge code ✚■helps date this film as being from 1935 or soon after.](assets/figures/ch03-p25-3.png)"
+  },
+  {
+   "chunk": "ch03",
+   "line": 208,
    "marker": "VISUAL-CHECK",
    "page": "27",
    "why": "표·상자 구조 대조 필요",
-   "context": "To wind a film on a core, select the split reel and core that match the film gauge. Wind the film onto the core inside the open split reel, following the steps illustrated to the right. If the leader is too short or damaged, it might be necessary to replace it (see 3.5) so that there is enough to go around the core at least three times. Screw shut the split reel and mount it on the take-up side. /"
+   "context": "In transferring a film from a reel to a core, keep the film at an even tension. Be sure that the film edges stay aligned and that none protrude beyond the flat plane of the roll. A correctly coiled film roll should be wound tightly enough so that it looks like a solid disc. For storage, some repositories wind films tail out (with the beginning at the core), so that films will have to be rewound, a"
   },
   {
    "chunk": "ch03",
@@ -290,15 +282,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 251,
-   "marker": "VISUAL-CHECK",
-   "page": "29",
-   "why": "표·상자 구조 대조 필요",
-   "context": "![Film repair equipment for every budget (from left): Film cement, 16mm cement splicer, 16mm tape splicer, 35mm tape splicer, repair tape, and 16mm/35mm ultrasonic splicer. Also shown (bottom left): Scissors, X-acto knife, marker, and tweezers.](assets/figures/ch03-p29-1.png) / <!-- VISUAL-CHECK 도판 · 원서 p.29 · 원본과 대조 필요 --> / ![Removing old splicing tape by hand.](assets/figures/ch03-p29-2.png)"
-  },
-  {
-   "chunk": "ch03",
-   "line": 257,
+   "line": 253,
    "marker": "VISUAL-CHECK",
    "page": "29",
    "why": "표·상자 구조 대조 필요",
@@ -306,11 +290,19 @@
   },
   {
    "chunk": "ch03",
-   "line": 263,
+   "line": 259,
+   "marker": "VISUAL-CHECK",
+   "page": "29",
+   "why": "표·상자 구조 대조 필요",
+   "context": "**USING SPLICING TAPE.** Depending on the design, tape splicers work with adhesive splicing tape or presstape. Some splicers employ pre-perforated tape, requiring the operator to cut the film ends precisely and carefully align the sprocket holes of the tape with those of the film. Guillotine-style splicers use unperforated tape into which they cut new sprocket holes. The least expensive splicers w"
+  },
+  {
+   "chunk": "ch03",
+   "line": 269,
    "marker": "VISUAL-CHECK",
    "page": "30",
    "why": "표·상자 구조 대조 필요",
-   "context": "**USING SPLICING TAPE.** Depending on the design, tape splicers work with adhesive splicing tape or presstape. Some splicers employ pre-perforated tape, requiring the operator to cut the film ends precisely and carefully align the sprocket holes of the tape with those of the film. Guillotine-style splicers use unperforated tape into which they cut new sprocket holes. The least expensive splicers w"
+   "context": "Precut presstape works like a Band-Aid. The adhesive back is pulled off before pressure is applied to set the seal. / <!-- VISUAL-CHECK 도판 · 원서 p.30 · 원본과 대조 필요 --> / ![Making a splice using presstape.](assets/figures/ch03-p30-1.png)"
   },
   {
    "chunk": "ch03",
@@ -346,11 +338,11 @@
   },
   {
    "chunk": "ch04",
-   "line": 120,
+   "line": 126,
    "marker": "VISUAL-CHECK",
    "page": "40",
    "why": "표·상자 구조 대조 필요",
-   "context": "### CASE STUDY: UNIVERSITY OF ALASKA FAIRBANKS / <!-- VISUAL-CHECK 도판 · 원서 p.40 · 원본과 대조 필요 --> / ![Celebrated humorist Will Rogers on August 15, 1935, shortly before his air crash.](assets/figures/ch04-p40-1.png)"
+   "context": "Usually archives rely on accession records to establish a film’s source and history. For this acquisition, however, the university had little information. All that was known was that the two films had been held by the public library and had survived two floods. This was borne out by the condition of the cans, which were rusted and had to be pried apart. Inside were 16mm reversal originals tightly "
   },
   {
    "chunk": "ch05",
@@ -362,11 +354,11 @@
   },
   {
    "chunk": "ch05",
-   "line": 121,
+   "line": 123,
    "marker": "VISUAL-CHECK",
    "page": "48",
    "why": "표·상자 구조 대조 필요",
-   "context": "color and brightness. When planning to use an answer print for access, budget-minded preservationists should be sure that the print is “well-timed,” that is, produced with the correct color and brightness throughout. Once this is accomplished, subsequent access prints should match the approved answer print. / <!-- VISUAL-CHECK 도판 · 원서 p.48 · 원본과 대조 필요 --> / ![Preservation materials and access copi"
+   "context": "For most public and nonprofit organizations, an acceptable answer print doubles as a viewing print. Videotapes are made either from the print or, with special handling, from the preservation material or master. Having both film and video access copies gives institutions more flexibility in serving the public. / <!-- VISUAL-CHECK 도판 · 원서 p.48 · 원본과 대조 필요 --> / ![Preservation materials and access co"
   },
   {
    "chunk": "ch05",
@@ -386,11 +378,11 @@
   },
   {
    "chunk": "ch05",
-   "line": 191,
+   "line": 195,
    "marker": "VISUAL-CHECK",
    "page": "51",
    "why": "표·상자 구조 대조 필요",
-   "context": "Your written inspection report (see 3.3) contains most of this data and can provide a foundation for the estimate. / <!-- VISUAL-CHECK 도판 · 원서 p.51 · 원본과 대조 필요 --> / ![Ultrasonic film cleaner.](assets/figures/ch05-p51-1.png)"
+   "context": "Estimates should cover all stages of the duplication process and itemize all preservation materials and access copies requested by your institution. Let’s look at the estimate on the next page. The cost of each procedure is calculated by hour (for labor), by foot (for film), or by piece (for videocassettes). The evaluation and repairs are figured on the basis of time. Films with physical damage ar"
   },
   {
    "chunk": "ch05",
@@ -450,19 +442,19 @@
   },
   {
    "chunk": "ch05",
-   "line": 340,
+   "line": 344,
    "marker": "VISUAL-CHECK",
    "page": "57",
    "why": "표·상자 구조 대조 필요",
-   "context": "### CASE STUDY: CALIFORNIA PACIFIC MEDICAL CENTER / <!-- VISUAL-CHECK 도판 · 원서 p.57 · 원본과 대조 필요 --> / ![Richard Gill’s Amazon expedition, documented in *White Water and Black Magic*.](assets/figures/ch05-p57-1.png)"
+   "context": "One of the treasures of the California Pacific Medical Center Library is the Richard C. Gill Curare Collection. Stricken by multiple sclerosis, Gill traveled in 1938 to the jungles of Ecuador in search of a cure. He returned with specimens, field footage, notes, photographs, artifacts, and raw curare, the botanical extract used to poison arrows. Gill edited his Kodachrome and black-and-white exped"
   },
   {
    "chunk": "ch05",
-   "line": 362,
+   "line": 366,
    "marker": "VISUAL-CHECK",
    "page": "58",
    "why": "표·상자 구조 대조 필요",
-   "context": "### CASE STUDY: VISUAL COMMUNICATIONS / <!-- VISUAL-CHECK 도판 · 원서 p.58 · 원본과 대조 필요 --> / ![Jazz-fusion band Hiroshima, profiled in *Cruisin’ J-Town*.](assets/figures/ch05-p58-1.png)"
+   "context": "Since the early 1970s, Visual Communications, the nation’s first Asian Pacific American media arts center, has produced film, audio, and video exploring the Asian Pacific American experience. *Cruisin’ J-Town*, directed by Duane Kubo, was one of the first films it produced. Set in Los Angeles’ Little Tokyo, the documentary profiles the jazz-fusion band Hiroshima and discusses the social consciousn"
   },
   {
    "chunk": "ch06",
@@ -482,11 +474,11 @@
   },
   {
    "chunk": "ch06",
-   "line": 79,
+   "line": 81,
    "marker": "VISUAL-CHECK",
    "page": "62",
    "why": "표·상자 구조 대조 필요",
-   "context": "Film Forever: The Home Film Preservation Guide (www.filmforever. org) illustrates the steps in packaging a film for refrigeration or freezing. To protect each film, you will need a rigid film container<a id=\"back-ch06-005\"></a>[⁵](#fn-ch06-005) and either resealable polyethylene freezer bags or heat-sealable laminate bags made of layers of aluminum foil and polyethylene or layers of aluminum foil,"
+   "context": "Start by removing the lid from the film can and bringing the film and packaging materials to room temperature and a relative humidity not exceeding 60%. If the film and packaging have been kept at these conditions for some time, you can start work. If the film has been in hot and humid conditions, it might take several weeks to reach the acceptable relative humidity threshold.<a id=\"back-ch06-006\""
   },
   {
    "chunk": "ch06",
@@ -498,19 +490,19 @@
   },
   {
    "chunk": "ch06",
-   "line": 179,
+   "line": 181,
    "marker": "VISUAL-CHECK",
    "page": "66",
    "why": "표·상자 구조 대조 필요",
-   "context": "Film containers—boxes or cans—should be convenient to use and should protect the film from dust and physical damage. As the physical unit for organizing collections, containers should also provide a rigid surface for shelving and give some measure of fire and water protection. Some also give additional protection in shipping. / <!-- VISUAL-CHECK 도판 · 원서 p.66 · 원본과 대조 필요 --> / ![Film containers com"
+   "context": "Manufacturers make film containers from archival cardboard, plastic, and metal. The ISO publishes standards for enclosures for photographic materials. These recommend that plastic cans be made of polypropylene or polyethylene. Cardboard boxes should be either neutral or buffered and composed of lignin-free materials. Cans made of noncorroding metal are also acceptable. Also, containers should not "
   },
   {
    "chunk": "ch06",
-   "line": 209,
+   "line": 211,
    "marker": "VISUAL-CHECK",
    "page": "67",
    "why": "표·상자 구조 대조 필요",
-   "context": "The cans or boxes you choose will depend on your institution’s storage conditions and funding. Whatever type you select, make sure that the container is chemically inert, physically stable, and expected to last as long as the film it houses. The enclosure’s size should match that of the film. Always stack containers horizontally so that the film lies flat. / <!-- VISUAL-CHECK 도판 · 원서 p.67 · 원본과 대조"
+   "context": "When reusing old cans, make sure that they are completely free of rust, dirt, and structural damage. Any metal can showing signs of rust or breaks in its coating should be discarded. / <!-- VISUAL-CHECK 도판 · 원서 p.67 · 원본과 대조 필요 --> / ![This 35mm print was stored vertically, without a core. Over time the film roll collapsed, causing severe warpage. Always stack film cans horizontally to avoid this "
   },
   {
    "chunk": "ch06",
@@ -522,11 +514,11 @@
   },
   {
    "chunk": "ch06",
-   "line": 245,
+   "line": 249,
    "marker": "VISUAL-CHECK",
    "page": "69",
    "why": "표·상자 구조 대조 필요",
-   "context": "### CASE STUDY: NEBRASKA STATE HISTORICAL SOCIETY / <!-- VISUAL-CHECK 도판 · 원서 p.69 · 원본과 대조 필요 --> / ![](assets/figures/ch06-p69-1.png)"
+   "context": "Cold and dry storage is the single most important factor in extending the useful life of film. The story of the rescue of *Increasing Farm Efficiency*, a 1918 promotional film for a Delco electric generator franchise, illustrates the causal link. / <!-- VISUAL-CHECK 도판 · 원서 p.69 · 원본과 대조 필요 --> / ![](assets/figures/ch06-p69-1.png)"
   },
   {
    "chunk": "ch07",
@@ -546,11 +538,11 @@
   },
   {
    "chunk": "ch07",
-   "line": 156,
+   "line": 160,
    "marker": "VISUAL-CHECK",
    "page": "76",
    "why": "표·상자 구조 대조 필요",
-   "context": "### CASE STUDY: NORTHEAST HISTORIC FILM / <!-- VISUAL-CHECK 도판 · 원서 p.76 · 원본과 대조 필요 --> / ![Northeast Historic Film’s online catalog record for the Ivan Flye Collection.](assets/figures/ch07-p76-1.png)"
+   "context": "Cataloging is the link between preservation and access. *Maine Marine Worm Industry*, preserved by Northeast Historic Film, shows how the catalog can open materials to the public and, as the archive puts it, become a way to “get more eyes, ears, and brains engaged with the moving image history of the century.” / <!-- VISUAL-CHECK 도판 · 원서 p.76 · 원본과 대조 필요 --> / ![Northeast Historic Film’s online ca"
   },
   {
    "chunk": "ch08",
@@ -562,19 +554,19 @@
   },
   {
    "chunk": "ch08",
-   "line": 117,
+   "line": 121,
    "marker": "VISUAL-CHECK",
    "page": "84",
    "why": "표·상자 구조 대조 필요",
-   "context": "### CASE STUDY: UNIVERSITY OF TEXAS AT AUSTIN / <!-- VISUAL-CHECK 도판 · 원서 p.84 · 원본과 대조 필요 --> / ![](assets/figures/ch08-p84-1.png)"
+   "context": "Intellectual property rights are often complex, particularly for works involving celebrities and artists. Nevertheless, through agreements with rights holders, archives can find ways to satisfy both their public service and their preservation missions, as the following story illustrates. / <!-- VISUAL-CHECK 도판 · 원서 p.84 · 원본과 대조 필요 --> / ![](assets/figures/ch08-p84-1.png)"
   },
   {
    "chunk": "ch09",
-   "line": 16,
+   "line": 18,
    "marker": "VISUAL-CHECK",
    "page": "85",
    "why": "표·상자 구조 대조 필요",
-   "context": "A number of repositories now videotape film originals during cataloging or when requested by researchers. Some organizations order these tapes from commercial video transfer specialists. Others create copies in-house on telecine equipment or with a modified projector and camera connected to a video recorder. / <!-- VISUAL-CHECK 도판 · 원서 p.85 · 원본과 대조 필요 --> / ![Some budget-minded repositories make "
+   "context": "For significant or heavily consulted items, a few repositories make higher-quality video masters as an additional level of protection for the original. Subsequent video copies can be generated from the video master without returning to the film source. As costs drop, preservationists are moving to digital videotape as the medium for the video master. / <!-- VISUAL-CHECK 도판 · 원서 p.85 · 원본과 대조 필요 --"
   },
   {
    "chunk": "ch09",
@@ -602,11 +594,11 @@
   },
   {
    "chunk": "ch09",
-   "line": 78,
+   "line": 80,
    "marker": "VISUAL-CHECK",
    "page": "89",
    "why": "표·상자 구조 대조 필요",
-   "context": "<a id=\"fn-ch09-003\"></a> **[각주]** For a discussion of licensing for museums, see Michael S. Shapiro and Brett I. Miller, *A Museum Guide to Copyright and Trademark* (Washington, D.C.: American Association of Museums, 1999), 123–46.  [↩](#back-ch09-003) / <!-- VISUAL-CHECK 도판 · 원서 p.89 · 원본과 대조 필요 --> / ![Unidentified woman aviator (ca. 1920s), from Movietone News outtakes preserved by the Universi"
+   "context": "Institutions often waive licensing fees for educational uses that further public exposure and knowledge of their collections. West Virginia Public Radio, for example, ran a year-long radio series, *Time Trail West Virginia*, that used sounds to illuminate events important to the state. The West Virginia State Archives contributed sound tracks from news films without charging the usual fee. / <!-- "
   },
   {
    "chunk": "ch09",
@@ -622,23 +614,23 @@
    "marker": "LINEBREAK-UNCERTAIN",
    "page": "91",
    "why": "문단이 이어지는지 판단 필요",
-   "context": "[원서 p.90] / <!-- LINEBREAK-UNCERTAIN --> / “illustrated history” cruises of the Miami waterfront. For the bus and the boat tours, riders pay a modest fee.<a id=\"back-ch09-004\"></a>[⁴](#fn-ch09-004) The tours have heightened public awareness of the archive’s programs and led to donations. / <!-- VISUAL-CHECK 도판 · 원서 p.91 · 원본과 대조 필요 -->"
+   "context": "[원서 p.90] / <!-- LINEBREAK-UNCERTAIN --> / “illustrated history” cruises of the Miami waterfront. For the bus and the boat tours, riders pay a modest fee.<a id=\"back-ch09-004\"></a>[⁴](#fn-ch09-004) The tours have heightened public awareness of the archive’s programs and led to donations. / The Alaska Film Archives of the University of Alaska Fairbanks has also taken its films into the community—th"
   },
   {
    "chunk": "ch09",
-   "line": 119,
+   "line": 121,
    "marker": "VISUAL-CHECK",
    "page": "91",
    "why": "표·상자 구조 대조 필요",
-   "context": "“illustrated history” cruises of the Miami waterfront. For the bus and the boat tours, riders pay a modest fee.<a id=\"back-ch09-004\"></a>[⁴](#fn-ch09-004) The tours have heightened public awareness of the archive’s programs and led to donations. / <!-- VISUAL-CHECK 도판 · 원서 p.91 · 원본과 대조 필요 --> / ![Inside the bus on the Florida *Moving Image* Archive’s Magical History Film and Video Tour.](assets/f"
+   "context": "The Alaska Film Archives of the University of Alaska Fairbanks has also taken its films into the community—the Alaskan native settlements of the North Slope and southwestern Alaska. With National Endowment for the Humanities funding, the archive searched its collections for moving images of Yup’ik, Inupiaq, and Athabaskan people and assembled 26 hours of raw footage. At pilot screenings at the Ala"
   },
   {
    "chunk": "ch09",
-   "line": 133,
+   "line": 137,
    "marker": "VISUAL-CHECK",
    "page": "92",
    "why": "표·상자 구조 대조 필요",
-   "context": "### CASE STUDY: MINNESOTA HISTORICAL SOCIETY / <!-- VISUAL-CHECK 도판 · 원서 p.92 · 원본과 대조 필요 --> / ![Making maple sugar, as shown in the Minnesota Historical Society’s educational video of Monroe Killy’s films.](assets/figures/ch09-p92-1.png)"
+   "context": "Access to Native American moving images is important to the Ojibwe communities in Minnesota. Because so much of the Ojibwe culture is transmitted from generation to generation by spoken word and demonstration, moving images of elders at work can be an especially effective learning tool for children. The story of the Monroe Killy films illustrates how preserved films can be used outside the archive"
   },
   {
    "chunk": "appB",

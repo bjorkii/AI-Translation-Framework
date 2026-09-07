@@ -917,6 +917,21 @@ def main(pdf, p0, p1, chap, outpath=None, parser="prose"):
         rule_y = footnote_rule_y(page)
         # (4) 도판(사진·도해) 영역 — 표·사이드바와 겹치지 않는 것만
         figs = figmod.find_figures(page, exclude=[t["bbox"] for t in tables] + list(sboxes))
+        # 본문 크기 글자를 품고 있는 영역은 사진이 아니다. 사진 안에는 작은 라벨만
+        # 들어 있지 본문이 들어 있지 않다. 테두리를 두른 안내 상자가 도판으로 잡혀,
+        # 같은 글이 문단으로도 이미지로도 두 번 들어가 있었다 (원서 p.ii 멜론재단 안내).
+        _txtblocks = [b for b in page.get_text("dict")["blocks"] if b.get("type") == 0]
+        def _has_bodytext(f):
+            for b in _txtblocks:
+                if not figmod.inside(tuple(b["bbox"]), f, pad=4):
+                    continue
+                sz = max((s["size"] for l in b["lines"] for s in l["spans"]
+                          if s["text"].strip()), default=0)
+                txt = " ".join("".join(s["text"] for s in l["spans"]) for l in b["lines"])
+                if sz >= BODY - 0.4 and len(txt.strip()) > 60:
+                    return True
+            return False
+        figs = [f for f in figs if not _has_bodytext(f)]
 
         # (4-1) 시각 판독으로 선언된 도해 영역이 있으면 그 영역은 통째로 그림 하나다.
         # 표·상자·도판 검출이 그 안을 나눠 갖지 못하게 걷어낸다.
@@ -1017,7 +1032,26 @@ def main(pdf, p0, p1, chap, outpath=None, parser="prose"):
         # (예전에는 페이지 끝에 몰아 넣어서 원서 p.60처럼 '표 제목 → 본문 → 표' 로 뒤집혔다)
         elems = [("body", order(b["x0"], b["y0"]), b) for b in body]
         elems += [("table", order(t["bbox"][0], t["bbox"][1]), t) for t in tables]
-        elems += [("fig", order(f[0], f[1]), (fi, f)) for fi, f in enumerate(figs)]
+        def fig_y(f):
+            """도판을 어느 높이로 줄 세울 것인가.
+
+            글 옆에 놓인 도판(텍스트 랩)은 그 문단을 세로로 감싸고 있어서, 위쪽 기준으로
+            세우면 문단보다 먼저 나온다. 읽는 사람은 글을 먼저 읽고 곁의 그림을 보므로
+            아래쪽 기준이 맞다 (원서 p.5의 'With the passage of time…' 문단과 도판).
+
+            반대로 사진끼리 나란히 놓인 경우에는 아래쪽 기준을 쓰면 안 된다. 두 장의
+            아래쪽이 조금만 달라도 좌우 순서가 뒤집힌다 (원서 p.22 아래 두 장).
+            그래서 '옆에 글이 있는 도판'일 때만 아래쪽을 쓴다.
+            """
+            for b in body:
+                if b["bbox"][3] <= f[1] or b["bbox"][1] >= f[3]:
+                    continue                          # 세로로 겹치지 않는다
+                if b["bbox"][2] > f[0] and b["bbox"][0] < f[2]:
+                    continue                          # 가로로 겹친다 = 옆이 아니다
+                if len(b["txt"]) > LP.get("column_minlen"):
+                    return f[3]
+            return f[1]
+        elems += [("fig", order(f[0], fig_y(f)), (fi, f)) for fi, f in enumerate(figs)]
         elems += [("box", order(min(x["x0"] for x in bl), min(x["y0"] for x in bl)), (bi, bl))
                   for bi, bl in sides.items() if bl]
         elems.sort(key=lambda e: e[1])

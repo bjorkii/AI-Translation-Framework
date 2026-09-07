@@ -10,13 +10,6 @@
 #   회귀 대조  스크립트를 고친 전후로 이 파일이 같은지 비교한다.
 
 elements:
-  - id: title-pii-1
-    type: image
-    chunk: title
-    source_page: "ii"
-    bbox: [54.2, 291.0, 413.8, 340.0]
-    asset: assets/figures/title-pii-1.png
-    status: pending
   - id: fn-ch01-001
     type: footnote
     chunk: ch01
@@ -1028,7 +1021,7 @@ pages:
     first_line: "National Film Preservation Foundation San Francisco, Califor"
   - chunk: title
     source_page: "ii"
-    paragraph_count: 24
+    paragraph_count: 23
     first_line: "National Film Preservation Foundation"
   - chunk: toc
     source_page: "iii"

@@ -53,8 +53,4 @@ Copyediting by Sylvia Tan
 
 Printed in the USA by Great Impressions
 
-<!-- VISUAL-CHECK 도판 · 원서 p.ii · 원본과 대조 필요 -->
-
-![](assets/figures/title-pii-1.png)
-
 [원서 p.ii]
