@@ -35,7 +35,7 @@ COPY = [
     "ai_book_translation_pipeline.md",
     "requirements.txt",
     ".gitignore",
-    "대시보드 사용법.md",
+    "docs/대시보드 사용법.md",
     "대시보드 실행.command",
     "대시보드 실행.bat",
     "scripts",
@@ -198,6 +198,7 @@ AI 가 절차를 알고 있습니다. 원서를 훑어 `structure-map.yaml` 을 
 | `structure-map.yaml` | 원서 구조 지도 (AI 가 채웁니다) |
 | `glossary/glossary.yaml` | 이 프로젝트의 용어집 (비어 있는 상태로 시작) |
 | `reference/` | 같은 분야 참고 용어집. 필요한 것만 가져다 씁니다 |
+| `docs/대시보드 사용법.md` | 화면 사용 안내 |
 | `guide/tone-and-decision.md` | 톤 지침과 결정 기록 |
 | `source/` `chapters/` | AI 가 만드는 원문·번역문 |
 
