@@ -1,0 +1,29 @@
+# ch05 시각 판독 결과 (파이프라인 2.0 에스컬레이션)
+#
+# 판독 근거: intermediate/pagescan/p47.png (원서 p.47 전면)
+# 판독자: ai · 2026-09-07
+
+# 도해 영역 선언
+#
+# 흐름도는 표도 사진도 사이드바도 아니다. 그런데 세 검출기가 서로 조각을 나눠 가지며
+# p.47의 복제 흐름도가 일곱 조각으로 갈렸다 — 회색 상자마다 그림 하나로 잡히고,
+# 상자를 잇는 화살표는 굵기 1pt라 '가는 선'으로 걸러져 조각들이 무관해 보였다.
+# 기계가 '이 회색 상자들이 한 그림'임을 알 방법이 없으므로 영역을 눈으로 정해 적는다.
+#
+# 방침(2026-09-07 확정): 도해는 **이미지 한 장 + 라벨 표 병행**.
+#   이미지로만 두면 한국어판 독자가 영어 라벨을 보게 되고,
+#   표로만 옮기면 화살표와 공간 배치가 사라진다. 둘 다 남긴다.
+#   표는 번역 흐름을 타고, 이미지는 최종 조판에서 한국어 도해를 다시 그릴 근거가 된다.
+diagrams:
+  - page: "47"
+    rect: [70, 95, 432, 586]
+    name: duplication-flow
+    caption: "Film materials produced in the film-to-film copying process"
+    note: "회색 상자 네 줄이 각각 하나의 작업 흐름이다. 한 줄 안에서 왼쪽 원본이 가운데 보존용 마스터를 낳고, 그 마스터들이 오른쪽 접근용 복제본을 낳는다. 점선은 선택 경로(Magnetic Track)다. 표 안의 → 는 같은 칸 안에서 이어지는 단계이며, 줄바꿈으로 나열한 것은 나란히 만들어지는 소재다"
+    table: |
+      | Original | Preservation Masters | Access Copies* |
+      |---|---|---|
+      | Silent Print | Negative** | Answer Print<br>Viewing Print |
+      | Sound Print | Picture Negative<br>Optical Track Negative<br>Magnetic Track (optional) | Composite Answer Print<br>Composite Viewing Print |
+      | Silent Negative | Duplicating Positive*** → Dupe Negative**<br>Answer Print**** | Answer Print<br>Viewing Print |
+      | A and B Rolls (positive) with separate Magnetic Sound Track | Picture Negative<br>Optical Track Negative<br>Magnetic Track (optional) | Composite Answer Print<br>Composite Viewing Print |

@@ -386,79 +386,7 @@
   },
   {
    "chunk": "ch05",
-   "line": 110,
-   "marker": "VISUAL-CHECK",
-   "page": "47",
-   "why": "표·상자 구조 대조 필요",
-   "context": "**Original Access Copies* Preservation Masters** / <!-- VISUAL-CHECK 도판 · 원서 p.47 · 원본과 대조 필요 --> / ![](assets/figures/ch05-p47-1.png)"
-  },
-  {
-   "chunk": "ch05",
-   "line": 117,
-   "marker": "VISUAL-CHECK",
-   "page": "47",
-   "why": "표·상자 구조 대조 필요",
-   "context": "Negative** / <!-- VISUAL-CHECK 도판 · 원서 p.47 · 원본과 대조 필요 --> / ![](assets/figures/ch05-p47-2.png)"
-  },
-  {
-   "chunk": "ch05",
-   "line": 126,
-   "marker": "VISUAL-CHECK",
-   "page": "47",
-   "why": "표·상자 구조 대조 필요",
-   "context": "Silent Print / <!-- VISUAL-CHECK 도판 · 원서 p.47 · 원본과 대조 필요 --> / ![](assets/figures/ch05-p47-4.png)"
-  },
-  {
-   "chunk": "ch05",
-   "line": 133,
-   "marker": "VISUAL-CHECK",
-   "page": "47",
-   "why": "표·상자 구조 대조 필요",
-   "context": "Composite Answer Print Composite Viewing Print / <!-- VISUAL-CHECK 도판 · 원서 p.47 · 원본과 대조 필요 --> / ![](assets/figures/ch05-p47-3.png)"
-  },
-  {
-   "chunk": "ch05",
-   "line": 148,
-   "marker": "VISUAL-CHECK",
-   "page": "47",
-   "why": "표·상자 구조 대조 필요",
-   "context": "<!-- 사이드바 끝 --> / <!-- VISUAL-CHECK 도판 · 원서 p.47 · 원본과 대조 필요 --> / ![](assets/figures/ch05-p47-5.png)"
-  },
-  {
-   "chunk": "ch05",
-   "line": 155,
-   "marker": "VISUAL-CHECK",
-   "page": "47",
-   "why": "표·상자 구조 대조 필요",
-   "context": "<!-- 사이드바 시작 · 원서 p.47 --> / <!-- VISUAL-CHECK 상자 속 표 · 원서 p.47 · 원본과 대조 필요 --> / | Duplicating Positive*** | Dupe Negative** | / |---|---|"
-  },
-  {
-   "chunk": "ch05",
-   "line": 168,
-   "marker": "VISUAL-CHECK",
-   "page": "47",
-   "why": "표·상자 구조 대조 필요",
-   "context": "<!-- 사이드바 끝 --> / <!-- VISUAL-CHECK 도판 · 원서 p.47 · 원본과 대조 필요 --> / ![](assets/figures/ch05-p47-6.png)"
-  },
-  {
-   "chunk": "ch05",
-   "line": 187,
-   "marker": "VISUAL-CHECK",
-   "page": "47",
-   "why": "표·상자 구조 대조 필요",
-   "context": "with separate / <!-- VISUAL-CHECK 도판 · 원서 p.47 · 원본과 대조 필요 --> / ![*An acceptable answer print may be used as viewing print. Chart does not include video copies. **Usually called internegative for color. ***Usually called fine grain master for black and white and interpositive for color. ****This answer print is used to determine the timing for the duplicating positive.](assets/figures/ch05-p47-7."
-  },
-  {
-   "chunk": "ch05",
-   "line": 191,
-   "marker": "VISUAL-CHECK",
-   "page": "47",
-   "why": "표·상자 구조 대조 필요",
-   "context": "![*An acceptable answer print may be used as viewing print. Chart does not include video copies. **Usually called internegative for color. ***Usually called fine grain master for black and white and interpositive for color. ****This answer print is used to determine the timing for the duplicating positive.](assets/figures/ch05-p47-7.png) / <!-- VISUAL-CHECK 도판 · 원서 p.47 · 원본과 대조 필요 --> / ![](asset"
-  },
-  {
-   "chunk": "ch05",
-   "line": 202,
+   "line": 125,
    "marker": "VISUAL-CHECK",
    "page": "48",
    "why": "표·상자 구조 대조 필요",
@@ -466,7 +394,7 @@
   },
   {
    "chunk": "ch05",
-   "line": 216,
+   "line": 139,
    "marker": "VISUAL-CHECK",
    "page": "48",
    "why": "표·상자 구조 대조 필요",
@@ -474,7 +402,7 @@
   },
   {
    "chunk": "ch05",
-   "line": 243,
+   "line": 166,
    "marker": "LINEBREAK-UNCERTAIN",
    "page": "50",
    "why": "문단이 이어지는지 판단 필요",
@@ -482,7 +410,7 @@
   },
   {
    "chunk": "ch05",
-   "line": 262,
+   "line": 185,
    "marker": "VISUAL-CHECK",
    "page": "51",
    "why": "표·상자 구조 대조 필요",
@@ -490,7 +418,7 @@
   },
   {
    "chunk": "ch05",
-   "line": 281,
+   "line": 204,
    "marker": "VISUAL-CHECK",
    "page": "52",
    "why": "표·상자 구조 대조 필요",
@@ -498,7 +426,7 @@
   },
   {
    "chunk": "ch05",
-   "line": 333,
+   "line": 256,
    "marker": "VISUAL-CHECK",
    "page": "53",
    "why": "표·상자 구조 대조 필요",
@@ -506,7 +434,7 @@
   },
   {
    "chunk": "ch05",
-   "line": 355,
+   "line": 278,
    "marker": "VISUAL-CHECK",
    "page": "54",
    "why": "표·상자 구조 대조 필요",
@@ -514,7 +442,7 @@
   },
   {
    "chunk": "ch05",
-   "line": 359,
+   "line": 282,
    "marker": "VISUAL-CHECK",
    "page": "54",
    "why": "표·상자 구조 대조 필요",
@@ -522,7 +450,7 @@
   },
   {
    "chunk": "ch05",
-   "line": 363,
+   "line": 286,
    "marker": "VISUAL-CHECK",
    "page": "54",
    "why": "표·상자 구조 대조 필요",
@@ -530,7 +458,7 @@
   },
   {
    "chunk": "ch05",
-   "line": 367,
+   "line": 290,
    "marker": "VISUAL-CHECK",
    "page": "54",
    "why": "표·상자 구조 대조 필요",
@@ -538,7 +466,7 @@
   },
   {
    "chunk": "ch05",
-   "line": 371,
+   "line": 294,
    "marker": "VISUAL-CHECK",
    "page": "54",
    "why": "표·상자 구조 대조 필요",
@@ -546,7 +474,7 @@
   },
   {
    "chunk": "ch05",
-   "line": 411,
+   "line": 334,
    "marker": "VISUAL-CHECK",
    "page": "57",
    "why": "표·상자 구조 대조 필요",
@@ -554,7 +482,7 @@
   },
   {
    "chunk": "ch05",
-   "line": 433,
+   "line": 356,
    "marker": "VISUAL-CHECK",
    "page": "58",
    "why": "표·상자 구조 대조 필요",
@@ -622,11 +550,11 @@
    "marker": "VISUAL-CHECK",
    "page": "68",
    "why": "표·상자 구조 대조 필요",
-   "context": "The repository has already copied its small nitrate collection onto safety film and prioritized preservation copying of its other holdings on the basis of age, condition, rarity, geographic coverage, and content. Northeast Historic can now schedule film-to-film duplication when it receives outside grants or gifts. / <!-- VISUAL-CHECK 도판 · 원서 p.68 · 원본과 대조 필요 --> / ![**Expected Life Span**](assets/"
+   "context": "The repository has already copied its small nitrate collection onto safety film and prioritized preservation copying of its other holdings on the basis of age, condition, rarity, geographic coverage, and content. Northeast Historic can now schedule film-to-film duplication when it receives outside grants or gifts. / <!-- VISUAL-CHECK 표 5행 3열 · 원서 p.68 · 원본과 대조 필요 --> / | TABLE 9. INTEGRATED FILM S"
   },
   {
    "chunk": "ch06",
-   "line": 290,
+   "line": 249,
    "marker": "VISUAL-CHECK",
    "page": "69",
    "why": "표·상자 구조 대조 필요",
@@ -642,15 +570,15 @@
   },
   {
    "chunk": "ch07",
-   "line": 111,
+   "line": 100,
    "marker": "VISUAL-CHECK",
    "page": "73",
    "why": "표·상자 구조 대조 필요",
-   "context": "<!-- 상자 시작 · 원서 p.73 --> / <!-- VISUAL-CHECK 상자 속 표 · 원서 p.73 · 원본과 대조 필요 --> / | Date(s): | 1892–1988; mostly 1925–1940 | / |---|---| / | Size: | Approximately 12 cubic feet of papers; approximately 100 photographs; and 1 reel of 16mm motion picture film. |"
+   "context": "Films often come into a repository with accompanying documents and artifacts, such as production stills, scripts, advertisements, cameras, and projection equipment. Depending on the local cataloging system, these supplementary materials may be noted in the film record or described separately. Films acquired as part of a larger group, such as family papers or business records, are generally mention"
   },
   {
    "chunk": "ch07",
-   "line": 141,
+   "line": 126,
    "marker": "VISUAL-CHECK",
    "page": "74",
    "why": "표·상자 구조 대조 필요",
@@ -658,7 +586,7 @@
   },
   {
    "chunk": "ch07",
-   "line": 175,
+   "line": 160,
    "marker": "VISUAL-CHECK",
    "page": "76",
    "why": "표·상자 구조 대조 필요",
@@ -767,6 +695,22 @@
    "page": "92",
    "why": "표·상자 구조 대조 필요",
    "context": "### CASE STUDY: MINNESOTA HISTORICAL SOCIETY / <!-- VISUAL-CHECK 도판 · 원서 p.92 · 원본과 대조 필요 --> / ![Making maple sugar, as shown in the Minnesota Historical Society’s educational video of Monroe Killy’s films.](assets/figures/ch09-p92-1.png)"
+  },
+  {
+   "chunk": "appA",
+   "line": 2,
+   "marker": "VISUAL-CHECK",
+   "page": "93",
+   "why": "표·상자 구조 대조 필요",
+   "context": "<!-- VISUAL-CHECK 도판 · 원서 p.93 · 원본과 대조 필요 --> / ![](assets/figures/appA-p93-1.png)"
+  },
+  {
+   "chunk": "appA",
+   "line": 10,
+   "marker": "VISUAL-CHECK",
+   "page": "93",
+   "why": "표·상자 구조 대조 필요",
+   "context": "These charts reproduce the date edge codes from Kodak and Dupont motion picture film. To date your film, find the film’s edge code and select the matching code on the chart. Kodak repeated symbols every 20 years, so you will need additional data to pinpoint the date. For 8mm edge codes used after 1965, see the Web site www.filmforever.org. Fuji film uses a four-digit code; the first two numbers re"
   },
   {
    "chunk": "appB",

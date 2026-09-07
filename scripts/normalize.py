@@ -476,6 +476,29 @@ def detect_body_size(doc, p0, p1):
                     if sp["text"].strip(): c[round(sp["size"], 1)] += len(sp["text"])
     return c.most_common(1)[0][0] if c else 11.0
 
+def load_overrides(chap):
+    """source/overrides/<청크>.yaml 을 읽는다. 없으면 빈 사전."""
+    f = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                     "source", "overrides", chap + ".yaml")
+    if not os.path.exists(f):
+        return {}
+    try:
+        import yaml
+        return yaml.safe_load(open(f, encoding="utf-8")) or {}
+    except Exception as e:
+        print("  !! 오버라이드 읽기 실패 %s: %s" % (f, e))
+        return {}
+
+def diagrams_for(ovr, label):
+    """이 페이지에 선언된 도해 영역.
+
+    흐름도·도식은 표도 사진도 사이드바도 아니다. 그런데 세 검출기가 서로 조각을
+    나눠 가지면서 도해 하나가 여러 토막으로 갈린다(원서 p.47은 일곱 조각이 됐다).
+    기계가 '이 회색 상자들이 한 그림'임을 알 방법이 없으므로, 시각 판독으로
+    영역을 정해 여기에 적어 둔다. 재생성해도 유지된다.
+    """
+    return [d for d in (ovr.get("diagrams") or []) if str(d.get("page", "")) == str(label)]
+
 def apply_overrides(text, chap):
     """시각 판독 결과(source/overrides/<청크>.yaml)를 반영한다.
 
@@ -569,6 +592,7 @@ def main(pdf, p0, p1, chap, outpath=None, parser="prose"):
     figdir = os.path.join(root, "assets", "figures")
     os.makedirs(figdir, exist_ok=True)
     BODY = detect_body_size(doc, p0, p1)
+    OVR = load_overrides(chap)          # 시각 판독 결과 (도해 영역 선언 등)
     print(f"  (본문 폰트 자동 추정: {BODY}pt)")
     stats = dict(pages=0, blocks=0, paras=0, dehyphen=0, uncertain=0, headers_removed=0,
                  layout_uncertain=0, headings=0, captions=0, fn_refs=0, fn_defs=0, labels=0,
@@ -604,14 +628,19 @@ def main(pdf, p0, p1, chap, outpath=None, parser="prose"):
                 # 빈 칸이 대부분이거나 실질적으로 1열뿐이면 표가 아니다.
                 ncol = max(len(r) for r in data)
                 filled = sum(1 for r in data for c in r if (c or "").strip())
+                # 괄호 위치에 주의: 예전에는 (r[j] if j < len(r) else "" or "") 였는데
+                # 이러면 else 쪽만 ("" or "") 로 묶여 r[j] 가 None 일 때 그대로 새어 나온다.
+                # 그 AttributeError 를 아래 except 가 삼켜, 그 페이지의 표 검출이 통째로
+                # 중단됐다 (원서 p.47 흐름도가 도판 여덟 조각으로 쪼개진 원인).
                 usedcol = sum(1 for j in range(ncol)
-                              if any((r[j] if j < len(r) else "" or "").strip() for r in data))
+                              if any(((r[j] or "") if j < len(r) else "").strip() for r in data))
                 if usedcol < 2 or filled < len(data) * ncol * 0.35:
                     continue
                 tables.append({"bbox": tuple(t.bbox), "md": md_table(data),
                                "rows": len(data), "cols": ncol})
-        except Exception:
-            pass
+        except Exception as e:
+            # 조용히 넘기면 표가 통째로 사라진 것을 아무도 모른다. 자리는 남기되 알린다.
+            print("  !! 표 검출 중단 (원서 p.%s): %s" % (labels.get(i, i+1), e))
         # (2) 상자(사이드바 / 서식 상자)
         _tb = [dict(bbox=b["bbox"]) for b in page.get_text("dict")["blocks"]
                if b.get("type") == 0]
@@ -622,6 +651,18 @@ def main(pdf, p0, p1, chap, outpath=None, parser="prose"):
         rule_y = footnote_rule_y(page)
         # (4) 도판(사진·도해) 영역 — 표·사이드바와 겹치지 않는 것만
         figs = figmod.find_figures(page, exclude=[t["bbox"] for t in tables] + list(sboxes))
+
+        # (4-1) 시각 판독으로 선언된 도해 영역이 있으면 그 영역은 통째로 그림 하나다.
+        # 표·상자·도판 검출이 그 안을 나눠 갖지 못하게 걷어낸다.
+        pagediag = diagrams_for(OVR, labels.get(i, f"?{i+1}"))
+        if pagediag:
+            drects = [tuple(d["rect"]) for d in pagediag]
+            def _in_diag(bb):
+                return any(figmod.inside(tuple(bb), r, pad=6) for r in drects)
+            tables = [t for t in tables if not _in_diag(t["bbox"])]
+            keepb = [(r, k) for r, k in zip(sboxes, bkinds) if not _in_diag(r)]
+            sboxes = [r for r, _ in keepb]; bkinds = [k for _, k in keepb]
+            figs = [f for f in figs if not _in_diag(f)] + drects
         body, fndefs, sides = [], [], {i: [] for i in range(len(sboxes))}
         for b in page.get_text("dict")["blocks"]:
             if b.get("type") != 0: continue
@@ -669,7 +710,13 @@ def main(pdf, p0, p1, chap, outpath=None, parser="prose"):
         body = keep
 
         # 도판 바로 아래의 작은 글씨를 캡션으로 떼어 도판에 붙인다
+        capdone = {tuple(d["rect"]) for d in pagediag if d.get("caption")}
         for fi, f in enumerate(figs):
+            # 캡션을 직접 적어 둔 도해는 아래 글을 가져가지 않는다.
+            # 가져가면 그 글이 선언한 캡션에 덮여 원문에서 사라진다
+            # (원서 p.47 도해 밑의 * ** *** **** 주석 네 줄이 그렇게 없어졌다).
+            if tuple(f) in capdone:
+                continue
             cap = figmod.caption_for(f, body, BODY)
             if cap is not None:
                 figclaim[fi]["caption"] = styled_text(cap["raw"], stats)
@@ -723,7 +770,9 @@ def main(pdf, p0, p1, chap, outpath=None, parser="prose"):
             if kind == "fig":
                 fi, f = item
                 flush_mark(); stats["figures"] += 1
-                name = "%s-p%s-%d.png" % (chap, label, fi + 1)
+                dg = next((d for d in pagediag if tuple(d["rect"]) == tuple(f)), None)
+                name = ("%s-p%s-%s.png" % (chap, label, dg["name"])) if dg \
+                       else "%s-p%s-%d.png" % (chap, label, fi + 1)
                 if figdir:
                     try:
                         figmod.render(page, f, os.path.join(figdir, name))
@@ -738,6 +787,17 @@ def main(pdf, p0, p1, chap, outpath=None, parser="prose"):
                     if sent:
                         cap = max(sent, key=len)
                         figlabels = [t for t in figlabels if t != cap]
+                if dg:
+                    # 시각 판독을 마친 도해: 그림 한 장으로 두되, 라벨은 표로 병기한다.
+                    # 이미지로만 두면 한국어판 독자가 영어 라벨을 보게 되고,
+                    # 표로만 옮기면 화살표와 배치가 사라진다. 둘 다 남긴다.
+                    out.append("\n![%s](assets/figures/%s)\n"
+                               % ((dg.get("caption") or cap).replace("]", ")"), name))
+                    if dg.get("note"):
+                        out.append("\n<!-- 도해 · 원서 p.%s · %s -->\n" % (label, dg["note"]))
+                    if dg.get("table"):
+                        out.append("\n%s\n" % dg["table"].strip())
+                    return
                 out.append("\n<!-- VISUAL-CHECK 도판 · 원서 p.%s · 원본과 대조 필요 -->\n" % label)
                 stats["visual_check"] += 1
                 out.append("\n![%s](assets/figures/%s)\n" % (cap.replace("]", ")"), name))
