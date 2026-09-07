@@ -94,6 +94,15 @@ padding:16px 18px;margin-bottom:12px}
 .term .why{color:var(--muted);font-size:13.5px;margin:0 0 12px}
 .q{display:grid;grid-template-columns:64px 1fr;gap:11px;padding-left:11px;
 border-left:2px solid var(--border2);margin-bottom:8px;align-items:baseline}
+.q.hid{display:none}
+.q a.p{color:var(--accent);text-decoration:none}
+.q a.p:hover{text-decoration:underline}
+.q mark{background:var(--accent-soft);color:inherit;padding:0 2px;border-radius:3px;font-weight:600}
+/* 용례를 모두 펼치면 넓은 영역에서 스크롤해 훑는다 */
+.quotes.open{max-height:340px;overflow-y:auto;padding-right:6px;
+border:1px solid var(--border);border-radius:9px;padding:10px 10px 2px;margin-bottom:8px}
+.qmore{font:inherit;font-size:12.5px;background:none;border:0;color:var(--accent);
+cursor:pointer;padding:0 0 8px;text-decoration:underline}
 .q .p{font-size:11.5px;color:var(--faint);font-variant-numeric:tabular-nums}
 .q .t{font-family:Georgia,"Times New Roman",serif;font-size:15px;line-height:1.5}
 .opts{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
@@ -159,6 +168,25 @@ font-variant-numeric:tabular-nums}
 <script>
 let S=null, tab="overview", lastJSON="", editing=null, query="", flashPending=false;
 let stageFilter=null;      // 청크 목록에서 추려 볼 단계 (null이면 전체)
+const quotesOpen={};       // 용어별 '용례 모두 보기' 펼침 상태
+
+// 문장 안에서 용어를 짚어 준다. 원문(영문)과 번역본(한국어)은 규칙이 달라야 한다.
+//   영문   낱말 경계로 끊고 복수형(-s/-es)까지 본다
+//   한국어 낱말 경계가 없고 조사가 뒤에 붙으므로 앞부분 일치로 본다
+//   여러 낱말로 된 용어는 낱말 사이 공백을 유연하게 본다 (보존용 마스터 필름)
+function termRe(term){
+  const body=String(term).trim().replace(/[.*+?^${}()|[\]\\]/g,"\\$&").replace(/\s+/g,"\\s+");
+  const ko=/[\uac00-\ud7a3]/.test(term);
+  return ko ? new RegExp("("+body+")","g")
+            : new RegExp("(?<![A-Za-z0-9])("+body+"(?:e?s)?)(?![A-Za-z0-9])","gi");
+}
+function mark(text,term){
+  const out=esc(text);
+  // 용어도 본문과 같은 표기로 맞춰야 한다. 본문은 esc() 를 거쳐
+  // & 가 &amp; 로 바뀌어 있으므로, 날것의 용어로는 걸리지 않는다.
+  try{ return out.replace(termRe(esc(term)), '<mark>$1</mark>'); }
+  catch(e){ return out; }
+}
 const acc={decided:false,untouched:false};
 const filter={decided:"전체",untouched:"전체"};
 const el=id=>document.getElementById(id);
@@ -366,9 +394,22 @@ function termCard(t,isEdit){
   else if(t.definition_en) h+='<p class="why">'+esc(t.definition_en)+"</p>";
   if(t.hits)
     h+='<p class="why hits">본문 등장 '+t.hits+'회 · '+esc((t.in_chunks||[]).join(", "))+"</p>";
-  for(const q of (t.quotes||[]))
-    h+='<div class="q"><span class="p">원서 p.'+esc(q.page)
-      +(q.chunk?' <em>'+esc(q.chunk)+"</em>":"")+'</span><span class="t">'+esc(q.text)+"</span></div>";
+  const qs=t.quotes||[], SHOW=2, more=qs.length>SHOW, open=quotesOpen[t.term];
+  if(qs.length){
+    h+='<div class="quotes'+(open?" open":"")+'">';
+    qs.forEach((q,i)=>{
+      // 원문 보기로 건너뛸 수 있게 쪽번호를 링크로. 용어집에서 문맥을 더 볼 때 왕복이 닫힌다.
+      const loc='원서 p.'+esc(q.page)+(q.chunk?' <em>'+esc(q.chunk)+"</em>":"");
+      h+='<div class="q'+(i>=SHOW&&!open?" hid":"")+'">'
+        +(q.chunk?'<a class="p" target="_blank" href="/view?kind=source&id='+esc(q.chunk)+'">'+loc+"</a>"
+                 :'<span class="p">'+loc+"</span>")
+        +'<span class="t">'+mark(q.text,t.term)+"</span></div>";
+    });
+    h+="</div>";
+    if(more)
+      h+='<button class="qmore" data-quotes="'+key+'">'
+        +(open?"접기":"용례 "+qs.length+"개 모두 보기")+"</button>";
+  }
   if((t.options||[]).length){
     h+='<div class="opts">';
     for(const o of t.options)
@@ -391,6 +432,10 @@ function termCard(t,isEdit){
 }
 
 function bindGlossary(){
+  document.querySelectorAll("[data-quotes]").forEach(b=>{
+    b.onclick=()=>{ const t=b.dataset.quotes;
+      quotesOpen[t]=!quotesOpen[t]; renderGlossary(); };
+  });
   const root=el("glossary");
   root.querySelectorAll(".acc[data-acc]").forEach(a=>{
     a.onclick=()=>{ acc[a.dataset.acc]=!acc[a.dataset.acc]; renderGlossary(); };
