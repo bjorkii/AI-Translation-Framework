@@ -430,7 +430,7 @@
    "marker": "VISUAL-CHECK",
    "page": "54",
    "why": "표·상자 구조 대조 필요",
-   "context": "![4. Seal the box with packing tape.](assets/figures/ch05-p54-4.png) / <!-- VISUAL-CHECK 도판 · 원서 p.54 · 원본과 대조 필요 --> / ![](assets/figures/ch05-p54-5.png)"
+   "context": "![4. Seal the box with packing tape.](assets/figures/ch05-p54-4.png) / <!-- VISUAL-CHECK 도판 · 원서 p.54 · 원본과 대조 필요 --> / ![Supplies for shipping acetate or polyester film.](assets/figures/ch05-p54-5.png)"
   },
   {
    "chunk": "ch05",
@@ -623,14 +623,6 @@
    "page": "92",
    "why": "표·상자 구조 대조 필요",
    "context": "### CASE STUDY: MINNESOTA HISTORICAL SOCIETY / <!-- VISUAL-CHECK 도판 · 원서 p.92 · 원본과 대조 필요 --> / ![Making maple sugar, as shown in the Minnesota Historical Society’s educational video of Monroe Killy’s films.](assets/figures/ch09-p92-1.png)"
-  },
-  {
-   "chunk": "appA",
-   "line": 6,
-   "marker": "VISUAL-CHECK",
-   "page": "93",
-   "why": "표·상자 구조 대조 필요",
-   "context": "These charts reproduce the date edge codes from Kodak and Dupont motion picture film. To date your film, find the film’s edge code and select the matching code on the chart. Kodak repeated symbols every 20 years, so you will need additional data to pinpoint the date. For 8mm edge codes used after 1965, see the Web site www.filmforever.org. Fuji film uses a four-digit code; the first two numbers re"
   },
   {
    "chunk": "appB",

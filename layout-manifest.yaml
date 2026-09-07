@@ -1293,7 +1293,7 @@ pages:
     first_line: "### CASE STUDY: MINNESOTA HISTORICAL SOCIETY"
   - chunk: appA
     source_page: "93"
-    paragraph_count: 3
+    paragraph_count: 11
     first_line: "## APPENDIX A: EDGE CODE CHART"
   - chunk: appB
     source_page: "94"
@@ -1341,7 +1341,7 @@ pages:
     first_line: "**Kodachrome** Color reversal motion picture film introduced"
   - chunk: gloss
     source_page: "105"
-    paragraph_count: 17
+    paragraph_count: 18
     first_line: "**Mute** Sound film element that carries only picture."
   - chunk: gloss
     source_page: "106"

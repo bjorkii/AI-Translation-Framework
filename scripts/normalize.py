@@ -674,13 +674,17 @@ def apply_overrides(text, chap):
         # 구간 통째로 교체. 기계가 애초에 뽑을 수 없는 조판(연도×기호 그리드 등)을
         # 시각 판독 결과로 갈아끼운다. from: 부터 to: 직전까지가 대상이다.
         if r.get("verdict") == "replace_region":
-            a, b = r.get("from"), r.get("to")
-            i = text.find(a) if a else 0
-            j = text.find(b, i + len(a or "")) if b else len(text)
-            if i < 0 or (b and j < 0):
-                print("  !! 구간 교체 실패 (경계 문자열을 찾지 못함): %r … %r" % (a, b))
+            # from: 그 문구부터 / after: 그 문구 다음부터. after 를 쓰면 앵커를 원문 문장에
+            # 걸 수 있어, 정규화기를 고쳐 생성물 모양이 바뀌어도 앵커가 살아남는다.
+            a, af, b = r.get("from"), r.get("after"), r.get("to")
+            key = a or af
+            hit = text.find(key) if key else 0
+            i = hit + (len(af) if af and hit >= 0 else 0)
+            j = text.find(b, i) if b else len(text)
+            if hit < 0 or (b and j < 0):
+                print("  !! 구간 교체 실패 (경계 문구를 찾지 못함): %r … %r" % (key, b))
                 continue
-            text = text[:i] + (r.get("text") or "").strip() + "\n\n" + text[j:]
+            text = text[:i] + "\n\n" + (r.get("text") or "").strip() + "\n\n" + text[j:]
             applied += 1
             continue
         key = r.get("marker", "")
@@ -815,16 +819,17 @@ def main(pdf, p0, p1, chap, outpath=None, parser="prose"):
             if not lines: continue
             txt = " ".join(lines); y0, x0 = b["bbox"][1], b["bbox"][0]
             # 머리말·쪽번호 제거.
-            # 다만 도판 안에 있는 글은 건드리지 않는다 — 쪽 아래쪽에 놓인 사진의 캡션이
-            # 경계선(88%) 바로 밑에 걸리면 러닝 푸터로 오인돼 사라진다
-            # (원서 p.20 'Wear cotton gloves when handling film.' 이 그랬다).
-            # 쪽번호만은 예외 없이 지운다. 도판이 쪽 아래까지 내려오면 쪽번호가
-            # 그 안에 들어가 '도판 라벨 94' 같은 것이 생긴다.
-            if ((y0 < h*LP.get("head_band") or y0 > h*LP.get("foot_band"))
-                    and len(txt) < LP.get("head_maxlen")):
-                pageno = re.fullmatch(r"[\divxlcdm]{1,7}", txt.strip(), re.I)
-                if pageno or not any(figmod.inside(b["bbox"], f, pad=6) for f in figs):
-                    stats["headers_removed"] += 1; continue
+            #
+            # 위와 아래를 다르게 다룬다. 이 책에서 쪽 위에는 러닝헤드만 오지만,
+            # 쪽 아래에는 쪽번호 말고 본문도 내려온다. 아래쪽까지 '짧으면 지운다'로
+            # 묶었더니 원서 p.20의 사진 캡션과 p.105의 용어집 표제어 'Printer' 가
+            # 통째로 사라졌다.
+            #   위: 짧은 글이면 러닝헤드로 본다
+            #   아래: 쪽번호만 지운다
+            if y0 < h*LP.get("head_band") and len(txt) < LP.get("head_maxlen"):
+                stats["headers_removed"] += 1; continue
+            if y0 > h*LP.get("foot_band") and re.fullmatch(r"[\divxlcdm]{1,7}", txt.strip(), re.I):
+                stats["headers_removed"] += 1; continue
             size = max(s["size"] for l in b["lines"] for s in l["spans"])
             rec = dict(x0=x0, y0=y0, size=size, lines=lines, txt=txt, raw=b, bbox=b["bbox"])
             # 표 안의 텍스트는 본문에서 뺀다 (표는 통째로 다시 만든다)

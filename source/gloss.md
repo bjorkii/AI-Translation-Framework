@@ -231,6 +231,8 @@ Covered here are film preservation terms and abbreviations mentioned in this gui
 
 **Presstape** Adhesive splicing tape prepared in ready-cut segments.
 
+**Printer** Machine used to duplicate motion picture film.
+
 [원서 p.105]
 
 **Printing** Process of duplicating motion picture film.

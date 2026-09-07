@@ -20,17 +20,14 @@
 # 사람이 다시 볼 필요가 있다면 위 두 방법 중 2번을 그대로 재현하면 된다.
 #   pg.get_pixmap(dpi=400, clip=pymupdf.Rect(72, 232, 460, 548))
 resolved:
-  # (1) 제목 배너는 도판이 아니다. 같은 문구가 바로 아래 제목으로 이미 추출돼 있다.
+  # 차트 본체 — 좌표 판독으로 복원한 표.
+  # 앵커는 원문 문장에 건다. 생성물(표·마커) 모양은 정규화기를 고칠 때마다 바뀌지만
+  # 원문 문장은 그대로이므로, 여기 걸어야 앵커가 살아남는다.
+  # (실제로 표 검출을 고친 뒤 '**EASTMAN KODAK…' 앵커가 '| EASTMAN KODAK…' 로
+  #  바뀌어 교체가 조용히 건너뛰어졌다.)
   - page: "93"
     verdict: replace_region
-    from: "<!-- LAYOUT-UNCERTAIN: p.93"
-    to: "## APPENDIX A"
-    text: ""
-
-  # (2) 차트 본체 — 좌표 판독으로 복원한 표
-  - page: "93"
-    verdict: replace_region
-    from: "**EASTMAN KODAK DATE CODE CHART"
+    after: "For more on using edge codes for dating, see 3.3."
     to: "[원서 p.93]"
     text: |
       **EASTMAN KODAK DATE CODE CHART**
