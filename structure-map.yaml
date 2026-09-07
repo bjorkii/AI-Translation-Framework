@@ -30,6 +30,18 @@ chapters:
   - {id: ch08, file: [89, 96],  printed: [77, 84], pages: 8,  title: "Legal Context"}
   - {id: ch09, file: [97, 104], printed: [85, 92], pages: 8,  title: "Access"}
 
+# 조판 의존 수치 덮어쓰기 (없으면 scripts/layout_profile.py 의 기본값)
+#
+# 정규화 규칙 자체는 어느 책에나 통하지만, 그 규칙을 적용하는 수치는 원서 조판에
+# 따라 달라진다. 쪽 여백이 다르거나, 제목 글자가 더 작거나, 2단이 아닌 책에서는
+# 아래 값을 조정해야 한다. 무엇을 조정할 수 있는지는 layout_profile.py 에 적혀 있고,
+# 실제 값은 scripts/layout_probe.py 로 원서를 훑어 확인한다.
+#
+# layout:
+#   foot_band: 0.92      # 쪽번호가 더 아래에 있는 책
+#   h2_pt: 13.5          # 제목 글자가 작은 책
+#   bullets: "•–▪"       # 글머리표로 쓰는 기호
+
 back_matter:
   # parser: 각 구간에 적용할 파서 유형 (파이프라인 2.0절 구간별 방침)
   #   prose            산문 규칙 (문장부호 + 들여쓰기)

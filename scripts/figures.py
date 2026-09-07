@@ -14,10 +14,18 @@
   도판 안의 글자는 아래 labels_in()으로 따로 뽑아 번역 대상으로 남긴다.
   (SVG 경로는 라벨까지 벡터로 번역·재조판할 수 있어 장기적으로 더 낫다. 보류 사유는 위와 같다.)
 """
+import os
 import re
+import sys
 
-MIN_W, MIN_H = 55, 40          # 이보다 작은 것은 도판으로 보지 않는다
-CAP_GAP = 46                   # 도판 아래 이 거리 안의 작은 글씨를 캡션으로 본다
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import layout_profile as LP
+
+# 조판 의존 수치는 scripts/layout_profile.py 에 모아 두었다.
+# 다른 책으로 옮길 때 확인해야 할 값들이며, structure-map.yaml 의 layout: 로 덮어쓴다.
+MIN_W = LP.get("fig_min_w")    # 이보다 작은 것은 도판으로 보지 않는다
+MIN_H = LP.get("fig_min_h")
+CAP_GAP = LP.get("cap_gap")    # 도판 아래 이 거리 안의 작은 글씨를 캡션으로 본다
 
 def _rect(r):
     return (r.x0, r.y0, r.x1, r.y1)
@@ -80,7 +88,7 @@ def find_figures(page, exclude=()):
         # 머리말·꼬리말 띠 안에만 있는 도형은 도판이 아니다.
         # 쪽번호 자리의 전폭 사각형이 좌우 두 사진을 다리처럼 이어 붙여,
         # 원서 p.22의 아래 사진 두 장이 한 장으로 합쳐지고 캡션 하나가 사라졌다.
-        if r[1] > h*0.88 or r[3] < h*0.09:
+        if r[1] > h*LP.get("foot_band") or r[3] < h*LP.get("head_band"):
             continue
         rects.append(r)
     rects = [r for r in rects
@@ -93,8 +101,8 @@ def find_figures(page, exclude=()):
     figs.sort(key=lambda r: (round(r[1] / 12), r[0]))
     return figs
 
-HEADING_PT = 13        # 이보다 큰 글자는 제목으로 본다
-BANNER_PAD = 30        # 제목 글자 높이에 이만큼까지 여백이 붙은 것은 배너로 본다
+HEADING_PT = LP.get("h3_pt")     # 이보다 큰 글자는 제목으로 본다
+BANNER_PAD = LP.get("banner_pad")  # 제목 글자 높이에 이만큼까지 여백이 붙으면 배너
 
 def _is_title_banner(fig, page):
     """장 제목 뒤에 깔린 짙은 띠인가.
@@ -171,7 +179,7 @@ def caption_for(fig, blocks, body_size):
         # 두 단으로 나란히 놓인 사진에서는 그 여유가 옆 단까지 닿아
         # 왼쪽 사진이 오른쪽 사진의 캡션을 가져갔다 (원서 p.22 아래 두 장).
         ov = min(bb[2], fig[2]) - max(bb[0], fig[0])
-        if ov <= 0 or ov < (bb[2] - bb[0]) * 0.4:
+        if ov <= 0 or ov < (bb[2] - bb[0]) * LP.get("cap_overlap"):
             continue
         if d < bestd:
             best, bestd = b, d

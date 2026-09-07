@@ -12,6 +12,11 @@ import sys, re, os
 import pymupdf
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import figures as figmod
+import layout_profile as LP
+
+# 조판 의존 수치는 scripts/layout_profile.py 에 모아 두었다.
+# 규칙 자체는 어느 책에나 통하지만 아래 값들은 원서 조판에 따라 달라진다.
+# 다른 책을 시작할 때 확인할 목록이며, structure-map.yaml 의 layout: 로 덮어쓴다.
 
 ABBR = re.compile(r"\b(Mr|Mrs|Ms|Dr|Prof|St|Jr|Sr|vs|etc|cf|approx|ca|No|Vol|pp|Fig|ed|eds|Inc|Co)\.$", re.I)
 END  = re.compile(r"[.!?:;”\"’')\]]\s*$")
@@ -263,7 +268,7 @@ def page_labels(doc):
     for i, page in enumerate(doc):
         h = page.rect.height
         for b in page.get_text("dict")["blocks"]:
-            if b.get("type") != 0 or b["bbox"][1] < h*0.88: continue
+            if b.get("type") != 0 or b["bbox"][1] < h*LP.get("foot_band"): continue
             t = " ".join(s["text"] for l in b["lines"] for s in l["spans"]).strip()
             if re.fullmatch(r"\d{1,3}", t) or re.fullmatch(r"[ivxlcdm]{1,7}", t):
                 labels[i] = t
@@ -407,7 +412,7 @@ def split_records(lines):
         return []
     xs = [l["x0"] for l in lines]
     flush = min(xs)
-    indented = [x for x in xs if x > flush + 6]
+    indented = [x for x in xs if x > flush + LP.get("indent_min")]
     use_indent = len(indented) >= max(2, len(xs) * 0.15)
     gaps = [lines[i]["y0"] - lines[i-1]["y1"] for i in range(1, len(lines))]
     tight = min(gaps) if gaps else 0.0        # 항목 안 줄 간격
@@ -415,11 +420,11 @@ def split_records(lines):
     for i, ln in enumerate(lines):
         if not cur:
             cur = [ln]; continue
-        at_flush = ln["x0"] <= flush + 2
+        at_flush = ln["x0"] <= flush + LP.get("indent_tol")
         if use_indent:
             new = at_flush
         else:
-            new = at_flush and (ln["bold"] or (ln["y0"] - lines[i-1]["y1"]) > tight + 3)
+            new = at_flush and (ln["bold"] or (ln["y0"] - lines[i-1]["y1"]) > tight + LP.get("gap_tol"))
         if new:
             recs.append(cur); cur = [ln]
         else:
@@ -458,19 +463,24 @@ def fix_glued_sentences(text):
 def bulletize(text):
     """한 문단으로 뭉친 글머리표 목록을 마크다운 목록으로 되돌린다.
 
-    원서는 항목마다 줄을 바꾸고 • 를 찍는데, 조판 줄바꿈을 지우는 과정에서
+    원서는 항목마다 줄을 바꾸고 글머리표를 찍는데, 조판 줄바꿈을 지우는 과정에서
     한 문단으로 붙는다. 목록이 산문처럼 보이면 읽는 사람도 번역하는 쪽도
-    항목의 경계를 잃는다. 표 안의 • 는 칸 내용이므로 건드리지 않는다.
+    항목의 경계를 잃는다. 표 안의 글머리표는 칸 내용이므로 건드리지 않는다.
+
+    어떤 기호를 쓰는지는 책마다 다르다(•, –, ▪, · 등). layout_profile 의
+    bullets 값으로 정한다.
     """
+    marks = LP.get("bullets")
+    pat = "[" + re.escape(marks) + "]"
     out = []
     for block in text.split("\n\n"):
         s = block.strip()
-        if s.count("•") < 2 or s.startswith(("|", "<!--")) or "\n|" in s:
+        if len(re.findall(pat, s)) < 2 or s.startswith(("|", "<!--")) or "\n|" in s:
             out.append(block); continue
         quote = s.startswith(">")
         body = re.sub(r"^>\s?", "", s, flags=re.M) if quote else s
-        head, _, rest = body.partition("•")
-        items = [x.strip() for x in rest.split("•") if x.strip()]
+        parts = re.split(pat, body)
+        head, items = parts[0], [x.strip() for x in parts[1:] if x.strip()]
         if len(items) < 2:
             out.append(block); continue
         lines = ([head.strip()] if head.strip() else []) + ["- " + x for x in items]
@@ -741,7 +751,8 @@ def main(pdf, p0, p1, chap, outpath=None, parser="prose"):
             # (원서 p.20 'Wear cotton gloves when handling film.' 이 그랬다).
             # 쪽번호만은 예외 없이 지운다. 도판이 쪽 아래까지 내려오면 쪽번호가
             # 그 안에 들어가 '도판 라벨 94' 같은 것이 생긴다.
-            if (y0 < h*0.09 or y0 > h*0.88) and len(txt) < 60:
+            if ((y0 < h*LP.get("head_band") or y0 > h*LP.get("foot_band"))
+                    and len(txt) < LP.get("head_maxlen")):
                 pageno = re.fullmatch(r"[\divxlcdm]{1,7}", txt.strip(), re.I)
                 if pageno or not any(figmod.inside(b["bbox"], f, pad=6) for f in figs):
                     stats["headers_removed"] += 1; continue
@@ -796,8 +807,9 @@ def main(pdf, p0, p1, chap, outpath=None, parser="prose"):
                 cap["is_caption_of"] = fi
         body = [b for b in body if b.get("is_caption_of") is None]
 
-        rights = [b for b in body if b["x0"] > w*0.45 and len(b["txt"]) > 40]
-        lefts  = [b for b in body if b["x0"] <= w*0.45 and len(b["txt"]) > 40]
+        CS, CL = LP.get("column_split"), LP.get("column_minlen")
+        rights = [b for b in body if b["x0"] > w*CS and len(b["txt"]) > CL]
+        lefts  = [b for b in body if b["x0"] <= w*CS and len(b["txt"]) > CL]
         multi = bool(rights and lefts)
         def order(x0, y0):
             # 같은 높이에 나란히 놓인 것은 왼쪽부터 읽는다.
@@ -806,7 +818,7 @@ def main(pdf, p0, p1, chap, outpath=None, parser="prose"):
             # 넓히면 1pt 차이로 놓인 서로 다른 단의 블록까지 같은 칸이 되어,
             # 페이지를 넘어 이어지던 문장이 표 제목 뒤로 밀려 끊겼다(p.19→p.20).
             band = round(y0)
-            return ((0 if x0 <= w*0.45 else 1), band, x0) if multi else (0, band, x0)
+            return ((0 if x0 <= w*CS else 1), band, x0) if multi else (0, band, x0)
         # 표·도판·상자도 본문과 같은 기준으로 줄 세운다.
         # (예전에는 페이지 끝에 몰아 넣어서 원서 p.60처럼 '표 제목 → 본문 → 표' 로 뒤집혔다)
         elems = [("body", order(b["x0"], b["y0"]), b) for b in body]
@@ -823,12 +835,12 @@ def main(pdf, p0, p1, chap, outpath=None, parser="prose"):
         if parser in ("record", "rebuild"):
             colbody = {}
             for b in body:
-                if b["size"] >= 13 or is_caps_label(b["txt"].replace("**", "")):
+                if b["size"] >= LP.get("h3_pt") or is_caps_label(b["txt"].replace("**", "")):
                     continue                      # 제목·대문자 라벨은 산문 경로가 처리한다
-                if b["size"] < BODY - 0.4 and b["y0"] > h * 0.80:
+                if b["size"] < BODY - 0.4 and b["y0"] > h * (LP.get("foot_band") - 0.08):
                     pagenotes.append(b)           # 쪽 아래 안내문 — 명단 사이에 끼면 안 된다
                     continue
-                c = 0 if (not multi or b["x0"] <= w*0.45) else 1
+                c = 0 if (not multi or b["x0"] <= w*CS) else 1
                 colbody.setdefault(c, []).append(b)
             for c, bs in colbody.items():
                 lns = []
@@ -921,10 +933,10 @@ def main(pdf, p0, p1, chap, outpath=None, parser="prose"):
             if parser in ("record", "rebuild") and b in pagenotes:
                 continue                       # 쪽 아래 안내문은 페이지 끝에 따로 내보낸다
             if parser in ("record", "rebuild") and not (
-                    b["size"] >= 13 or is_caps_label(b["txt"].replace("**", ""))):
+                    b["size"] >= LP.get("h3_pt") or is_caps_label(b["txt"].replace("**", ""))):
                 # 그 단(段)의 항목을 첫 본문 블록 자리에서 한 번에 내보낸다.
                 # 항목은 블록 경계를 넘나들므로 블록마다 따로 내면 다시 쪼개진다.
-                c = 0 if (not multi or b["x0"] <= w*0.45) else 1
+                c = 0 if (not multi or b["x0"] <= w*CS) else 1
                 if c in rec_cols:
                     continue
                 rec_cols.add(c)
@@ -947,9 +959,9 @@ def main(pdf, p0, p1, chap, outpath=None, parser="prose"):
 
             # 제목·라벨은 이미 마크다운 서식을 붙이므로 볼드 표시를 겹쳐 쓰지 않는다
             head = txt.replace("**", "")
-            if b["size"] >= 15 and is_wordy(head):
+            if b["size"] >= LP.get("h2_pt") and is_wordy(head):
                 flush_mark(); out.append(f"\n## {head}\n"); stats["headings"] += 1; carry_idx = None; continue
-            if b["size"] >= 13 and is_wordy(head):
+            if b["size"] >= LP.get("h3_pt") and is_wordy(head):
                 flush_mark(); out.append(f"\n### {head}\n"); stats["headings"] += 1; carry_idx = None; continue
             if (TABLE_T.match(head) and len(head) < 110) or is_caps_label(head):
                 # 표 제목 / 대문자 라벨: 본문 흐름에서 분리하고 연속 판정 대상에서 제외
