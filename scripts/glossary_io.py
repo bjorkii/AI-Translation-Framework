@@ -27,12 +27,20 @@ ENTRY = re.compile(r'  - term: "(.*?)"\n(.*?)(?=\n  - term: |\Z)', re.S)
 ALTS = re.compile(r"^\s{4}alternates:\s*$(.*?)(?=^\s{4}\w|\Z)", re.M | re.S)
 # value 뒤에 \s* 를 쓰면 줄바꿈까지 먹어 when 이 영영 잡히지 않는다.
 ALT = re.compile(r'-\s*value:\s*"(.*?)"[ \t]*(?:\n\s*when:\s*"(.*?)")?')
+# senses: 번역어는 같지만 뜻의 폭이 다른 경우. 무엇을 고를지가 아니라
+#   '어떤 뜻으로 쓰였는지' 를 번역하는 쪽에 알려 주기 위한 칸이다.
+SENSES = re.compile(r"^\s{4}senses:\s*$(.*?)(?=^\s{4}\w|\Z)", re.M | re.S)
+SENSE = re.compile(r'-\s*case:\s*"(.*?)"[ \t]*(?:\n\s*means:\s*"(.*?)")?')
 
 # nomatch: 이 낱말이 본문에 있어도 그 용어로 보지 않는다.
 #   'Leader' 는 필름 앞뒤에 붙이는 여분 필름인데, 본문의 'community leaders'(지도자)까지
 #   같은 낱말로 잡힌다. 그런 자리를 미리 빼 두는 칸이다.
+# same_as: 같은 뜻의 다른 원어. 'perforation' 과 'sprocket hole' 처럼.
+#   따로 등록해야 둘 다 본문에서 짚히고 검사에 걸리지만, 같은 말이라는 사실은
+#   데이터로 남아야 한다. 메모에 적어 두면 기계가 모른다.
 FIELDS = ("translation", "tbd", "notation", "context", "full",
-          "definition_en", "definition_ko", "source", "principle_form", "nomatch")
+          "definition_en", "definition_ko", "source", "principle_form", "nomatch",
+          "same_as")
 
 
 def load(path=None):
@@ -55,7 +63,13 @@ def load(path=None):
             for a in ALT.finditer(ab.group(1)):
                 alts.append({"value": a.group(1), "when": a.group(2) or ""})
 
-        e = {"term": term, "alternates": alts}
+        senses = []
+        sb = SENSES.search(body)
+        if sb:
+            for m3 in SENSE.finditer(sb.group(1)):
+                senses.append({"case": m3.group(1), "means": m3.group(2) or ""})
+
+        e = {"term": term, "alternates": alts, "senses": senses}
         for k in FIELDS:
             e[k] = f(k)
         out.append(e)
@@ -93,4 +107,27 @@ def describe(e):
     s = e.get("translation") or "(미정)"
     for a in e.get("alternates") or []:
         s += " / %s%s" % (a["value"], ("(%s)" % a["when"]) if a.get("when") else "")
+    if e.get("same_as"):
+        s += "  [%s 와 같은 뜻]" % e["same_as"]
     return s
+
+def sense_lines(e):
+    """번역하는 쪽에 넘길 뜻갈래 설명. 같은 번역어라도 폭이 다를 때 쓴다."""
+    return ["%s → %s" % (x["case"], x["means"]) for x in (e.get("senses") or []) if x.get("case")]
+
+def check_same_as(entries):
+    """same_as 로 묶인 것끼리 번역어가 어긋나지 않는지 본다.
+
+    같은 뜻이라 해 놓고 서로 다르게 옮기면 혼란만 는다. 만든 칸이 오히려
+    일을 늘리지 않도록, 어긋나면 알린다.
+    """
+    by = {e["term"]: e for e in entries}
+    bad = []
+    for e in entries:
+        other = by.get(e.get("same_as") or "")
+        if not other:
+            continue
+        a, b = set(translations(e)), set(translations(other))
+        if a and b and not (a & b):
+            bad.append((e["term"], sorted(a), other["term"], sorted(b)))
+    return bad

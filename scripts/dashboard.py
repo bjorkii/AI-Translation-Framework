@@ -6,11 +6,14 @@
 표준 라이브러리만 사용합니다(별도 설치 불필요). 파일을 요청마다 새로 읽으므로
 AI가 파일을 고치든 사용자가 화면에서 고치든 양쪽이 곧바로 반영됩니다.
 """
-import json, re, subprocess, os, html as _html
+import json, re, subprocess, os, sys, html as _html
 from datetime import date, datetime
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from urllib.parse import urlparse, parse_qs
 from pathlib import Path
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import glossary_io as G
 
 ROOT = Path(__file__).resolve().parent.parent
 PORT = int(os.environ.get("PORT", "8765"))
@@ -57,31 +60,12 @@ def parse_structure():
     return out
 
 def parse_glossary():
-    txt = read("glossary/glossary.yaml")
-    entries = []
-    for m in re.finditer(r'  - term: "(.*?)"\n(.*?)(?=\n  - term: |\Z)', txt, re.S):
-        term, body = m.group(1), m.group(2)
-        def f(k):
-            mm = re.search(r'^\s{4}' + k + r':\s*(?:"(.*?)"|(null))\s*$', body, re.M)
-            return mm.group(1) if (mm and mm.group(1) is not None) else None
-        # 한 원어에 번역어가 여럿인 경우(맥락에 따라 갈림)를 담는다.
-        #   alternates:
-        #     - value: "스토리지"
-        #       when: "디지털 저장 맥락"
-        alts = []
-        ab = re.search(r"^\s{4}alternates:\s*$(.*?)(?=^\s{4}\w|\Z)", body, re.M | re.S)
-        if ab:
-            # value 뒤의 \s* 가 줄바꿈까지 먹으면 when 이 영영 안 잡힌다.
-            for m2 in re.finditer(r'-\s*value:\s*"(.*?)"[ \t]*(?:\n\s*when:\s*"(.*?)")?',
-                                  ab.group(1)):
-                alts.append({"value": m2.group(1), "when": m2.group(2) or ""})
-        entries.append({
-            "term": term, "translation": f("translation"), "tbd": f("tbd"),
-            "notation": f("notation"), "context": f("context"), "full": f("full"),
-            "definition_en": f("definition_en"), "source": f("source"),
-            "alternates": alts,
-        })
-    return entries
+    """용어집. 파싱은 scripts/glossary_io.py 한 곳에 있다.
+
+    예전에는 여기에도 같은 파서가 있었다. 그래서 용어집에 필드를 더하면 화면만
+    모르는 상태가 됐다 — senses(뜻갈래)·same_as(같은 뜻)를 더했을 때 실제로 그랬다.
+    """
+    return G.load()
 
 def source_quality(cid):
     """원문 정규화 결과의 불확실 표시 비율. 높으면 전용 파서가 필요하다는 뜻."""
@@ -178,6 +162,7 @@ def build_state():
         return {"term": e["term"], "translation": e["translation"], "tbd": e["tbd"],
                 "notation": e["notation"], "context": e["context"], "full": e["full"],
                 "definition_en": e["definition_en"], "alternates": e.get("alternates") or [],
+                "senses": e.get("senses") or [], "same_as": e.get("same_as") or "",
                 "quotes": c.get("quotes", []),
                 "hits": c.get("hits"), "in_chunks": c.get("chunks", []),
                 "options": c.get("options", []) or ([o.strip() for o in e["tbd"].split("|")] if e["tbd"] else [])}
@@ -664,6 +649,10 @@ box-shadow:0 10px 26px -12px rgba(0,0,0,.5);font-size:13.5px;line-height:1.5}
 .tip .tr{color:var(--accent);font-weight:600}
 .tip .tr.alt{font-weight:500;opacity:.9}
 .tip .when{color:var(--muted);font-weight:400;font-size:12.5px}
+/* 같은 번역어라도 뜻의 폭이 다를 때 */
+.tip .sense{font-size:12.5px;line-height:1.5;color:var(--muted);margin-top:6px;
+padding-left:9px;border-left:2px solid var(--accent-soft)}
+.tip .sense b{color:var(--ink);font-weight:600}
 .tip .meta{color:var(--muted);font-size:12.5px;margin-top:5px}
 .tip .row{display:flex;gap:6px;margin-top:9px}
 .tip input{font:inherit;font-size:13px;flex:1;background:var(--ground);color:var(--ink);
@@ -788,6 +777,11 @@ VIEW_JS = r"""
       h+='<div class="tr alt">'+TermTools.escHTML(a.value)
         +(a.when?' <span class="when">'+TermTools.escHTML(a.when)+'</span>':'')+'</div>';
     });
+    (t.senses||[]).forEach(function(x){
+      h+='<div class="sense"><b>'+TermTools.escHTML(x.case)+'</b> '
+        +TermTools.escHTML(x.means)+'</div>';
+    });
+    if(t.same_as) h+='<div class="meta">같은 뜻: <b>'+TermTools.escHTML(t.same_as)+'</b></div>';
     if(t.context)       h+='<div class="meta">'+TermTools.escHTML(t.context)+'</div>';
     if(t.definition_en) h+='<div class="meta">'+TermTools.escHTML(t.definition_en)+'</div>';
     if(t.notation)      h+='<div class="meta">표기: '+TermTools.escHTML(t.notation)+'</div>';
@@ -1289,7 +1283,8 @@ def glossary_payload():
                "hits": c.get("hits") or 0, "chunks": c.get("chunks") or [],
                "quotes": c.get("quotes") or [],
                "options": c.get("options") or [], "tbd": e["tbd"] or "",
-               "alternates": e.get("alternates") or [], "decided": decided}
+               "alternates": e.get("alternates") or [], "senses": e.get("senses") or [],
+               "same_as": e.get("same_as") or "", "decided": decided}
         out.append(rec)
         # 확정된 번역어도 번역본에서 짚을 수 있게 함께 보낸다.
         # 같은 내용을 그대로 물려 주고 짚을 글자만 바꾼다.

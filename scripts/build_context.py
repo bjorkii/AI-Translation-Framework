@@ -82,6 +82,10 @@ def main(cid, as_json=False):
         # 맥락에 따라 번역어가 갈리는 용어는 조건까지 함께 싣는다.
         # 이것이 없으면 번역하는 쪽이 기본값 하나만 보고 맥락 구분을 잃는다.
         print("  %-22s → %-14s (%d회)%s" % (h["term"], G.describe(h), h["count"], note))
+        # 같은 번역어라도 뜻의 폭이 다를 때가 있다. 무엇을 고를지가 아니라
+        # 어떤 뜻으로 쓰였는지를 알려 준다.
+        for ln in G.sense_lines(h):
+            print("      · " + ln)
     if pending:
         print("\n[결정 대기 %d개 — [TBD] 표시하고 넘어갈 것]" % len(pending))
         for h in pending:

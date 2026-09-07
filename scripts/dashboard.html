@@ -102,6 +102,8 @@ padding:16px 18px;margin-bottom:12px}
 .term .why{color:var(--muted);font-size:13.5px;margin:0 0 12px}
 .term .why.alt{margin:0 0 4px;color:var(--ink)}
 .term .why.alt b{color:var(--accent)}
+.term .why.sense{margin:0 0 4px;padding-left:10px;border-left:2px solid var(--accent-soft)}
+.term .why.sense b{color:var(--ink)}
 .q{display:grid;grid-template-columns:64px 1fr;gap:11px;padding-left:11px;
 border-left:2px solid var(--border2);margin-bottom:8px;align-items:baseline}
 .q.hid{display:none}
@@ -393,6 +395,9 @@ function termCard(t,isEdit){
   for(const a of (t.alternates||[]))
     h+='<p class="why alt">또는 <b>'+esc(a.value)+"</b>"
       +(a.when?' <span class="tip">— '+esc(a.when)+"</span>":"")+"</p>";
+  for(const x of (t.senses||[]))
+    h+='<p class="why sense"><b>'+esc(x.case)+"</b> "+esc(x.means)+"</p>";
+  if(t.same_as) h+='<p class="why">같은 뜻: <b>'+esc(t.same_as)+"</b></p>";
   if(t.context) h+='<p class="why">'+esc(t.context)+"</p>";
   else if(t.definition_en) h+='<p class="why">'+esc(t.definition_en)+"</p>";
   if(t.hits)
