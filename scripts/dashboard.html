@@ -434,7 +434,10 @@ async function tick(){
     const typing=(pressing) ||
                  (ae && (ae.tagName==="INPUT"||ae.tagName==="TEXTAREA")
                   && el("glossary").contains(ae));
-    el("live").textContent=(typing?"입력 중 · ":"")+"갱신 "+new Date().toLocaleTimeString("ko-KR");
+    const now=new Date();
+    const stamp=now.toLocaleDateString("ko-KR",{year:"numeric",month:"long",day:"numeric"})
+               +" "+now.toLocaleTimeString("ko-KR");
+    el("live").textContent=(typing?"입력 중 · ":"")+stamp+" 최종업데이트";
     if(txt===lastJSON) return;
     lastJSON=txt; S=JSON.parse(txt);
     el("book").textContent=(S.info.title||"")+" · "+(S.info.publisher||"")+" · "+(S.info.direction||"");
