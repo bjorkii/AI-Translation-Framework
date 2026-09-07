@@ -1,0 +1,75 @@
+# 새 프로젝트 시작 묶음을 자동으로 만들어 릴리스에 붙인다.
+#
+# 팀원은 저장소를 clone 하지 않는다. clone 하면 이 책의 원문·번역문·도판·원본 PDF 까지
+# 따라오기 때문이다(6MB 넘는 PDF 포함). 릴리스에 붙은 zip 파일 하나만 받으면 된다.
+#
+# 언제 도는가
+#   · v 로 시작하는 태그를 밀 때 (git tag v1.0 && git push origin v1.0)
+#   · Actions 탭에서 손으로 돌릴 때
+#
+# make_starter.py 는 표준 라이브러리만 쓰므로 따로 설치할 것이 없다.
+
+name: 시작 묶음 만들기
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:          # Actions 탭에서 손으로 돌리기
+
+permissions:
+  contents: write             # 릴리스에 파일을 붙이려면 필요하다
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 시작 묶음 만들기
+        run: python3 scripts/make_starter.py --zip
+
+      - name: 담긴 것 확인
+        run: |
+          echo "── 파일 수 ──"
+          find starter -type f | wc -l
+          echo "── 이 책의 작업물이 섞이지 않았는지 ──"
+          for d in source chapters stages reviews assets; do
+            n=$(find "starter/$d" -type f ! -name '.gitkeep' 2>/dev/null | wc -l)
+            echo "  $d/: $n"
+            if [ "$n" -ne 0 ]; then
+              echo "!! $d 에 파일이 들어갔습니다. make_starter.py 를 확인하세요."
+              exit 1
+            fi
+          done
+
+      # 태그를 밀었을 때만 릴리스를 만든다. 손으로 돌린 경우에는 아래 아티팩트로 받는다.
+      - name: 릴리스에 붙이기
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: starter-*.zip
+          body: |
+            ## 새 번역 프로젝트 시작하기
+
+            아래 `starter-*.zip` 을 받아 압축을 풀고, 폴더 안의 실행 파일을 더블클릭하세요.
+
+            | 쓰는 컴퓨터 | 더블클릭할 파일 |
+            |---|---|
+            | 맥 | **대시보드 실행.command** |
+            | 윈도우 | **대시보드 실행.bat** |
+
+            자세한 안내는 압축 안의 `README.md` 에 있습니다.
+
+            > 이 저장소를 통째로 내려받지 마세요. 진행 중인 책의 원문·번역문·도판이
+            > 함께 들어 있습니다. 새 프로젝트에는 이 zip 만 있으면 됩니다.
+
+      - name: 손으로 돌렸을 때 받아 갈 파일
+        if: "!startsWith(github.ref, 'refs/tags/v')"
+        uses: actions/upload-artifact@v4
+        with:
+          name: 번역프로젝트-시작
+          path: starter-*.zip
