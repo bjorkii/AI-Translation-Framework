@@ -297,6 +297,65 @@ def rename_term(term, new_term, actor="user"):
     return True, "원어 수정: %s → %s" % (term, new_term)
 
 
+
+# ------------------------------------------------- 마커에 대한 사용자 판단
+
+def _yaml_str(v):
+    """YAML 한 줄 문자열. 따옴표와 줄바꿈만 다루면 충분하다."""
+    return '"%s"' % str(v).replace("\\", "\\\\").replace('"', '\\"').replace("\n", " ").strip()
+
+def resolve_marker(cid, page, marker, verdict, note, nth=0):
+    """마커에 대한 판단을 source/overrides/<청크>.yaml 에 남긴다.
+
+    이 파일은 애초에 '사람이 원본을 보고 내린 판단을 원문을 다시 만들어도 잃지 않게'
+    하려고 만든 것이다. 화면에서 내린 판단도 같은 곳에 쌓는다.
+
+    다만 판단은 **원문을 다시 만들어야** 반영된다. 화면에는 그렇게 알린다.
+    """
+    if not cid or not marker:
+        return False, "무엇에 대한 판단인지 알 수 없습니다."
+    if verdict not in ("ok", "join", "split", "recheck"):
+        return False, "알 수 없는 판단입니다: %s" % verdict
+    d = ROOT / "source" / "overrides"
+    d.mkdir(parents=True, exist_ok=True)
+    f = d / (cid + ".yaml")
+    if not f.exists():
+        f.write_text("# %s 시각 판독 결과 (파이프라인 2.0 에스컬레이션)\n"
+                     "# 화면에서 내린 판단이 여기에 쌓입니다.\n"
+                     "resolved:\n" % cid, encoding="utf-8")
+    txt = f.read_text(encoding="utf-8")
+    if "resolved:" not in txt:
+        txt = txt.rstrip() + "\n\nresolved:\n"
+    entry = ["  - page: %s" % _yaml_str(page),
+             "    marker: %s" % marker,
+             "    verdict: %s" % verdict]
+    if nth:
+        entry.append("    nth: %d" % int(nth))
+    if note:
+        entry.append("    note: %s" % _yaml_str(note))
+    entry += ["    by: user", "    at: %s" % date.today().isoformat()]
+    f.write_text(txt.rstrip() + "\n" + "\n".join(entry) + "\n", encoding="utf-8")
+    log_decision("marker", "%s p.%s %s" % (cid, page, marker), verdict, note, "user")
+    return True, "판단을 기록했습니다. 원문을 다시 만들면 반영됩니다."
+
+def resolve_visual(cid, marker, ok, note):
+    """표·도판의 원본 대조 결과를 reviews/<청크>-visual.json 에 남긴다.
+    scripts/check_visual.py 가 읽는 형식 그대로다."""
+    if not cid or not marker:
+        return False, "무엇에 대한 판단인지 알 수 없습니다."
+    d = ROOT / "reviews"; d.mkdir(exist_ok=True)
+    f = d / ("%s-visual.json" % cid)
+    try:
+        cur = json.loads(f.read_text(encoding="utf-8")) if f.exists() else {}
+    except Exception:
+        cur = {}
+    cur[marker] = {"ok": bool(ok), "note": note,
+                   "at": datetime.now().isoformat(timespec="seconds"), "by": "user"}
+    f.write_text(json.dumps(cur, ensure_ascii=False, indent=1), encoding="utf-8")
+    log_decision("visual", "%s %s" % (cid, marker[:40]), "확인" if ok else "재작업 필요",
+                 note, "user")
+    return True, "확인 결과를 기록했습니다."
+
 # ------------------------------------------------------- 마크다운 렌더링
 
 # 강조(*, **, ***) — 여는 표시와 닫는 표시가 실제로 짝을 이룰 때만 서식으로 본다.
@@ -440,7 +499,16 @@ def md_to_html(md):
                     out.append("</aside>"); in_box -= 1
                 continue
             cls, label = _marker_style(tag)
-            out.append('<div class="%s">%s</div>' % (cls, _html.escape(label)))
+            kind = ("visual" if tag.startswith("VISUAL-CHECK")
+                    else "line" if tag.startswith("LINEBREAK-UNCERTAIN")
+                    else "layout" if tag.startswith("LAYOUT-UNCERTAIN") else "")
+            attr = ""
+            if kind:
+                pg = re.search(r"p\.([^\s·]+)", tag)
+                attr = (' data-mk="%s" data-mkind="%s" data-page="%s"'
+                        % (_html.escape(tag, quote=True), kind,
+                           _html.escape(pg.group(1) if pg else "", quote=True)))
+            out.append('<div class="%s"%s>%s</div>' % (cls, attr, _html.escape(label)))
             continue
         if not line.strip():
             close(); continue
@@ -584,9 +652,73 @@ border:1px solid var(--border);border-radius:6px;padding:5px 8px}
 .tip button{font:inherit;font-size:12.5px;background:var(--surface2,var(--ground));color:var(--ink);
 border:1px solid var(--border2);border-radius:6px;padding:5px 10px;cursor:pointer}
 .tip .hintline{color:var(--faint);font-size:12px;margin-top:7px}
+/* 마커에 직접 답하기 */
+.marker{position:relative}
+.mk{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:7px}
+.mk button{font:inherit;font-size:12px;background:var(--surface);color:var(--ink);
+border:1px solid var(--border2);border-radius:6px;padding:3px 10px;cursor:pointer}
+.mk button:hover{border-color:var(--accent)}
+.mk input{font:inherit;font-size:12.5px;flex:1 1 220px;min-width:160px;background:var(--surface);
+color:var(--ink);border:1px solid var(--border);border-radius:6px;padding:4px 8px}
+.mk .said{color:var(--accent);font-size:12px}
 """
 
 VIEW_JS = r"""
+// 마커에 사용자가 직접 답한다. 원본을 열어 보는 사람이 가장 잘 아는 판단이고,
+// 메모만으로 시각 확인이 불필요해지는 경우도 많다.
+(function(){
+  var BTN={
+    line:   [["이어지는 문장","join"],["새 문단","split"]],
+    layout: [["순서 맞음","ok"],["확인 필요","recheck"]],
+    visual: [["원본과 맞음","ok"],["틀림","recheck"]]
+  };
+  // 문단 경계 표시에는 쪽번호가 없다. 원문에서와 같은 규칙으로 — 뒤따르는
+  // 페이지 마커에서 — 유도한다. 한 쪽에 같은 표시가 여럿이면 순번도 함께 보낸다.
+  var marks=[].slice.call(document.querySelectorAll(".pagemark"));
+  function pageOf(el){
+    if(el.dataset.page) return el.dataset.page;
+    for(var i=0;i<marks.length;i++){
+      if(el.compareDocumentPosition(marks[i]) & Node.DOCUMENT_POSITION_FOLLOWING){
+        var m=/p\.([^\s]+)/.exec(marks[i].textContent||""); return m?m[1]:"";
+      }
+    }
+    return "";
+  }
+  var order={};
+  document.querySelectorAll(".marker[data-mkind]").forEach(function(el){
+    var k=el.dataset.mkind+"|"+pageOf(el);
+    order[k]=(order[k]||0)+1; el.dataset.nth=order[k];
+  });
+  document.querySelectorAll(".marker[data-mkind]").forEach(function(el){
+    var kind=el.dataset.mkind, box=document.createElement("div"); box.className="mk";
+    BTN[kind].forEach(function(b){
+      var x=document.createElement("button"); x.textContent=b[0]; x.dataset.v=b[1];
+      box.appendChild(x);
+    });
+    var memo=document.createElement("input");
+    memo.placeholder="메모 (선택) — 무엇을 보고 그렇게 판단했는지";
+    box.appendChild(memo); el.appendChild(box);
+
+    box.addEventListener("click", function(e){
+      var b=e.target.closest("button[data-v]"); if(!b) return;
+      var url = kind==="visual" ? "/api/visual" : "/api/marker";
+      var body = kind==="visual"
+        ? {chunk:CHUNK, marker:el.dataset.mk, ok:(b.dataset.v==="ok"), note:memo.value.trim()}
+        : {chunk:CHUNK, page:pageOf(el), nth:Number(el.dataset.nth||0),
+           marker:(kind==="line"?"LINEBREAK-UNCERTAIN":"LAYOUT-UNCERTAIN"),
+           verdict:b.dataset.v, note:memo.value.trim()};
+      b.disabled=true;
+      fetch(url,{method:"POST",headers:{"Content-Type":"application/json"},
+                 body:JSON.stringify(body)})
+        .then(function(r){return r.json();})
+        .then(function(j){
+          box.innerHTML='<span class="said">'+TermTools.escHTML(j.message||"기록했습니다.")+"</span>";
+        })
+        .catch(function(){ b.disabled=false; });
+    });
+  });
+})();
+
 // 용어보기 — 켜면 본문에서 용어집 용어를 짚어 준다.
 // hover 는 읽기 전용, 누르면 고정되고 그 상태에서 고친다. 툴팁 안에서 바로 고치게 하면
 // 마우스를 옮기는 사이 hover 가 풀려 닫히기 때문이다.
@@ -1026,10 +1158,11 @@ def _wrap_compare(cid, body):
             "<meta name='viewport' content='width=device-width,initial-scale=1'>"
             "<title>%s · 단계별 대조</title><style>%s%s</style></head><body><div class='page'>"
             "<div class='crumb'>%s · 원문과 단계별 번역 대조</div>%s</div>"
-            "<script>var CID=%s;const TERMS=%s;const KIND='compare';%s</script>"
+            "<script>var CID=%s;const CHUNK=%s;const TERMS=%s;const KIND='compare';%s</script>"
             "<script src='/terms.js'></script><script>%s</script></body></html>"
             % (cid, VIEW_CSS, COMPARE_CSS, _html.escape(cid), body,
-               json.dumps(cid), json.dumps(glossary_payload(), ensure_ascii=False),
+               json.dumps(cid), json.dumps(cid),
+               json.dumps(glossary_payload(), ensure_ascii=False),
                COMPARE_JS, VIEW_JS))
 
 def glossary_payload():
@@ -1071,11 +1204,11 @@ def render_view(kind, cid):
             "<button id='termsBtn' class='tbtn' title='본문에서 용어집 용어를 짚어 줍니다'>"
             "용어보기</button></div>"
             "<div class='page' id='page'>%s</div>"
-            "<script>const TERMS=%s;const KIND=%s;</script>"
+            "<script>const TERMS=%s;const KIND=%s;const CHUNK=%s;</script>"
             "<script src='/terms.js'></script><script>%s</script></body></html>"
             % (cid, label, VIEW_CSS, _html.escape(cid), _html.escape(label), body,
                json.dumps(glossary_payload(), ensure_ascii=False),
-               json.dumps(kind), VIEW_JS))
+               json.dumps(kind), json.dumps(cid), VIEW_JS))
 
 def set_approval(cid, block, status, note, label=None):
     """문단 확인 상태를 기록한다. 현재 상태와 이력을 함께 남긴다.
@@ -1156,7 +1289,7 @@ class Handler(BaseHTTPRequestHandler):
     def do_POST(self):
         if not any(self.path.startswith(x) for x in
                    ("/api/decide", "/api/add", "/api/delete", "/api/rename", "/api/approve",
-                    "/api/restart", "/api/quit")):
+                    "/api/restart", "/api/quit", "/api/marker", "/api/visual")):
             return self._send(404, json.dumps({"error": "not found"}))
         n = int(self.headers.get("Content-Length", "0"))
         try:
@@ -1169,6 +1302,13 @@ class Handler(BaseHTTPRequestHandler):
                 # 새 실행기가 이 서버를 넘겨받으려고 부른다
                 RESTART["quit"] = True
                 ok, msg = True, "서버를 종료합니다."
+            elif self.path.startswith("/api/marker"):
+                ok, msg = resolve_marker(req.get("chunk", ""), req.get("page", ""),
+                                         req.get("marker", ""), req.get("verdict", ""),
+                                         req.get("note", ""), req.get("nth", 0))
+            elif self.path.startswith("/api/visual"):
+                ok, msg = resolve_visual(req.get("chunk", ""), req.get("marker", ""),
+                                         bool(req.get("ok")), req.get("note", ""))
             elif self.path.startswith("/api/approve"):
                 ok, msg = set_approval(req.get("chunk", ""), req.get("block", ""),
                                        req.get("status", ""), req.get("note", ""),

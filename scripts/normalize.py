@@ -803,16 +803,20 @@ def apply_overrides(text, chap):
         pg = str(r.get("page", ""))
         verdict = r.get("verdict", "ok")
         want = r.get("match")
+        nth = r.get("nth")          # 한 쪽에 같은 표시가 여럿일 때 몇 번째인가 (1부터)
         pat = re.compile(r"\n*<!-- " + re.escape(key) + r"[^>]*-->\n")
-        pos = 0
+        pos, seen = 0, 0
         while True:
             m = pat.search(text, pos)
             if not m:
                 break
             if page_at(m.start()) != pg:
                 pos = m.end(); continue
+            seen += 1
             after = text[m.end():m.end() + 120]
             if want and not after.lstrip().startswith(want):
+                pos = m.end(); continue
+            if nth and seen != int(nth):
                 pos = m.end(); continue
             if verdict == "join":
                 text = text[:m.start()] + " " + text[m.end():]
