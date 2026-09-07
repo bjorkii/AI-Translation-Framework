@@ -10,7 +10,8 @@ import os, socket, sys, threading, time, urllib.request, webbrowser
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-PORTS = [8765, 8766, 8767, 8768]
+# 기본 포트 목록. PORTS=8899 처럼 환경변수로 바꿀 수 있다(두 번째 인스턴스·시험용).
+PORTS = [int(x) for x in os.environ.get("PORTS", "8765,8766,8767,8768").split(",")]
 TITLE = "번역 프로젝트 대시보드"
 
 def say(*a): print(*a, flush=True)
@@ -38,6 +39,30 @@ def busy(port):
         return s.connect_ex(("127.0.0.1", port)) == 0
     finally:
         s.close()
+
+def watch_and_reload(paths, interval=1.0):
+    """서버 코드가 바뀌면 스스로 다시 뜬다.
+
+    dashboard.py 는 프로세스가 시작할 때 한 번 읽혀 메모리에 올라간다. 그 뒤로는
+    브라우저를 새로고침해도 파일을 다시 읽지 않으므로, 코드를 고쳐도 반영되지 않는다
+    (md 파일은 요청마다 읽으므로 곧바로 반영된다 — 이 차이가 헷갈리기 쉽다).
+
+    파이썬이 알아서 다시 읽어 주지는 않는다. Flask·Django 의 개발 서버는 감시기를
+    따로 붙여 그렇게 하는데, 여기 쓰는 표준 http.server 에는 그런 것이 없다.
+    그래서 직접 붙인다.
+    """
+    stamps = {p: p.stat().st_mtime for p in paths if p.exists()}
+    while True:
+        time.sleep(interval)
+        for p, was in list(stamps.items()):
+            try:
+                now = p.stat().st_mtime
+            except OSError:
+                continue
+            if now != was:
+                say(""); say("%s 가 바뀌었습니다. 대시보드를 다시 불러옵니다." % p.name)
+                os.environ["DASH_RELOADED"] = "1"     # 브라우저를 또 열지 않도록
+                os.execv(sys.executable, [sys.executable] + sys.argv)
 
 def open_when_ready(url, port):
     for _ in range(60):                     # 최대 30초
@@ -75,13 +100,18 @@ def main():
     say("  · 잠시 뒤 브라우저가 자동으로 열립니다.")
     say("  · 이 검은 창을 닫으면 대시보드가 꺼집니다. 창은 그대로 두세요.")
     say("  · 끝낼 때는 이 창을 닫거나 Ctrl+C 를 누르세요.")
+    say("  · 대시보드 코드가 바뀌면 알아서 다시 뜹니다. 브라우저만 새로고침하세요.")
     say("")
 
-    threading.Thread(target=open_when_ready, args=(url, port), daemon=True).start()
+    if not os.environ.get("DASH_RELOADED"):
+        threading.Thread(target=open_when_ready, args=(url, port), daemon=True).start()
 
     os.environ["PORT"] = str(port)
     sys.path.insert(0, str(ROOT / "scripts"))
     os.chdir(str(ROOT))
+    # 서버 코드가 바뀌면 알아서 다시 뜬다 (아래 watch_and_reload 설명 참조)
+    watched = sorted((ROOT / "scripts").glob("*.py"))
+    threading.Thread(target=watch_and_reload, args=(watched,), daemon=True).start()
     try:
         import dashboard
         from http.server import HTTPServer
