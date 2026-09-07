@@ -114,15 +114,15 @@
   },
   {
    "chunk": "ch03",
-   "line": 36,
+   "line": 40,
    "marker": "VISUAL-CHECK",
    "page": "20",
    "why": "표·상자 구조 대조 필요",
-   "context": "• Work on an uncluttered table in a well-lit and ventilated area. • Before starting, clean the worktable. Film easily picks up dirt and dust. • Wipe metal equipment with a cleaner that does not leave a residue. Rinse plastic tools and counters with distilled water. • Wear cotton gloves when handling film. However, damaged perforations and splices may snag cotton fabric. If it becomes necessary to "
+   "context": "- Above all, resist the impulse to view your film with a projector. Projectors will inflict additional damage to films already weakened by shrinkage, tears, or decay. / <!-- VISUAL-CHECK 도판 · 원서 p.20 · 원본과 대조 필요 --> / ![Wear cotton gloves when handling film.](assets/figures/ch03-p20-1.png)"
   },
   {
    "chunk": "ch03",
-   "line": 42,
+   "line": 46,
    "marker": "VISUAL-CHECK",
    "page": "21",
    "why": "표·상자 구조 대조 필요",
@@ -130,7 +130,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 58,
+   "line": 62,
    "marker": "VISUAL-CHECK",
    "page": "22",
    "why": "표·상자 구조 대조 필요",
@@ -138,7 +138,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 62,
+   "line": 66,
    "marker": "VISUAL-CHECK",
    "page": "22",
    "why": "표·상자 구조 대조 필요",
@@ -146,7 +146,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 66,
+   "line": 70,
    "marker": "VISUAL-CHECK",
    "page": "22",
    "why": "표·상자 구조 대조 필요",
@@ -154,7 +154,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 70,
+   "line": 74,
    "marker": "VISUAL-CHECK",
    "page": "22",
    "why": "표·상자 구조 대조 필요",
@@ -162,23 +162,23 @@
   },
   {
    "chunk": "ch03",
-   "line": 74,
+   "line": 78,
    "marker": "VISUAL-CHECK",
    "page": "22",
    "why": "표·상자 구조 대조 필요",
-   "context": "![Brace the core with your hand to prevent it from popping out.](assets/figures/ch03-p22-4.png) / <!-- VISUAL-CHECK 도판 · 원서 p.22 · 원본과 대조 필요 --> / ![Then gently wipe mold from the film roll with the cloth. For more on cleaning, see 3.6.](assets/figures/ch03-p22-5.png)"
+   "context": "![Brace the core with your hand to prevent it from popping out.](assets/figures/ch03-p22-4.png) / <!-- VISUAL-CHECK 도판 · 원서 p.22 · 원본과 대조 필요 --> / ![If you find mold, mildew, or fungus, you will need to clean the infected film. Dampen a lint-free cloth with film cleaner.](assets/figures/ch03-p22-5.png)"
   },
   {
    "chunk": "ch03",
-   "line": 80,
+   "line": 82,
    "marker": "VISUAL-CHECK",
    "page": "22",
    "why": "표·상자 구조 대조 필요",
-   "context": "If you find mold, mildew, or fungus, you will need to clean the infected film. Dampen a lint-free cloth with film cleaner. / <!-- VISUAL-CHECK 도판 · 원서 p.22 · 원본과 대조 필요 --> / ![](assets/figures/ch03-p22-6.png)"
+   "context": "![If you find mold, mildew, or fungus, you will need to clean the infected film. Dampen a lint-free cloth with film cleaner.](assets/figures/ch03-p22-5.png) / <!-- VISUAL-CHECK 도판 · 원서 p.22 · 원본과 대조 필요 --> / ![Then gently wipe mold from the film roll with the cloth. For more on cleaning, see 3.6.](assets/figures/ch03-p22-6.png)"
   },
   {
    "chunk": "ch03",
-   "line": 88,
+   "line": 90,
    "marker": "VISUAL-CHECK",
    "page": "23",
    "why": "표·상자 구조 대조 필요",
@@ -186,7 +186,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 94,
+   "line": 96,
    "marker": "VISUAL-CHECK",
    "page": "23",
    "why": "표·상자 구조 대조 필요",
@@ -194,7 +194,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 109,
+   "line": 111,
    "marker": "VISUAL-CHECK",
    "page": "24",
    "why": "표·상자 구조 대조 필요",
@@ -202,7 +202,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 113,
+   "line": 115,
    "marker": "VISUAL-CHECK",
    "page": "24",
    "why": "표·상자 구조 대조 필요",
@@ -210,7 +210,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 131,
+   "line": 133,
    "marker": "VISUAL-CHECK",
    "page": "25",
    "why": "표·상자 구조 대조 필요",
@@ -218,7 +218,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 140,
+   "line": 142,
    "marker": "VISUAL-CHECK",
    "page": "25",
    "why": "표·상자 구조 대조 필요",
@@ -226,7 +226,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 144,
+   "line": 146,
    "marker": "VISUAL-CHECK",
    "page": "25",
    "why": "표·상자 구조 대조 필요",
@@ -234,7 +234,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 204,
+   "line": 206,
    "marker": "VISUAL-CHECK",
    "page": "27",
    "why": "표·상자 구조 대조 필요",
@@ -242,7 +242,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 215,
+   "line": 217,
    "marker": "VISUAL-CHECK",
    "page": "27",
    "why": "표·상자 구조 대조 필요",
@@ -250,7 +250,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 227,
+   "line": 229,
    "marker": "LINEBREAK-UNCERTAIN",
    "page": "28",
    "why": "문단이 이어지는지 판단 필요",
@@ -258,7 +258,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 230,
+   "line": 232,
    "marker": "LINEBREAK-UNCERTAIN",
    "page": "28",
    "why": "문단이 이어지는지 판단 필요",
@@ -266,7 +266,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 245,
+   "line": 247,
    "marker": "VISUAL-CHECK",
    "page": "29",
    "why": "표·상자 구조 대조 필요",
@@ -274,7 +274,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 249,
+   "line": 251,
    "marker": "VISUAL-CHECK",
    "page": "29",
    "why": "표·상자 구조 대조 필요",
@@ -282,7 +282,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 255,
+   "line": 257,
    "marker": "VISUAL-CHECK",
    "page": "29",
    "why": "표·상자 구조 대조 필요",
@@ -290,7 +290,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 261,
+   "line": 263,
    "marker": "VISUAL-CHECK",
    "page": "30",
    "why": "표·상자 구조 대조 필요",
@@ -298,7 +298,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 287,
+   "line": 289,
    "marker": "VISUAL-CHECK",
    "page": "31",
    "why": "표·상자 구조 대조 필요",
@@ -306,7 +306,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 301,
+   "line": 303,
    "marker": "VISUAL-CHECK",
    "page": "32",
    "why": "표·상자 구조 대조 필요",
@@ -314,7 +314,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 339,
+   "line": 341,
    "marker": "VISUAL-CHECK",
    "page": "33",
    "why": "표·상자 구조 대조 필요",
@@ -370,7 +370,7 @@
   },
   {
    "chunk": "ch05",
-   "line": 181,
+   "line": 191,
    "marker": "VISUAL-CHECK",
    "page": "51",
    "why": "표·상자 구조 대조 필요",
@@ -378,7 +378,7 @@
   },
   {
    "chunk": "ch05",
-   "line": 200,
+   "line": 210,
    "marker": "VISUAL-CHECK",
    "page": "52",
    "why": "표·상자 구조 대조 필요",
@@ -386,7 +386,7 @@
   },
   {
    "chunk": "ch05",
-   "line": 252,
+   "line": 262,
    "marker": "VISUAL-CHECK",
    "page": "53",
    "why": "표·상자 구조 대조 필요",
@@ -394,7 +394,7 @@
   },
   {
    "chunk": "ch05",
-   "line": 274,
+   "line": 284,
    "marker": "VISUAL-CHECK",
    "page": "54",
    "why": "표·상자 구조 대조 필요",
@@ -402,7 +402,7 @@
   },
   {
    "chunk": "ch05",
-   "line": 278,
+   "line": 288,
    "marker": "VISUAL-CHECK",
    "page": "54",
    "why": "표·상자 구조 대조 필요",
@@ -410,7 +410,7 @@
   },
   {
    "chunk": "ch05",
-   "line": 282,
+   "line": 292,
    "marker": "VISUAL-CHECK",
    "page": "54",
    "why": "표·상자 구조 대조 필요",
@@ -418,7 +418,7 @@
   },
   {
    "chunk": "ch05",
-   "line": 286,
+   "line": 296,
    "marker": "VISUAL-CHECK",
    "page": "54",
    "why": "표·상자 구조 대조 필요",
@@ -426,7 +426,7 @@
   },
   {
    "chunk": "ch05",
-   "line": 290,
+   "line": 300,
    "marker": "VISUAL-CHECK",
    "page": "54",
    "why": "표·상자 구조 대조 필요",
@@ -434,7 +434,7 @@
   },
   {
    "chunk": "ch05",
-   "line": 330,
+   "line": 340,
    "marker": "VISUAL-CHECK",
    "page": "57",
    "why": "표·상자 구조 대조 필요",
@@ -442,7 +442,7 @@
   },
   {
    "chunk": "ch05",
-   "line": 352,
+   "line": 362,
    "marker": "VISUAL-CHECK",
    "page": "58",
    "why": "표·상자 구조 대조 필요",
@@ -482,11 +482,11 @@
   },
   {
    "chunk": "ch06",
-   "line": 177,
+   "line": 179,
    "marker": "VISUAL-CHECK",
    "page": "66",
    "why": "표·상자 구조 대조 필요",
-   "context": "### 6.6 WHAT MAKES A GOOD FILM CONTAINER? / <!-- VISUAL-CHECK 도판 · 원서 p.66 · 원본과 대조 필요 --> / ![Film containers come in different sizes and designs, some vented to allow air circulation.](assets/figures/ch06-p66-1.png)"
+   "context": "Film containers—boxes or cans—should be convenient to use and should protect the film from dust and physical damage. As the physical unit for organizing collections, containers should also provide a rigid surface for shelving and give some measure of fire and water protection. Some also give additional protection in shipping. / <!-- VISUAL-CHECK 도판 · 원서 p.66 · 원본과 대조 필요 --> / ![Film containers com"
   },
   {
    "chunk": "ch06",

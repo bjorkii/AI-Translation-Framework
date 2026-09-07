@@ -77,6 +77,11 @@ def find_figures(page, exclude=()):
             continue
         if rw > w*0.85 and rh > h*0.85:  # 페이지 테두리
             continue
+        # 머리말·꼬리말 띠 안에만 있는 도형은 도판이 아니다.
+        # 쪽번호 자리의 전폭 사각형이 좌우 두 사진을 다리처럼 이어 붙여,
+        # 원서 p.22의 아래 사진 두 장이 한 장으로 합쳐지고 캡션 하나가 사라졌다.
+        if r[1] > h*0.88 or r[3] < h*0.09:
+            continue
         rects.append(r)
     rects = [r for r in rects
              if (r[2]-r[0]) >= 8 and (r[3]-r[1]) >= 4
@@ -145,7 +150,10 @@ def split_by_captions(fig, blocks, body_size):
             top = bottom + 2
     if not parts:
         return [fig]
-    if fig[3] - top > 8:
+    # 캡션 아래로 남는 자투리는 도판 크기가 될 때만 살린다.
+    # 캡션이 쪽 맨 아래에 있으면 그 밑에는 쪽번호밖에 없어서,
+    # 예전 기준(8pt)으로는 '54' 한 글자만 담긴 빈 그림이 만들어졌다.
+    if fig[3] - top >= MIN_H:
         parts.append((fig[0], top, fig[2], fig[3]))
     return parts
 
@@ -159,7 +167,11 @@ def caption_for(fig, blocks, body_size):
         d = bb[1] - fig[3]
         if not (-2 <= d <= CAP_GAP):
             continue
-        if bb[2] < fig[0] - 30 or bb[0] > fig[2] + 30:   # 가로로 겹치지 않으면 남의 캡션
+        # 가로로 실제 겹쳐야 이 도판의 캡션이다. 예전에는 30pt 여유를 뒀는데,
+        # 두 단으로 나란히 놓인 사진에서는 그 여유가 옆 단까지 닿아
+        # 왼쪽 사진이 오른쪽 사진의 캡션을 가져갔다 (원서 p.22 아래 두 장).
+        ov = min(bb[2], fig[2]) - max(bb[0], fig[0])
+        if ov <= 0 or ov < (bb[2] - bb[0]) * 0.4:
             continue
         if d < bestd:
             best, bestd = b, d

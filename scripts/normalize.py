@@ -455,6 +455,30 @@ def fix_glued_sentences(text):
     """
     return re.sub(r"(?<=[a-z0-9]{2})\.(?=[A-Z])", ". ", text)
 
+def bulletize(text):
+    """한 문단으로 뭉친 글머리표 목록을 마크다운 목록으로 되돌린다.
+
+    원서는 항목마다 줄을 바꾸고 • 를 찍는데, 조판 줄바꿈을 지우는 과정에서
+    한 문단으로 붙는다. 목록이 산문처럼 보이면 읽는 사람도 번역하는 쪽도
+    항목의 경계를 잃는다. 표 안의 • 는 칸 내용이므로 건드리지 않는다.
+    """
+    out = []
+    for block in text.split("\n\n"):
+        s = block.strip()
+        if s.count("•") < 2 or s.startswith(("|", "<!--")) or "\n|" in s:
+            out.append(block); continue
+        quote = s.startswith(">")
+        body = re.sub(r"^>\s?", "", s, flags=re.M) if quote else s
+        head, _, rest = body.partition("•")
+        items = [x.strip() for x in rest.split("•") if x.strip()]
+        if len(items) < 2:
+            out.append(block); continue
+        lines = ([head.strip()] if head.strip() else []) + ["- " + x for x in items]
+        if quote:
+            lines = ["> " + l for l in lines]
+        out.append("\n".join(lines))
+    return "\n\n".join(out)
+
 def split_fn_defs(txt):
     """한 블록에 여러 각주가 뭉쳐 있는 경우 번호 기준으로 분리"""
     parts = re.split(r"(?<=[.\"”’])\s+(?=\d{1,2}\.\s*[A-Z“\"])", txt)
@@ -711,8 +735,16 @@ def main(pdf, p0, p1, chap, outpath=None, parser="prose"):
             lines = [x for x in lines if x]
             if not lines: continue
             txt = " ".join(lines); y0, x0 = b["bbox"][1], b["bbox"][0]
+            # 머리말·쪽번호 제거.
+            # 다만 도판 안에 있는 글은 건드리지 않는다 — 쪽 아래쪽에 놓인 사진의 캡션이
+            # 경계선(88%) 바로 밑에 걸리면 러닝 푸터로 오인돼 사라진다
+            # (원서 p.20 'Wear cotton gloves when handling film.' 이 그랬다).
+            # 쪽번호만은 예외 없이 지운다. 도판이 쪽 아래까지 내려오면 쪽번호가
+            # 그 안에 들어가 '도판 라벨 94' 같은 것이 생긴다.
             if (y0 < h*0.09 or y0 > h*0.88) and len(txt) < 60:
-                stats["headers_removed"] += 1; continue
+                pageno = re.fullmatch(r"[\divxlcdm]{1,7}", txt.strip(), re.I)
+                if pageno or not any(figmod.inside(b["bbox"], f, pad=6) for f in figs):
+                    stats["headers_removed"] += 1; continue
             size = max(s["size"] for l in b["lines"] for s in l["spans"])
             rec = dict(x0=x0, y0=y0, size=size, lines=lines, txt=txt, raw=b, bbox=b["bbox"])
             # 표 안의 텍스트는 본문에서 뺀다 (표는 통째로 다시 만든다)
@@ -768,7 +800,13 @@ def main(pdf, p0, p1, chap, outpath=None, parser="prose"):
         lefts  = [b for b in body if b["x0"] <= w*0.45 and len(b["txt"]) > 40]
         multi = bool(rights and lefts)
         def order(x0, y0):
-            return ((0 if x0 <= w*0.45 else 1), y0) if multi else (0, y0)
+            # 같은 높이에 나란히 놓인 것은 왼쪽부터 읽는다.
+            # 눈금은 1pt로 좁게 잡는다. 원서 p.22의 아래 사진 두 장은 y가 0.2pt 달라서
+            # 오른쪽이 먼저 나왔는데, 이만큼은 같은 높이로 봐야 한다. 반대로 4pt로
+            # 넓히면 1pt 차이로 놓인 서로 다른 단의 블록까지 같은 칸이 되어,
+            # 페이지를 넘어 이어지던 문장이 표 제목 뒤로 밀려 끊겼다(p.19→p.20).
+            band = round(y0)
+            return ((0 if x0 <= w*0.45 else 1), band, x0) if multi else (0, band, x0)
         # 표·도판·상자도 본문과 같은 기준으로 줄 세운다.
         # (예전에는 페이지 끝에 몰아 넣어서 원서 p.60처럼 '표 제목 → 본문 → 표' 로 뒤집혔다)
         elems = [("body", order(b["x0"], b["y0"]), b) for b in body]
@@ -974,6 +1012,7 @@ def main(pdf, p0, p1, chap, outpath=None, parser="prose"):
     flush_mark(); flush_warn()
     text = re.sub(r"\n{3,}", "\n\n", "".join(out))
     text = fix_glued_sentences(text)
+    text = bulletize(text)
     text, n_ovr = apply_overrides(text, chap)
     stats["overrides"] = n_ovr
     if outpath: open(outpath, "w").write(text)

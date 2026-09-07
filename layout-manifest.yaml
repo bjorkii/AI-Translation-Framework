@@ -265,14 +265,14 @@ elements:
     type: image
     chunk: ch03
     source_page: "22"
-    bbox: [54.0, 493.7, 414.4, 641.8]
+    bbox: [54.2, 493.9, 225.4, 616.7]
     asset: assets/figures/ch03-p22-5.png
     status: pending
   - id: ch03-p22-6
     type: image
     chunk: ch03
     source_page: "22"
-    bbox: [54.0, 641.8, 414.4, 678.7]
+    bbox: [243.2, 493.7, 414.4, 615.8]
     asset: assets/figures/ch03-p22-6.png
     status: pending
   - id: ch03-p23-1
@@ -659,7 +659,7 @@ elements:
     type: image
     chunk: ch05
     source_page: "54"
-    bbox: [54.0, 392.9, 414.0, 678.7]
+    bbox: [54.2, 392.9, 414.0, 636.7]
     asset: assets/figures/ch05-p54-5.png
     status: pending
   - id: fn-ch05-014
@@ -1010,7 +1010,7 @@ elements:
     type: image
     chunk: appB
     source_page: "94"
-    bbox: [53.4, 237.2, 414.8, 678.7]
+    bbox: [53.4, 237.2, 414.8, 657.7]
     asset: assets/figures/appB-p94-1.png
     status: pending
 
@@ -1081,8 +1081,8 @@ pages:
     first_line: "The following procedures assume the most basic setup—portabl"
   - chunk: ch03
     source_page: "22"
-    paragraph_count: 7
-    first_line: "If you find mold, mildew, or fungus, you will need to clean "
+    paragraph_count: 6
+    first_line: ""
   - chunk: ch03
     source_page: "23"
     paragraph_count: 7
