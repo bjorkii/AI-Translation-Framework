@@ -55,7 +55,7 @@ entries:
     basis: null
     first_chapter: glossary
     locked: false
-  - term: "A-D Strips"
+  - term: "A-D Strip"
     translation: "A-D 스트립"
     definition_en: "Diagnostic tool developed by the Image Permanence Institute to test the level of acetate decay in cellulose acetate base film."
     definition_ko: null
@@ -720,7 +720,7 @@ entries:
     basis: null
     first_chapter: glossary
     locked: false
-  - term: "Intertitles"
+  - term: "Intertitle"
     translation: "간자막"
     definition_en: "In silent films, the screens of text containing dialogue and other information about the narrative or action."
     definition_ko: null
@@ -1046,7 +1046,8 @@ entries:
     basis: null
     first_chapter: glossary
     locked: false
-  - term: "Perforations"
+  - term: "Perforation"
+    same_as: "sprocket hole"
     translation: null
     definition_en: "Holes, usually along the film edge, used to advance the film strip through a camera, printer, or projector. Also known as sprocket holes."
     definition_ko: null
@@ -1737,3 +1738,22 @@ entries:
     basis: null
     first_chapter: ch01
     locked: true
+  - term: "media"
+    translation: "매체"
+    alternates:
+      - value: "미디어아트"
+        when: "Media Arts 처럼 art와 함께 쓰이는 복합어. 관행 표기를 따른다 (Independent Media Arts Preservation → 독립 미디어아트 보존)"
+    senses:
+      - case: "mainstream media 처럼 언론·방송·배급을 아우를 때"
+        means: "매체. '언론'으로 옮기면 뜻이 지나치게 좁아진다 — 물리적 매질이 아니라 전달·유통을 포함하는 넓은 개념"
+      - case: "access media, output media 처럼 물리적 매질일 때"
+        means: "매체. 필름·비디오처럼 내용을 담는 그릇을 가리킨다"
+    notation: "보존/아카이브 도메인에서는 '언론'보다는 '매체'가 적합한 경우가 많음."
+    definition_en: null
+    definition_ko: null
+    source: "대시보드에서 추가"
+    principle_form: null
+    adopted_form: null
+    basis: null
+    first_chapter: null
+    locked: false
