@@ -14,4 +14,12 @@ if ! command -v python3 >/dev/null 2>&1; then
   exit 1
 fi
 
-exec python3 scripts/launch.py
+# 프로젝트 전용 파이썬 환경(.venv)을 준비한다.
+# 컴퓨터에 파이썬이 여러 개 깔려 있어도 늘 같은 환경으로 돌게 하려는 것이다.
+if ! python3 scripts/bootstrap.py --quiet; then
+  echo
+  read -n 1 -s -r -p "아무 키나 누르면 창이 닫힙니다."
+  exit 1
+fi
+
+exec .venv/bin/python scripts/launch.py

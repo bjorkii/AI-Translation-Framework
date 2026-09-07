@@ -15,3 +15,6 @@ intermediate/pagescan/
 # 도판 이미지는 PDF에서 다시 뽑을 수 있으므로 버전관리하지 않는다
 # (scripts/normalize_all.py --force 로 재생성)
 assets/figures/
+
+# 프로젝트 전용 파이썬 환경 (scripts/bootstrap.py 가 만든다)
+.venv/

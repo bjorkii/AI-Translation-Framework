@@ -18,4 +18,13 @@ if not defined PY (
   exit /b 1
 )
 
-%PY% scripts\launch.py
+rem 프로젝트 전용 파이썬 환경(.venv)을 준비한다.
+rem 컴퓨터에 파이썬이 여러 개 깔려 있어도 늘 같은 환경으로 돌게 하려는 것이다.
+%PY% scripts\bootstrap.py --quiet
+if errorlevel 1 (
+  echo.
+  pause
+  exit /b 1
+)
+
+.venv\Scripts\python.exe scripts\launch.py
