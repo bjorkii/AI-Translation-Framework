@@ -100,6 +100,8 @@ padding:16px 18px;margin-bottom:12px}
 .term.edit{border-color:var(--accent);background:var(--surface)}
 .term h3{margin:0 0 3px;font-size:18px}
 .term .why{color:var(--muted);font-size:13.5px;margin:0 0 12px}
+.term .why.alt{margin:0 0 4px;color:var(--ink)}
+.term .why.alt b{color:var(--accent)}
 .q{display:grid;grid-template-columns:64px 1fr;gap:11px;padding-left:11px;
 border-left:2px solid var(--border2);margin-bottom:8px;align-items:baseline}
 .q.hid{display:none}
@@ -387,6 +389,10 @@ function termCard(t,isEdit){
   const key=esc(t.term), cur=t.current||t.translation||"";
   let h='<div class="term'+(isEdit?" edit":"")+'"><h3>'+esc(dispTerm(t))
     +(t.full?' <span class="tip" style="font-size:14px;font-weight:400">— '+esc(t.full)+"</span>":"")+"</h3>";
+  // 맥락에 따라 갈리는 번역어. 자유 서술(표기 메모)에 묻어 두면 번역본에서 짚히지 않는다.
+  for(const a of (t.alternates||[]))
+    h+='<p class="why alt">또는 <b>'+esc(a.value)+"</b>"
+      +(a.when?' <span class="tip">— '+esc(a.when)+"</span>":"")+"</p>";
   if(t.context) h+='<p class="why">'+esc(t.context)+"</p>";
   else if(t.definition_en) h+='<p class="why">'+esc(t.definition_en)+"</p>";
   if(t.hits)

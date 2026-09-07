@@ -3,24 +3,25 @@
 
     python3 scripts/review_pass2.py ch01
 """
-import re, sys
+import re
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import glossary_io as G, sys
 from pathlib import Path
 from collections import Counter
 
 ROOT = Path(__file__).resolve().parent.parent
 
 def load_glossary():
-    g = (ROOT / "glossary/glossary.yaml").read_text(encoding="utf-8")
+    """확정된 용어만. all_ko 에는 맥락별 대체 번역어까지 담는다."""
     out = []
-    for m in re.finditer(r'  - term: "(.*?)"\n(.*?)(?=\n  - term: |\Z)', g, re.S):
-        body = m.group(2)
-        def f(k):
-            mm = re.search(r'^\s{4}' + k + r':\s*"(.*?)"\s*$', body, re.M)
-            return mm.group(1) if mm else None
-        if f("translation") and "tbd:" not in body:
-            out.append({"term": m.group(1), "ko": f("translation"),
-                        "notation": f("notation"),
-                        "nomatch": [x.strip() for x in (f("nomatch") or "").split("|") if x.strip()]})
+    for e in G.load():
+        if e["translation"] and not e["tbd"]:
+            out.append({"term": e["term"], "ko": e["translation"],
+                        "all_ko": G.translations(e),
+                        "notation": e["notation"],
+                        "nomatch": [x.strip() for x in (e.get("nomatch") or "").split("|")
+                                    if x.strip()]})
     return out
 
 def main(cid):
@@ -39,9 +40,13 @@ def main(cid):
         pat = r"(?<![A-Za-z0-9])" + core + r"(?:s|es)?(?![A-Za-z0-9])"
         if not re.search(pat, hay, 0 if e["term"].isupper() else re.I):
             continue
-        base = re.split(r"[(（]", e["ko"])[0].strip()
-        if base and base not in tgt:
-            viol.append("%s → %s" % (e["term"], e["ko"]))
+        # 맥락에 따라 갈리는 번역어(alternates)도 지킨 것으로 본다.
+        # 기본값만 보면 'Storage → 스토리지' 처럼 맥락에 맞게 고른 올바른 번역이
+        # 위반으로 잡힌다.
+        cands = [re.split(r"[(（]", c)[0].strip() for c in e.get("all_ko") or [e["ko"]]]
+        cands = [c for c in cands if c]
+        if cands and not any(c in tgt for c in cands):
+            viol.append("%s → %s" % (e["term"], " / ".join(cands)))
             continue
         # 표기 규칙: '첫 등장' 병기가 지시된 용어는 원문 표기가 한 번은 나와야 함
         if e["notation"] and "첫 등장" in e["notation"] and "병기" in e["notation"]:

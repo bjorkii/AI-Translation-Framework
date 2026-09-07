@@ -64,10 +64,22 @@ def parse_glossary():
         def f(k):
             mm = re.search(r'^\s{4}' + k + r':\s*(?:"(.*?)"|(null))\s*$', body, re.M)
             return mm.group(1) if (mm and mm.group(1) is not None) else None
+        # 한 원어에 번역어가 여럿인 경우(맥락에 따라 갈림)를 담는다.
+        #   alternates:
+        #     - value: "스토리지"
+        #       when: "디지털 저장 맥락"
+        alts = []
+        ab = re.search(r"^\s{4}alternates:\s*$(.*?)(?=^\s{4}\w|\Z)", body, re.M | re.S)
+        if ab:
+            # value 뒤의 \s* 가 줄바꿈까지 먹으면 when 이 영영 안 잡힌다.
+            for m2 in re.finditer(r'-\s*value:\s*"(.*?)"[ \t]*(?:\n\s*when:\s*"(.*?)")?',
+                                  ab.group(1)):
+                alts.append({"value": m2.group(1), "when": m2.group(2) or ""})
         entries.append({
             "term": term, "translation": f("translation"), "tbd": f("tbd"),
             "notation": f("notation"), "context": f("context"), "full": f("full"),
             "definition_en": f("definition_en"), "source": f("source"),
+            "alternates": alts,
         })
     return entries
 
@@ -165,7 +177,7 @@ def build_state():
         c = ctx.get(e["term"], {}) or {}
         return {"term": e["term"], "translation": e["translation"], "tbd": e["tbd"],
                 "notation": e["notation"], "context": e["context"], "full": e["full"],
-                "definition_en": e["definition_en"],
+                "definition_en": e["definition_en"], "alternates": e.get("alternates") or [],
                 "quotes": c.get("quotes", []),
                 "hits": c.get("hits"), "in_chunks": c.get("chunks", []),
                 "options": c.get("options", []) or ([o.strip() for o in e["tbd"].split("|")] if e["tbd"] else [])}
@@ -635,16 +647,23 @@ border:1px solid var(--border);border-radius:7px;padding:4px 11px;cursor:pointer
 .page{padding-top:16px}
 /* 아직 정하지 않은 용어는 뚜렷하게, 확정된 용어는 은은하게 */
 .gt{cursor:help}
-/* 꺼 두었을 때는 표시를 지운다 (다시 훑지 않고 보이기만 바꾼다) */
-.terms-off .gt{background:none;box-shadow:none;border-bottom:0;cursor:auto;outline:0}
 .gt.todo{background:var(--mark-soft);box-shadow:inset 0 -2px 0 var(--mark)}
-.gt.done{border-bottom:1px dotted var(--faint)}
+.gt.done{border-bottom:1.5px dotted var(--accent)}
 .gt.pin{outline:2px solid var(--accent);outline-offset:1px;border-radius:2px}
-.tip{position:absolute;z-index:40;max-width:340px;background:var(--surface);
+/* 꺼 두었을 때는 표시를 지운다 (다시 훑지 않고 보이기만 바꾼다).
+   위의 .gt.todo / .gt.done 뒤에 와야 한다 — 우선순위가 같아 순서로 갈린다.
+   앞에 두었더니 꺼도 표시가 그대로 남았다. */
+.terms-off .gt,
+.terms-off .gt.todo,
+.terms-off .gt.done{background:none;box-shadow:none;border-bottom:0;cursor:auto;outline:0}
+.tip{position:absolute;z-index:40;max-width:420px;max-height:62vh;overflow:auto;
+background:var(--surface);
 border:1px solid var(--border2);border-radius:10px;padding:11px 13px;
 box-shadow:0 10px 26px -12px rgba(0,0,0,.5);font-size:13.5px;line-height:1.5}
 .tip h4{margin:0 0 4px;font-size:15px}
 .tip .tr{color:var(--accent);font-weight:600}
+.tip .tr.alt{font-weight:500;opacity:.9}
+.tip .when{color:var(--muted);font-weight:400;font-size:12.5px}
 .tip .meta{color:var(--muted);font-size:12.5px;margin-top:5px}
 .tip .row{display:flex;gap:6px;margin-top:9px}
 .tip input{font:inherit;font-size:13px;flex:1;background:var(--ground);color:var(--ink);
@@ -652,6 +671,25 @@ border:1px solid var(--border);border-radius:6px;padding:5px 8px}
 .tip button{font:inherit;font-size:12.5px;background:var(--surface2,var(--ground));color:var(--ink);
 border:1px solid var(--border2);border-radius:6px;padding:5px 10px;cursor:pointer}
 .tip .hintline{color:var(--faint);font-size:12px;margin-top:7px}
+/* 한 낱말이 여러 용어에 걸릴 때 (동의어 / 여러 원어가 같은 번역어) */
+.ttabs{display:flex;flex-wrap:wrap;gap:4px;margin:-2px 0 9px;
+border-bottom:1px solid var(--border);padding-bottom:7px}
+.ttab{font:inherit;font-size:12px;background:none;color:var(--muted);border:1px solid var(--border);
+border-radius:6px;padding:3px 9px;cursor:pointer}
+.ttab.on{background:var(--accent);color:var(--ground);border-color:var(--accent);font-weight:600}
+/* 용례 */
+.tq{margin-top:9px}
+.tqi{font-size:12.5px;line-height:1.5;color:var(--muted);padding:4px 0 4px 9px;
+border-left:2px solid var(--border)}
+.tqi.hid{display:none}
+.tqi a.p{color:var(--accent);text-decoration:none;font-variant-numeric:tabular-nums}
+.tqi mark{background:var(--mark-soft);color:var(--ink);padding:0 2px;border-radius:3px;font-weight:600}
+.tqmore{font:inherit;font-size:12px;background:none;border:0;color:var(--accent);
+cursor:pointer;padding:5px 0 0;text-decoration:underline}
+.topts{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+.topt{font:inherit;font-size:12.5px;background:var(--ground);color:var(--ink);
+border:1px solid var(--border2);border-radius:6px;padding:4px 10px;cursor:pointer}
+.topt:hover{border-color:var(--accent)}
 /* 마커에 직접 답하기 */
 .marker{position:relative}
 .mk{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:7px}
@@ -736,40 +774,108 @@ VIEW_JS = r"""
   function closeTip(){ if(tip){ tip.remove(); tip=null; }
     if(pinned){ pinned.classList.remove("pin"); pinned=null; } }
 
-  function showTip(el, pin){
-    closeTip();
-    var name=el.dataset.term;
-    var t=list.filter(function(x){ return x.term===name; })[0]; if(!t) return;
-    var en = t.ko ? t.translation : t.term;       // 용어집에 등록된 원어
+  function card(t, pin){
+    var en = t.ko ? (t.en||t.translation) : t.term;   // 용어집에 등록된 원어
     var ko = t.ko ? t.term : t.translation;
-    tip=document.createElement("div"); tip.className="tip";
-    var h='<h4>'+TermTools.escHTML(en)+(t.full?' <span class="meta">'+TermTools.escHTML(t.full)+'</span>':'')+'</h4>';
-    h+= ko ? '<div class="tr">'+TermTools.escHTML(ko)+'</div>'
+    var h='<h4>'+TermTools.escHTML(en)
+        +(t.full?' <span class="meta">— '+TermTools.escHTML(t.full)+'</span>':'')+'</h4>';
+    h+= ko ? '<div class="tr">'+TermTools.escHTML(ko)
+             +(t.alt_when?' <span class="when">'+TermTools.escHTML(t.alt_when)+'</span>':'')
+             +'</div>'
            : '<div class="meta">아직 번역어가 정해지지 않았습니다.</div>';
-    if(t.context) h+='<div class="meta">'+TermTools.escHTML(t.context)+'</div>';
-    if(t.notation) h+='<div class="meta">표기: '+TermTools.escHTML(t.notation)+'</div>';
-    if(t.hits) h+='<div class="meta">본문 등장 '+t.hits+'회</div>';
+    (t.alternates||[]).forEach(function(a){
+      if(a.value===ko) return;
+      h+='<div class="tr alt">'+TermTools.escHTML(a.value)
+        +(a.when?' <span class="when">'+TermTools.escHTML(a.when)+'</span>':'')+'</div>';
+    });
+    if(t.context)       h+='<div class="meta">'+TermTools.escHTML(t.context)+'</div>';
+    if(t.definition_en) h+='<div class="meta">'+TermTools.escHTML(t.definition_en)+'</div>';
+    if(t.notation)      h+='<div class="meta">표기: '+TermTools.escHTML(t.notation)+'</div>';
+    if(t.hits) h+='<div class="meta">본문 등장 '+t.hits+'회'
+                +((t.chunks&&t.chunks.length)?' · '+TermTools.escHTML(t.chunks.join(", ")):'')+'</div>';
+    var qs=t.quotes||[];
+    if(qs.length){
+      h+='<div class="tq" data-open="0">';
+      qs.forEach(function(q,i){
+        h+='<div class="tqi'+(i>=2?' hid':'')+'">'
+          +'<a class="p" target="_blank" href="/view?kind=source&id='+TermTools.escHTML(q.chunk||"")+'">원서 p.'
+          +TermTools.escHTML(q.page)+'</a> '
+          +TermTools.markHTML(TermTools.escHTML(q.text), en)+'</div>';
+      });
+      h+='</div>';
+      if(qs.length>2) h+='<button class="tqmore">용례 '+qs.length+'개 모두 보기</button>';
+    }
     if(pin){
-      h+='<div class="row"><input id="tipVal" value="'+TermTools.escHTML(ko||"")+'" placeholder="번역어">'
-       + '<button id="tipSave">저장</button></div>'
-       + '<div class="hintline">용어집 탭에서 더 자세히 고칠 수 있습니다.</div>';
+      if((t.options||[]).length){
+        h+='<div class="topts">';
+        (t.options||[]).forEach(function(o){
+          h+='<button class="topt" data-val="'+TermTools.escHTML(o)+'"'
+            +(ko===o?' class="topt sel"':'')+'>'+TermTools.escHTML(o)+'</button>';
+        });
+        h+='</div>';
+      }
+      // 용어집 카드와 같은 칸을 둔다. 표기 메모는 비어 있는 경우가 더 많아서,
+      // 보여주기만 해서는 '메모가 없다'는 것도 '칸이 없다'는 것도 구분되지 않는다.
+      h+='<div class="row"><input class="tipVal" value="'+TermTools.escHTML(ko||"")+'" placeholder="번역어"></div>'
+       + '<div class="row"><input class="tipFull" value="'+TermTools.escHTML(t.full||"")+'" placeholder="풀어쓴 이름 (선택)"></div>'
+       + '<div class="row"><input class="tipNote" value="'+TermTools.escHTML(t.notation||"")+'" placeholder="표기 규칙 메모 (선택)">'
+       + '<button class="tipSave" data-en="'+TermTools.escHTML(en)+'">저장</button></div>';
     } else {
       h+='<div class="hintline">눌러서 고정하면 여기서 고칠 수 있습니다.</div>';
     }
-    tip.innerHTML=h; document.body.appendChild(tip);
-    var r=el.getBoundingClientRect();
-    tip.style.left=Math.min(window.innerWidth-tip.offsetWidth-12, r.left)+"px";
-    tip.style.top=(window.scrollY+r.bottom+7)+"px";
-    if(pin){
-      pinned=el; el.classList.add("pin");
-      var inp=tip.querySelector("#tipVal"); inp.focus(); inp.select();
-      tip.querySelector("#tipSave").onclick=function(){
-        fetch("/api/decide",{method:"POST",headers:{"Content-Type":"application/json"},
-          body:JSON.stringify({term:en, choice:inp.value.trim(), actor:"user"})})
-          .then(function(r){return r.json();})
-          .then(function(){ location.reload(); });
-      };
+    return h;
+  }
+
+  function showTip(el, pin){
+    closeTip();
+    var name=el.dataset.term;
+    var hits=list.filter(function(x){ return x.term===name; });
+    if(!hits.length) return;
+    tip=document.createElement("div"); tip.className="tip";
+    var idx=0;
+    function draw(){
+      var h="";
+      // 한 낱말이 여러 용어에 걸릴 수 있다(동의어, 또는 여러 원어가 같은 번역어를 쓰는 경우).
+      // 그럴 때는 탭으로 모두 보인다.
+      if(hits.length>1){
+        h+='<div class="ttabs">';
+        hits.forEach(function(t,i){
+          var lbl = t.ko ? (t.en||t.translation) : t.term;
+          h+='<button class="ttab'+(i===idx?' on':'')+'" data-i="'+i+'">'+TermTools.escHTML(lbl)+'</button>';
+        });
+        h+='</div>';
+      }
+      h+=card(hits[idx], pin);
+      tip.innerHTML=h;
+      tip.querySelectorAll(".ttab").forEach(function(b){
+        b.onclick=function(e){ e.stopPropagation(); idx=Number(b.dataset.i); draw(); };
+      });
+      var more=tip.querySelector(".tqmore");
+      if(more) more.onclick=function(e){ e.stopPropagation();
+        tip.querySelectorAll(".tqi.hid").forEach(function(x){ x.classList.remove("hid"); });
+        more.remove(); };
+      if(pin){
+        var inp=tip.querySelector(".tipVal");
+        tip.querySelectorAll(".topt").forEach(function(b){
+          b.onclick=function(e){ e.stopPropagation(); inp.value=b.dataset.val; inp.focus(); };
+        });
+        var sv=tip.querySelector(".tipSave");
+        sv.onclick=function(e){ e.stopPropagation();
+          fetch("/api/decide",{method:"POST",headers:{"Content-Type":"application/json"},
+            body:JSON.stringify({term:sv.dataset.en, choice:inp.value.trim(),
+                                 full:(tip.querySelector(".tipFull")||{}).value||"",
+                                 note:(tip.querySelector(".tipNote")||{}).value||"",
+                                 actor:"user"})})
+            .then(function(r){return r.json();}).then(function(){ location.reload(); });
+        };
+        if(inp){ inp.focus(); inp.select(); }
+      }
     }
+    document.body.appendChild(tip); draw();
+    var r=el.getBoundingClientRect();
+    tip.style.left=Math.max(8, Math.min(window.innerWidth-tip.offsetWidth-12, r.left))+"px";
+    tip.style.top=(window.scrollY+r.bottom+7)+"px";
+    if(pin){ pinned=el; el.classList.add("pin"); }
   }
 
   function apply(){
@@ -1177,16 +1283,28 @@ def glossary_payload():
     for e in parse_glossary():
         c = ctx.get(e["term"], {}) or {}
         decided = bool(e["translation"]) and not e["tbd"]
-        out.append({"term": e["term"], "translation": e["translation"] or "",
-                    "full": e["full"] or "", "notation": e["notation"] or "",
-                    "context": e["context"] or e["definition_en"] or "",
-                    "hits": c.get("hits") or 0, "decided": decided})
-        # 확정된 번역어도 번역본에서 짚을 수 있게 함께 보낸다
+        rec = {"term": e["term"], "translation": e["translation"] or "",
+               "full": e["full"] or "", "notation": e["notation"] or "",
+               "context": e["context"] or "", "definition_en": e["definition_en"] or "",
+               "hits": c.get("hits") or 0, "chunks": c.get("chunks") or [],
+               "quotes": c.get("quotes") or [],
+               "options": c.get("options") or [], "tbd": e["tbd"] or "",
+               "alternates": e.get("alternates") or [], "decided": decided}
+        out.append(rec)
+        # 확정된 번역어도 번역본에서 짚을 수 있게 함께 보낸다.
+        # 같은 내용을 그대로 물려 주고 짚을 글자만 바꾼다.
         if decided and e["translation"]:
-            out.append({"term": e["translation"], "translation": e["term"],
-                        "full": e["full"] or "", "notation": e["notation"] or "",
-                        "context": e["context"] or e["definition_en"] or "",
-                        "hits": c.get("hits") or 0, "decided": True, "ko": True})
+            ko = dict(rec); ko["term"] = e["translation"]; ko["ko"] = True
+            ko["en"] = e["term"]
+            out.append(ko)
+        # 맥락에 따라 갈리는 번역어도 같은 원어를 가리키며 짚힌다.
+        # 이것이 없으면 '스토리지' 는 번역본에서 아무 표시도 받지 못한다.
+        for a in (e.get("alternates") or []):
+            if not a.get("value"):
+                continue
+            alt = dict(rec); alt["term"] = a["value"]; alt["ko"] = True
+            alt["en"] = e["term"]; alt["alt_when"] = a.get("when") or ""
+            out.append(alt)
     return out
 
 def render_view(kind, cid):

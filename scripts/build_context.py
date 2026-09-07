@@ -7,22 +7,16 @@
     python3 scripts/build_context.py ch01
     python3 scripts/build_context.py ch01 --json     # 기계 판독용
 """
-import json, re, sys
+import json, os, re, sys
 from pathlib import Path
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import glossary_io as G
 
 ROOT = Path(__file__).resolve().parent.parent
 
 def parse_glossary():
-    txt = (ROOT / "glossary/glossary.yaml").read_text(encoding="utf-8")
-    out = []
-    for m in re.finditer(r'  - term: "(.*?)"\n(.*?)(?=\n  - term: |\Z)', txt, re.S):
-        term, body = m.group(1), m.group(2)
-        def f(k):
-            mm = re.search(r'^\s{4}' + k + r':\s*(?:"(.*?)"|null)\s*$', body, re.M)
-            return mm.group(1) if (mm and mm.group(1) is not None) else None
-        out.append({"term": term, "translation": f("translation"), "tbd": f("tbd"),
-                    "notation": f("notation"), "definition_en": f("definition_en")})
-    return out
+    return G.load()
 
 def find_terms(text, entries):
     """청크 본문에 실제로 등장하는 용어만 (단어 경계 · 복수형 허용)"""
@@ -85,7 +79,9 @@ def main(cid, as_json=False):
     print("\n[확정 용어 %d개 — 이대로 사용]" % len(decided))
     for h in decided:
         note = ("  ※ " + h["notation"]) if h["notation"] else ""
-        print("  %-22s → %-14s (%d회)%s" % (h["term"], h["translation"], h["count"], note))
+        # 맥락에 따라 번역어가 갈리는 용어는 조건까지 함께 싣는다.
+        # 이것이 없으면 번역하는 쪽이 기본값 하나만 보고 맥락 구분을 잃는다.
+        print("  %-22s → %-14s (%d회)%s" % (h["term"], G.describe(h), h["count"], note))
     if pending:
         print("\n[결정 대기 %d개 — [TBD] 표시하고 넘어갈 것]" % len(pending))
         for h in pending:
