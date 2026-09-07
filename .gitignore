@@ -25,3 +25,7 @@ intermediate/manifest/
 # 시작 묶음 생성물 (scripts/make_starter.py 가 만든다)
 starter/
 starter-*.zip
+
+# 인간 번역 한국어판 — 사후 비교용 참고 자료일 뿐 이 파이프라인의 입력이 아니다.
+# (결정 기록: 이 프로젝트에서 참조하지 않기로 함) 저작권 문제도 있어 저장소에 두지 않는다.
+compare/
