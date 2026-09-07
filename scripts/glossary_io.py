@@ -131,3 +131,18 @@ def check_same_as(entries):
         if a and b and not (a & b):
             bad.append((e["term"], sorted(a), other["term"], sorted(b)))
     return bad
+
+def open_source_pdf(path):
+    """원서 PDF 를 연다. 없으면 사람이 읽을 수 있는 말로 알린다.
+
+    새 프로젝트를 막 시작한 사람이 가장 먼저 마주치는 상황이다.
+    파이썬 추적 기록(traceback)을 그대로 보여 주면 무엇을 해야 할지 알 수 없다.
+    """
+    import pymupdf
+    if not os.path.exists(path):
+        print("원서 PDF 를 찾지 못했습니다: %s" % path)
+        print("")
+        print("  1) intermediate/ 폴더에 원서 PDF 를 넣으세요.")
+        print("  2) structure-map.yaml 의 source: 를 그 파일 이름으로 맞추세요.")
+        raise SystemExit(2)
+    return pymupdf.open(path)

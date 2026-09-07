@@ -20,8 +20,10 @@ import os
 import re
 import sys
 
-import pymupdf
 import yaml
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import glossary_io as G
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MIN_LEN = 25          # 이보다 짧은 조각은 우연히 일치할 수 있어 보지 않는다
@@ -55,7 +57,7 @@ def main():
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
     gate = "--gate" in sys.argv
     M = yaml.safe_load(open(os.path.join(ROOT, "structure-map.yaml"), encoding="utf-8"))
-    doc = pymupdf.open(os.path.join(ROOT, M["source"]))
+    doc = G.open_source_pdf(os.path.join(ROOT, M["source"]))
     # 인쇄된 쪽번호는 PDF 페이지 라벨에서 가져온다. 산술(파일번호 - 오프셋)로 구하면
     # 앞부분의 로마숫자(i~xii)에서 어긋난다.
     def printed_of(i):

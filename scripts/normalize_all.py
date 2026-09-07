@@ -11,6 +11,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 MAP = yaml.safe_load(io.open(ROOT / "structure-map.yaml", encoding="utf-8"))
 PDF = ROOT / MAP["source"]
+if not PDF.exists():
+    print("원서 PDF 를 찾지 못했습니다: %s" % PDF)
+    print("")
+    print("  1) intermediate/ 폴더에 원서 PDF 를 넣으세요.")
+    print("  2) structure-map.yaml 의 source: 를 그 파일 이름으로 맞추세요.")
+    raise SystemExit(2)
 
 def chunks():
     out = []
