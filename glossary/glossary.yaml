@@ -165,7 +165,7 @@ entries:
     first_chapter: glossary
     locked: false
   - term: "Camera original"
-    translation: "카메라 오리지널"
+    translation: "촬영원본"
     context: "촬영 시 카메라에 걸린 필름 자체"
     definition_en: "Film exposed in the camera."
     definition_ko: null
@@ -428,7 +428,7 @@ entries:
     first_chapter: glossary
     locked: false
   - term: "Emulsion"
-    translation: "유제"
+    translation: "유제층"
     context: "실무 표준어(乳劑)"
     definition_en: "Image-forming layer within motion picture film."
     definition_ko: null
@@ -438,6 +438,8 @@ entries:
     basis: null
     first_chapter: glossary
     locked: false
+    full: "첫 등장시 원어 병기"
+
   - term: "Emulsion out"
     translation: null
     definition_en: "Film wound so that the base side faces the center of the reel."
@@ -1092,6 +1094,8 @@ entries:
     basis: null
     first_chapter: glossary
     locked: false
+    notation: "명시하지 않아도 될 경우에는 '필름'이 생략되기도 함."
+
   - term: "Printing"
     translation: null
     definition_en: "Process of duplicating motion picture film."
@@ -1449,6 +1453,8 @@ entries:
     basis: null
     first_chapter: glossary
     locked: false
+    full: "각 챕터 첫 등장시 원문 병기"
+
   - term: "Sprocket damage"
     translation: null
     definition_en: "Tears, rips, and other physical damage to film perforations. Generally caused by improper projection."
