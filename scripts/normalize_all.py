@@ -29,10 +29,14 @@ def main():
         if dest.exists() and not force and not args:
             print("건너뜀 (이미 있음): %s" % c["id"]); continue
         a, b = c["file"]
-        print("\n### %s  파일 %d-%d  (원서 %s-%s)  %s"
-              % (c["id"], a, b, c["printed"][0], c["printed"][1], c.get("title", "")))
+        # structure-map.yaml 의 parser 값(record / term_definition / rebuild)을 그대로 넘긴다.
+        # 이 값이 없으면 산문 규칙으로 처리한다.
+        pmode = c.get("parser") or "prose"
+        print("\n### %s  파일 %d-%d  (원서 %s-%s)  [%s]  %s"
+              % (c["id"], a, b, c["printed"][0], c["printed"][1], pmode, c.get("title", "")))
         r = subprocess.run([sys.executable, str(ROOT / "scripts" / "normalize.py"),
-                            str(PDF), str(a), str(b), c["id"], str(dest)],
+                            str(PDF), str(a), str(b), c["id"], str(dest),
+                            "--parser=%s" % pmode],
                            capture_output=True, text=True)
         if r.returncode:
             print("  !! 실패\n" + (r.stderr or "")[-800:]); continue

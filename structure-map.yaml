@@ -32,8 +32,14 @@ chapters:
 
 back_matter:
   # parser: 각 구간에 적용할 파서 유형 (파이프라인 2.0절 구간별 방침)
-  - {id: appA,   file: [105, 105], printed: [93, 93],   pages: 1, title: "Appendix A", parser: record}
-  - {id: appB,   file: [106, 106], printed: [94, 94],   pages: 1, title: "Appendix B", parser: record}
+  #   prose            산문 규칙 (문장부호 + 들여쓰기)
+  #   record           줄 좌표·볼드로 항목 경계를 잡는다 (명단·서지)
+  #   term_definition  볼드 표제어가 항목 경계 (원서 용어집). 산문 규칙이 이미 정확하다
+  #   rebuild          색인. 표제어·하위항목을 줄 단위로 뽑아 두고 번역본 기준으로 재구축
+  # 부록 A·B 는 명단이 아니라 '산문 도입부 + 도판'이다. 부록 A 의 에지코드 차트는
+  # 연도×기호 그리드라 텍스트 추출이 무의미해, 시각 판독 결과를 overrides 로 덮어쓴다.
+  - {id: appA,   file: [105, 105], printed: [93, 93],   pages: 1, title: "Appendix A", parser: prose}
+  - {id: appB,   file: [106, 106], printed: [94, 94],   pages: 1, title: "Appendix B", parser: prose}
   - {id: appC,   file: [107, 108], printed: [95, 96],   pages: 2, title: "Appendix C: Selected Film Preservation Laboratories", parser: record}
   - {id: appD,   file: [109, 110], printed: [97, 98],   pages: 2, title: "Appendix D: Selected Equipment and Supply Vendors", parser: record}
   - {id: gloss,  file: [111, 120], printed: [99, 108],  pages: 10, title: "Glossary", parser: term_definition, status: extracted}

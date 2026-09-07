@@ -39,16 +39,25 @@ def build_lexicon(doc):
         return LEX
     words = set()
     for pg in doc:
+        prev_hyphen = False
         for ln in pg.get_text().splitlines():
-            ln = ln.strip()
-            toks = ln.split()
+            toks = ln.strip().split()
+            if not toks:
+                prev_hyphen = False
+                continue
             for i, t in enumerate(toks):
                 # 줄 끝에 걸린 하이픈 토큰은 근거가 못 되므로 뺀다
                 if i == len(toks) - 1 and t.endswith("-"):
                     continue
+                # 앞 줄이 하이픈으로 끝났으면 이 줄 첫 토큰은 낱말의 뒤 토막이다.
+                # 이걸 어휘집에 넣으면 'nership'(partnership), 'whelmingly'(overwhelmingly)
+                # 같은 토막이 낱말로 등록되어, 합성어 판정이 거꾸로 뒤집힌다.
+                if i == 0 and prev_hyphen:
+                    continue
                 w = re.sub(r"^[^A-Za-z]+|[^A-Za-z-]+$", "", t).lower().strip("-")
                 if len(w) > 2:
                     words.add(w)
+            prev_hyphen = toks[-1].endswith("-")
     LEX = words
     return LEX
 
@@ -66,8 +75,29 @@ def dehyphen_join(left, right):
     keep = re.sub(r"[^a-z-]+$", "", keep); drop = re.sub(r"[^a-z]+$", "", drop)
     if keep in LEX and drop not in LEX:
         return left + head, False        # 합성어: 하이픈 유지
+    if drop in LEX:
+        return left[:-1] + head, True    # 분철: 하이픈 제거
+    # 어느 쪽도 어휘집에 없을 때. 양쪽 조각이 각각 낱말로 쓰이면 합성어로 본다.
+    # (stage-two, film-to-video 처럼 그 자리에서만 쓰인 합성어가 여기 걸린다.
+    #  이 갈래가 없으면 'stage- two' 가 'stagetwo' 로 붙어 버린다.)
+    a = stem.group(1).lower().strip("-").split("-")[-1]
+    b = re.sub(r"[^a-z]+$", "", head.lower())
+    if len(a) > 2 and len(b) > 2 and a in LEX and b in LEX:
+        return left + head, False        # 합성어: 하이픈 유지
     return left[:-1] + head, True        # 분철: 하이픈 제거
 TABLE_T = re.compile(r"^(TABLE|FIGURE|CHART)\s+\d+", re.I)
+
+def is_wordy(t):
+    """글자로 이루어진 덩어리인가 — 제목 판정의 전제.
+
+    큰 글씨라는 이유만으로 제목으로 보면, 부록A 에지코드 차트의 기호 행
+    (● ▲ ■ + x)이 '## ● ● ▲ ■ …' 이라는 제목이 된다. 기호는 제목이 아니다.
+    """
+    core = t.strip()
+    if not core:
+        return False
+    letters = sum(1 for c in core if c.isalpha())
+    return letters >= 3 and letters / len(core) >= 0.4
 
 def is_caps_label(t):
     """전량 대문자 라벨/제목 조각 판정 (사이드바 제목, 표 제목, 캡션 헤더 등)"""
@@ -241,36 +271,60 @@ def page_labels(doc):
 
 FNMARK_O, FNMARK_C = "\x04", "\x02"      # 각주 참조 자리표시
 
-def styled_text(block, stats, mark_refs=False):
-    """스팬의 이탤릭 여부를 살려 마크다운으로 옮긴다.
+def _base_size(block, mark_refs):
+    """블록의 기준 글자 크기. 각주 참조(작은 숫자 스팬)를 가려내는 잣대."""
+    if not mark_refs:
+        return 0.0
+    sizes = [sp["size"] for l in block["lines"] for sp in l["spans"] if sp["text"].strip()]
+    return max(sizes) if sizes else 0.0
 
-    원서는 작품명·서명만 이탤릭으로 조판한다. 블록 전체를 이탤릭으로 감싸면
-    그 구분이 사라지므로, 이탤릭 구간만 *...* 로 표시한다.
+def _line_frags(line, base, mark_refs):
+    """한 줄의 스팬을 (텍스트, (이탤릭, 볼드)) 조각으로 만든다."""
+    parts = []
+    for sp in line["spans"]:
+        t = sp["text"]
+        if not t.strip() and not parts:
+            continue
+        if (mark_refs and base and sp["size"] <= base - 1.5
+                and re.fullmatch(r"\s*\d{1,2}\s*", t)):
+            parts.append((FNMARK_O + t.strip() + FNMARK_C, (False, False)))
+            continue
+        parts.append((t, (bool(sp["flags"] & 2), bool(sp["flags"] & 16))))
+    return parts
 
-    mark_refs=True면 '본문보다 뚜렷하게 작은 숫자 스팬'을 각주 참조로 보고
-    자리표시(\x04번호\x02)를 심는다. 텍스트 정규식으로 판정하면
-      · "collection?  1" 처럼 사이에 공백이 끼면 놓치고
-      · "6.5절", "00:05:18:05"(타임코드) 같은 것을 각주로 오인한다.
-    조판 정보(글자 크기)를 쓰면 두 문제가 함께 사라진다.
+def styled_lines(block, stats, mark_refs=False):
+    """블록을 줄 단위로 돌려준다. [{x0, y0, size, bold, text}, ...]
+
+    산문은 조판 줄바꿈을 지워 문단으로 되돌리면 되지만, 명단·서지·색인은
+    **줄 자체가 항목의 경계**다. 블록을 한 문자열로 합치면 그 경계가 사라져
+    색인 한 단(段)이 통째로 한 문단이 되고, 서지 한 항목이 두 조각으로 갈린다.
+    파이프라인 2.0-1절이 '항목 경계를 문장부호가 아니라 행 시작 좌표·볼드로
+    잡는다'고 적어둔 신호가 바로 이 좌표다.
     """
-    base = 0.0
-    if mark_refs:
-        sizes = [(len(sp["text"].strip()), sp["size"])
-                 for l in block["lines"] for sp in l["spans"] if sp["text"].strip()]
-        if sizes:
-            base = max(sz for _, sz in sizes)
-    frags = []          # (텍스트, 이탤릭여부)
-    for li, line in enumerate(block["lines"]):
-        parts = []
-        for sp in line["spans"]:
-            t = sp["text"]
-            if not t.strip() and not parts:
-                continue
-            if (mark_refs and base and sp["size"] <= base - 1.5
-                    and re.fullmatch(r"\s*\d{1,2}\s*", t)):
-                parts.append((FNMARK_O + t.strip() + FNMARK_C, (False, False)))
-                continue
-            parts.append((t, (bool(sp["flags"] & 2), bool(sp["flags"] & 16))))
+    base = _base_size(block, mark_refs)
+    out = []
+    for line in block["lines"]:
+        parts = _line_frags(line, base, mark_refs)
+        if not parts:
+            continue
+        txt = _emit_frags(parts)
+        if not txt:
+            continue
+        sizes = [sp["size"] for sp in line["spans"] if sp["text"].strip()]
+        out.append({"x0": round(line["bbox"][0], 1), "y0": line["bbox"][1],
+                    "y1": line["bbox"][3], "size": max(sizes) if sizes else 0.0,
+                    "bold": bool(parts[0][1][1]), "text": txt, "frags": parts})
+    return out
+
+def _join_frag_lines(lineparts, stats):
+    """여러 줄의 조각을 한 흐름으로 잇는다. 줄 끝 하이픈은 어휘집으로 판단해 붙인다.
+
+    서식(*이탤릭*)을 붙이기 **전에** 이어야 한다. 마크다운을 먼저 붙이면 줄 끝이
+    '-' 가 아니라 '-*' 가 되어 하이픈 판정이 빗나가고,
+    *film-to-video-* *tape transfer…* 처럼 한 낱말이 두 토막으로 남는다.
+    """
+    frags = []
+    for parts in lineparts:
         if not parts:
             continue
         if frags:
@@ -284,7 +338,26 @@ def styled_text(block, stats, mark_refs=False):
             else:
                 frags.append((" ", frags[-1][1]))
         frags.extend(parts)
-    # 이탤릭 구간을 묶어 표시
+    return frags
+
+def styled_text(block, stats, mark_refs=False):
+    """스팬의 이탤릭 여부를 살려 마크다운으로 옮긴다.
+
+    원서는 작품명·서명만 이탤릭으로 조판한다. 블록 전체를 이탤릭으로 감싸면
+    그 구분이 사라지므로, 이탤릭 구간만 *...* 로 표시한다.
+
+    mark_refs=True면 '본문보다 뚜렷하게 작은 숫자 스팬'을 각주 참조로 보고
+    자리표시(\x04번호\x02)를 심는다. 텍스트 정규식으로 판정하면
+      · "collection?  1" 처럼 사이에 공백이 끼면 놓치고
+      · "6.5절", "00:05:18:05"(타임코드) 같은 것을 각주로 오인한다.
+    조판 정보(글자 크기)를 쓰면 두 문제가 함께 사라진다.
+    """
+    base = _base_size(block, mark_refs)
+    return _emit_frags(_join_frag_lines(
+        [_line_frags(l, base, mark_refs) for l in block["lines"]], stats))
+
+def _emit_frags(frags):
+    """조각들을 마크다운 한 줄로 만든다. 같은 서식이 이어지는 구간을 묶어 표시한다."""
     def emit(buf, style):
         """style = (이탤릭, 볼드). 원서의 강조를 마크다운으로 옮긴다."""
         if not style or not any(style) or not buf.strip():
@@ -318,6 +391,70 @@ def join_lines(lines, stats):
             out += " " + ln
     return re.sub(r"\s{2,}", " ", out).strip()
 
+def split_records(lines):
+    """줄 목록을 항목 단위로 자른다. 한 단(段) 분량을 받는다.
+
+    경계 신호는 구간마다 다르다.
+      · 서지·색인 — 매달린 들여쓰기. 항목 첫 줄만 좌측 정렬선에서 시작한다
+                    (서지 72pt / 이어지는 줄 99pt, 색인 54pt / 하위항목 72pt).
+      · 업체 명단 — 들여쓰기가 없다. 대신 업체명이 볼드이고 항목 사이가 벌어진다
+                    (부록C 항목 안 2pt / 항목 사이 11pt).
+    어느 신호를 쓸지는 줄 좌표 분포를 보고 정한다. 문장부호와 대소문자는 보지 않는다 —
+    레코드는 URL이나 전화번호로 끝나 문장부호가 없고, 다음 항목은 대문자로 시작하므로
+    산문 규칙을 대면 경계마다 '불확실'이 찍힌다(부록C 22건이 전부 이 오탐이었다).
+    """
+    if not lines:
+        return []
+    xs = [l["x0"] for l in lines]
+    flush = min(xs)
+    indented = [x for x in xs if x > flush + 6]
+    use_indent = len(indented) >= max(2, len(xs) * 0.15)
+    gaps = [lines[i]["y0"] - lines[i-1]["y1"] for i in range(1, len(lines))]
+    tight = min(gaps) if gaps else 0.0        # 항목 안 줄 간격
+    recs, cur = [], []
+    for i, ln in enumerate(lines):
+        if not cur:
+            cur = [ln]; continue
+        at_flush = ln["x0"] <= flush + 2
+        if use_indent:
+            new = at_flush
+        else:
+            new = at_flush and (ln["bold"] or (ln["y0"] - lines[i-1]["y1"]) > tight + 3)
+        if new:
+            recs.append(cur); cur = [ln]
+        else:
+            cur.append(ln)
+    if cur:
+        recs.append(cur)
+    return recs
+
+def render_record(rec, mode, stats):
+    """항목 하나를 마크다운으로.
+
+    record  — 한 문단으로 잇는다 (업체 한 곳, 서지 한 건).
+    rebuild — 색인. 표제어와 하위항목을 각각 제 줄에 세운다. 이 구간은 번역본 기준으로
+              다시 만들 것이므로, 여기서는 표제어를 온전히 뽑아내는 것이 목적이다.
+    """
+    if mode != "rebuild":
+        return "\n%s\n" % _emit_frags(_join_frag_lines([l["frags"] for l in rec], stats))
+    head, subs = rec[0], rec[1:]
+    lines = ["- %s" % head["text"]]
+    lines += ["  - %s" % s["text"] for s in subs]
+    return "\n%s\n" % "\n".join(lines)
+
+def fix_glued_sentences(text):
+    """마침표 뒤 공백이 빠진 자리를 되살린다.
+
+    원본 PDF의 텍스트 레이어가 이미 붙여서 갖고 있다 — 추출 과정의 손실이 아니다
+    (예: 원서 p.6 각주 3의 'Brooklyn Institute of Arts.The 35mm gauge').
+    번역할 때 한 문장으로 읽히면 뜻이 어긋나므로 여기서 떼어 둔다.
+
+    앞에 소문자·숫자가 두 자 이상 올 때만 손댄다. 그래야 이니셜(J.Smith)이나
+    약어(U.S.National)를 건드리지 않는다. 뒤가 대문자일 때만이므로 URL(www.acvl.org)과
+    소수점(2003.034)도 그대로 남는다.
+    """
+    return re.sub(r"(?<=[a-z0-9]{2})\.(?=[A-Z])", ". ", text)
+
 def split_fn_defs(txt):
     """한 블록에 여러 각주가 뭉쳐 있는 경우 번호 기준으로 분리"""
     parts = re.split(r"(?<=[.\"”’])\s+(?=\d{1,2}\.\s*[A-Z“\"])", txt)
@@ -350,6 +487,8 @@ def apply_overrides(text, chap):
       join    앞 문단과 이어지는 한 문장 — 합치고 표시 제거
       split   별개의 문단이 맞음 — 표시만 제거
       replace text: 로 준 내용으로 해당 블록을 교체
+      replace_region  from: ~ to: 사이를 text: 로 통째 교체.
+                      기계가 원리상 뽑을 수 없는 조판(도표 그리드 등)에 쓴다.
     """
     import os
     f = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
@@ -371,6 +510,18 @@ def apply_overrides(text, chap):
 
     applied = 0
     for r in rules:
+        # 구간 통째로 교체. 기계가 애초에 뽑을 수 없는 조판(연도×기호 그리드 등)을
+        # 시각 판독 결과로 갈아끼운다. from: 부터 to: 직전까지가 대상이다.
+        if r.get("verdict") == "replace_region":
+            a, b = r.get("from"), r.get("to")
+            i = text.find(a) if a else 0
+            j = text.find(b, i + len(a or "")) if b else len(text)
+            if i < 0 or (b and j < 0):
+                print("  !! 구간 교체 실패 (경계 문자열을 찾지 못함): %r … %r" % (a, b))
+                continue
+            text = text[:i] + (r.get("text") or "").strip() + "\n\n" + text[j:]
+            applied += 1
+            continue
         key = r.get("marker", "")
         pg = str(r.get("page", ""))
         verdict = r.get("verdict", "ok")
@@ -399,7 +550,19 @@ def apply_overrides(text, chap):
             break
     return re.sub(r"\n{3,}", "\n\n", text), applied
 
-def main(pdf, p0, p1, chap, outpath=None):
+#   prose            산문 규칙 (문장부호 + 들여쓰기)
+#   record           줄 좌표·볼드로 항목 경계를 잡는다 (명단·서지)
+#   term_definition  볼드 표제어가 곧 항목 경계다. 원서 용어집은 표제어가 문단 첫머리에
+#                    볼드로 오고 정의가 이어지는 꼴이라, 산문 규칙이 이미 정확히 나눈다.
+#                    (전권 재생성해도 gloss 는 한 글자도 바뀌지 않는다.) 따라서 별도 조립기를
+#                    두지 않고 산문 경로를 쓰되, 값은 명시해 회귀 감시 대상으로 남긴다.
+#   rebuild          색인. 표제어·하위항목을 줄 단위로 뽑는다
+PARSERS = ("prose", "record", "term_definition", "rebuild")
+
+def main(pdf, p0, p1, chap, outpath=None, parser="prose"):
+    if parser not in PARSERS:
+        # 조용히 산문으로 떨어지면 전용 파서가 안 도는 것을 아무도 눈치채지 못한다.
+        raise SystemExit("알 수 없는 파서: %r (가능한 값: %s)" % (parser, ", ".join(PARSERS)))
     doc = pymupdf.open(pdf); labels = page_labels(doc)
     build_lexicon(doc)
     root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -498,14 +661,18 @@ def main(pdf, p0, p1, chap, outpath=None):
             if fi is None:
                 keep.append(b)
             else:
-                figclaim[fi]["labels"].append(b["txt"]); stats["fig_labels"] += 1
+                # 원시 " ".join(lines) 이 아니라 산문과 같은 경로를 태운다.
+                # 그래야 줄 끝 하이픈이 붙고(캡션에 몰려 있던 flexibil- ity 류)
+                # 이탤릭 작품명도 살아남는다.
+                figclaim[fi]["labels"].append(styled_text(b["raw"], stats))
+                stats["fig_labels"] += 1
         body = keep
 
         # 도판 바로 아래의 작은 글씨를 캡션으로 떼어 도판에 붙인다
         for fi, f in enumerate(figs):
             cap = figmod.caption_for(f, body, BODY)
             if cap is not None:
-                figclaim[fi]["caption"] = cap["txt"]
+                figclaim[fi]["caption"] = styled_text(cap["raw"], stats)
                 cap["is_caption_of"] = fi
         body = [b for b in body if b.get("is_caption_of") is None]
 
@@ -523,7 +690,28 @@ def main(pdf, p0, p1, chap, outpath=None):
                   for bi, bl in sides.items() if bl]
         elems.sort(key=lambda e: e[1])
         label = labels.get(i, f"?{i+1}")
-        if multi:
+
+        # ── 명단·서지·색인: 줄 좌표로 항목을 나눈다 (파이프라인 2.0-1절 전용 파서) ──
+        # 산문 경로는 블록을 한 문자열로 합쳐 버리므로 여기서 쓸 수 없다.
+        recgroups, pagenotes, rec_cols = {}, [], set()
+        if parser in ("record", "rebuild"):
+            colbody = {}
+            for b in body:
+                if b["size"] >= 13 or is_caps_label(b["txt"].replace("**", "")):
+                    continue                      # 제목·대문자 라벨은 산문 경로가 처리한다
+                if b["size"] < BODY - 0.4 and b["y0"] > h * 0.80:
+                    pagenotes.append(b)           # 쪽 아래 안내문 — 명단 사이에 끼면 안 된다
+                    continue
+                c = 0 if (not multi or b["x0"] <= w*0.45) else 1
+                colbody.setdefault(c, []).append(b)
+            for c, bs in colbody.items():
+                lns = []
+                for b in sorted(bs, key=lambda z: z["y0"]):
+                    lns.extend(styled_lines(b["raw"], stats))
+                lns.sort(key=lambda z: z["y0"])
+                recgroups[c] = split_records(lns)
+
+        if multi and parser not in ("record", "rebuild"):
             stats["layout_uncertain"] += 1
             # 경고는 바로 내보내지 않고 대기시킨다. 직전 페이지 마커가
             # 문장 한가운데에 들어가야 하는 경우가 있어, 마커 배치가 끝난 뒤에 놓는다.
@@ -583,6 +771,22 @@ def main(pdf, p0, p1, chap, outpath=None):
                 continue
             b = item
             stats["blocks"] += 1
+            if parser in ("record", "rebuild") and b in pagenotes:
+                continue                       # 쪽 아래 안내문은 페이지 끝에 따로 내보낸다
+            if parser in ("record", "rebuild") and not (
+                    b["size"] >= 13 or is_caps_label(b["txt"].replace("**", ""))):
+                # 그 단(段)의 항목을 첫 본문 블록 자리에서 한 번에 내보낸다.
+                # 항목은 블록 경계를 넘나들므로 블록마다 따로 내면 다시 쪼개진다.
+                c = 0 if (not multi or b["x0"] <= w*0.45) else 1
+                if c in rec_cols:
+                    continue
+                rec_cols.add(c)
+                flush_mark()
+                for rec in recgroups.get(c, []):
+                    out.append(render_record(rec, parser, stats))
+                    stats["paras"] += 1
+                flush_warn()
+                continue
             txt = styled_text(b["raw"], stats, mark_refs=True)
             # (a) 각주 참조번호(위첨자 스팬) -> 앵커 링크
             def _ref(m):
@@ -596,9 +800,9 @@ def main(pdf, p0, p1, chap, outpath=None):
 
             # 제목·라벨은 이미 마크다운 서식을 붙이므로 볼드 표시를 겹쳐 쓰지 않는다
             head = txt.replace("**", "")
-            if b["size"] >= 15:
+            if b["size"] >= 15 and is_wordy(head):
                 flush_mark(); out.append(f"\n## {head}\n"); stats["headings"] += 1; carry_idx = None; continue
-            if b["size"] >= 13:
+            if b["size"] >= 13 and is_wordy(head):
                 flush_mark(); out.append(f"\n### {head}\n"); stats["headings"] += 1; carry_idx = None; continue
             if (TABLE_T.match(head) and len(head) < 110) or is_caps_label(head):
                 # 표 제목 / 대문자 라벨: 본문 흐름에서 분리하고 연속 판정 대상에서 제외
@@ -639,6 +843,14 @@ def main(pdf, p0, p1, chap, outpath=None):
 
         # (표·도판·상자는 위 elems 루프에서 읽기 순서대로 이미 나갔다)
 
+        # 쪽 아래 안내문 -> 페이지 말미.
+        # 명단 구간에서 이 블록은 좌우 단을 가로질러 놓여 있어, 읽기 순서대로 줄을 세우면
+        # 알파벳순 명단 한가운데로 끼어든다 (부록C에서 Cinema Arts 와 CinemaLab 사이).
+        for b in pagenotes:
+            flush_mark()
+            out.append("\n%s\n" % styled_text(b["raw"], stats))
+            stats["paras"] += 1
+
         # 각주 정의 -> 페이지 텍스트 말미 (페이지 마커 직전)
         for b in fndefs:
             for num, body_txt in split_fn_defs(styled_text(b["raw"], stats)):
@@ -649,16 +861,23 @@ def main(pdf, p0, p1, chap, outpath=None):
 
     flush_mark(); flush_warn()
     text = re.sub(r"\n{3,}", "\n\n", "".join(out))
+    text = fix_glued_sentences(text)
     text, n_ovr = apply_overrides(text, chap)
     stats["overrides"] = n_ovr
     if outpath: open(outpath, "w").write(text)
-    print("=== 정규화 통계 (v3) ===")
+    print(f"=== 정규화 통계 (파서: {parser}) ===")
     for k, v in stats.items(): print(f"  {k}: {v}")
-    tot = stats["paras"] + stats["uncertain"]
-    print(f"  >>> 불확실 판정 비율: {stats['uncertain']}/{tot} = {stats['uncertain']/max(tot,1)*100:.1f}%")
+    # 최종 결과에서 다시 센다. 오버라이드로 해소된 표시까지 남은 것으로 세면
+    # 이미 판독을 마친 구간이 계속 '재작업 필요'로 보고된다.
+    left = text.count("LINEBREAK-UNCERTAIN")
+    paras = max(1, len([b for b in text.split("\n\n") if b.strip()]))
+    print(f"  >>> 불확실 판정 비율: {left}/{paras} = {left/paras*100:.1f}%")
     for n in notes[:6]: print("  · " + n)
     return text
 
 if __name__ == "__main__":
-    t = main(sys.argv[1], int(sys.argv[2]), int(sys.argv[3]), sys.argv[4],
-             sys.argv[5] if len(sys.argv) > 5 else None)
+    argv = [a for a in sys.argv[1:] if not a.startswith("--")]
+    pmode = next((a.split("=", 1)[1] for a in sys.argv[1:]
+                  if a.startswith("--parser=")), "prose")
+    t = main(argv[0], int(argv[1]), int(argv[2]), argv[3],
+             argv[4] if len(argv) > 4 else None, parser=pmode)
