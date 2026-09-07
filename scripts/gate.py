@@ -8,6 +8,10 @@
   2) 각주 앵커가 어긋나 있다                        (참조·정의 불일치)
   3) 마커가 제 페이지 구간을 벗어나 있다
   4) 시각 확인이 끝나지 않은 표·도판·불확실 구간이 있다
+  5) 이미 번역된 부분에서 원본의 이미지·표·각주가 빠져 있다
+
+5번은 번역을 마친 청크에만 걸린다. 다음 청크로 넘어가기 전에 앞 청크의 누락을
+잡아내려는 것이다 — 이미지 한 장이 조용히 빠진 것은 눈으로는 잘 보이지 않는다.
 """
 import subprocess, sys
 from pathlib import Path
@@ -35,6 +39,7 @@ def main():
         run("check_footnotes.py", [cid], "각주 앵커 무결성"),
         run("check_markers.py", [], "페이지 마커 위치"),
         run("check_visual.py", [cid, "--gate"], "표·도판 시각 확인"),
+        run("check_manifest.py", ["--gate"], "번역본 누락 검증(2.6절)"),
     ]
     if all(results):
         print("\n%s 번역을 시작해도 됩니다." % cid)

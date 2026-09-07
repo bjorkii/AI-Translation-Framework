@@ -1,0 +1,1521 @@
+# 위치정보 매니페스트 (파이프라인 2.6절) — 자동 생성물
+#
+# scripts/normalize_all.py 가 원문을 만들 때 남긴 조각을
+# scripts/build_manifest.py 가 모은 것이다. 직접 고치지 않는다.
+#
+# 쓰임
+#   누락 검증  번역이 끝난 뒤 scripts/check_manifest.py 가 최종 md 를 훑어
+#              빠진 이미지·표·각주와 페이지별 문단 수 불일치를 뽑아낸다.
+#   원본 재판독 이상이 보일 때 bbox 로 원본 페이지의 그 자리를 바로 찾아간다.
+#   회귀 대조  스크립트를 고친 전후로 이 파일이 같은지 비교한다.
+
+elements:
+  - id: ch01-p1-1
+    type: image
+    chunk: ch01
+    source_page: "1"
+    bbox: [72.0, 72.0, 432.0, 117.0]
+    asset: assets/figures/ch01-p1-1.png
+    status: pending
+  - id: fn-ch01-001
+    type: footnote
+    chunk: ch01
+    source_page: "1"
+    bbox: [73.0, 593.6, 432.3, 649.6]
+    status: pending
+  - id: fn-ch01-002
+    type: footnote
+    chunk: ch01
+    source_page: "2"
+    bbox: [55.0, 584.6, 414.3, 650.2]
+    status: pending
+  - id: fn-ch01-003
+    type: footnote
+    chunk: ch01
+    source_page: "2"
+    bbox: [55.0, 584.6, 414.3, 650.2]
+    status: pending
+  - id: fn-ch01-004
+    type: footnote
+    chunk: ch01
+    source_page: "2"
+    bbox: [55.0, 584.6, 414.3, 650.2]
+    status: pending
+  - id: fn-ch01-005
+    type: footnote
+    chunk: ch01
+    source_page: "3"
+    bbox: [73.0, 641.8, 382.5, 649.8]
+    status: pending
+  - id: ch01-p5-1
+    type: image
+    chunk: ch01
+    source_page: "5"
+    bbox: [261.2, 97.7, 431.8, 223.1]
+    asset: assets/figures/ch01-p5-1.png
+    status: pending
+  - id: ch02-p6-1
+    type: image
+    chunk: ch02
+    source_page: "6"
+    bbox: [54.0, 72.0, 414.0, 117.0]
+    asset: assets/figures/ch02-p6-1.png
+    status: pending
+  - id: fn-ch02-001
+    type: footnote
+    chunk: ch02
+    source_page: "6"
+    bbox: [55.0, 517.1, 414.3, 649.9]
+    status: pending
+  - id: fn-ch02-002
+    type: footnote
+    chunk: ch02
+    source_page: "6"
+    bbox: [55.0, 517.1, 414.3, 649.9]
+    status: pending
+  - id: fn-ch02-003
+    type: footnote
+    chunk: ch02
+    source_page: "6"
+    bbox: [55.0, 517.1, 414.3, 649.9]
+    status: pending
+  - id: ch02-p7-1
+    type: image
+    chunk: ch02
+    source_page: "7"
+    bbox: [72.0, 71.3, 432.0, 309.1]
+    asset: assets/figures/ch02-p7-1.png
+    status: pending
+  - id: fn-ch02-004
+    type: footnote
+    chunk: ch02
+    source_page: "7"
+    bbox: [73.0, 622.3, 431.0, 649.5]
+    status: pending
+  - id: ch02-p8-1
+    type: image
+    chunk: ch02
+    source_page: "8"
+    bbox: [54.0, 388.4, 225.0, 557.4]
+    asset: assets/figures/ch02-p8-1.png
+    status: pending
+  - id: fn-ch02-005
+    type: footnote
+    chunk: ch02
+    source_page: "8"
+    bbox: [55.0, 603.1, 414.3, 649.5]
+    status: pending
+  - id: fn-ch02-006
+    type: footnote
+    chunk: ch02
+    source_page: "8"
+    bbox: [55.0, 603.1, 414.3, 649.5]
+    status: pending
+  - id: ch02-p9-table1
+    type: table
+    chunk: ch02
+    source_page: "9"
+    bbox: [72.0, 92.6, 431.9, 184.3]
+    rows: 4
+    cols: 3
+    status: pending
+  - id: fn-ch02-007
+    type: footnote
+    chunk: ch02
+    source_page: "9"
+    bbox: [73.0, 613.1, 431.0, 649.9]
+    status: pending
+  - id: fn-ch02-008
+    type: footnote
+    chunk: ch02
+    source_page: "9"
+    bbox: [73.0, 613.1, 431.0, 649.9]
+    status: pending
+  - id: ch02-p10-2
+    type: image
+    chunk: ch02
+    source_page: "10"
+    bbox: [54.0, 513.9, 225.0, 629.5]
+    asset: assets/figures/ch02-p10-2.png
+    status: pending
+  - id: ch02-p10-1
+    type: image
+    chunk: ch02
+    source_page: "10"
+    bbox: [243.0, 66.2, 414.0, 179.5]
+    asset: assets/figures/ch02-p10-1.png
+    status: pending
+  - id: ch02-p12-1
+    type: image
+    chunk: ch02
+    source_page: "12"
+    bbox: [54.0, 63.0, 414.0, 225.4]
+    asset: assets/figures/ch02-p12-1.png
+    status: pending
+  - id: fn-ch02-009
+    type: footnote
+    chunk: ch02
+    source_page: "12"
+    bbox: [55.0, 632.1, 413.0, 649.7]
+    status: pending
+  - id: ch02-p13-table2
+    type: table
+    chunk: ch02
+    source_page: "13"
+    bbox: [72.0, 92.6, 431.9, 157.2]
+    rows: 3
+    cols: 5
+    status: pending
+  - id: fn-ch02-010
+    type: footnote
+    chunk: ch02
+    source_page: "13"
+    bbox: [73.0, 642.1, 343.3, 650.1]
+    status: pending
+  - id: ch02-p14-1
+    type: image
+    chunk: ch02
+    source_page: "14"
+    bbox: [243.0, 71.7, 414.0, 201.5]
+    asset: assets/figures/ch02-p14-1.png
+    status: pending
+  - id: ch02-p14-2
+    type: image
+    chunk: ch02
+    source_page: "14"
+    bbox: [243.0, 201.5, 414.0, 361.3]
+    asset: assets/figures/ch02-p14-2.png
+    status: pending
+  - id: ch02-p15-1
+    type: image
+    chunk: ch02
+    source_page: "15"
+    bbox: [72.0, 303.5, 243.4, 414.1]
+    asset: assets/figures/ch02-p15-1.png
+    status: pending
+  - id: ch02-p16-1
+    type: image
+    chunk: ch02
+    source_page: "16"
+    bbox: [54.0, 395.0, 225.0, 617.6]
+    asset: assets/figures/ch02-p16-1.png
+    status: pending
+  - id: fn-ch02-011
+    type: footnote
+    chunk: ch02
+    source_page: "16"
+    bbox: [55.0, 642.1, 411.1, 650.1]
+    status: pending
+  - id: ch02-p18-table3
+    type: table
+    chunk: ch02
+    source_page: "18"
+    bbox: [54.0, 92.5, 413.9, 647.9]
+    rows: 8
+    cols: 4
+    status: pending
+  - id: ch03-p19-1
+    type: image
+    chunk: ch03
+    source_page: "19"
+    bbox: [72.0, 72.0, 432.0, 117.0]
+    asset: assets/figures/ch03-p19-1.png
+    status: pending
+  - id: ch03-p19-2
+    type: image
+    chunk: ch03
+    source_page: "19"
+    bbox: [72.0, 379.7, 432.0, 611.5]
+    asset: assets/figures/ch03-p19-2.png
+    status: pending
+  - id: fn-ch03-001
+    type: footnote
+    chunk: ch03
+    source_page: "19"
+    bbox: [73.0, 622.6, 431.0, 649.8]
+    status: pending
+  - id: ch03-p20-1
+    type: image
+    chunk: ch03
+    source_page: "20"
+    bbox: [54.0, 445.4, 225.0, 630.0]
+    asset: assets/figures/ch03-p20-1.png
+    status: pending
+  - id: ch03-p21-1
+    type: image
+    chunk: ch03
+    source_page: "21"
+    bbox: [72.0, 71.8, 432.0, 318.1]
+    asset: assets/figures/ch03-p21-1.png
+    status: pending
+  - id: fn-ch03-002
+    type: footnote
+    chunk: ch03
+    source_page: "21"
+    bbox: [73.0, 632.1, 431.0, 649.7]
+    status: pending
+  - id: ch03-p22-1
+    type: image
+    chunk: ch03
+    source_page: "22"
+    bbox: [54.0, 72.0, 225.0, 226.1]
+    asset: assets/figures/ch03-p22-1.png
+    status: pending
+  - id: ch03-p22-2
+    type: image
+    chunk: ch03
+    source_page: "22"
+    bbox: [243.0, 72.0, 414.0, 226.1]
+    asset: assets/figures/ch03-p22-2.png
+    status: pending
+  - id: ch03-p22-3
+    type: image
+    chunk: ch03
+    source_page: "22"
+    bbox: [54.0, 240.2, 225.1, 463.5]
+    asset: assets/figures/ch03-p22-3.png
+    status: pending
+  - id: ch03-p22-4
+    type: image
+    chunk: ch03
+    source_page: "22"
+    bbox: [242.9, 240.2, 414.2, 473.6]
+    asset: assets/figures/ch03-p22-4.png
+    status: pending
+  - id: ch03-p22-5
+    type: image
+    chunk: ch03
+    source_page: "22"
+    bbox: [54.0, 493.7, 414.4, 641.8]
+    asset: assets/figures/ch03-p22-5.png
+    status: pending
+  - id: ch03-p22-6
+    type: image
+    chunk: ch03
+    source_page: "22"
+    bbox: [54.0, 641.8, 414.4, 678.7]
+    asset: assets/figures/ch03-p22-6.png
+    status: pending
+  - id: ch03-p23-1
+    type: image
+    chunk: ch03
+    source_page: "23"
+    bbox: [261.0, 186.7, 432.4, 328.3]
+    asset: assets/figures/ch03-p23-1.png
+    status: pending
+  - id: ch03-p23-2
+    type: image
+    chunk: ch03
+    source_page: "23"
+    bbox: [261.0, 328.3, 432.4, 617.5]
+    asset: assets/figures/ch03-p23-2.png
+    status: pending
+  - id: fn-ch03-003
+    type: footnote
+    chunk: ch03
+    source_page: "23"
+    bbox: [73.0, 632.1, 431.0, 649.7]
+    status: pending
+  - id: ch03-p24-1
+    type: image
+    chunk: ch03
+    source_page: "24"
+    bbox: [54.0, 72.5, 225.4, 205.1]
+    asset: assets/figures/ch03-p24-1.png
+    status: pending
+  - id: ch03-p24-2
+    type: image
+    chunk: ch03
+    source_page: "24"
+    bbox: [243.0, 72.5, 414.4, 205.1]
+    asset: assets/figures/ch03-p24-2.png
+    status: pending
+  - id: fn-ch03-004
+    type: footnote
+    chunk: ch03
+    source_page: "24"
+    bbox: [55.0, 632.1, 413.0, 649.7]
+    status: pending
+  - id: ch03-p25-1
+    type: image
+    chunk: ch03
+    source_page: "25"
+    bbox: [260.2, 72.0, 433.9, 205.2]
+    asset: assets/figures/ch03-p25-1.png
+    status: pending
+  - id: ch03-p25-2
+    type: image
+    chunk: ch03
+    source_page: "25"
+    bbox: [260.2, 205.2, 433.9, 382.0]
+    asset: assets/figures/ch03-p25-2.png
+    status: pending
+  - id: ch03-p25-3
+    type: image
+    chunk: ch03
+    source_page: "25"
+    bbox: [260.2, 382.0, 433.9, 510.1]
+    asset: assets/figures/ch03-p25-3.png
+    status: pending
+  - id: fn-ch03-005
+    type: footnote
+    chunk: ch03
+    source_page: "25"
+    bbox: [73.0, 603.1, 431.0, 649.5]
+    status: pending
+  - id: fn-ch03-006
+    type: footnote
+    chunk: ch03
+    source_page: "25"
+    bbox: [73.0, 603.1, 431.0, 649.5]
+    status: pending
+  - id: ch03-p27-1
+    type: image
+    chunk: ch03
+    source_page: "27"
+    bbox: [261.0, 71.9, 432.4, 375.2]
+    asset: assets/figures/ch03-p27-1.png
+    status: pending
+  - id: ch03-p27-2
+    type: image
+    chunk: ch03
+    source_page: "27"
+    bbox: [261.0, 388.2, 432.4, 527.8]
+    asset: assets/figures/ch03-p27-2.png
+    status: pending
+  - id: fn-ch03-007
+    type: footnote
+    chunk: ch03
+    source_page: "28"
+    bbox: [55.0, 632.4, 413.0, 650.0]
+    status: pending
+  - id: ch03-p29-1
+    type: image
+    chunk: ch03
+    source_page: "29"
+    bbox: [72.0, 71.9, 432.0, 309.1]
+    asset: assets/figures/ch03-p29-1.png
+    status: pending
+  - id: ch03-p29-2
+    type: image
+    chunk: ch03
+    source_page: "29"
+    bbox: [261.0, 326.1, 432.0, 437.0]
+    asset: assets/figures/ch03-p29-2.png
+    status: pending
+  - id: ch03-p29-3
+    type: image
+    chunk: ch03
+    source_page: "29"
+    bbox: [261.0, 437.0, 432.0, 608.1]
+    asset: assets/figures/ch03-p29-3.png
+    status: pending
+  - id: ch03-p30-1
+    type: image
+    chunk: ch03
+    source_page: "30"
+    bbox: [243.0, 72.0, 414.4, 449.3]
+    asset: assets/figures/ch03-p30-1.png
+    status: pending
+  - id: ch03-p31-1
+    type: image
+    chunk: ch03
+    source_page: "31"
+    bbox: [261.0, 263.2, 432.4, 421.5]
+    asset: assets/figures/ch03-p31-1.png
+    status: pending
+  - id: fn-ch03-008
+    type: footnote
+    chunk: ch03
+    source_page: "31"
+    bbox: [73.0, 622.6, 431.0, 649.8]
+    status: pending
+  - id: ch03-p32-1
+    type: image
+    chunk: ch03
+    source_page: "32"
+    bbox: [54.0, 72.0, 225.4, 267.8]
+    asset: assets/figures/ch03-p32-1.png
+    status: pending
+  - id: fn-ch03-009
+    type: footnote
+    chunk: ch03
+    source_page: "32"
+    bbox: [55.0, 641.9, 251.7, 649.9]
+    status: pending
+  - id: ch03-p33-table1
+    type: table
+    chunk: ch03
+    source_page: "33"
+    bbox: [72.0, 105.4, 431.9, 647.9]
+    rows: 6
+    cols: 4
+    status: pending
+  - id: ch04-p34-1
+    type: image
+    chunk: ch04
+    source_page: "34"
+    bbox: [54.0, 72.0, 414.0, 117.0]
+    asset: assets/figures/ch04-p34-1.png
+    status: pending
+  - id: fn-ch04-001
+    type: footnote
+    chunk: ch04
+    source_page: "34"
+    bbox: [55.0, 622.6, 414.3, 649.8]
+    status: pending
+  - id: fn-ch04-002
+    type: footnote
+    chunk: ch04
+    source_page: "35"
+    bbox: [73.0, 622.6, 432.3, 649.8]
+    status: pending
+  - id: fn-ch04-003
+    type: footnote
+    chunk: ch04
+    source_page: "36"
+    bbox: [55.0, 612.6, 414.3, 649.4]
+    status: pending
+  - id: fn-ch04-004
+    type: footnote
+    chunk: ch04
+    source_page: "36"
+    bbox: [55.0, 612.6, 414.3, 649.4]
+    status: pending
+  - id: fn-ch04-005
+    type: footnote
+    chunk: ch04
+    source_page: "37"
+    bbox: [73.0, 593.6, 431.0, 649.6]
+    status: pending
+  - id: fn-ch04-006
+    type: footnote
+    chunk: ch04
+    source_page: "37"
+    bbox: [73.0, 593.6, 431.0, 649.6]
+    status: pending
+  - id: fn-ch04-007
+    type: footnote
+    chunk: ch04
+    source_page: "37"
+    bbox: [73.0, 593.6, 431.0, 649.6]
+    status: pending
+  - id: fn-ch04-008
+    type: footnote
+    chunk: ch04
+    source_page: "38"
+    bbox: [55.0, 574.9, 414.3, 650.1]
+    status: pending
+  - id: fn-ch04-009
+    type: footnote
+    chunk: ch04
+    source_page: "38"
+    bbox: [55.0, 574.9, 414.3, 650.1]
+    status: pending
+  - id: fn-ch04-010
+    type: footnote
+    chunk: ch04
+    source_page: "38"
+    bbox: [55.0, 574.9, 414.3, 650.1]
+    status: pending
+  - id: ch04-p39-table1
+    type: table
+    chunk: ch04
+    source_page: "39"
+    bbox: [72.0, 209.3, 431.9, 526.6]
+    rows: 11
+    cols: 2
+    status: pending
+  - id: ch04-p40-1
+    type: image
+    chunk: ch04
+    source_page: "40"
+    bbox: [243.0, 97.5, 414.4, 256.8]
+    asset: assets/figures/ch04-p40-1.png
+    status: pending
+  - id: ch05-p41-1
+    type: image
+    chunk: ch05
+    source_page: "41"
+    bbox: [72.0, 72.0, 432.0, 117.0]
+    asset: assets/figures/ch05-p41-1.png
+    status: pending
+  - id: fn-ch05-001
+    type: footnote
+    chunk: ch05
+    source_page: "41"
+    bbox: [73.0, 583.6, 432.3, 649.2]
+    status: pending
+  - id: fn-ch05-002
+    type: footnote
+    chunk: ch05
+    source_page: "41"
+    bbox: [73.0, 583.6, 432.3, 649.2]
+    status: pending
+  - id: fn-ch05-003
+    type: footnote
+    chunk: ch05
+    source_page: "42"
+    bbox: [55.0, 603.4, 413.0, 649.8]
+    status: pending
+  - id: fn-ch05-004
+    type: footnote
+    chunk: ch05
+    source_page: "42"
+    bbox: [55.0, 603.4, 413.0, 649.8]
+    status: pending
+  - id: fn-ch05-005
+    type: footnote
+    chunk: ch05
+    source_page: "43"
+    bbox: [73.0, 555.1, 432.3, 649.5]
+    status: pending
+  - id: fn-ch05-006
+    type: footnote
+    chunk: ch05
+    source_page: "43"
+    bbox: [73.0, 555.1, 432.3, 649.5]
+    status: pending
+  - id: fn-ch05-007
+    type: footnote
+    chunk: ch05
+    source_page: "44"
+    bbox: [55.0, 555.2, 414.3, 649.6]
+    status: pending
+  - id: fn-ch05-008
+    type: footnote
+    chunk: ch05
+    source_page: "44"
+    bbox: [55.0, 555.2, 414.3, 649.6]
+    status: pending
+  - id: ch05-p45-table1
+    type: table
+    chunk: ch05
+    source_page: "45"
+    bbox: [72.0, 92.6, 431.9, 635.1]
+    rows: 5
+    cols: 3
+    status: pending
+  - id: ch05-p47-duplication-flow
+    type: image
+    chunk: ch05
+    source_page: "47"
+    bbox: [70, 95, 432, 586]
+    asset: assets/figures/ch05-p47-duplication-flow.png
+    diagram: true
+    status: pending
+  - id: ch05-p48-1
+    type: image
+    chunk: ch05
+    source_page: "48"
+    bbox: [243.0, 71.7, 414.4, 219.0]
+    asset: assets/figures/ch05-p48-1.png
+    status: pending
+  - id: ch05-p48-2
+    type: image
+    chunk: ch05
+    source_page: "48"
+    bbox: [243.0, 461.1, 414.4, 606.6]
+    asset: assets/figures/ch05-p48-2.png
+    status: pending
+  - id: fn-ch05-009
+    type: footnote
+    chunk: ch05
+    source_page: "49"
+    bbox: [73.0, 641.6, 332.0, 649.6]
+    status: pending
+  - id: fn-ch05-010
+    type: footnote
+    chunk: ch05
+    source_page: "50"
+    bbox: [55.0, 583.6, 413.0, 649.2]
+    status: pending
+  - id: fn-ch05-011
+    type: footnote
+    chunk: ch05
+    source_page: "50"
+    bbox: [55.0, 583.6, 413.0, 649.2]
+    status: pending
+  - id: ch05-p51-1
+    type: image
+    chunk: ch05
+    source_page: "51"
+    bbox: [261.0, 71.7, 432.4, 330.8]
+    asset: assets/figures/ch05-p51-1.png
+    status: pending
+  - id: fn-ch05-012
+    type: footnote
+    chunk: ch05
+    source_page: "51"
+    bbox: [73.0, 622.6, 431.0, 649.8]
+    status: pending
+  - id: ch05-p53-1
+    type: image
+    chunk: ch05
+    source_page: "53"
+    bbox: [261.0, 137.9, 432.4, 316.0]
+    asset: assets/figures/ch05-p53-1.png
+    status: pending
+  - id: fn-ch05-013
+    type: footnote
+    chunk: ch05
+    source_page: "53"
+    bbox: [73.0, 642.2, 403.3, 650.2]
+    status: pending
+  - id: ch05-p54-1
+    type: image
+    chunk: ch05
+    source_page: "54"
+    bbox: [54.0, 93.5, 225.4, 232.1]
+    asset: assets/figures/ch05-p54-1.png
+    status: pending
+  - id: ch05-p54-3
+    type: image
+    chunk: ch05
+    source_page: "54"
+    bbox: [243.0, 93.5, 414.4, 232.1]
+    asset: assets/figures/ch05-p54-3.png
+    status: pending
+  - id: ch05-p54-2
+    type: image
+    chunk: ch05
+    source_page: "54"
+    bbox: [54.0, 232.1, 225.4, 376.1]
+    asset: assets/figures/ch05-p54-2.png
+    status: pending
+  - id: ch05-p54-4
+    type: image
+    chunk: ch05
+    source_page: "54"
+    bbox: [243.0, 232.1, 414.4, 370.8]
+    asset: assets/figures/ch05-p54-4.png
+    status: pending
+  - id: ch05-p54-5
+    type: image
+    chunk: ch05
+    source_page: "54"
+    bbox: [54.0, 392.9, 414.0, 678.7]
+    asset: assets/figures/ch05-p54-5.png
+    status: pending
+  - id: fn-ch05-014
+    type: footnote
+    chunk: ch05
+    source_page: "55"
+    bbox: [73.0, 640.9, 431.1, 648.9]
+    status: pending
+  - id: ch05-p57-1
+    type: image
+    chunk: ch05
+    source_page: "57"
+    bbox: [261.0, 97.5, 432.4, 252.0]
+    asset: assets/figures/ch05-p57-1.png
+    status: pending
+  - id: ch05-p58-1
+    type: image
+    chunk: ch05
+    source_page: "58"
+    bbox: [243.0, 96.5, 414.4, 233.6]
+    asset: assets/figures/ch05-p58-1.png
+    status: pending
+  - id: ch06-p59-1
+    type: image
+    chunk: ch06
+    source_page: "59"
+    bbox: [72.0, 72.0, 432.0, 117.0]
+    asset: assets/figures/ch06-p59-1.png
+    status: pending
+  - id: fn-ch06-001
+    type: footnote
+    chunk: ch06
+    source_page: "59"
+    bbox: [73.0, 564.5, 432.3, 649.3]
+    status: pending
+  - id: fn-ch06-002
+    type: footnote
+    chunk: ch06
+    source_page: "59"
+    bbox: [73.0, 564.5, 432.3, 649.3]
+    status: pending
+  - id: ch06-p60-table1
+    type: table
+    chunk: ch06
+    source_page: "60"
+    bbox: [54.0, 105.9, 413.9, 379.3]
+    rows: 6
+    cols: 5
+    status: pending
+  - id: fn-ch06-003
+    type: footnote
+    chunk: ch06
+    source_page: "60"
+    bbox: [55.0, 622.5, 413.0, 649.7]
+    status: pending
+  - id: fn-ch06-004
+    type: footnote
+    chunk: ch06
+    source_page: "61"
+    bbox: [73.0, 632.3, 431.0, 649.9]
+    status: pending
+  - id: ch06-p62-1
+    type: image
+    chunk: ch06
+    source_page: "62"
+    bbox: [243.0, 72.0, 414.4, 211.1]
+    asset: assets/figures/ch06-p62-1.png
+    status: pending
+  - id: ch06-p62-2
+    type: image
+    chunk: ch06
+    source_page: "62"
+    bbox: [243.0, 454.7, 414.4, 620.5]
+    asset: assets/figures/ch06-p62-2.png
+    status: pending
+  - id: fn-ch06-005
+    type: footnote
+    chunk: ch06
+    source_page: "62"
+    bbox: [55.0, 642.1, 276.1, 650.1]
+    status: pending
+  - id: ch06-p63-1
+    type: image
+    chunk: ch06
+    source_page: "63"
+    bbox: [72.0, 72.0, 243.0, 210.3]
+    asset: assets/figures/ch06-p63-1.png
+    status: pending
+  - id: fn-ch06-006
+    type: footnote
+    chunk: ch06
+    source_page: "63"
+    bbox: [73.0, 632.1, 432.2, 649.7]
+    status: pending
+  - id: fn-ch06-007
+    type: footnote
+    chunk: ch06
+    source_page: "64"
+    bbox: [55.0, 622.4, 413.0, 649.6]
+    status: pending
+  - id: fn-ch06-008
+    type: footnote
+    chunk: ch06
+    source_page: "65"
+    bbox: [73.0, 602.9, 432.3, 649.3]
+    status: pending
+  - id: ch06-p66-1
+    type: image
+    chunk: ch06
+    source_page: "66"
+    bbox: [243.0, 167.9, 414.4, 314.7]
+    asset: assets/figures/ch06-p66-1.png
+    status: pending
+  - id: fn-ch06-009
+    type: footnote
+    chunk: ch06
+    source_page: "66"
+    bbox: [55.0, 622.4, 413.0, 649.6]
+    status: pending
+  - id: ch06-p67-1
+    type: image
+    chunk: ch06
+    source_page: "67"
+    bbox: [261.0, 242.6, 432.6, 416.2]
+    asset: assets/figures/ch06-p67-1.png
+    status: pending
+  - id: fn-ch06-010
+    type: footnote
+    chunk: ch06
+    source_page: "67"
+    bbox: [73.0, 622.9, 431.0, 650.1]
+    status: pending
+  - id: ch06-p68-table2
+    type: table
+    chunk: ch06
+    source_page: "68"
+    bbox: [54.0, 436.8, 414.0, 647.5]
+    rows: 5
+    cols: 3
+    status: pending
+  - id: ch06-p69-1
+    type: image
+    chunk: ch06
+    source_page: "69"
+    bbox: [261.2, 96.5, 432.4, 221.8]
+    asset: assets/figures/ch06-p69-1.png
+    status: pending
+  - id: ch07-p70-1
+    type: image
+    chunk: ch07
+    source_page: "70"
+    bbox: [54.0, 72.0, 414.0, 117.0]
+    asset: assets/figures/ch07-p70-1.png
+    status: pending
+  - id: fn-ch07-001
+    type: footnote
+    chunk: ch07
+    source_page: "70"
+    bbox: [55.0, 612.4, 413.0, 649.2]
+    status: pending
+  - id: fn-ch07-002
+    type: footnote
+    chunk: ch07
+    source_page: "70"
+    bbox: [55.0, 612.4, 413.0, 649.2]
+    status: pending
+  - id: fn-ch07-003
+    type: footnote
+    chunk: ch07
+    source_page: "71"
+    bbox: [73.0, 526.6, 431.0, 649.8]
+    status: pending
+  - id: fn-ch07-004
+    type: footnote
+    chunk: ch07
+    source_page: "71"
+    bbox: [73.0, 526.6, 431.0, 649.8]
+    status: pending
+  - id: fn-ch07-005
+    type: footnote
+    chunk: ch07
+    source_page: "71"
+    bbox: [73.0, 526.6, 431.0, 649.8]
+    status: pending
+  - id: fn-ch07-006
+    type: footnote
+    chunk: ch07
+    source_page: "71"
+    bbox: [73.0, 526.6, 431.0, 649.8]
+    status: pending
+  - id: fn-ch07-007
+    type: footnote
+    chunk: ch07
+    source_page: "71"
+    bbox: [73.0, 526.6, 431.0, 649.8]
+    status: pending
+  - id: fn-ch07-008
+    type: footnote
+    chunk: ch07
+    source_page: "72"
+    bbox: [55.0, 613.1, 413.0, 649.9]
+    status: pending
+  - id: ch07-p73-table1
+    type: table
+    chunk: ch07
+    source_page: "73"
+    bbox: [72.1, 198.5, 431.9, 401.3]
+    rows: 8
+    cols: 2
+    status: pending
+  - id: fn-ch07-009
+    type: footnote
+    chunk: ch07
+    source_page: "73"
+    bbox: [73.0, 622.5, 432.3, 649.7]
+    status: pending
+  - id: fn-ch07-010
+    type: footnote
+    chunk: ch07
+    source_page: "75"
+    bbox: [73.0, 612.6, 431.0, 649.4]
+    status: pending
+  - id: fn-ch07-011
+    type: footnote
+    chunk: ch07
+    source_page: "75"
+    bbox: [73.0, 612.6, 431.0, 649.4]
+    status: pending
+  - id: ch07-p76-1
+    type: image
+    chunk: ch07
+    source_page: "76"
+    bbox: [243.0, 96.6, 414.0, 250.8]
+    asset: assets/figures/ch07-p76-1.png
+    status: pending
+  - id: ch08-p77-1
+    type: image
+    chunk: ch08
+    source_page: "77"
+    bbox: [72.0, 72.0, 432.0, 117.0]
+    asset: assets/figures/ch08-p77-1.png
+    status: pending
+  - id: fn-ch08-001
+    type: footnote
+    chunk: ch08
+    source_page: "77"
+    bbox: [73.0, 622.4, 431.0, 649.6]
+    status: pending
+  - id: fn-ch08-002
+    type: footnote
+    chunk: ch08
+    source_page: "78"
+    bbox: [55.0, 632.1, 413.0, 649.7]
+    status: pending
+  - id: fn-ch08-003
+    type: footnote
+    chunk: ch08
+    source_page: "80"
+    bbox: [55.0, 632.1, 413.0, 649.7]
+    status: pending
+  - id: fn-ch08-004
+    type: footnote
+    chunk: ch08
+    source_page: "81"
+    bbox: [73.0, 622.1, 431.0, 649.3]
+    status: pending
+  - id: fn-ch08-005
+    type: footnote
+    chunk: ch08
+    source_page: "82"
+    bbox: [55.0, 622.1, 414.3, 649.3]
+    status: pending
+  - id: ch08-p84-1
+    type: image
+    chunk: ch08
+    source_page: "84"
+    bbox: [243.2, 96.1, 414.4, 223.3]
+    asset: assets/figures/ch08-p84-1.png
+    status: pending
+  - id: ch09-p85-1
+    type: image
+    chunk: ch09
+    source_page: "85"
+    bbox: [72.0, 72.0, 432.0, 117.0]
+    asset: assets/figures/ch09-p85-1.png
+    status: pending
+  - id: ch09-p85-2
+    type: image
+    chunk: ch09
+    source_page: "85"
+    bbox: [290.2, 439.3, 432.0, 589.8]
+    asset: assets/figures/ch09-p85-2.png
+    status: pending
+  - id: fn-ch09-001
+    type: footnote
+    chunk: ch09
+    source_page: "85"
+    bbox: [73.0, 632.4, 432.3, 650.0]
+    status: pending
+  - id: ch09-p86-1
+    type: image
+    chunk: ch09
+    source_page: "86"
+    bbox: [243.0, 413.0, 414.4, 572.6]
+    asset: assets/figures/ch09-p86-1.png
+    status: pending
+  - id: ch09-p87-1
+    type: image
+    chunk: ch09
+    source_page: "87"
+    bbox: [277.5, 362.2, 432.0, 527.2]
+    asset: assets/figures/ch09-p87-1.png
+    status: pending
+  - id: fn-ch09-002
+    type: footnote
+    chunk: ch09
+    source_page: "87"
+    bbox: [73.0, 632.4, 431.0, 650.0]
+    status: pending
+  - id: ch09-p88-1
+    type: image
+    chunk: ch09
+    source_page: "88"
+    bbox: [243.0, 296.7, 414.4, 474.7]
+    asset: assets/figures/ch09-p88-1.png
+    status: pending
+  - id: fn-ch09-003
+    type: footnote
+    chunk: ch09
+    source_page: "88"
+    bbox: [55.0, 632.4, 414.3, 650.0]
+    status: pending
+  - id: ch09-p89-1
+    type: image
+    chunk: ch09
+    source_page: "89"
+    bbox: [266.2, 72.0, 432.0, 235.5]
+    asset: assets/figures/ch09-p89-1.png
+    status: pending
+  - id: ch09-p90-1
+    type: image
+    chunk: ch09
+    source_page: "90"
+    bbox: [243.0, 189.7, 414.4, 366.2]
+    asset: assets/figures/ch09-p90-1.png
+    status: pending
+  - id: ch09-p91-1
+    type: image
+    chunk: ch09
+    source_page: "91"
+    bbox: [261.0, 71.7, 432.4, 229.5]
+    asset: assets/figures/ch09-p91-1.png
+    status: pending
+  - id: fn-ch09-004
+    type: footnote
+    chunk: ch09
+    source_page: "91"
+    bbox: [73.0, 632.4, 431.0, 650.0]
+    status: pending
+  - id: ch09-p92-1
+    type: image
+    chunk: ch09
+    source_page: "92"
+    bbox: [243.0, 96.5, 414.4, 255.8]
+    asset: assets/figures/ch09-p92-1.png
+    status: pending
+  - id: appA-p93-1
+    type: image
+    chunk: appA
+    source_page: "93"
+    bbox: [72.0, 72.0, 432.0, 117.0]
+    asset: assets/figures/appA-p93-1.png
+    status: pending
+  - id: appA-p93-table1
+    type: table
+    chunk: appA
+    source_page: "93"
+    bbox: [72.5, 228.5, 431.5, 614.8]
+    rows: 24
+    cols: 6
+    status: pending
+  - id: appB-p94-1
+    type: image
+    chunk: appB
+    source_page: "94"
+    bbox: [54.0, 72.0, 414.0, 117.0]
+    asset: assets/figures/appB-p94-1.png
+    status: pending
+  - id: appB-p94-2
+    type: image
+    chunk: appB
+    source_page: "94"
+    bbox: [53.4, 237.2, 414.8, 678.7]
+    asset: assets/figures/appB-p94-2.png
+    status: pending
+  - id: appC-p95-1
+    type: image
+    chunk: appC
+    source_page: "95"
+    bbox: [72.0, 72.0, 432.0, 117.0]
+    asset: assets/figures/appC-p95-1.png
+    status: pending
+  - id: appD-p97-1
+    type: image
+    chunk: appD
+    source_page: "97"
+    bbox: [72.0, 72.0, 432.0, 117.0]
+    asset: assets/figures/appD-p97-1.png
+    status: pending
+  - id: gloss-p99-1
+    type: image
+    chunk: gloss
+    source_page: "99"
+    bbox: [72.0, 72.0, 432.0, 117.0]
+    asset: assets/figures/gloss-p99-1.png
+    status: pending
+  - id: biblio-p109-1
+    type: image
+    chunk: biblio
+    source_page: "109"
+    bbox: [72.0, 72.0, 432.0, 117.0]
+    asset: assets/figures/biblio-p109-1.png
+    status: pending
+  - id: index-p114-1
+    type: image
+    chunk: index
+    source_page: "114"
+    bbox: [54.0, 72.0, 414.0, 117.0]
+    asset: assets/figures/index-p114-1.png
+    status: pending
+
+pages:
+  - chunk: ch01
+    source_page: "1"
+    paragraph_count: 9
+    first_line: "## 1. WHY PRESERVE FILM?"
+  - chunk: ch01
+    source_page: "3"
+    paragraph_count: 15
+    first_line: "As the study of film has evolved beyond the Hollywood featur"
+  - chunk: ch01
+    source_page: "4"
+    paragraph_count: 6
+    first_line: "Over the last decade, however, a broader definition of prese"
+  - chunk: ch01
+    source_page: "5"
+    paragraph_count: 8
+    first_line: "### CASE STUDY: OKLAHOMA HISTORICAL SOCIETY"
+  - chunk: ch02
+    source_page: "6"
+    paragraph_count: 11
+    first_line: "## 2. UNDERSTANDING FILM AND HOW IT DECAYS"
+  - chunk: ch02
+    source_page: "7"
+    paragraph_count: 4
+    first_line: "**16MM.** The film gauge most frequently found in American a"
+  - chunk: ch02
+    source_page: "8"
+    paragraph_count: 10
+    first_line: "Super 8mm, first sold in 1965, brought an important innovati"
+  - chunk: ch02
+    source_page: "11"
+    paragraph_count: 27
+    first_line: "**TABLE 1. FILM GAUGES AND THEIR SUPPORT MATERIAL**"
+  - chunk: ch02
+    source_page: "12"
+    paragraph_count: 8
+    first_line: "### 2.5 SOUND TRACKS"
+  - chunk: ch02
+    source_page: "13"
+    paragraph_count: 10
+    first_line: "**TABLE 2. NUMBER OF FRAMES USUALLY SEPARATING SOUND AND IMA"
+  - chunk: ch02
+    source_page: "14"
+    paragraph_count: 7
+    first_line: "The growth initially appears in the form of matte-white spot"
+  - chunk: ch02
+    source_page: "16"
+    paragraph_count: 12
+    first_line: "Acetate decay cannot be reversed, but it can be slowed by im"
+  - chunk: ch02
+    source_page: "17"
+    paragraph_count: 2
+    first_line: "**MAGNETIC TRACK DETERIORATION.** Preservationists have obse"
+  - chunk: ch02
+    source_page: "18"
+    paragraph_count: 1
+    first_line: "**TABLE 3. FILM DAMAGE AND DECAY: SUMMARY**"
+  - chunk: ch03
+    source_page: "20"
+    paragraph_count: 12
+    first_line: "## 3. FILM HANDLING AND INSPECTION"
+  - chunk: ch03
+    source_page: "21"
+    paragraph_count: 6
+    first_line: "The following procedures assume the most basic setup—portabl"
+  - chunk: ch03
+    source_page: "22"
+    paragraph_count: 7
+    first_line: "If you find mold, mildew, or fungus, you will need to clean "
+  - chunk: ch03
+    source_page: "23"
+    paragraph_count: 7
+    first_line: "**STEP TWO: USING REWINDS.** The rewind is a tool that enabl"
+  - chunk: ch03
+    source_page: "26"
+    paragraph_count: 22
+    first_line: "A more convenient and efficient way to view film is with a t"
+  - chunk: ch03
+    source_page: "27"
+    paragraph_count: 6
+    first_line: "To wind a film on a core, select the split reel and core tha"
+  - chunk: ch03
+    source_page: "28"
+    paragraph_count: 7
+    first_line: "Leaders come in colors and are customized for different uses"
+  - chunk: ch03
+    source_page: "30"
+    paragraph_count: 10
+    first_line: "Weak or defective splices identified during inspection must "
+  - chunk: ch03
+    source_page: "31"
+    paragraph_count: 8
+    first_line: "The basic steps for making a cement splice:"
+  - chunk: ch03
+    source_page: "32"
+    paragraph_count: 5
+    first_line: "It is important to clean a film before preservation copying."
+  - chunk: ch03
+    source_page: "33"
+    paragraph_count: 1
+    first_line: "**TABLE 5. FILM EQUIPMENT BY FUNCTION: SAFE HANDLING TOOLS F"
+  - chunk: ch04
+    source_page: "36"
+    paragraph_count: 26
+    first_line: "## 4. THE CURATORIAL ROLE"
+  - chunk: ch04
+    source_page: "38"
+    paragraph_count: 18
+    first_line: "*Does Your Institution Have the “Best” Surviving Source Mate"
+  - chunk: ch04
+    source_page: "39"
+    paragraph_count: 5
+    first_line: "*Does Your Institution Have the “Best” Surviving Source Mate"
+  - chunk: ch04
+    source_page: "40"
+    paragraph_count: 8
+    first_line: "### CASE STUDY: UNIVERSITY OF ALASKA FAIRBANKS"
+  - chunk: ch05
+    source_page: "41"
+    paragraph_count: 9
+    first_line: "## 5. DUPLICATION"
+  - chunk: ch05
+    source_page: "43"
+    paragraph_count: 15
+    first_line: "Preservationists also have a responsibility to the public. F"
+  - chunk: ch05
+    source_page: "44"
+    paragraph_count: 7
+    first_line: "In part the answer is another question: Does current digital"
+  - chunk: ch05
+    source_page: "45"
+    paragraph_count: 1
+    first_line: "**TABLE 7. DUPLICATING YOUR FILM: OPTIONS AND TRADE-OFFS**"
+  - chunk: ch05
+    source_page: "46"
+    paragraph_count: 6
+    first_line: "### 5.3 FILM PRESERVATION LABORATORIES"
+  - chunk: ch05
+    source_page: "47"
+    paragraph_count: 4
+    first_line: "**FILM MATERIALS PRODUCED IN THE FILM-TO-FILM COPYING PROCES"
+  - chunk: ch05
+    source_page: "49"
+    paragraph_count: 17
+    first_line: "color and brightness. When planning to use an answer print f"
+  - chunk: ch05
+    source_page: "50"
+    paragraph_count: 6
+    first_line: "Some silent amateur films are composed of spliced-together c"
+  - chunk: ch05
+    source_page: "51"
+    paragraph_count: 7
+    first_line: "Your written inspection report (see 3.3) contains most of th"
+  - chunk: ch05
+    source_page: "52"
+    paragraph_count: 4
+    first_line: "**SAMPLE LABORATORY ESTIMATE**"
+  - chunk: ch05
+    source_page: "53"
+    paragraph_count: 6
+    first_line: "shipping, and insertion of credits. Before signing off on an"
+  - chunk: ch05
+    source_page: "54"
+    paragraph_count: 6
+    first_line: "**STEPS IN PACKING A SAFETY FILM FOR SHIPPING**"
+  - chunk: ch05
+    source_page: "55"
+    paragraph_count: 7
+    first_line: "is important that you and your preservation lab exercise ext"
+  - chunk: ch05
+    source_page: "56"
+    paragraph_count: 7
+    first_line: "### 5.10 SECURING RESOURCES FOR FILM DUPLICATION"
+  - chunk: ch05
+    source_page: "57"
+    paragraph_count: 9
+    first_line: "### CASE STUDY: CALIFORNIA PACIFIC MEDICAL CENTER"
+  - chunk: ch05
+    source_page: "58"
+    paragraph_count: 8
+    first_line: "### CASE STUDY: VISUAL COMMUNICATIONS"
+  - chunk: ch06
+    source_page: "59"
+    paragraph_count: 9
+    first_line: "## 6. STORAGE"
+  - chunk: ch06
+    source_page: "60"
+    paragraph_count: 5
+    first_line: "**TABLE 8. HOW TEMPERATURES AFFECT FILM MATERIALS (when RH i"
+  - chunk: ch06
+    source_page: "61"
+    paragraph_count: 10
+    first_line: "If you are unable to gather this information by computer, yo"
+  - chunk: ch06
+    source_page: "62"
+    paragraph_count: 7
+    first_line: "**COLD STORAGE VAULTS.** For large and medium-size collectio"
+  - chunk: ch06
+    source_page: "64"
+    paragraph_count: 11
+    first_line: "Once the film has been conditioned to room temperature and a"
+  - chunk: ch06
+    source_page: "66"
+    paragraph_count: 14
+    first_line: "Some organizations move the needed film to an environmentall"
+  - chunk: ch06
+    source_page: "67"
+    paragraph_count: 6
+    first_line: "The cans or boxes you choose will depend on your institution"
+  - chunk: ch06
+    source_page: "68"
+    paragraph_count: 5
+    first_line: "### 6.8 LONG-RANGE PRESERVATION PLANNING"
+  - chunk: ch06
+    source_page: "69"
+    paragraph_count: 9
+    first_line: "### CASE STUDY: NEBRASKA STATE HISTORICAL SOCIETY"
+  - chunk: ch07
+    source_page: "70"
+    paragraph_count: 11
+    first_line: "## 7. CATALOGING BY PAUL EISLOEFFEL"
+  - chunk: ch07
+    source_page: "74"
+    paragraph_count: 27
+    first_line: "MARC is now integrated into many collections management soft"
+  - chunk: ch07
+    source_page: "75"
+    paragraph_count: 6
+    first_line: "The Moving Image Collections (MIC) Web site, gondolin.rutger"
+  - chunk: ch07
+    source_page: "76"
+    paragraph_count: 8
+    first_line: "### CASE STUDY: NORTHEAST HISTORIC FILM"
+  - chunk: ch08
+    source_page: "77"
+    paragraph_count: 9
+    first_line: "## 8. LEGAL CONTEXT BY ERIC J. SCHWARTZ"
+  - chunk: ch08
+    source_page: "78"
+    paragraph_count: 7
+    first_line: "Copyright is generally reassigned through a written document"
+  - chunk: ch08
+    source_page: "80"
+    paragraph_count: 15
+    first_line: "Absent a will or other written agreement, copyright generall"
+  - chunk: ch08
+    source_page: "82"
+    paragraph_count: 16
+    first_line: "Some active independent filmmakers deposit their films with "
+  - chunk: ch08
+    source_page: "83"
+    paragraph_count: 4
+    first_line: "### 8.8 PROTECTING YOUR INSTITUTION"
+  - chunk: ch08
+    source_page: "84"
+    paragraph_count: 8
+    first_line: "### CASE STUDY: UNIVERSITY OF TEXAS AT AUSTIN"
+  - chunk: ch09
+    source_page: "85"
+    paragraph_count: 11
+    first_line: "## 9. ACCESS"
+  - chunk: ch09
+    source_page: "89"
+    paragraph_count: 30
+    first_line: "Digital video is of sufficient quality for broadcast and can"
+  - chunk: ch09
+    source_page: "90"
+    paragraph_count: 5
+    first_line: "The National Center for Jewish Film disseminates film as wel"
+  - chunk: ch09
+    source_page: "91"
+    paragraph_count: 4
+    first_line: "The Alaska Film Archives of the University of Alaska Fairban"
+  - chunk: ch09
+    source_page: "92"
+    paragraph_count: 9
+    first_line: "### CASE STUDY: MINNESOTA HISTORICAL SOCIETY"
+  - chunk: appA
+    source_page: "93"
+    paragraph_count: 4
+    first_line: "## APPENDIX A: EDGE CODE CHART"
+  - chunk: appB
+    source_page: "94"
+    paragraph_count: 4
+    first_line: "## APPENDIX B: PRINT CONDITION REPORT"
+  - chunk: appC
+    source_page: "95"
+    paragraph_count: 15
+    first_line: "## APPENDIX C: SELECTED FILM PRESERVATION LABORATORIES"
+  - chunk: appC
+    source_page: "96"
+    paragraph_count: 11
+    first_line: "**DuArt Film and Video** 245 W. 55th St. New York, NY 10019 "
+  - chunk: appD
+    source_page: "97"
+    paragraph_count: 17
+    first_line: "## APPENDIX D: SELECTED EQUIPMENT AND SUPPLY VENDORS"
+  - chunk: appD
+    source_page: "98"
+    paragraph_count: 7
+    first_line: "**Plastic Reel Corporation of America** Western Region 8140 "
+  - chunk: gloss
+    source_page: "99"
+    paragraph_count: 12
+    first_line: "## GLOSSARY"
+  - chunk: gloss
+    source_page: "100"
+    paragraph_count: 16
+    first_line: "**Balance stripe** On composite prints the magnetic stripe a"
+  - chunk: gloss
+    source_page: "101"
+    paragraph_count: 18
+    first_line: "**Composite print** Film positive carrying both picture and "
+  - chunk: gloss
+    source_page: "102"
+    paragraph_count: 15
+    first_line: "**Emulsion out** Film wound so that the base side faces the "
+  - chunk: gloss
+    source_page: "103"
+    paragraph_count: 17
+    first_line: "**Gate** Mechanism in a camera, projector, or printer that h"
+  - chunk: gloss
+    source_page: "104"
+    paragraph_count: 16
+    first_line: "**Kodachrome** Color reversal motion picture film introduced"
+  - chunk: gloss
+    source_page: "105"
+    paragraph_count: 17
+    first_line: "**Mute** Sound film element that carries only picture."
+  - chunk: gloss
+    source_page: "106"
+    paragraph_count: 19
+    first_line: "**Printing** Process of duplicating motion picture film."
+  - chunk: gloss
+    source_page: "107"
+    paragraph_count: 19
+    first_line: "**Scratch** Scrape or abrasion to either the base or the emu"
+  - chunk: gloss
+    source_page: "108"
+    paragraph_count: 19
+    first_line: "**Stock** General term for film. Applied particularly to une"
+  - chunk: biblio
+    source_page: "109"
+    paragraph_count: 13
+    first_line: "## SELECTED BIBLIOGRAPHY"
+  - chunk: biblio
+    source_page: "110"
+    paragraph_count: 16
+    first_line: "Cherchi Usai, Paolo. *Silent Cinema: An Introduction*. Rev. "
+  - chunk: biblio
+    source_page: "111"
+    paragraph_count: 12
+    first_line: "MacLeish, Bruce, and Greg Harris. *Bringing Up Boomer: Archi"
+  - chunk: biblio
+    source_page: "112"
+    paragraph_count: 22
+    first_line: "Sargent, Ralph N. *Preserving the Moving Image*. Washington,"
+  - chunk: biblio
+    source_page: "113"
+    paragraph_count: 16
+    first_line: "**Independent Media Arts Preservation (IMAP)** www.imapprese"
+  - chunk: index
+    source_page: "114"
+    paragraph_count: 32
+    first_line: "## INDEX"
+  - chunk: index
+    source_page: "115"
+    paragraph_count: 44
+    first_line: "- cellulose acetate base film. *See* acetate - film"
+  - chunk: index
+    source_page: "116"
+    paragraph_count: 49
+    first_line: "- 8mm (continued) - sound tracks, 12–13 - storage on reels, "
+  - chunk: index
+    source_page: "117"
+    paragraph_count: 43
+    first_line: "- inspection - and lab estimate, 50–52 - equipment needed, 3"
+  - chunk: index
+    source_page: "118"
+    paragraph_count: 45
+    first_line: "- Moving Image Collections (MIC) - project, 75, 76"
+  - chunk: index
+    source_page: "119"
+    paragraph_count: 42
+    first_line: "- quality control, 55, 58"
+  - chunk: index
+    source_page: "120"
+    paragraph_count: 39
+    first_line: "- Super 8mm - duplication, 49–50 - history, 7–8 - plastic su"
+  - chunk: index
+    source_page: "121"
+    paragraph_count: 8
+    first_line: "### ABOUT THE NATIONAL FILM PRESERVATION FOUNDATION"

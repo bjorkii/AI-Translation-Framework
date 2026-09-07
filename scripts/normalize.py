@@ -476,6 +476,43 @@ def detect_body_size(doc, p0, p1):
                     if sp["text"].strip(): c[round(sp["size"], 1)] += len(sp["text"])
     return c.most_common(1)[0][0] if c else 11.0
 
+PAGE_MARK = re.compile(r"\[원서 p\.([^\]]+)\]")
+
+def write_manifest(chap, records, text):
+    """위치정보 매니페스트 조각을 남긴다 (파이프라인 2.6절).
+
+    개별 레코드(이미지·표·각주)에 더해, 본문은 **페이지 단위 집계**만 기록한다.
+    문단마다 레코드를 남기면 책 한 권에 수천 건이 되어 관리가 되지 않는다.
+    번역본에서 페이지별 문단 수가 달라졌는지만 보면 누락은 대개 걸린다.
+    """
+    import json
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    d = os.path.join(root, "intermediate", "manifest")
+    os.makedirs(d, exist_ok=True)
+
+    # 페이지 마커를 경계로 잘라 페이지마다 문단 수와 첫 줄을 센다
+    pages, cur, label = [], [], None
+    for block in [b.strip() for b in text.split("\n\n")]:
+        if not block:
+            continue
+        m = PAGE_MARK.fullmatch(block)
+        if m:
+            pages.append((m.group(1), cur)); cur = []; continue
+        cur.append(block)
+    if cur:
+        pages.append((None, cur))
+    summary = []
+    for label, blocks in pages:
+        body = [b for b in blocks if not b.startswith("<!--")]
+        first = next((b for b in body if not b.startswith(("!", "|", "<a id"))), "")
+        summary.append({"type": "page_summary", "chunk": chap, "source_page": label,
+                        "paragraph_count": len(body),
+                        "first_line": re.sub(r"\s+", " ", first)[:60]})
+
+    with open(os.path.join(d, chap + ".json"), "w", encoding="utf-8") as f:
+        json.dump({"chunk": chap, "records": records, "pages": summary},
+                  f, ensure_ascii=False, indent=1)
+
 def load_overrides(chap):
     """source/overrides/<청크>.yaml 을 읽는다. 없으면 빈 사전."""
     f = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
@@ -599,6 +636,10 @@ def main(pdf, p0, p1, chap, outpath=None, parser="prose"):
                  tables=0, table_cells=0, sidebars=0, visual_check=0,
                  figures=0, fig_labels=0)
     out, notes = [], []
+    # 위치정보 매니페스트(파이프라인 2.6절) — 원본에 무엇이 어디 있었는지 기록한다.
+    # 번역이 끝난 뒤 "원본의 이미지·표·각주가 최종본에 다 들어갔는가"를 사람 눈이 아니라
+    # 스크립트로 확인하기 위한 것이다. 좌표는 이상이 보일 때 원본을 되짚는 데 쓴다.
+    man = []
     carry_idx = None      # out 리스트에서 직전 본문 문단의 위치
     pending = {"mark": None, "warn": None}   # 아직 배치하지 않은 페이지 마커 / 레이아웃 경고
 
@@ -787,6 +828,10 @@ def main(pdf, p0, p1, chap, outpath=None, parser="prose"):
                     if sent:
                         cap = max(sent, key=len)
                         figlabels = [t for t in figlabels if t != cap]
+                man.append({"id": name[:-4], "type": "image", "chunk": chap,
+                            "source_page": str(label), "bbox": [round(v, 1) for v in f],
+                            "asset": "assets/figures/" + name,
+                            "diagram": bool(dg)})
                 if dg:
                     # 시각 판독을 마친 도해: 그림 한 장으로 두되, 라벨은 표로 병기한다.
                     # 이미지로만 두면 한국어판 독자가 영어 라벨을 보게 되고,
@@ -809,6 +854,10 @@ def main(pdf, p0, p1, chap, outpath=None, parser="prose"):
                 if not t["md"]:
                     return
                 flush_mark(); stats["tables"] += 1; stats["visual_check"] += 1
+                man.append({"id": "%s-p%s-table%d" % (chap, label, stats["tables"]),
+                            "type": "table", "chunk": chap, "source_page": str(label),
+                            "bbox": [round(v, 1) for v in t["bbox"]],
+                            "rows": t["rows"], "cols": t["cols"]})
                 out.append("\n<!-- VISUAL-CHECK 표 %d행 %d열 · 원서 p.%s · 원본과 대조 필요 -->\n%s\n"
                            % (t["rows"], t["cols"], label, t["md"]))
             elif kind == "box":
@@ -916,6 +965,9 @@ def main(pdf, p0, p1, chap, outpath=None, parser="prose"):
             for num, body_txt in split_fn_defs(styled_text(b["raw"], stats)):
                 if num is None: continue
                 stats["fn_defs"] += 1
+                man.append({"id": "fn-%s-%03d" % (chap, num), "type": "footnote",
+                            "chunk": chap, "source_page": str(label),
+                            "bbox": [round(v, 1) for v in b["bbox"]]})
                 out.append(f'\n<a id="fn-{chap}-{num:03d}"></a> **[각주]** {body_txt}  [↩](#back-{chap}-{num:03d})\n')
         pending["mark"] = label      # 다음 블록이 이어지는지 보고 배치 위치를 정한다
 
@@ -925,6 +977,7 @@ def main(pdf, p0, p1, chap, outpath=None, parser="prose"):
     text, n_ovr = apply_overrides(text, chap)
     stats["overrides"] = n_ovr
     if outpath: open(outpath, "w").write(text)
+    write_manifest(chap, man, text)
     print(f"=== 정규화 통계 (파서: {parser}) ===")
     for k, v in stats.items(): print(f"  {k}: {v}")
     # 최종 결과에서 다시 센다. 오버라이드로 해소된 표시까지 남은 것으로 세면
