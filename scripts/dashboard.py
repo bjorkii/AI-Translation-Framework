@@ -389,8 +389,10 @@ def md_table_html(rows):
 def md_to_html(md):
     out, in_code, in_ul, in_ol = [], False, False, False
     in_box = 0          # 열려 있는 상자 수 — 짝이 어긋나도 문서가 상자에 갇히지 않게 한다
+    sub_ul = False      # 들여쓴 목록(색인의 하위항목)이 열려 있는가
     def close():
-        nonlocal in_ul, in_ol
+        nonlocal in_ul, in_ol, sub_ul
+        if sub_ul: out.append("</ul></li>"); sub_ul = False
         if in_ul: out.append("</ul>"); in_ul = False
         if in_ol: out.append("</ol>"); in_ol = False
     lines = md.split("\n")
@@ -451,11 +453,19 @@ def md_to_html(md):
         m = re.match(r"^\s*>\s?(.*)$", line)
         if m:
             close(); out.append("<blockquote>%s</blockquote>" % md_inline(m.group(1))); continue
-        m = re.match(r"^\s*[-*+]\s+(.*)$", line)
+        m = re.match(r"^(\s*)[-*+]\s+(.*)$", line)
         if m:
             if in_ol: out.append("</ol>"); in_ol = False
-            if not in_ul: out.append("<ul>"); in_ul = True
-            out.append("<li>%s</li>" % md_inline(m.group(1))); continue
+            deep = len(m.group(1)) >= 2      # 색인의 하위항목
+            if not in_ul:
+                out.append("<ul>"); in_ul = True
+            if deep and not sub_ul and out and out[-1].endswith("</li>"):
+                # 직전 표제어 항목 안으로 하위 목록을 넣는다
+                out[-1] = out[-1][:-len("</li>")]
+                out.append("<ul class='sub'>"); sub_ul = True
+            elif not deep and sub_ul:
+                out.append("</ul></li>"); sub_ul = False
+            out.append("<li>%s</li>" % md_inline(m.group(2))); continue
         m = re.match(r"^\s*\d+[.)]\s+(.*)$", line)
         if m:
             if in_ul: out.append("</ul>"); in_ul = False
@@ -522,6 +532,8 @@ margin-bottom:8px}
 .marker.vcheck{color:#fff;background:#B3261E}
 .marker.unc-line{color:#fff;background:#8A5A00}
 .marker.unc-layout{color:#fff;background:#5B4B8A}
+ul.sub{margin:2px 0 6px;padding-left:20px}
+ul.sub li{color:var(--muted);font-size:15px}
 .tablewrap{overflow-x:auto;margin:16px 0;border:1px solid var(--border);border-radius:8px;
 background:var(--surface)}
 table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.55}
