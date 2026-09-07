@@ -28,8 +28,11 @@ ALTS = re.compile(r"^\s{4}alternates:\s*$(.*?)(?=^\s{4}\w|\Z)", re.M | re.S)
 # value 뒤에 \s* 를 쓰면 줄바꿈까지 먹어 when 이 영영 잡히지 않는다.
 ALT = re.compile(r'-\s*value:\s*"(.*?)"[ \t]*(?:\n\s*when:\s*"(.*?)")?')
 
+# nomatch: 이 낱말이 본문에 있어도 그 용어로 보지 않는다.
+#   'Leader' 는 필름 앞뒤에 붙이는 여분 필름인데, 본문의 'community leaders'(지도자)까지
+#   같은 낱말로 잡힌다. 그런 자리를 미리 빼 두는 칸이다.
 FIELDS = ("translation", "tbd", "notation", "context", "full",
-          "definition_en", "definition_ko", "source", "principle_form")
+          "definition_en", "definition_ko", "source", "principle_form", "nomatch")
 
 
 def load(path=None):
@@ -58,6 +61,17 @@ def load(path=None):
         out.append(e)
     return out
 
+
+def nomatch(e):
+    """이 용어로 보지 않을 낱말 목록."""
+    return [x.strip() for x in (e.get("nomatch") or "").split("|") if x.strip()]
+
+def strip_nomatch(text, e):
+    """본문에서 오탐 낱말을 지운 사본. 용어가 실제로 등장하는지 셀 때 쓴다."""
+    for bad in nomatch(e):
+        text = re.sub(r"(?<![A-Za-z0-9])" + re.escape(bad) + r"(?![A-Za-z0-9])",
+                      " ", text, flags=re.I)
+    return text
 
 def translations(e):
     """이 용어에 허용되는 번역어 전부 (기본 + 맥락별 대체).
