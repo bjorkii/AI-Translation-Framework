@@ -1,8 +1,4 @@
 
-<!-- VISUAL-CHECK 도판 · 원서 p.97 · 원본과 대조 필요 -->
-
-![](assets/figures/appD-p97-1.png)
-
 ## APPENDIX D: SELECTED EQUIPMENT AND SUPPLY VENDORS
 
 **FILM EQUIPMENT AND SUPPLIES**

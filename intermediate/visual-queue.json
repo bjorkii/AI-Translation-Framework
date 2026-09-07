@@ -2,15 +2,7 @@
  "todo": [
   {
    "chunk": "ch01",
-   "line": 2,
-   "marker": "VISUAL-CHECK",
-   "page": "1",
-   "why": "표·상자 구조 대조 필요",
-   "context": "<!-- VISUAL-CHECK 도판 · 원서 p.1 · 원본과 대조 필요 --> / ![](assets/figures/ch01-p1-1.png)"
-  },
-  {
-   "chunk": "ch01",
-   "line": 74,
+   "line": 70,
    "marker": "VISUAL-CHECK",
    "page": "5",
    "why": "표·상자 구조 대조 필요",
@@ -18,15 +10,7 @@
   },
   {
    "chunk": "ch02",
-   "line": 2,
-   "marker": "VISUAL-CHECK",
-   "page": "6",
-   "why": "표·상자 구조 대조 필요",
-   "context": "<!-- VISUAL-CHECK 도판 · 원서 p.6 · 원본과 대조 필요 --> / ![](assets/figures/ch02-p6-1.png)"
-  },
-  {
-   "chunk": "ch02",
-   "line": 28,
+   "line": 24,
    "marker": "VISUAL-CHECK",
    "page": "7",
    "why": "표·상자 구조 대조 필요",
@@ -34,7 +18,7 @@
   },
   {
    "chunk": "ch02",
-   "line": 52,
+   "line": 48,
    "marker": "VISUAL-CHECK",
    "page": "8",
    "why": "표·상자 구조 대조 필요",
@@ -42,7 +26,7 @@
   },
   {
    "chunk": "ch02",
-   "line": 66,
+   "line": 62,
    "marker": "VISUAL-CHECK",
    "page": "9",
    "why": "표·상자 구조 대조 필요",
@@ -50,7 +34,7 @@
   },
   {
    "chunk": "ch02",
-   "line": 97,
+   "line": 93,
    "marker": "VISUAL-CHECK",
    "page": "10",
    "why": "표·상자 구조 대조 필요",
@@ -58,7 +42,7 @@
   },
   {
    "chunk": "ch02",
-   "line": 101,
+   "line": 97,
    "marker": "VISUAL-CHECK",
    "page": "10",
    "why": "표·상자 구조 대조 필요",
@@ -66,7 +50,7 @@
   },
   {
    "chunk": "ch02",
-   "line": 146,
+   "line": 142,
    "marker": "VISUAL-CHECK",
    "page": "12",
    "why": "표·상자 구조 대조 필요",
@@ -74,7 +58,7 @@
   },
   {
    "chunk": "ch02",
-   "line": 168,
+   "line": 164,
    "marker": "VISUAL-CHECK",
    "page": "13",
    "why": "표·상자 구조 대조 필요",
@@ -82,7 +66,7 @@
   },
   {
    "chunk": "ch02",
-   "line": 196,
+   "line": 192,
    "marker": "VISUAL-CHECK",
    "page": "14",
    "why": "표·상자 구조 대조 필요",
@@ -90,7 +74,7 @@
   },
   {
    "chunk": "ch02",
-   "line": 202,
+   "line": 198,
    "marker": "VISUAL-CHECK",
    "page": "14",
    "why": "표·상자 구조 대조 필요",
@@ -98,7 +82,7 @@
   },
   {
    "chunk": "ch02",
-   "line": 242,
+   "line": 238,
    "marker": "VISUAL-CHECK",
    "page": "15",
    "why": "표·상자 구조 대조 필요",
@@ -106,7 +90,7 @@
   },
   {
    "chunk": "ch02",
-   "line": 260,
+   "line": 256,
    "marker": "VISUAL-CHECK",
    "page": "16",
    "why": "표·상자 구조 대조 필요",
@@ -114,7 +98,7 @@
   },
   {
    "chunk": "ch02",
-   "line": 290,
+   "line": 286,
    "marker": "VISUAL-CHECK",
    "page": "18",
    "why": "표·상자 구조 대조 필요",
@@ -122,15 +106,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 2,
-   "marker": "VISUAL-CHECK",
-   "page": "19",
-   "why": "표·상자 구조 대조 필요",
-   "context": "<!-- VISUAL-CHECK 도판 · 원서 p.19 · 원본과 대조 필요 --> / ![](assets/figures/ch03-p19-1.png)"
-  },
-  {
-   "chunk": "ch03",
-   "line": 16,
+   "line": 12,
    "marker": "VISUAL-CHECK",
    "page": "19",
    "why": "표·상자 구조 대조 필요",
@@ -138,7 +114,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 40,
+   "line": 36,
    "marker": "VISUAL-CHECK",
    "page": "20",
    "why": "표·상자 구조 대조 필요",
@@ -146,7 +122,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 46,
+   "line": 42,
    "marker": "VISUAL-CHECK",
    "page": "21",
    "why": "표·상자 구조 대조 필요",
@@ -154,7 +130,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 62,
+   "line": 58,
    "marker": "VISUAL-CHECK",
    "page": "22",
    "why": "표·상자 구조 대조 필요",
@@ -162,7 +138,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 66,
+   "line": 62,
    "marker": "VISUAL-CHECK",
    "page": "22",
    "why": "표·상자 구조 대조 필요",
@@ -170,7 +146,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 70,
+   "line": 66,
    "marker": "VISUAL-CHECK",
    "page": "22",
    "why": "표·상자 구조 대조 필요",
@@ -178,7 +154,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 74,
+   "line": 70,
    "marker": "VISUAL-CHECK",
    "page": "22",
    "why": "표·상자 구조 대조 필요",
@@ -186,7 +162,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 78,
+   "line": 74,
    "marker": "VISUAL-CHECK",
    "page": "22",
    "why": "표·상자 구조 대조 필요",
@@ -194,7 +170,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 84,
+   "line": 80,
    "marker": "VISUAL-CHECK",
    "page": "22",
    "why": "표·상자 구조 대조 필요",
@@ -202,7 +178,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 92,
+   "line": 88,
    "marker": "VISUAL-CHECK",
    "page": "23",
    "why": "표·상자 구조 대조 필요",
@@ -210,7 +186,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 98,
+   "line": 94,
    "marker": "VISUAL-CHECK",
    "page": "23",
    "why": "표·상자 구조 대조 필요",
@@ -218,7 +194,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 113,
+   "line": 109,
    "marker": "VISUAL-CHECK",
    "page": "24",
    "why": "표·상자 구조 대조 필요",
@@ -226,7 +202,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 117,
+   "line": 113,
    "marker": "VISUAL-CHECK",
    "page": "24",
    "why": "표·상자 구조 대조 필요",
@@ -234,7 +210,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 135,
+   "line": 131,
    "marker": "VISUAL-CHECK",
    "page": "25",
    "why": "표·상자 구조 대조 필요",
@@ -242,7 +218,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 144,
+   "line": 140,
    "marker": "VISUAL-CHECK",
    "page": "25",
    "why": "표·상자 구조 대조 필요",
@@ -250,7 +226,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 148,
+   "line": 144,
    "marker": "VISUAL-CHECK",
    "page": "25",
    "why": "표·상자 구조 대조 필요",
@@ -258,7 +234,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 208,
+   "line": 204,
    "marker": "VISUAL-CHECK",
    "page": "27",
    "why": "표·상자 구조 대조 필요",
@@ -266,7 +242,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 219,
+   "line": 215,
    "marker": "VISUAL-CHECK",
    "page": "27",
    "why": "표·상자 구조 대조 필요",
@@ -274,7 +250,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 231,
+   "line": 227,
    "marker": "LINEBREAK-UNCERTAIN",
    "page": "28",
    "why": "문단이 이어지는지 판단 필요",
@@ -282,7 +258,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 234,
+   "line": 230,
    "marker": "LINEBREAK-UNCERTAIN",
    "page": "28",
    "why": "문단이 이어지는지 판단 필요",
@@ -290,7 +266,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 249,
+   "line": 245,
    "marker": "VISUAL-CHECK",
    "page": "29",
    "why": "표·상자 구조 대조 필요",
@@ -298,7 +274,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 253,
+   "line": 249,
    "marker": "VISUAL-CHECK",
    "page": "29",
    "why": "표·상자 구조 대조 필요",
@@ -306,7 +282,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 259,
+   "line": 255,
    "marker": "VISUAL-CHECK",
    "page": "29",
    "why": "표·상자 구조 대조 필요",
@@ -314,7 +290,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 265,
+   "line": 261,
    "marker": "VISUAL-CHECK",
    "page": "30",
    "why": "표·상자 구조 대조 필요",
@@ -322,7 +298,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 291,
+   "line": 287,
    "marker": "VISUAL-CHECK",
    "page": "31",
    "why": "표·상자 구조 대조 필요",
@@ -330,7 +306,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 305,
+   "line": 301,
    "marker": "VISUAL-CHECK",
    "page": "32",
    "why": "표·상자 구조 대조 필요",
@@ -338,7 +314,7 @@
   },
   {
    "chunk": "ch03",
-   "line": 343,
+   "line": 339,
    "marker": "VISUAL-CHECK",
    "page": "33",
    "why": "표·상자 구조 대조 필요",
@@ -346,15 +322,7 @@
   },
   {
    "chunk": "ch04",
-   "line": 2,
-   "marker": "VISUAL-CHECK",
-   "page": "34",
-   "why": "표·상자 구조 대조 필요",
-   "context": "<!-- VISUAL-CHECK 도판 · 원서 p.34 · 원본과 대조 필요 --> / ![](assets/figures/ch04-p34-1.png)"
-  },
-  {
-   "chunk": "ch04",
-   "line": 102,
+   "line": 98,
    "marker": "VISUAL-CHECK",
    "page": "39",
    "why": "표·상자 구조 대조 필요",
@@ -362,7 +330,7 @@
   },
   {
    "chunk": "ch04",
-   "line": 124,
+   "line": 120,
    "marker": "VISUAL-CHECK",
    "page": "40",
    "why": "표·상자 구조 대조 필요",
@@ -370,15 +338,7 @@
   },
   {
    "chunk": "ch05",
-   "line": 2,
-   "marker": "VISUAL-CHECK",
-   "page": "41",
-   "why": "표·상자 구조 대조 필요",
-   "context": "<!-- VISUAL-CHECK 도판 · 원서 p.41 · 원본과 대조 필요 --> / ![](assets/figures/ch05-p41-1.png)"
-  },
-  {
-   "chunk": "ch05",
-   "line": 74,
+   "line": 70,
    "marker": "VISUAL-CHECK",
    "page": "45",
    "why": "표·상자 구조 대조 필요",
@@ -386,7 +346,7 @@
   },
   {
    "chunk": "ch05",
-   "line": 125,
+   "line": 121,
    "marker": "VISUAL-CHECK",
    "page": "48",
    "why": "표·상자 구조 대조 필요",
@@ -394,7 +354,7 @@
   },
   {
    "chunk": "ch05",
-   "line": 139,
+   "line": 135,
    "marker": "VISUAL-CHECK",
    "page": "48",
    "why": "표·상자 구조 대조 필요",
@@ -402,7 +362,7 @@
   },
   {
    "chunk": "ch05",
-   "line": 166,
+   "line": 162,
    "marker": "LINEBREAK-UNCERTAIN",
    "page": "50",
    "why": "문단이 이어지는지 판단 필요",
@@ -410,7 +370,7 @@
   },
   {
    "chunk": "ch05",
-   "line": 185,
+   "line": 181,
    "marker": "VISUAL-CHECK",
    "page": "51",
    "why": "표·상자 구조 대조 필요",
@@ -418,7 +378,7 @@
   },
   {
    "chunk": "ch05",
-   "line": 204,
+   "line": 200,
    "marker": "VISUAL-CHECK",
    "page": "52",
    "why": "표·상자 구조 대조 필요",
@@ -426,7 +386,7 @@
   },
   {
    "chunk": "ch05",
-   "line": 256,
+   "line": 252,
    "marker": "VISUAL-CHECK",
    "page": "53",
    "why": "표·상자 구조 대조 필요",
@@ -434,7 +394,7 @@
   },
   {
    "chunk": "ch05",
-   "line": 278,
+   "line": 274,
    "marker": "VISUAL-CHECK",
    "page": "54",
    "why": "표·상자 구조 대조 필요",
@@ -442,7 +402,7 @@
   },
   {
    "chunk": "ch05",
-   "line": 282,
+   "line": 278,
    "marker": "VISUAL-CHECK",
    "page": "54",
    "why": "표·상자 구조 대조 필요",
@@ -450,7 +410,7 @@
   },
   {
    "chunk": "ch05",
-   "line": 286,
+   "line": 282,
    "marker": "VISUAL-CHECK",
    "page": "54",
    "why": "표·상자 구조 대조 필요",
@@ -458,7 +418,7 @@
   },
   {
    "chunk": "ch05",
-   "line": 290,
+   "line": 286,
    "marker": "VISUAL-CHECK",
    "page": "54",
    "why": "표·상자 구조 대조 필요",
@@ -466,7 +426,7 @@
   },
   {
    "chunk": "ch05",
-   "line": 294,
+   "line": 290,
    "marker": "VISUAL-CHECK",
    "page": "54",
    "why": "표·상자 구조 대조 필요",
@@ -474,7 +434,7 @@
   },
   {
    "chunk": "ch05",
-   "line": 334,
+   "line": 330,
    "marker": "VISUAL-CHECK",
    "page": "57",
    "why": "표·상자 구조 대조 필요",
@@ -482,7 +442,7 @@
   },
   {
    "chunk": "ch05",
-   "line": 356,
+   "line": 352,
    "marker": "VISUAL-CHECK",
    "page": "58",
    "why": "표·상자 구조 대조 필요",
@@ -490,15 +450,7 @@
   },
   {
    "chunk": "ch06",
-   "line": 2,
-   "marker": "VISUAL-CHECK",
-   "page": "59",
-   "why": "표·상자 구조 대조 필요",
-   "context": "<!-- VISUAL-CHECK 도판 · 원서 p.59 · 원본과 대조 필요 --> / ![](assets/figures/ch06-p59-1.png)"
-  },
-  {
-   "chunk": "ch06",
-   "line": 26,
+   "line": 22,
    "marker": "VISUAL-CHECK",
    "page": "60",
    "why": "표·상자 구조 대조 필요",
@@ -506,7 +458,7 @@
   },
   {
    "chunk": "ch06",
-   "line": 69,
+   "line": 65,
    "marker": "VISUAL-CHECK",
    "page": "62",
    "why": "표·상자 구조 대조 필요",
@@ -514,7 +466,7 @@
   },
   {
    "chunk": "ch06",
-   "line": 83,
+   "line": 79,
    "marker": "VISUAL-CHECK",
    "page": "62",
    "why": "표·상자 구조 대조 필요",
@@ -522,7 +474,7 @@
   },
   {
    "chunk": "ch06",
-   "line": 93,
+   "line": 89,
    "marker": "VISUAL-CHECK",
    "page": "63",
    "why": "표·상자 구조 대조 필요",
@@ -530,7 +482,7 @@
   },
   {
    "chunk": "ch06",
-   "line": 181,
+   "line": 177,
    "marker": "VISUAL-CHECK",
    "page": "66",
    "why": "표·상자 구조 대조 필요",
@@ -538,7 +490,7 @@
   },
   {
    "chunk": "ch06",
-   "line": 213,
+   "line": 209,
    "marker": "VISUAL-CHECK",
    "page": "67",
    "why": "표·상자 구조 대조 필요",
@@ -546,7 +498,7 @@
   },
   {
    "chunk": "ch06",
-   "line": 237,
+   "line": 233,
    "marker": "VISUAL-CHECK",
    "page": "68",
    "why": "표·상자 구조 대조 필요",
@@ -554,7 +506,7 @@
   },
   {
    "chunk": "ch06",
-   "line": 249,
+   "line": 245,
    "marker": "VISUAL-CHECK",
    "page": "69",
    "why": "표·상자 구조 대조 필요",
@@ -562,15 +514,7 @@
   },
   {
    "chunk": "ch07",
-   "line": 2,
-   "marker": "VISUAL-CHECK",
-   "page": "70",
-   "why": "표·상자 구조 대조 필요",
-   "context": "<!-- VISUAL-CHECK 도판 · 원서 p.70 · 원본과 대조 필요 --> / ![](assets/figures/ch07-p70-1.png)"
-  },
-  {
-   "chunk": "ch07",
-   "line": 100,
+   "line": 96,
    "marker": "VISUAL-CHECK",
    "page": "73",
    "why": "표·상자 구조 대조 필요",
@@ -578,7 +522,7 @@
   },
   {
    "chunk": "ch07",
-   "line": 126,
+   "line": 122,
    "marker": "VISUAL-CHECK",
    "page": "74",
    "why": "표·상자 구조 대조 필요",
@@ -586,7 +530,7 @@
   },
   {
    "chunk": "ch07",
-   "line": 160,
+   "line": 156,
    "marker": "VISUAL-CHECK",
    "page": "76",
    "why": "표·상자 구조 대조 필요",
@@ -594,15 +538,7 @@
   },
   {
    "chunk": "ch08",
-   "line": 2,
-   "marker": "VISUAL-CHECK",
-   "page": "77",
-   "why": "표·상자 구조 대조 필요",
-   "context": "<!-- VISUAL-CHECK 도판 · 원서 p.77 · 원본과 대조 필요 --> / ![](assets/figures/ch08-p77-1.png)"
-  },
-  {
-   "chunk": "ch08",
-   "line": 72,
+   "line": 68,
    "marker": "LINEBREAK-UNCERTAIN",
    "page": "81",
    "why": "문단이 이어지는지 판단 필요",
@@ -610,7 +546,7 @@
   },
   {
    "chunk": "ch08",
-   "line": 121,
+   "line": 117,
    "marker": "VISUAL-CHECK",
    "page": "84",
    "why": "표·상자 구조 대조 필요",
@@ -618,15 +554,7 @@
   },
   {
    "chunk": "ch09",
-   "line": 2,
-   "marker": "VISUAL-CHECK",
-   "page": "85",
-   "why": "표·상자 구조 대조 필요",
-   "context": "<!-- VISUAL-CHECK 도판 · 원서 p.85 · 원본과 대조 필요 --> / ![](assets/figures/ch09-p85-1.png)"
-  },
-  {
-   "chunk": "ch09",
-   "line": 20,
+   "line": 16,
    "marker": "VISUAL-CHECK",
    "page": "85",
    "why": "표·상자 구조 대조 필요",
@@ -634,7 +562,7 @@
   },
   {
    "chunk": "ch09",
-   "line": 44,
+   "line": 40,
    "marker": "VISUAL-CHECK",
    "page": "86",
    "why": "표·상자 구조 대조 필요",
@@ -642,7 +570,7 @@
   },
   {
    "chunk": "ch09",
-   "line": 56,
+   "line": 52,
    "marker": "VISUAL-CHECK",
    "page": "87",
    "why": "표·상자 구조 대조 필요",
@@ -650,7 +578,7 @@
   },
   {
    "chunk": "ch09",
-   "line": 72,
+   "line": 68,
    "marker": "VISUAL-CHECK",
    "page": "88",
    "why": "표·상자 구조 대조 필요",
@@ -658,7 +586,7 @@
   },
   {
    "chunk": "ch09",
-   "line": 82,
+   "line": 78,
    "marker": "VISUAL-CHECK",
    "page": "89",
    "why": "표·상자 구조 대조 필요",
@@ -666,7 +594,7 @@
   },
   {
    "chunk": "ch09",
-   "line": 108,
+   "line": 104,
    "marker": "VISUAL-CHECK",
    "page": "90",
    "why": "표·상자 구조 대조 필요",
@@ -674,7 +602,7 @@
   },
   {
    "chunk": "ch09",
-   "line": 120,
+   "line": 116,
    "marker": "LINEBREAK-UNCERTAIN",
    "page": "91",
    "why": "문단이 이어지는지 판단 필요",
@@ -682,7 +610,7 @@
   },
   {
    "chunk": "ch09",
-   "line": 123,
+   "line": 119,
    "marker": "VISUAL-CHECK",
    "page": "91",
    "why": "표·상자 구조 대조 필요",
@@ -690,7 +618,7 @@
   },
   {
    "chunk": "ch09",
-   "line": 137,
+   "line": 133,
    "marker": "VISUAL-CHECK",
    "page": "92",
    "why": "표·상자 구조 대조 필요",
@@ -698,15 +626,7 @@
   },
   {
    "chunk": "appA",
-   "line": 2,
-   "marker": "VISUAL-CHECK",
-   "page": "93",
-   "why": "표·상자 구조 대조 필요",
-   "context": "<!-- VISUAL-CHECK 도판 · 원서 p.93 · 원본과 대조 필요 --> / ![](assets/figures/appA-p93-1.png)"
-  },
-  {
-   "chunk": "appA",
-   "line": 10,
+   "line": 6,
    "marker": "VISUAL-CHECK",
    "page": "93",
    "why": "표·상자 구조 대조 필요",
@@ -714,59 +634,11 @@
   },
   {
    "chunk": "appB",
-   "line": 2,
-   "marker": "VISUAL-CHECK",
-   "page": "94",
-   "why": "표·상자 구조 대조 필요",
-   "context": "<!-- VISUAL-CHECK 도판 · 원서 p.94 · 원본과 대조 필요 --> / ![](assets/figures/appB-p94-1.png)"
-  },
-  {
-   "chunk": "appB",
-   "line": 10,
+   "line": 6,
    "marker": "VISUAL-CHECK",
    "page": "94",
    "why": "표·상자 구조 대조 필요",
    "context": "A print condition form was developed by Chad Hunter of George Eastman House as an instructional tool for workshops held during fieldwork for this guide. Before the sessions, each participant sent a film print to Eastman House for inspection. Staff preservationists recorded their findings on the form and returned the prints and completed reports to participants. The findings were discussed at the w"
-  },
-  {
-   "chunk": "appC",
-   "line": 2,
-   "marker": "VISUAL-CHECK",
-   "page": "95",
-   "why": "표·상자 구조 대조 필요",
-   "context": "<!-- VISUAL-CHECK 도판 · 원서 p.95 · 원본과 대조 필요 --> / ![](assets/figures/appC-p95-1.png)"
-  },
-  {
-   "chunk": "appD",
-   "line": 2,
-   "marker": "VISUAL-CHECK",
-   "page": "97",
-   "why": "표·상자 구조 대조 필요",
-   "context": "<!-- VISUAL-CHECK 도판 · 원서 p.97 · 원본과 대조 필요 --> / ![](assets/figures/appD-p97-1.png)"
-  },
-  {
-   "chunk": "gloss",
-   "line": 2,
-   "marker": "VISUAL-CHECK",
-   "page": "99",
-   "why": "표·상자 구조 대조 필요",
-   "context": "<!-- VISUAL-CHECK 도판 · 원서 p.99 · 원본과 대조 필요 --> / ![](assets/figures/gloss-p99-1.png)"
-  },
-  {
-   "chunk": "biblio",
-   "line": 2,
-   "marker": "VISUAL-CHECK",
-   "page": "109",
-   "why": "표·상자 구조 대조 필요",
-   "context": "<!-- VISUAL-CHECK 도판 · 원서 p.109 · 원본과 대조 필요 --> / ![](assets/figures/biblio-p109-1.png)"
-  },
-  {
-   "chunk": "index",
-   "line": 2,
-   "marker": "VISUAL-CHECK",
-   "page": "114",
-   "why": "표·상자 구조 대조 필요",
-   "context": "<!-- VISUAL-CHECK 도판 · 원서 p.114 · 원본과 대조 필요 --> / ![](assets/figures/index-p114-1.png)"
   }
  ],
  "resolved": 0

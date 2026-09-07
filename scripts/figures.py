@@ -84,8 +84,36 @@ def find_figures(page, exclude=()):
     figs = [r for r in _merge(rects, pad=10)
             if (r[2]-r[0]) >= MIN_W and (r[3]-r[1]) >= MIN_H
             and not any(_overlap(r, e, -6) for e in exclude)]
+    figs = [r for r in figs if not _is_title_banner(r, page)]
     figs.sort(key=lambda r: (round(r[1] / 12), r[0]))
     return figs
+
+HEADING_PT = 13        # 이보다 큰 글자는 제목으로 본다
+BANNER_PAD = 30        # 제목 글자 높이에 이만큼까지 여백이 붙은 것은 배너로 본다
+
+def _is_title_banner(fig, page):
+    """장 제목 뒤에 깔린 짙은 띠인가.
+
+    원서는 장·부록 첫 쪽의 제목을 짙은 배경 띠 위에 얹는다. 그 띠는 벡터 사각형이라
+    도판 검출에 그대로 걸려, 청크마다 '제목이 그려진 그림' 한 장이 만들어졌다
+    (전권에서 16장. 같은 문구가 바로 아래 제목 텍스트로 이미 추출돼 있으니 군더더기다).
+
+    사진이나 도해에는 제목 크기의 글자가 들어 있지 않다. 그리고 배너는 제목 글자
+    높이에 여백만 조금 더한 크기다. 두 조건을 함께 본다 — 제목 크기 글자만으로
+    판정하면, 절 제목 옆에 놓인 큰 사진까지 배너로 몰려 사라진다.
+    """
+    fh = fig[3] - fig[1]
+    for b in page.get_text("dict")["blocks"]:
+        if b.get("type") != 0 or not inside(tuple(b["bbox"]), fig, pad=6):
+            continue
+        size = max((sp["size"] for l in b["lines"] for sp in l["spans"]
+                    if sp["text"].strip()), default=0)
+        if size < HEADING_PT:
+            continue
+        bh = b["bbox"][3] - b["bbox"][1]
+        if fh <= bh + BANNER_PAD:
+            return True
+    return False
 
 # 도해가 여러 조각으로 잘리는 문제를 여기서 추측으로 풀지 않는다.
 #

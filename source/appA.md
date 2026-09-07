@@ -1,8 +1,4 @@
 
-<!-- VISUAL-CHECK 도판 · 원서 p.93 · 원본과 대조 필요 -->
-
-![](assets/figures/appA-p93-1.png)
-
 ## APPENDIX A: EDGE CODE CHART
 
 These charts reproduce the date edge codes from Kodak and Dupont motion picture film. To date your film, find the film’s edge code and select the matching code on the chart. Kodak repeated symbols every 20 years, so you will need additional data to pinpoint the date. For 8mm edge codes used after 1965, see the Web site www.filmforever.org. Fuji film uses a four-digit code; the first two numbers represent the year of manufacture. For more on using edge codes for dating, see 3.3.

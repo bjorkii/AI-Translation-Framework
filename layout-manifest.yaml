@@ -10,13 +10,6 @@
 #   회귀 대조  스크립트를 고친 전후로 이 파일이 같은지 비교한다.
 
 elements:
-  - id: ch01-p1-1
-    type: image
-    chunk: ch01
-    source_page: "1"
-    bbox: [72.0, 72.0, 432.0, 117.0]
-    asset: assets/figures/ch01-p1-1.png
-    status: pending
   - id: fn-ch01-001
     type: footnote
     chunk: ch01
@@ -53,13 +46,6 @@ elements:
     source_page: "5"
     bbox: [261.2, 97.7, 431.8, 223.1]
     asset: assets/figures/ch01-p5-1.png
-    status: pending
-  - id: ch02-p6-1
-    type: image
-    chunk: ch02
-    source_page: "6"
-    bbox: [54.0, 72.0, 414.0, 117.0]
-    asset: assets/figures/ch02-p6-1.png
     status: pending
   - id: fn-ch02-001
     type: footnote
@@ -218,15 +204,8 @@ elements:
     type: image
     chunk: ch03
     source_page: "19"
-    bbox: [72.0, 72.0, 432.0, 117.0]
-    asset: assets/figures/ch03-p19-1.png
-    status: pending
-  - id: ch03-p19-2
-    type: image
-    chunk: ch03
-    source_page: "19"
     bbox: [72.0, 379.7, 432.0, 611.5]
-    asset: assets/figures/ch03-p19-2.png
+    asset: assets/figures/ch03-p19-1.png
     status: pending
   - id: fn-ch03-001
     type: footnote
@@ -451,13 +430,6 @@ elements:
     rows: 6
     cols: 4
     status: pending
-  - id: ch04-p34-1
-    type: image
-    chunk: ch04
-    source_page: "34"
-    bbox: [54.0, 72.0, 414.0, 117.0]
-    asset: assets/figures/ch04-p34-1.png
-    status: pending
   - id: fn-ch04-001
     type: footnote
     chunk: ch04
@@ -532,13 +504,6 @@ elements:
     source_page: "40"
     bbox: [243.0, 97.5, 414.4, 256.8]
     asset: assets/figures/ch04-p40-1.png
-    status: pending
-  - id: ch05-p41-1
-    type: image
-    chunk: ch05
-    source_page: "41"
-    bbox: [72.0, 72.0, 432.0, 117.0]
-    asset: assets/figures/ch05-p41-1.png
     status: pending
   - id: fn-ch05-001
     type: footnote
@@ -717,13 +682,6 @@ elements:
     bbox: [243.0, 96.5, 414.4, 233.6]
     asset: assets/figures/ch05-p58-1.png
     status: pending
-  - id: ch06-p59-1
-    type: image
-    chunk: ch06
-    source_page: "59"
-    bbox: [72.0, 72.0, 432.0, 117.0]
-    asset: assets/figures/ch06-p59-1.png
-    status: pending
   - id: fn-ch06-001
     type: footnote
     chunk: ch06
@@ -842,13 +800,6 @@ elements:
     bbox: [261.2, 96.5, 432.4, 221.8]
     asset: assets/figures/ch06-p69-1.png
     status: pending
-  - id: ch07-p70-1
-    type: image
-    chunk: ch07
-    source_page: "70"
-    bbox: [54.0, 72.0, 414.0, 117.0]
-    asset: assets/figures/ch07-p70-1.png
-    status: pending
   - id: fn-ch07-001
     type: footnote
     chunk: ch07
@@ -930,13 +881,6 @@ elements:
     bbox: [243.0, 96.6, 414.0, 250.8]
     asset: assets/figures/ch07-p76-1.png
     status: pending
-  - id: ch08-p77-1
-    type: image
-    chunk: ch08
-    source_page: "77"
-    bbox: [72.0, 72.0, 432.0, 117.0]
-    asset: assets/figures/ch08-p77-1.png
-    status: pending
   - id: fn-ch08-001
     type: footnote
     chunk: ch08
@@ -978,15 +922,8 @@ elements:
     type: image
     chunk: ch09
     source_page: "85"
-    bbox: [72.0, 72.0, 432.0, 117.0]
-    asset: assets/figures/ch09-p85-1.png
-    status: pending
-  - id: ch09-p85-2
-    type: image
-    chunk: ch09
-    source_page: "85"
     bbox: [290.2, 439.3, 432.0, 589.8]
-    asset: assets/figures/ch09-p85-2.png
+    asset: assets/figures/ch09-p85-1.png
     status: pending
   - id: fn-ch09-001
     type: footnote
@@ -1061,13 +998,6 @@ elements:
     bbox: [243.0, 96.5, 414.4, 255.8]
     asset: assets/figures/ch09-p92-1.png
     status: pending
-  - id: appA-p93-1
-    type: image
-    chunk: appA
-    source_page: "93"
-    bbox: [72.0, 72.0, 432.0, 117.0]
-    asset: assets/figures/appA-p93-1.png
-    status: pending
   - id: appA-p93-table1
     type: table
     chunk: appA
@@ -1080,56 +1010,14 @@ elements:
     type: image
     chunk: appB
     source_page: "94"
-    bbox: [54.0, 72.0, 414.0, 117.0]
-    asset: assets/figures/appB-p94-1.png
-    status: pending
-  - id: appB-p94-2
-    type: image
-    chunk: appB
-    source_page: "94"
     bbox: [53.4, 237.2, 414.8, 678.7]
-    asset: assets/figures/appB-p94-2.png
-    status: pending
-  - id: appC-p95-1
-    type: image
-    chunk: appC
-    source_page: "95"
-    bbox: [72.0, 72.0, 432.0, 117.0]
-    asset: assets/figures/appC-p95-1.png
-    status: pending
-  - id: appD-p97-1
-    type: image
-    chunk: appD
-    source_page: "97"
-    bbox: [72.0, 72.0, 432.0, 117.0]
-    asset: assets/figures/appD-p97-1.png
-    status: pending
-  - id: gloss-p99-1
-    type: image
-    chunk: gloss
-    source_page: "99"
-    bbox: [72.0, 72.0, 432.0, 117.0]
-    asset: assets/figures/gloss-p99-1.png
-    status: pending
-  - id: biblio-p109-1
-    type: image
-    chunk: biblio
-    source_page: "109"
-    bbox: [72.0, 72.0, 432.0, 117.0]
-    asset: assets/figures/biblio-p109-1.png
-    status: pending
-  - id: index-p114-1
-    type: image
-    chunk: index
-    source_page: "114"
-    bbox: [54.0, 72.0, 414.0, 117.0]
-    asset: assets/figures/index-p114-1.png
+    asset: assets/figures/appB-p94-1.png
     status: pending
 
 pages:
   - chunk: ch01
     source_page: "1"
-    paragraph_count: 9
+    paragraph_count: 8
     first_line: "## 1. WHY PRESERVE FILM?"
   - chunk: ch01
     source_page: "3"
@@ -1145,7 +1033,7 @@ pages:
     first_line: "### CASE STUDY: OKLAHOMA HISTORICAL SOCIETY"
   - chunk: ch02
     source_page: "6"
-    paragraph_count: 11
+    paragraph_count: 10
     first_line: "## 2. UNDERSTANDING FILM AND HOW IT DECAYS"
   - chunk: ch02
     source_page: "7"
@@ -1185,7 +1073,7 @@ pages:
     first_line: "**TABLE 3. FILM DAMAGE AND DECAY: SUMMARY**"
   - chunk: ch03
     source_page: "20"
-    paragraph_count: 12
+    paragraph_count: 11
     first_line: "## 3. FILM HANDLING AND INSPECTION"
   - chunk: ch03
     source_page: "21"
@@ -1229,7 +1117,7 @@ pages:
     first_line: "**TABLE 5. FILM EQUIPMENT BY FUNCTION: SAFE HANDLING TOOLS F"
   - chunk: ch04
     source_page: "36"
-    paragraph_count: 26
+    paragraph_count: 25
     first_line: "## 4. THE CURATORIAL ROLE"
   - chunk: ch04
     source_page: "38"
@@ -1245,7 +1133,7 @@ pages:
     first_line: "### CASE STUDY: UNIVERSITY OF ALASKA FAIRBANKS"
   - chunk: ch05
     source_page: "41"
-    paragraph_count: 9
+    paragraph_count: 8
     first_line: "## 5. DUPLICATION"
   - chunk: ch05
     source_page: "43"
@@ -1309,7 +1197,7 @@ pages:
     first_line: "### CASE STUDY: VISUAL COMMUNICATIONS"
   - chunk: ch06
     source_page: "59"
-    paragraph_count: 9
+    paragraph_count: 8
     first_line: "## 6. STORAGE"
   - chunk: ch06
     source_page: "60"
@@ -1345,7 +1233,7 @@ pages:
     first_line: "### CASE STUDY: NEBRASKA STATE HISTORICAL SOCIETY"
   - chunk: ch07
     source_page: "70"
-    paragraph_count: 11
+    paragraph_count: 10
     first_line: "## 7. CATALOGING BY PAUL EISLOEFFEL"
   - chunk: ch07
     source_page: "74"
@@ -1361,7 +1249,7 @@ pages:
     first_line: "### CASE STUDY: NORTHEAST HISTORIC FILM"
   - chunk: ch08
     source_page: "77"
-    paragraph_count: 9
+    paragraph_count: 8
     first_line: "## 8. LEGAL CONTEXT BY ERIC J. SCHWARTZ"
   - chunk: ch08
     source_page: "78"
@@ -1385,7 +1273,7 @@ pages:
     first_line: "### CASE STUDY: UNIVERSITY OF TEXAS AT AUSTIN"
   - chunk: ch09
     source_page: "85"
-    paragraph_count: 11
+    paragraph_count: 10
     first_line: "## 9. ACCESS"
   - chunk: ch09
     source_page: "89"
@@ -1405,15 +1293,15 @@ pages:
     first_line: "### CASE STUDY: MINNESOTA HISTORICAL SOCIETY"
   - chunk: appA
     source_page: "93"
-    paragraph_count: 4
+    paragraph_count: 3
     first_line: "## APPENDIX A: EDGE CODE CHART"
   - chunk: appB
     source_page: "94"
-    paragraph_count: 4
+    paragraph_count: 3
     first_line: "## APPENDIX B: PRINT CONDITION REPORT"
   - chunk: appC
     source_page: "95"
-    paragraph_count: 15
+    paragraph_count: 14
     first_line: "## APPENDIX C: SELECTED FILM PRESERVATION LABORATORIES"
   - chunk: appC
     source_page: "96"
@@ -1421,7 +1309,7 @@ pages:
     first_line: "**DuArt Film and Video** 245 W. 55th St. New York, NY 10019 "
   - chunk: appD
     source_page: "97"
-    paragraph_count: 17
+    paragraph_count: 16
     first_line: "## APPENDIX D: SELECTED EQUIPMENT AND SUPPLY VENDORS"
   - chunk: appD
     source_page: "98"
@@ -1429,7 +1317,7 @@ pages:
     first_line: "**Plastic Reel Corporation of America** Western Region 8140 "
   - chunk: gloss
     source_page: "99"
-    paragraph_count: 12
+    paragraph_count: 11
     first_line: "## GLOSSARY"
   - chunk: gloss
     source_page: "100"
@@ -1469,7 +1357,7 @@ pages:
     first_line: "**Stock** General term for film. Applied particularly to une"
   - chunk: biblio
     source_page: "109"
-    paragraph_count: 13
+    paragraph_count: 12
     first_line: "## SELECTED BIBLIOGRAPHY"
   - chunk: biblio
     source_page: "110"
@@ -1489,7 +1377,7 @@ pages:
     first_line: "**Independent Media Arts Preservation (IMAP)** www.imapprese"
   - chunk: index
     source_page: "114"
-    paragraph_count: 32
+    paragraph_count: 31
     first_line: "## INDEX"
   - chunk: index
     source_page: "115"

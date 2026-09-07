@@ -20,8 +20,20 @@ MAN = os.path.join(ROOT, "intermediate", "manifest")
 PAGE_MARK = re.compile(r"\[원서 p\.([^\]]+)\]")
 
 
+def strip_frontmatter(text):
+    """번역본 머리의 YAML frontmatter 를 뗀다 (파이프라인 2.7절).
+
+    원문에는 없고 번역본에만 있으므로, 그냥 세면 첫 쪽 문단 수가 늘 하나 더 나온다.
+    """
+    if not text.startswith("---"):
+        return text
+    end = text.find("\n---", 3)
+    return text[end + 4:] if end > 0 else text
+
+
 def page_blocks(text):
     """번역본을 페이지 마커로 잘라 {쪽: [문단…]} 으로."""
+    text = strip_frontmatter(text)
     pages, cur = {}, []
     for block in [b.strip() for b in text.split("\n\n")]:
         if not block:

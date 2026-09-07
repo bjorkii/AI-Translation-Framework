@@ -1,8 +1,4 @@
 
-<!-- VISUAL-CHECK 도판 · 원서 p.114 · 원본과 대조 필요 -->
-
-![](assets/figures/index-p114-1.png)
-
 ## INDEX
 
 - A and B rolls

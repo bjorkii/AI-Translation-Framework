@@ -1,8 +1,4 @@
 
-<!-- VISUAL-CHECK 도판 · 원서 p.95 · 원본과 대조 필요 -->
-
-![](assets/figures/appC-p95-1.png)
-
 ## APPENDIX C: SELECTED FILM PRESERVATION LABORATORIES
 
 **Audio Mechanics** (*sound track*) 1200 W. Magnolia Blvd. Burbank, CA 91506 Phone: 818-846-5525 Web site: www.audiomechanics.com
