@@ -855,12 +855,19 @@ VIEW_JS = r"""
         });
         var sv=tip.querySelector(".tipSave");
         sv.onclick=function(e){ e.stopPropagation();
+          sv.disabled=true; sv.textContent="저장 중…";
           fetch("/api/decide",{method:"POST",headers:{"Content-Type":"application/json"},
             body:JSON.stringify({term:sv.dataset.en, choice:inp.value.trim(),
                                  full:(tip.querySelector(".tipFull")||{}).value||"",
                                  note:(tip.querySelector(".tipNote")||{}).value||"",
                                  actor:"user"})})
-            .then(function(r){return r.json();}).then(function(){ location.reload(); });
+            .then(function(r){return r.json();})
+            .then(function(){ return refreshTerms(); })
+            .then(function(){
+              closeTip();
+              if(chan) chan.postMessage({type:"terms"});   // 열려 있는 다른 창에도
+            })
+            .catch(function(){ sv.disabled=false; sv.textContent="저장"; });
         };
         if(inp){ inp.focus(); inp.select(); }
       }
@@ -871,6 +878,27 @@ VIEW_JS = r"""
     tip.style.top=(window.scrollY+r.bottom+7)+"px";
     if(pin){ pinned=el; el.classList.add("pin"); }
   }
+
+  // 용어를 고치면 그 낱말이 나오는 자리가 한 화면에 여럿이다. 새로고침하지 않고
+  // 목록만 다시 받아 표시를 통째로 다시 입힌다.
+  function rebuild(){
+    if(!marked) return;
+    TermTools.unmarkTextNodes(page, "gt");
+    marked=false;
+    if(on){ TermTools.markTextNodes(page, list, "gt"); marked=true; }
+  }
+  function refreshTerms(){
+    return fetch("/api/terms",{cache:"no-store"}).then(function(r){return r.json();})
+      .then(function(j){
+        TERMS.length=0; [].push.apply(TERMS, j);
+        list = KIND==="compare" ? TERMS
+             : TERMS.filter(function(t){ return KIND==="chapters" ? t.ko : !t.ko; });
+        rebuild();
+      });
+  }
+  // 다른 창에서 용어가 바뀌면 이 창도 따라 바뀐다
+  var chan = window.BroadcastChannel ? new BroadcastChannel("glossary") : null;
+  if(chan) chan.onmessage=function(ev){ if(ev.data && ev.data.type==="terms") refreshTerms(); };
 
   function apply(){
     if(on && !marked){ TermTools.markTextNodes(page, list, "gt"); marked=true;
@@ -1391,6 +1419,8 @@ class Handler(BaseHTTPRequestHandler):
                      ".gif": "image/gif", ".svg": "image/svg+xml",
                      ".webp": "image/webp"}.get(ext, "application/octet-stream")
             self._send(200, f.read_bytes(), ctype)
+        elif u.path == "/api/terms":
+            self._send(200, json.dumps(glossary_payload(), ensure_ascii=False))
         elif u.path == "/terms.js":
             self._send(200, read("scripts/terms.js"), "application/javascript; charset=utf-8")
         elif u.path in ("/", "/index.html"):

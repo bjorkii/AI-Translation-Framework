@@ -84,6 +84,17 @@
     return hits;
   }
 
-  g.TermTools = { escHTML: escHTML, termRegex: termRegex,
-                  markHTML: markHTML, markTextNodes: markTextNodes };
+  /* 감싼 것을 도로 푼다. 용어 정보가 바뀌면 다시 훑어야 하는데,
+     푸는 과정 없이 다시 훑으면 이중으로 감싸진다. */
+  function unmarkTextNodes(root, cls) {
+    var els = [].slice.call(root.querySelectorAll("span." + cls));
+    els.forEach(function (el) {
+      el.replaceWith(document.createTextNode(el.textContent));
+    });
+    root.normalize();          // 쪼개진 텍스트 노드를 도로 합친다
+    return els.length;
+  }
+
+  g.TermTools = { escHTML: escHTML, termRegex: termRegex, markHTML: markHTML,
+                  markTextNodes: markTextNodes, unmarkTextNodes: unmarkTextNodes };
 })(window);

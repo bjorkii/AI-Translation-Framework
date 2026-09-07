@@ -182,6 +182,8 @@ font-variant-numeric:tabular-nums}
 <script>
 let S=null, tab="overview", lastJSON="", editing=null, query="", flashPending=false;
 let stageFilter=null;      // 청크 목록에서 추려 볼 단계 (null이면 전체)
+// 같은 브라우저의 다른 창(원문·번역본·대조)과 용어 변경을 주고받는 통로
+const glossChan = window.BroadcastChannel ? new BroadcastChannel("glossary") : null;
 const quotesOpen={};       // 용어별 '용례 모두 보기' 펼침 상태
 
 // 용어 짚기는 /terms.js 에 모아 두었다. 원문/번역본 보기 화면도 같은 것을 쓴다.
@@ -505,7 +507,11 @@ async function post(url,body){
     body:JSON.stringify(body)});
   const j=await r.json();
   if(!j.ok){ alert(j.message||"처리하지 못했습니다."); return false; }  // 입력 내용 보존
-  editing=null; lastJSON=""; await tick(); return true;
+  editing=null; lastJSON=""; await tick();
+  // 열려 있는 원문/번역본/대조 창도 따라 바뀌게 알린다.
+  // 용어 하나를 고치면 그 낱말이 여러 창에 걸쳐 여러 번 나온다.
+  if(glossChan) glossChan.postMessage({type:"terms"});
+  return true;
 }
 async function addTerm(){
   const t=el("newTerm").value.trim(), v=el("newTr").value.trim(), n=el("newNote").value.trim();
