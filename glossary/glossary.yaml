@@ -125,7 +125,7 @@ entries:
     first_chapter: glossary
     locked: false
   - term: "Betacam SP"
-    translation: null
+    translation: "베타SP"
     definition_en: "A format of analog videotape that measures one-half inch in width and is packaged in a cassette."
     definition_ko: null
     source: "원서 Glossary p.112"
@@ -134,6 +134,8 @@ entries:
     basis: null
     first_chapter: glossary
     locked: false
+    notation: "첫 등장시에만 원문 병기"
+
   - term: "Binder"
     translation: null
     definition_en: "In motion picture film, the material in the emulsion that holds the imageforming particles or dyes."
@@ -196,7 +198,7 @@ entries:
     first_chapter: glossary
     locked: false
   - term: "Cellulose nitrate"
-    translation: null
+    translation: "질산염 셀룰로즈"
     definition_en: "Transparent plastic used as the base in the earliest 35mm film stock. Highly flammable, cellulose nitrate base film was phased out in the early 1950s. Film with a nitrate base is often called nitrate film."
     definition_ko: null
     source: "원서 Glossary p.112"
@@ -205,6 +207,8 @@ entries:
     basis: null
     first_chapter: glossary
     locked: false
+    full: "첫 등장시 원문 병기"
+
   - term: "Cellulose triacetate"
     translation: null
     definition_en: "Strongest acetate film base used for motion picture film."
@@ -352,7 +356,7 @@ entries:
     notation: "첫 등장시 원문 병기"
 
   - term: "Digital videotape"
-    translation: null
+    translation: "디지털 비디오테이프"
     definition_en: "Videotape that stores picture and sound as numeric values. Analog videotape, in contrast, records picture and sound information using frequency modulated signals."
     definition_ko: null
     source: "원서 Glossary p.113"
@@ -1064,7 +1068,7 @@ entries:
     first_chapter: glossary
     locked: false
   - term: "Positive"
-    translation: null
+    translation: "포지티브"
     definition_en: "Film that has a positive image of the motion picture subject. The positive is generally produced from a negative and used for viewing."
     definition_ko: null
     source: "원서 Glossary p.117"
@@ -1073,6 +1077,8 @@ entries:
     basis: null
     first_chapter: glossary
     locked: false
+    full: "첫 등장시에만 원문 병기"
+
   - term: "Preservation"
     translation: "보존"
     context: "원서 1.3절에서 conservation·duplication·restoration의 상위 개념으로 정의"
@@ -1465,8 +1471,8 @@ entries:
     basis: null
     first_chapter: glossary
     locked: false
-  - term: "Sprocket holes"
-    translation: null
+  - term: "sprocket hole"
+    translation: "스프로킷 구멍"
     definition_en: "Holes, usually along the film edge, used to advance the film strip through a camera, printer, or projector. Also known as perforations."
     definition_ko: null
     source: "원서 Glossary p.119"
@@ -1475,6 +1481,8 @@ entries:
     basis: null
     first_chapter: glossary
     locked: false
+    notation: "첫 등장시 원문 병기 / 동의어=퍼포레이션(perforation)"
+
   - term: "Staging area"
     translation: null
     definition_en: "Room set at a temperature and humidity level between that of the cold vault and the workroom. Film is acclimated in the staging area before it is moved to a new environment."
@@ -1717,6 +1725,9 @@ entries:
     locked: false
   - term: "Storage"
     translation: "보존고"
+    alternates:
+      - value: "스토리지"
+        when: "디지털 저장장치·저장공간 맥락"
     notation: "맥락 분기 — 필름·물리 매체의 보관 장소·조건: '보존고'(6장 챕터명 포함). 디지털 저장장치·저장공간 맥락: '스토리지'. 사용자 결정(ch01 사람 감수)"
     definition_en: null
     definition_ko: null
