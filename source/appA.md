@@ -29,6 +29,6 @@ These charts reproduce the date edge codes from Kodak and Dupont motion picture 
 | WHERE EASTMAN KODAK STOCK WAS MANUFACTURED |  |  |  |  |  |
 |  | • • S A F E T Y - ROCHESTER S A F E T Y - CANADA • • S A F E T Y - ENGLAND S A F E T Y - FRANCE • S A F E T Y - AUSTRALIA |  |  |  |  |
 
-### Source: Adapted from a design by Lauren Jones-Joseph, Sabucat Productions. *The code for 1968 is ++.
+### Source: Adapted from a design by Lauren Jones-Joseph, Sabucat Productions. \*The code for 1968 is ++.
 
 [원서 p.93]

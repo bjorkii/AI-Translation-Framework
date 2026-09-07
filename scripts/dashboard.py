@@ -315,7 +315,14 @@ def _em_sub(m):
     if len(d) == 2: return "<strong>%s</strong>" % body
     return "<em>%s</em>" % body
 
+# 역슬래시로 막아 둔 글자를 잠시 치워 둔다.
+# 원서가 각주 기호로 쓴 별표(*, **, ***, ****)는 정규화기가 \* 로 적어 보낸다.
+# 그대로 두면 강조 표시로 읽혀 뒤 문장의 서식이 통째로 뒤집힌다.
+_ESC = re.compile(r"\\([*_`\[\]\\])")
+_UNESC = re.compile("\ue000([0-9]+)\ue001")
+
 def md_inline(s):
+    s = _ESC.sub(lambda m: "\ue000%d\ue001" % ord(m.group(1)), s)
     s = _html.escape(s, quote=False)
     s = re.sub(r"&lt;(/?(?:a|b|i|em|strong|br|span|sup|sub)\b[^&]*?)&gt;", r"<\1>", s)  # 앵커 등 통과
     # 페이지 마커를 링크보다 먼저 치환한다.
@@ -334,7 +341,7 @@ def md_inline(s):
     s = re.sub(r"\[([^\]\[]*)\]\(([^()\s]*)\)", r'<a href="\2">\1</a>', s)
     s = _EM.sub(_em_sub, s)
     s = re.sub(r"`([^`]+)`", r"<code>\1</code>", s)
-    return s
+    return _UNESC.sub(lambda m: _html.escape(chr(int(m.group(1))), quote=False), s)
 
 def _marker_style(tag):
     """정규화기가 남긴 표시를 종류별로 갈라 색과 문구를 준다.

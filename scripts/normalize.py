@@ -294,7 +294,11 @@ def _line_frags(line, base, mark_refs):
                 and re.fullmatch(r"\s*\d{1,2}\s*", t)):
             parts.append((FNMARK_O + t.strip() + FNMARK_C, (False, False)))
             continue
-        parts.append((t, (bool(sp["flags"] & 2), bool(sp["flags"] & 16))))
+        # 원서가 글자로 쓴 별표는 우리가 강조 표시로 넣는 별표와 구분해야 한다.
+        # 이 책은 각주 기호로 *, **, ***, **** 를 쓰고(원서 p.47 표 아래, p.32 측주),
+        # 그대로 두면 마크다운이 그 별표를 강조 표시로 읽어 뒤 문장의 서식이 뒤집힌다.
+        parts.append((t.replace("*", "\\*"),
+                      (bool(sp["flags"] & 2), bool(sp["flags"] & 16))))
     return parts
 
 def styled_lines(block, stats, mark_refs=False):
@@ -459,6 +463,69 @@ def fix_glued_sentences(text):
     소수점(2003.034)도 그대로 남는다.
     """
     return re.sub(r"(?<=[a-z0-9]{2})\.(?=[A-Z])", ". ", text)
+
+# 내용 스트림에서 '기울여 그린 글'을 찾기 위한 토큰들
+_CS_TOK = re.compile(
+    rb"(?P<tm>[-\d.]+ [-\d.]+ (?P<c>[-\d.]+) [-\d.]+ [-\d.]+ [-\d.]+ Tm)"
+    rb"|(?P<nl>T\*|[-\d.]+ [-\d.]+ T[Dd])"
+    rb"|(?P<arr>\[(?:[^\[\]\\]|\\.)*\]\s*TJ)"
+    rb"|(?P<str>\((?:[^()\\]|\\.)*\)\s*Tj)")
+_CS_STR = re.compile(rb"\((?:[^()\\]|\\.)*\)")
+_CS_MAP = {0x91: "‘", 0x92: "’", 0x93: "“", 0x94: "”", 0x96: "–", 0x97: "—",
+           0x0a: "", 0x0d: ""}
+
+def _cs_text(raw):
+    b = re.sub(rb"\\([()\\])", rb"\1", raw[1:-1])
+    return "".join(_CS_MAP.get(c, chr(c)) for c in b)
+
+def italic_runs(page):
+    """합성 기울임으로 그려진 글 조각을 찾는다.
+
+    이 책의 각주·캡션 글꼴(Frutiger-LightCn)에는 이탤릭 변형이 없다. 그래서 조판기가
+    글자를 기울여서(text matrix 의 skew 성분) 그렸다. PyMuPDF 의 텍스트 추출은 그것을
+    스팬 속성으로 내주지 않기 때문에, 각주 안 서명·작품명의 이탤릭이 통째로 사라진다.
+    (전권 33쪽 76군데. 본문은 Goudy-Italic 이라는 진짜 이탤릭 글꼴을 써서 멀쩡하다.)
+
+    조판 정보가 스팬에 없으면 내용 스트림에서 직접 읽는 수밖에 없다.
+    Tm 의 세 번째 값이 0이 아니면 기울인 것이고, 다음 Tm 이 나올 때까지가 그 구간이다.
+    """
+    try:
+        data = page.read_contents()
+    except Exception:
+        return []
+    cur, out = None, []
+    for m in _CS_TOK.finditer(data):
+        if m.group("tm"):
+            if cur:
+                out.append(cur)
+            cur = "" if abs(float(m.group("c"))) > 0.2 else None
+        elif cur is not None:
+            if m.group("nl"):
+                # 줄이 바뀐 자리. 줄 끝 하이픈이면 낱말을 붙이고, 아니면 띈다.
+                # 그냥 띄면 'Museum Set- ting' 이 되어 본문과 글자가 달라지고,
+                # 이 조각을 열쇠로 본문을 찾을 때 걸리지 않는다.
+                if re.search(r"[A-Za-z]-$", cur):
+                    cur = cur[:-1]
+                else:
+                    cur += " "
+            else:
+                body = m.group("arr") or m.group("str")
+                cur += "".join(_cs_text(s) for s in _CS_STR.findall(body))
+    if cur:
+        out.append(cur)
+    return [re.sub(r"\s+", " ", x).strip() for x in out if len(x.strip()) > 3]
+
+def apply_synthetic_italics(text, runs):
+    """기울여 그린 구간을 마크다운 이탤릭으로 되살린다."""
+    n = 0
+    for r in sorted(set(runs), key=len, reverse=True):
+        if "*" in r or r not in text:
+            continue
+        if ("*" + r + "*") in text:           # 이미 이탤릭이면 두 번 감싸지 않는다
+            continue
+        text = text.replace(r, "*" + r + "*")
+        n += 1
+    return text, n
 
 def bulletize(text):
     """한 문단으로 뭉친 글머리표 목록을 마크다운 목록으로 되돌린다.
@@ -689,8 +756,10 @@ def main(pdf, p0, p1, chap, outpath=None, parser="prose"):
             pending["mark"] = None
         flush_warn()
 
+    ital = []
     for i in range(p0-1, p1):
         page = doc[i]; stats["pages"] += 1
+        ital.extend(italic_runs(page))
         w, h = page.rect.width, page.rect.height
         # (1) 괘선 표: 표 영역 안의 텍스트 블록은 본문 흐름에서 제외하고 마크다운 표로 재구성
         tables = []
@@ -1024,6 +1093,8 @@ def main(pdf, p0, p1, chap, outpath=None, parser="prose"):
     flush_mark(); flush_warn()
     text = re.sub(r"\n{3,}", "\n\n", "".join(out))
     text = fix_glued_sentences(text)
+    text, n_it = apply_synthetic_italics(text, ital)
+    stats["synthetic_italic"] = n_it
     text = bulletize(text)
     text, n_ovr = apply_overrides(text, chap)
     stats["overrides"] = n_ovr
