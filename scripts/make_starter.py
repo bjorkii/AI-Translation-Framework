@@ -63,6 +63,14 @@ source: intermediate/원서.pdf
 total_file_pages: 0
 page_label_offset: 0
 
+# 청크 경계의 맥락 중첩 (파이프라인 2.1절)
+#   none      겹치지 않는다 — 장마다 화제가 닫히는 실용서·교재·편람
+#   reference 번역할 때 직전 청크의 끝부분을 읽기만 한다 (산출물에는 안 들어간다)
+#   inline    겹침 문단을 청크에 넣고 overlap 마커로 감싼다 — 문장을 경계 너머로
+#             고쳐야 하는 글에만. 2.1절 표의 처리를 전부 해야 한다
+# 원서 성격을 아직 모르는 동안은 reference 로 둔다. 비용이 거의 없다.
+overlap: reference
+
 # 조판 의존 수치 덮어쓰기 (없으면 scripts/layout_profile.py 의 기본값)
 # 규칙은 어느 책에나 통하지만 그 규칙을 적용하는 수치는 원서마다 다르다.
 # 무엇을 조정할 수 있는지는 layout_profile.py 에 목록으로 있다.

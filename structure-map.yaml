@@ -12,6 +12,13 @@ source: intermediate/FilmPreservationGuide-EN.pdf
 total_file_pages: 133
 page_label_offset: 12        # 본문: printed = file - 12
 
+# 청크 경계의 맥락 중첩 (파이프라인 2.1절)
+#   none      겹치지 않는다
+#   reference 번역할 때 직전 청크의 끝부분을 읽기만 한다 (산출물에는 안 들어간다)
+#   inline    겹침 문단을 청크에 넣고 overlap 마커로 감싼다
+# 이 책은 장마다 화제가 닫히는 실용 편람이라 챕터 경계로 지시 대상이 넘어가지 않는다.
+overlap: none
+
 front_matter:
   # 앞부분도 번역 범위에 포함한다. 차례는 쪽번호가 원서 기준이라 색인과 마찬가지로
   # 번역본 기준으로 다시 매겨야 하므로, 여기서는 항목을 온전히 뽑아 두는 것이 목적이다.
